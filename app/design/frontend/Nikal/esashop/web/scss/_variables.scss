@@ -1,0 +1,296 @@
+//--------------------------------------------------
+// Structure
+//--------------------------------------------------
+
+$header-desktop-height: 100px;
+$header-tablet-height: 60px;
+$header-mobile-height: 60px;
+$mobile-menu-width: 280px;
+$sidebar-width: 330px;
+$gutter: 15px;
+
+//--------------------------------------------------
+// Header
+//--------------------------------------------------
+
+$icons-size-desktop: 18px;
+$icons-size-mobile: 20px;
+$header-desktop-image-max-width: 274px;
+$header-mobile-image-max-width: 150px;
+
+//--------------------------------------------------
+// B/W colors
+//--------------------------------------------------
+
+$white: #ffffff;
+$black: #000000;
+
+//--------------------------------------------------
+// Background colors
+//--------------------------------------------------
+
+$bg-main: #ffffff;
+$bg-secondary: #f8f8f8;
+$bg-alternative: #f2f2f2;
+$bg-border: #cccccc;
+$bg-cta: #f75e24;
+$bg-cta-alt: #f44141;
+$bg-separator: #eeeeee;
+
+//--------------------------------------------------
+// Font colors
+//--------------------------------------------------
+
+$font-base: #4a4a4a;
+$font-title: #000000;
+
+$font-link: #000000;
+$font-link-hover: #000000;
+$font-link-border: #000;
+$font-link-border-hover: #000;
+
+$font-light: #9b9b9b;
+$font-light-grey: #f8f8f8;
+
+$font-btn: #000000;
+$font-btn-alt: #FFFFFF;
+$font-btn-hover: #ffffff;
+
+$font-star-empty: #dddddd;
+
+$font-gray-select: #979797;
+
+$font-remove: #d0011b;
+
+$font-required: #f72424;
+
+//--------------------------------------------------
+// Form
+//--------------------------------------------------
+
+//Select
+$font-select-focus: #000000;
+$select-arrow-color: #000000;
+$select-border-color: $bg-border;
+$select-font-color: $font-light;
+
+// Label
+$label-color: $black;
+
+// input type text
+$input-text-font-color: $font-light;
+$input-text-focus-font-color: $font-select-focus;
+
+// input type radio
+$input-radio-border: $bg-border;
+
+//--------------------------------------------------
+// Messages
+//--------------------------------------------------
+
+$bg-alert: #fefad2;
+$bg-alert-font: #ff9454;
+
+$bg-error: #ffe3e7;
+$bg-error-font: #f44141;
+
+$bg-info: #e6fbff;
+$bg-info-font: #4ba9e8;
+
+$bg-success: #e6f2dc;
+$bg-success-font: #81af5b;
+
+//--------------------------------------------------
+// Progress Bar colors
+//--------------------------------------------------
+
+// Default
+$progress-bar-bg-color: $font-star-empty;
+$progress-bar-step-color: $bg-main;
+$progress-bar-label-color: $font-light;
+
+// Active
+$progress-bar-bg-active: #000000;
+$progress-bar-font-color-active: #000000;
+
+// Complete
+$progress-bar-font-color-complete: #ffffff;
+$progress-bar-bg-color-complete: #000000;
+
+//--------------------------------------------------
+// Font family
+//--------------------------------------------------
+
+$font-fam-title: Lora, Georgia, serif;
+$font-fam-base: Roboto, sans-serif;
+
+//--------------------------------------------------
+// Media Query
+//--------------------------------------------------
+
+$lg-width: 1440px;
+$md-width: 1199px;
+$sm-width: 991px;
+$xs-width: 767px;
+$xxs-width: 575px;
+
+//--------------------------------------------------
+// Content max width
+//--------------------------------------------------
+
+$content-max-width: 1440px;
+
+//--------------------------------------------------
+// Font sizes
+//--------------------------------------------------
+
+// Form elements
+$font-size-base: 13px;
+$font-size-select: $font-size-base;
+$font-size-label: $font-size-base;
+
+// Progress Bar
+$progress-bar-label-size: 11px;
+$progress-bar-step-size: 13px;
+$progress-bar-step-check-icon-size: 16px;
+
+//--------------------------------------------------
+// Newsletter
+//--------------------------------------------------
+
+$bg-newsletter: $bg-secondary;
+$social-border-left: #eee;
+$newsletter-input-border: $bg-border;
+
+//--------------------------------------------------
+// Cols widths
+//--------------------------------------------------
+
+$col1: 8.33333333%;
+$col2: 16.66666667%;
+$col3: 25%;
+$col4: 33.33333333%;
+$col5: 41.66666667%;
+$col6: 50%;
+$col7: 58.33333333%;
+$col8: 66.66666667%;
+$col9: 75%;
+$col10: 83.33333333%;
+$col11: 91.66666667%;
+$col12: 100%;
+
+//--------------------------------------------------
+// Shopping cart
+//--------------------------------------------------
+
+$bg-shopping-cart: #f8f8f8;
+$bg-qty-btn: #eeeeee;
+$bg-qty-input-border: 0;
+$bg-block-title: #eeeeee;
+$bg-block-content: #eeeeee;
+$bg-block-title-border: $white;
+$summary-title: #333333;
+$bg-cart-item-separator: $bg-separator;
+$image-size-mobile: 70px;
+
+//--------------------------------------------------
+// Checkout
+//--------------------------------------------------
+
+$bg-success-page-main: $bg-alternative;
+
+//--------------------------------------------------
+// Navigation
+//--------------------------------------------------
+
+$nav-background-mobile: $bg-alternative;
+$nav-item-background-mobile: $white;
+$nav-item-border-mobile: $bg-separator;
+
+//--------------------------------------------------
+// Checkout-cart
+//--------------------------------------------------
+
+$checkout-cart-bg: #fdfdfb;
+$font-discount-price: #f44141;
+
+//--------------------------------------------------
+// Buttons colors
+//--------------------------------------------------
+
+$btn-gradient-deg: 180;
+
+// Primary
+$btn-primary-bg: linear-gradient(#{$btn-gradient-deg}deg, #e17031, #d75523);
+$btn-primary-font: #ffffff;
+$btn-primary-border: none;
+
+$btn-primary-bg-hover: linear-gradient(#{$btn-gradient-deg}deg, #df5e2b, #d84920);
+$btn-primary-font-hover: #ffffff;
+$btn-primary-border-hover: none;
+
+// Secondary
+$btn-secondary-bg: #ffffff;
+$btn-secondary-font: #000000;
+$btn-secondary-border: 1px solid #000;
+
+$btn-secondary-bg-hover: #000000;
+$btn-secondary-font-hover: #ffffff;
+$btn-secondary-border-hover: 1px solid #000;
+
+// Gray
+$btn-gray-bg: linear-gradient(#{$btn-gradient-deg}deg, #d2d2d2, #e2e2e2);
+$btn-gray-font: #000000;
+$btn-gray-border: none;
+
+$btn-gray-bg-hover: linear-gradient(#{$btn-gradient-deg}deg, #dddddd, #f0f0f0);
+$btn-gray-font-hover: #666666;
+$btn-gray-border-hover: none;
+
+//--------------------------------------------------
+// Social media
+//--------------------------------------------------
+
+$bg-facebook: #35578c;
+$bg-facebook-hover: #164184;
+
+$bg-google: #e05440;
+$bg-google-hover: #d82a12;
+
+//--------------------------------------------------
+// Checkbox & Radios
+//--------------------------------------------------
+
+$checkbox-bg: $white;
+$checkbox-bg-hover: $white;
+$checkbox-bg-active: $white;
+
+$checkbox-border: 1px solid #cccccc;
+$checkbox-border-hover: 1px solid #cccccc;
+$checkbox-border-active: 1px solid #cccccc;
+
+$checkbox-icon-color: transparent;
+$checkbox-icon-color-hover: #cccccc;
+$checkbox-icon-color-active: $black;
+
+$checkbox-icon-name: 'done';
+
+$radio-bg: $white;
+$radio-bg-hover: $white;
+$radio-bg-active: $white;
+
+$radio-border: 1px solid #cccccc;
+$radio-border-hover: 1px solid #cccccc;
+$radio-border-active: 1px solid #cccccc;
+
+$radio-icon-color: transparent;
+$radio-icon-color-hover: #cccccc;
+$radio-icon-color-active: $black;
+
+//--------------------------------------------------
+// Nikal vars
+//--------------------------------------------------
+
+$nikal-main-color: #0234fc;
+$nikal-background-color: #efeff1;
+$nikal-text-color: #222323;

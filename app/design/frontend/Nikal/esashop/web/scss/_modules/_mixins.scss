@@ -1,0 +1,158 @@
+/*----------------------------------- */
+// Breakpoints
+/*----------------------------------- */
+@mixin lg {
+
+  @media (max-width: #{$lg-width}) {
+
+    @content;
+  }
+}
+
+@mixin md {
+
+  @media (max-width: #{$md-width}) {
+
+    @content;
+  }
+}
+
+@mixin sm {
+
+  @media (max-width: #{$sm-width}) {
+
+    @content;
+  }
+}
+
+@mixin xs {
+
+  @media (max-width: #{$xs-width}) {
+
+    @content;
+  }
+}
+
+@mixin xxs {
+
+  @media (max-width: #{$xxs-width}) {
+
+    @content;
+  }
+}
+
+/*----------------------------------- */
+// Layout
+/*----------------------------------- */
+@mixin clearfix() {
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin flex($fg, $fs, $fb){
+  @if $fg != '' {
+    flex-grow: $fg;
+  }
+  @if $fs != '' {
+    flex-shrink: $fs;
+  }
+  @if $fb != '' {
+    flex-basis: $fb;
+    max-width: $fb;
+  }
+}
+
+/*----------------------------------- */
+// Icons
+/*----------------------------------- */
+@mixin material-icon($content, $position: before, $font-size: 24px) {
+
+  &:#{$position} {
+    content: $content;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: $font-size;/* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    vertical-align: middle;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+}
+
+/*----------------------------------- */
+// Buttons
+/*----------------------------------- */
+@mixin buttons() {
+  button,
+  input[type="submit"],
+  .button,
+  .btn,
+  %btn {
+    @content;
+  }
+}
+
+/*----------------------------------- */
+// Inputs
+/*----------------------------------- */
+@mixin inputs() {
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    input[type='search'],
+    input[type='email'],
+    input[type='url'],
+    textarea,
+    select,
+    .input-text {
+        @content;
+    }
+}
+
+/*----------------------------------- */
+// Misc
+/*----------------------------------- */
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}
