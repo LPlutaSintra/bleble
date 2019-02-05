@@ -1,0 +1,30 @@
+@mixin transition-veryfast {
+    transition: all .3s ease 0ms;
+}
+@mixin transition-fast {
+    transition: all .5s ease 0ms;
+}
+@mixin transition-medium {
+    transition: all .7s ease 0ms;
+}
+
+
+@keyframes slideOn {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideOff {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

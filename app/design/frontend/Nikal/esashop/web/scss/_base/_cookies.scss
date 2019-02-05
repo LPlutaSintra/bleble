@@ -1,0 +1,69 @@
+/*--------------------------------------------------
+Cookies
+--------------------------------------------------*/
+
+#acceptcookie {
+    position: fixed;
+    z-index: 1000;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    background: rgba(0, 0, 0, .8);
+    color: $white;
+    text-align: center;
+    padding: 15px 30px;
+    font-size: 12px;
+    width: auto;
+    border-radius: 3px;
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+
+    @include sm {
+        white-space: normal;
+        min-width: 500px;
+    }
+
+    @include xs {
+        min-width: 0;
+        width: 95%;
+        text-align: left;
+        padding: 10px 80px 10px 15px;
+    }
+
+    a {
+        color: $white;
+        text-decoration: underline;
+    }
+
+    button {
+        background: none;
+        color: $white;
+        border: 2px solid $white;
+        padding: 3px 9px;
+        outline: none;
+        margin-left: 8px;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all .18s ease-in-out;
+
+        &:hover {
+            color: $black;
+            background: $white;
+        }
+
+        @include sm {
+            display: block;
+            margin: 7px auto 0;
+        }
+
+        @include xs {
+            position: absolute;
+            z-index: 1;
+            right: 20px;
+            bottom: 12px;
+        }
+    }
+}

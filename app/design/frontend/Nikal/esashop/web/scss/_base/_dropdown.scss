@@ -1,0 +1,60 @@
+.dropdown {
+  &.dropdown-slider-wrapper {
+    position: fixed;
+    box-shadow: 0 2px 4px 0 transparent;
+    background: $white;
+    right: 0;
+    bottom: 0;
+    width: 465px;
+    top: 0;
+    z-index: 999;
+    transform: translateX(100%);
+    transition: all .3s ease 0s;
+
+    > div {
+      padding: $gutter;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    @include xs {
+      width: 100%;
+    }
+
+    &.active {
+      transform: translateX(0);
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    }
+
+    .block {
+      .block-title {
+        padding: 0 0 5px;
+        font-family: $font-fam-title;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+
+        .text {
+          font-size: 18px;
+          letter-spacing: 2px;
+          font-weight: 500;
+          color: $black;
+
+          &:hover {
+            color: $black;
+          }
+        }
+
+        .action {
+          padding: 0;
+          margin: 0 0 0 $gutter;
+        }
+
+        @include buttons {
+          @extend %btn.btn-empty;
+        }
+      }
+    }
+  }
+}

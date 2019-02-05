@@ -1,0 +1,337 @@
+.layer-product-list {
+  padding: 43px 0;
+
+  .toolbar-first,
+  .toolbar-last {
+    position: absolute;
+    left: $gutter;
+    right: $gutter;
+
+    .toolbar {
+      background-color: $white;
+      z-index: 1;
+    }
+  }
+
+  .toolbar-first {
+    top: 0;
+  }
+
+  .toolbar-last {
+    bottom: 0;
+  }
+}
+
+.layered-filter-block-container {
+  padding-top: 43px;
+  padding-bottom: 43px;
+  border-right: 1px solid $bg-separator;
+  flex: 1;
+
+  @include sm {
+    border-left: 1px solid $bg-separator;
+    margin-bottom: 0;
+  }
+
+  @include xs {
+    display: none;
+  }
+
+  .filter-actions {
+    padding: 5px 12px;
+    background-color: $bg-secondary;
+    border-bottom: 1px solid $white;
+    margin-bottom: 1px;
+    display: flex;
+    justify-content: flex-end;
+
+    .filter-clear {
+      span {
+        font-size: 13px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: $black;
+      }
+    }
+  }
+
+  .filter-current {
+    background-color: #f8f8f8;
+    margin-bottom: 1px;
+    padding: 0 12px;
+
+    .item {
+      padding: 5px 0;
+    }
+    .filter-label,
+    .filter-value {
+      font-size: 13px;
+      color: $black;
+      text-transform: uppercase;
+      line-height: 1.62;
+      letter-spacing: 1px;
+    }
+
+    .filter-label {
+      font-weight: 500;
+    }
+
+    .filter-value {
+      font-weight: 300;
+    }
+
+    .remove {
+      color: $font-light;
+
+      i {
+        font-size: 16px;
+        margin-top: 4px;
+        float: right;
+      }
+    }
+  }
+
+  .filter-options-title {
+    border-bottom: 1px solid $bg-separator;
+    border-top: 1px solid $bg-separator;
+    margin-top: -1px;
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    color: $black;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px;
+
+    &:after {
+      content: url('../images/collapse-off.svg');
+      color: $font-light;
+      position: absolute;
+      line-height: 1;
+      width: 12px;
+      height: 12px;
+      padding: 14px;
+      top: 0;
+      right: 0;
+      opacity: .8;
+    }
+  }
+
+  .filter-options-item {
+    &.active {
+      .filter-options-title {
+        &:after {
+          content: url('../images/collapse-on.svg');
+        }
+      }
+
+      .filter-options-content {
+        display: initial;
+      }
+    }
+  }
+
+  //only for categories filter
+  .ln-items-cat {
+    .item-parent-categories {
+
+      &.on {
+        > span {
+          &:before {
+            transform: rotate(90deg);
+          }
+        }
+      }
+
+      > span {
+        font-size: 13px;
+        color: $black;
+        display: block;
+        cursor: pointer;
+        vertical-align: middle;
+        margin: 0 $gutter;
+        transition: all .3s ease 0s;
+
+        @include material-icon('chevron_right', before, 12px);
+
+        &:before {
+          margin-left: -#{$gutter};
+          transform: rotate(0);
+          transition: all .3s ease 0s;
+        }
+
+        &:hover {
+          color: $bg-cta
+        }
+      }
+    }
+
+    .ln-items-cat-sub {
+      display: none;
+      padding-left: $gutter;
+
+      .item {
+        > a {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .filter-options-content {
+    //to avoid display content before js loaded
+    width: 100%;
+    display: none;
+
+    .filter-container {
+      padding: $gutter;
+    }
+
+    .item {
+      position: relative;
+
+      a {
+        padding: 3px 15px 0 26px;
+        display: block;
+        font-size: 13px;
+        color: $font-base;
+        font-weight: 400;
+        background: url('../images/checkbox_empty.png') no-repeat 0 8px;
+        padding-bottom: 1px;
+        text-transform: uppercase;
+
+        input {
+          width: auto;
+          height: auto;
+        }
+      }
+
+      .ln_slider_container {
+
+        .ui-slider {
+          height: 2px;
+          max-width: 260px;
+          background: $font-star-empty;
+          margin-bottom: 30px;
+
+          @include sm {
+            max-width: 100%;
+          }
+        }
+
+        .ui-slider-handle {
+          cursor: pointer;
+          background: $black;
+          border-radius: 50px;
+          padding: 2px;
+          margin: -6px 0 0;
+          z-index: auto;
+
+          &:hover {
+            background: $bg-cta;
+          }
+        }
+
+        #ln_slider_text_price {
+          font-size: 13px;
+          color: $font-base;
+          margin: 0 0 10px;
+        }
+      }
+
+      &.on {
+        > a {
+          background: url('../images/checkbox_checked.png') no-repeat 0 8px;
+        }
+      }
+    }
+
+    .swatch-attribute-options {
+      display: flex;
+      flex-flow: column nowrap;
+
+      > a {
+        display: flex;
+
+      }
+
+      .swatch-option-link-layered {
+        padding-left: 26px !important;
+        background: url('../images/checkbox_empty.png') no-repeat 0 center;
+        margin: 0 0 4px !important;
+
+        &.on {
+          background: url('../images/checkbox_checked.png') no-repeat 0 center;
+        }
+
+        .swatch-option {
+          &.text {
+            display: none;
+          }
+        }
+
+        p {
+          font-size: 13px;
+          color: $font-base;
+          font-weight: 400;
+          line-height: 1.5;
+          text-transform: uppercase;
+        }
+      }
+
+      .swatch-option {
+        width: 24px;
+        height: 14px;
+        min-width: 0;
+        max-width: 100%;
+        outline: 0;
+        border: 0;
+        padding: 0;
+        margin: 2px 10px 2px 0;
+
+        &:hover,
+        &.selected {
+          outline: 0;
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
+.ln_overlay,
+.ln_product_overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  background-color: rgba($white,.75);
+
+  .loader {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    > img {
+      max-width: 100%;
+
+    }
+  }
+}
+
+.ln_slider_container {
+  width: calc(100% - 20px);
+  margin: 0 15px 0 5px;
+}
+

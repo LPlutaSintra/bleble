@@ -1,0 +1,38 @@
+.copyright {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: $gutter;
+  box-sizing: border-box;
+
+  > span {
+    max-width: $content-max-width;
+    width: 100%;
+
+    &:before {
+      content: '';
+      background-color: $bg-separator;
+      width: 100%;
+      height: 1px;
+      display: block;
+      margin-bottom: $gutter;
+
+      @include sm {
+        content: none;
+      }
+    }
+  }
+}
+
+.page-layout-checkout-cart {
+
+  .copyright {
+
+    > span {
+
+      &:before {
+        content: none;
+      }
+    }
+  }
+}

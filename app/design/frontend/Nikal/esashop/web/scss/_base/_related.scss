@@ -1,0 +1,54 @@
+/*----------------------------------- */
+// Related products, crosssell, upsell
+/*----------------------------------- */
+%products-grid,
+.upsell,
+.related,
+.crosssell {
+  background-color: $white;
+
+  .block-title {
+    @extend %content;
+    margin-top: 56px;
+    margin-bottom: 31px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 2px;
+    font-family: $font-fam-title;
+    color: $black;
+
+    @include xs {
+      font-size: 18px;
+      color: $font-base;
+    }
+  }
+
+  .block-actions {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .action {
+      margin-top: $gutter;
+    }
+  }
+
+  .product-item {
+
+    .choice {
+      position: absolute;
+      opacity: 0;
+
+      label {
+        white-space: pre;
+      }
+    }
+  }
+}
+
+.block-products-list {
+  @extend %products-grid;
+}

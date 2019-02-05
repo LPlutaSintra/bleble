@@ -1,0 +1,124 @@
+.popup-authentication-quicklogin {
+  max-width: 465px;
+  width: $col12;
+
+  @include xs {
+    max-width: 100%;
+  }
+
+  .modal-inner-wrap {
+    padding: 10px 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .action-close {
+    color: $font-base;
+    opacity: .6;
+    font-size: 11px;
+  }
+
+  .block-title {
+    padding: 0 0 5px;
+    margin: 0 0 18px;
+    font-family: $font-fam-title;
+    font-size: 24px;
+    line-height: 1.5;
+    color: $black;
+    letter-spacing: 1px;
+    border-bottom: 1px solid $social-border-left;
+  }
+
+  .social-btn {
+    margin: 0 0 10px;
+  }
+
+  .legend {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $black;
+    margin: 0 0 8px;
+    float: none;
+  }
+
+  .fieldset {
+    margin: 8px 0 0;
+  }
+  .field {
+    margin: 0 0 15px;
+  }
+
+  .actions-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .primary {
+      width: $col12;
+
+      .action-login {
+        width: $col12;
+        height: 40px;
+        margin: 4px 0 14px;
+      }
+    }
+    .forgot {
+      text-transform: uppercase;
+      font-weight: 400;
+      a {
+        &:after {
+          bottom: -8px;
+        }
+      }
+    }
+
+    .action-register {
+      @extend %btn;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0 0;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .block-new-customer {
+    margin: 46px 0 0;
+
+    h5 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.38;
+      letter-spacing: 1px;
+      color: $black;
+      text-transform: uppercase;
+    }
+
+    ul {
+      margin: 0 0 20px;
+
+      li {
+        position: relative;
+        padding-left: 35px;
+        font-size: 13px;
+        line-height: 1.62;
+        color: $font-base;
+
+        &:before {
+          content: '.';
+          position: absolute;
+          top: -16px;
+          left: 10px;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+}

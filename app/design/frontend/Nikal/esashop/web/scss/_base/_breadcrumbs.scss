@@ -1,0 +1,63 @@
+/*--------------------------------------------------
+Breadcrumb
+--------------------------------------------------*/
+.breadcrumbs {
+    min-height: 48px;
+    display: flex;
+    flex-direction: row;
+    flex: 1 100%;
+
+    @include xs {
+        display: none;
+    }
+
+    ul {
+        font-family: $font-fam-base;
+        padding: 0;
+        padding-left: 12px;
+        list-style: none;
+        background: none;
+
+        li {
+            display: inline-block;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 10px;
+            color: $summary-title;
+            position: relative;
+
+            a {
+                font-weight: 300;
+                text-transform: uppercase;
+                font-size: 10px;
+            }
+
+            strong {
+                font-weight: 400;
+                position: relative;
+                color: $font-light;
+            }
+
+            @include xs {
+                padding-right: 0;
+            }
+
+            &.active {
+                color: $font-title;
+            }
+
+            @include material-icon('chevron_right', after, 12px);
+
+            &:after {
+                color: $font-light;
+            }
+
+            &:last-child {
+
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,227 @@
+/*--------------------------------------------------
+Nav Main
+--------------------------------------------------*/
+.newsletter {
+  background-color: $bg-newsletter;
+  padding: 70px  0;
+
+  @include sm {
+    padding: 27px 0;
+  }
+
+  .content-newsletter {
+    @extend %content;
+    max-width: 1170px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    box-sizing: border-box;
+
+    @include sm {
+      flex-flow: column nowrap;
+    }
+
+    .title {
+      font-family: $font-fam-title;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: $black;
+      text-align: left;
+      font-weight: 500;
+      margin-bottom: 20px;
+
+      @include xs {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+
+    p {
+      font-size: 13px;
+      font-weight: 300;
+
+      @include sm {
+        text-align: left;
+        margin-top: 15px;
+      }
+
+      @include xs {
+        font-size: 11px;
+        line-height: 18px;
+      }
+
+      br {
+
+        @include sm {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .newsletter-wrapper {
+    padding-right: $gutter * 2;
+    box-sizing: border-box;
+
+    @include sm {
+      padding-right: 0;
+    }
+
+    .subtitle {
+      color: $font-base;
+      font-weight: 300;
+      font-size: 15px;
+
+      @include sm {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      @include xs {
+        text-align: center;
+        font-size: 13px;
+        line-height: 18px;
+      }
+    }
+
+    .subscribe {
+      max-width: 650px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include md {
+        max-width: initial;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      @include xs {
+        align-items: center;
+      }
+
+      .field {
+        margin: 0 18px 0 0;
+
+        @include md {
+          width: 100%;
+          margin: 0 0 10px;
+        }
+
+        input[type='email'] {
+          line-height: 28px;
+          border: 1px solid $newsletter-input-border;
+          width: 330px;
+          box-sizing: border-box;
+
+          @include xs {
+            width: 100%;
+          }
+        }
+      }
+
+      .radio-buttons {
+        align-items: center;
+        display: flex;
+
+        @include md {
+          margin: 0 0 10px;
+        }
+
+        @include sm {
+          flex-grow: 1;
+        }
+
+        @include xs {
+          justify-content: center;
+        }
+
+        span {
+          padding: 0 10px;
+          font-size: 13px;
+          line-height: 1.62;
+          color: $black;
+        }
+
+        .uomo-radio {
+          margin-left: 16px;
+        }
+
+      }
+
+      .actions {
+
+        @include xs {
+          width: 100%;
+        }
+
+        button {
+
+          @include xs {
+            width: 100%;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: .8px;
+            line-height: 16px;
+          }
+        }
+      }
+
+      + p {
+        color: $font-base;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.54;
+        text-align: left;
+      }
+    }
+  }
+
+  .social-wrapper {
+    width: 480px;
+    border-left: 1px solid $social-border-left;
+    padding-left: $gutter * 2;
+    box-sizing: border-box;
+
+    @include sm {
+      padding-left: 0;
+      width: initial;
+      margin-top: 20px;
+      border-top: 1px solid $social-border-left;
+      border-left: 0;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .newsletter-social {
+      display: flex;
+      margin-top: 20px;
+
+      @include xs {
+        justify-content: center;
+        margin-top: 13px;
+      }
+
+      ul {
+        display: flex;
+
+        > li {
+          display: flex;
+          margin-right: 13px;
+
+          @include sm {
+            margin-right: 10px;
+          }
+
+          @include xs {
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+  }
+}

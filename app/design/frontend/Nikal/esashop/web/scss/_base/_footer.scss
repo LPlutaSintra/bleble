@@ -1,0 +1,180 @@
+/*--------------------------------------------------
+Footer
+--------------------------------------------------*/
+.page-footer {
+    padding: 20px 0 0;
+
+    > .content {
+
+        @include xs {
+            padding: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
+
+//Footer columns with static blocks
+.footer-columns {
+    @extend %content;
+    margin-top: 30px;
+    padding: 0;
+
+    @include xs {
+        margin-top: 0;
+    }
+
+    h4 {
+        font-size: 13px;
+        font-family: $font-fam-base;
+        line-height: 18px;
+        letter-spacing: 1px;
+        text-align: left;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+
+        @include xs {
+            position: relative;
+            margin: 0;
+            height: 38px;
+            line-height: 38px;
+        }
+    }
+
+    h3 {
+        font-family: $font-fam-base;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        line-height: 1.44;
+
+        @include xs {
+            position: relative;
+            margin: 0;
+            height: 38px;
+            line-height: 38px;
+        }
+    }
+
+    a {
+        font-size: 13px;
+        font-family: $font-fam-base;
+        letter-spacing: 1px;
+        line-height: 1;
+        text-align: left;
+        font-weight: 400;
+    }
+
+    > .cols {
+        margin: 0 -#{$gutter};
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+        box-sizing: border-box;
+
+        @include xs {
+            border-top: 1px solid $bg-border;
+            flex-flow: column nowrap;
+            margin: 0;
+        }
+    }
+
+    .col {
+        width: 100%;
+        padding: 0 $gutter;
+        box-sizing: border-box;
+
+        p {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @include xs {
+
+            &:not(.no-collapse) {
+                border-bottom: 1px solid $bg-border;
+
+                > h3:first-child,
+                > h4:first-child {
+                    margin-bottom: 0;
+
+                    &:before {
+                        text-align: center;
+                        background-image: url('../images/collapse-off.svg');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 12px;
+                        content: '';
+                        position: absolute;
+                        height: 38px;
+                        width: 20px;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        &.on {
+
+            @include xs {
+
+                &:not(.no-collapse) {
+                    > h3:first-child,
+                    > h4:first-child {
+                        &:before {
+                            background-image: url('../images/collapse-on.svg');
+                        }
+                    }
+                }
+            }
+
+            .col-content {
+                @include xs {
+                    &:not(.no-collapse) {
+                        max-height: 250px;
+                        transition: max-height .3s ease 0s;
+                    }
+                }
+            }
+        }
+    }
+
+    .col-content {
+
+        > * {
+            &:last-child {
+                padding-bottom: $gutter;
+            }
+
+        }
+
+        &:not(.no-collapse) {
+            @include xs {
+                max-height: 0;
+                transition: max-height .3s ease 0s;
+                overflow: hidden;
+            }
+        }
+
+        li {
+            line-height: 1.54;
+        }
+
+        a, p {
+            color: $font-base;
+            font-size: 13px;
+            line-height: 1;
+            letter-spacing: 1px;
+            text-align: left;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
