@@ -1,0 +1,97 @@
+.mage-error,
+.error {
+  background-color: $bg-error;
+  color: $bg-error-font;
+
+  @include material-icon('error', before, 12px);
+}
+
+.mage-success,
+.success {
+  background-color: $bg-success;
+  color: $bg-success-font;
+
+  @include material-icon('done', before, 12px);
+}
+
+.note {
+  background-color: $bg-info;
+  color: $bg-info-font;
+
+  @include material-icon('info', before, 12px);
+}
+
+.alert,
+.warning {
+  background-color: $bg-alert;
+  color: $bg-alert-font;
+
+  @include material-icon('keyboard_backspace', before, 12px);
+}
+
+.message,
+.mage-error,
+.note,
+.warning,
+.alert {
+  margin: 5px auto;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 5px;
+  font-size: 15px;
+
+  &:before {
+    font-size: 15px;
+    line-height: normal;
+    margin: 5px;
+  }
+}
+
+.mage-error {
+  margin: 0;
+}
+
+.field-tooltip {
+  margin: 5px 0;
+
+  .field-tooltip-content {
+    margin: 5px auto;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 5px;
+    font-size: 15px;
+    background-color: $bg-alert;
+    color: $bg-alert-font;
+
+    @include material-icon('arrow_upward', before, 12px);
+
+    &:before {
+      font-size: 15px;
+      line-height: normal;
+      margin: 5px;
+    }
+  }
+}
+
+.hosted-error {
+  width: 100%;
+
+  > span {
+    background-color: $bg-error;
+    color: $bg-error-font;
+    margin: 5px auto;
+    display: flex;
+    flex-flow: row nowrap;
+    line-height: 20px;
+    padding: 5px;
+    font-size: 15px;
+
+    &:before {
+      font-size: 15px;
+      line-height: normal;
+      margin: 5px;
+    }
+
+    @include material-icon('error', before, 12px);
+  }
+}

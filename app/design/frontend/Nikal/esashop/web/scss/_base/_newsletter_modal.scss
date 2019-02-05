@@ -1,0 +1,236 @@
+.newsletter-popup-custom {
+  max-width: 840px;
+  width: 100%;
+
+  &:after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.15);
+    z-index: 9998;
+    min-width: 99999px;
+    min-height: 99999px;
+    margin-top: -100%;
+    margin-left: -100%;
+  }
+
+  .modal-inner-wrap {
+    max-height: calc(100vh - 210px);
+    overflow: hidden;
+  }
+
+  .modal-content {
+    padding: 0;
+  }
+
+  .modal-inner-wrap {
+    position: relative;
+    padding: 0;
+  }
+
+  .modal-header {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 99999;
+
+    .action-close {
+      &:before {
+        font-size: 26px;
+        color: $font-gray-select;
+      }
+    }
+  }
+  .newsletter-modal {
+    position: relative;
+    z-index: 9999;
+    text-align: center;
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      background: $white;
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .image {
+      flex: 0 1 $col6;
+      box-sizing: border-box;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('../images/newsletter2.jpg');
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    .wrapper {
+      flex: 0 1 $col6;
+      box-sizing: border-box;
+      padding: 40px 35px;
+
+      @include sm {
+        flex: 0 1 $col12;
+      }
+
+      .title {
+        color: $black;
+        font-family: $font-fam-title;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 2px;
+        margin: 0 0 20px;
+      }
+      .decoration-underline {
+        &:before {
+          left: 50%;
+          bottom: -10px;
+          margin-left: -12px;
+        }
+      }
+
+      .radio-buttons {
+        justify-content: center;
+        margin-top: 10px;
+        .field {
+          padding: 0 10px;
+        }
+        input {
+          left: 0;
+        }
+      }
+
+      .subtitle {
+        color: $font-base;
+      }
+
+      .subscribe {
+        margin: 18px 0 10px;
+
+        > .field {
+          flex: 1;
+
+          input[type='email'] {
+            height: 36px;
+            color: $font-base;
+            width: 100%;
+            background-color: $white;
+            border-width: 1px;
+            border-color: $bg-border;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            @include placeholder {
+              color: $font-gray-select;
+            }
+          }
+        }
+
+        .actions {
+          margin: 5px 0 22px;
+
+          button {
+            height: auto;
+            min-height: 40px;
+            width: 100%;
+          }
+        }
+
+        + p {
+          font-size: 13px;
+          color: $font-base;
+          margin: 0 0 10px;
+        }
+      }
+
+      a:not(.btn) {
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 0 0 6px;
+
+        @extend %underlined;
+      }
+    }
+
+    .subscribe-success {
+      .wrapper {
+        flex: 1 0 100%;
+
+        &:before {
+          content: url('../images/newsletter_success_image.png');
+          text-align: center;
+          display: block;
+          height: 90px;
+        }
+
+        .title {
+          margin-bottom: 25px;
+        }
+
+        p {
+          margin: 10px 0;
+        }
+
+        .actions {
+          display: flex;
+          margin: 20px 0;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+
+          a {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    display: none;
+  }
+
+  &.popup-success {
+    .newsletter-modal {
+      .wrapper {
+        flex: 1 0 100%;
+
+        &:before {
+          content: url('../images/newsletter_success_image.png');
+          text-align: center;
+          display: block;
+          height: 90px;
+        }
+
+        .title {
+          margin-bottom: 25px;
+        }
+
+        p {
+          margin: 10px 0;
+        }
+
+        .actions {
+          display: flex;
+          margin: 20px 0;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+
+          a {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,320 @@
+.modal {
+    z-index: 9999;
+    position: fixed;
+    transform: translateX(100%);
+    background-color: rgba($black, 0);
+    transition: background-color .3s ease .3s;
+
+    .content {
+        flex-direction: column;
+        padding: 15px;
+        box-shadow: 0 2px 4px 0 transparent;
+        background: $white;
+        height: 100%;
+        max-width: 1065px;
+        margin: 0 0 0 auto;
+    }
+
+    header {
+      text-align: right;
+    }
+
+    .close {
+        @extend %btn.btn-empty;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: $font-base;
+        font-size: 11px;
+
+        span {
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            font-size: 18px;
+            color: $black;
+        }
+    }
+
+    &.on {
+        animation: slideOn .3s forwards 0s;
+        background-color: rgba($black, .15);
+
+        .content {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+        }
+    }
+
+    &.off {
+        animation: slideOff .3s forwards 0s;
+        background-color: rgba($black, 0);
+    }
+}
+
+.modal-slide,
+%modal-slide {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    position: fixed;
+    transform: translateX(100%);
+    background-color: rgba($black, 0);
+    transition: all .3s ease .3s;
+
+    @include xs {
+        width: 100%;
+    }
+
+    .modal-title {
+        font-size: 24px;
+        margin: 0 0 20px;
+        line-height: 30px;
+    }
+
+    .action-close {
+        @extend %btn.btn-empty;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        right: 15px;
+        top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include material-icon('clear', before, 20px);
+
+        span {
+            display: none;
+        }
+
+        &:hover {
+            color: $black;
+        }
+    }
+
+    .modal-inner-wrap {
+        flex-direction: column;
+        padding: $gutter;
+        background: $white;
+        height: 100%;
+        max-width: 1065px;
+        margin: 0 0 0 auto;
+        box-sizing: border-box;
+        min-width: 465px;
+
+        @include xs {
+            min-width: 100%;
+        }
+    }
+
+    &._show {
+        transform: translateX(0);
+        background-color: rgba($black, .15);
+
+        .modal-inner-wrap {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+        }
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+
+        .action-save-address {
+            @extend %btn.btn-hot;
+        }
+
+        .action-hide-popup {
+            @extend %btn.btn-gray;
+        }
+
+    }
+
+    .page-main-actions {
+        width: 100%;
+
+        div {
+            width: 100%;
+        }
+    }
+
+    .page-actions-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.modal-popup,
+%modal-popup {
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    position: fixed;
+    transform: translate(-50%, -75%);
+    transition: all .3s ease .3s;
+
+    @include xs {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .modal-inner-wrap {
+        flex-direction: column;
+        padding: $gutter;
+        background: $white;
+        height: 100%;
+        max-width: 800px;
+        margin: 0 0 0 auto;
+        box-sizing: border-box;
+        min-width: 465px;
+
+        @include xs {
+            min-width: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+    }
+
+    .modal-header {
+        height: 30px;
+    }
+
+    .action-close {
+        @extend %btn.btn-empty;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        right: 15px;
+        top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include material-icon('clear', before, 20px);
+
+        span {
+            display: none;
+        }
+
+        &:hover {
+            color: $black
+        }
+    }
+
+    .modal-content {
+        padding: $gutter;
+
+        @include xs {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column nowrap;
+        }
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+
+        .action-accept {
+            @extend %btn.btn-hot;
+        }
+
+        .action-dismiss {
+            @extend %btn.btn-gray;
+        }
+    }
+
+    .modal-title {
+        font-size: 24px;
+        margin: 0 0 20px;
+        line-height: 30px;
+    }
+
+    &._show {
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+
+        .modal-inner-wrap {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+        }
+    }
+}
+
+.modal-custom {
+    &.custom-slide {
+        @extend %modal-slide;
+    }
+
+    &.custom-popup {
+        @extend %modal-popup;
+    }
+
+    .modal-inner-wrap {
+        min-width: 465px;
+
+        @include xs {
+            min-width: 100%;
+        }
+    }
+}
+
+.sizes-helper-modal {
+    .flex-table {
+        max-width: 700px;
+        margin: 0 auto;
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+            li {
+                flex: 0 1 25%;
+                padding: 15px;
+                border: 1px solid $select-border-color;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.modals-wrapper {
+    position: relative;
+    z-index: -999;
+}
+
+body {
+    &._has-modal {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+
+        .modals-wrapper {
+            z-index: 999;
+        }
+
+        .modals-overlay {
+            opacity: .75;
+        }
+    }
+}
+
+.modals-overlay {
+    background: black;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: all .3s ease 0s;
+}

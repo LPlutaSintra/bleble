@@ -1,0 +1,37 @@
+/*--------------------------------------------------
+Slick
+--------------------------------------------------*/
+
+.slick-dots {
+  height: 36px;
+
+  > li {
+    width: 12px;
+    height: 12px;
+
+    button {
+      padding: 0;
+      box-shadow: 0 0 0 transparent;
+      border: 1px solid transparent;
+      border-radius: 100%;
+
+      &:before {
+        width: 19px;
+        height: 19px;
+        line-height: 19px;
+        opacity: .5;
+        color: $font-gray-select;
+      }
+    }
+
+    &.slick-active {
+      button {
+        border-color: rgba($black, .75);
+
+        &:before {
+          color: $black;
+        }
+      }
+    }
+  }
+}

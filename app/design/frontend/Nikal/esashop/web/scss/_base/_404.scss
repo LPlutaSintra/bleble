@@ -1,0 +1,64 @@
+//template for CMS
+//
+//<div class="noroute-page">
+//    <div class="wrapper">
+//        <div class="info">
+//            <div class="title">
+//                <h2>Sì, probabilmente ne avremmo bisogno anche noi...nel frattempo, però, proviamo a ritrovare quello che stavi cercando.</h2>
+//            </div>
+//            <div class="desc">
+//                <ul>
+//                    <li>- Torna Alla "<a onclick="history.go(-1); return false;" href="#">Pagina precedente</a>"</li>
+//                    <li>- Vai alla "<a href="{{store url=""}}">Homepage</a>"</li>
+//                </ul>
+//            </div>
+//        </div>
+//        <div class="img">
+//            <img class="img-fluid" src="http://aiteca.sintrasviluppo.it/media/wysiwyg/massage-table.jpg" alt="" /></div>
+//        </div>
+//    </div>
+//</div>
+
+
+.noroute-page {
+    margin-bottom: 9%;
+
+    .wrapper {
+        position: relative;
+    }
+
+    .info {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: 2;
+        transform: translate(0%, -50%);
+        width: 100%;
+        max-width: 550px;
+        background-color: rgba(255,255,255,.9);
+        padding: 10px 0;
+
+        @include sm {
+            width: auto;
+            position: static;
+            transform: none;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+    }
+
+
+    .img {
+        img {
+            @extend %img-fluid;
+            display: block;
+            max-height: 500px;
+            margin: 0 0 0 auto;
+            padding: 0;
+
+            @include sm {
+                margin: 0 auto;
+            }
+        }
+    }
+}

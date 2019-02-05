@@ -1,0 +1,175 @@
+/*--------------------------------------------------
+Typography
+--------------------------------------------------*/
+body {
+    color: $font-base;
+    font-family: $font-fam-base;
+    font-size: 15px;
+    line-height: 26px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+    font-family: $font-fam-title;
+    color: $font-title;
+    line-height: 1;
+}
+
+h1,
+.h1 {
+    font-size: 36px;
+    line-height: 48px;
+    margin-bottom: 30px;
+
+    @include xs {
+        font-size: 24px;
+        line-height: 36px;
+    }
+}
+
+h2,
+.h2 {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 30px;
+
+    @include xs {
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom: 20px;
+    }
+
+}
+
+h3,
+.h3 {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 20px;
+
+    @include xs {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+h4,
+.h4 {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 15px;
+
+    @include xs {
+        font-size: 13px;
+        line-height: 18px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4,
+.text,
+.cta,
+.eyelet,
+br,
+span,
+div,
+a,
+nav {
+
+    &::selection {
+        color: $font-title;
+        background: $bg-alternative;
+    }
+}
+
+p {
+    color: $font-base;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.73;
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: $font-link;
+}
+
+%underlined {
+    color: $font-link;
+    position: relative;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $font-link-hover;
+        outline: none;
+        outline-offset: 0;
+
+        &:after {
+            height: 3px;
+            bottom: -3px;
+            background-color: $font-link-border-hover;
+        }
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: $font-link-border;
+        transition: all .25s ease 0s;
+    }
+}
+
+p > a {
+    @extend %underlined;
+}
+
+%decoration-letter,
+.decoration-letter {
+    letter-spacing: 1px;
+}
+
+%decoration-underline,
+.decoration-underline {
+    position: relative;
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 25px;
+        height: 2px;
+        background: $black;
+    }
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}

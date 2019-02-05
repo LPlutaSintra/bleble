@@ -1,0 +1,113 @@
+/*--------------------------------------------------
+Icons
+--------------------------------------------------*/
+.icon {
+  font-size: 0;
+  color: transparent;
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+
+  @include sm {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.icon-pinterest {
+    &:after {
+      content: url('../images/social-icons/sm-pinterest.svg');
+    }
+  }
+
+  &.icon-twitter {
+    &:after {
+      content: url('../images/social-icons/sm-twitter.svg');
+    }
+  }
+
+  &.icon-facebook {
+    &:after {
+      content: url('../images/social-icons/sm-facebook.svg');
+    }
+  }
+
+  &.icon-instagram {
+    &:after {
+      content: url('../images/social-icons/sm-instagram.svg');
+    }
+  }
+
+  &.icon-skype {
+    &:after {
+      content: url('../images/social-icons/sm-skype.svg');
+    }
+  }
+
+  &.icon-mail {
+    &:after {
+      content: url('../images/social-icons/sm-mail.svg');
+    }
+  }
+
+  &.icon-qty-subtract,
+  &.icon-qty-add {
+    &:after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  &.icon-qty-subtract {
+    &:after {
+      background-image: url('../images/qty-subtract.svg');
+    }
+  }
+
+  &.icon-qty-add {
+    &:after {
+      background-image: url('../images/qty-add.svg');
+    }
+  }
+
+  &.icon-chevron-left {
+    &:after {
+      content: url('../images/chevron-left.svg');
+    }
+  }
+  
+  &.icon-chevron-left-double {
+    &:after {
+      content: url('../images/chevron-left-double.svg');
+    }
+  }
+
+  &.icon-chevron-right {
+    &:after {
+      content: url('../images/chevron-right.svg');
+    }
+  }
+
+  &.icon-chevron-right-double {
+    &:after {
+      content: url('../images/chevron-right-double.svg');
+    }
+  }
+
+  &.icon-arrow-right {
+    &:after {
+      content: url('../images/arrow-right.svg');
+    }
+  }
+
+  &.icon-arrow-left {
+    &:after {
+      content: url('../images/arrow-left.svg');
+    }
+  }
+
+}

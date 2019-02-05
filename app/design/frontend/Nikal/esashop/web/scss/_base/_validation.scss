@@ -1,0 +1,24 @@
+.field-error {
+  padding: 0 5px;
+  background-color: $bg-error;
+
+  span {
+    color: $bg-error-font;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+}
+
+._error {
+    @include inputs {
+        border-color: $bg-error-font;
+    }
+}
+
+@include inputs {
+  &.mage-error {
+    border-color: $bg-error-font;
+  }
+}

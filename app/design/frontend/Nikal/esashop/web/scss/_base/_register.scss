@@ -1,0 +1,309 @@
+.customer-account-create,
+.customer-account-login,
+.b2bregister-account-create,
+.doctorregister-account-create {
+
+    .column {
+        display: flex;
+        flex-wrap: wrap;
+        @extend %custom-cols;
+
+        .access-banner {
+            flex: 0 1 550px;
+            @extend %custom-col;
+
+            img {
+                @extend %img-fluid;
+            }
+
+            @include md {
+                flex: 0 1 $col6;
+            }
+            @include sm {
+                display: none;
+            }
+        }
+        .login-container {
+            @extend %custom-col;
+            flex: 1;
+            max-width: 700px;
+            padding-left: 30px;
+
+            @include md {
+                flex: 0 1 $col6;
+                max-width: 100%;
+            }
+            @include sm {
+                flex: 0 1 $col12;
+                max-width: 100%;
+                padding-left: 15px;
+            }
+            @include xs {
+                padding: 0;
+            }
+        }
+    }
+
+    .page-title {
+        margin: 25px 0 14px;
+        padding: 0 0 15px;
+        @extend %decoration-underline;
+    }
+
+    .info-list {
+        margin: 0 0 20px;
+
+        li {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 300;
+            color: $font-base;
+
+            @include xs {
+                font-size: 13px;
+            }
+
+            i {
+                font-size: 3px;
+                padding: 0 20px 0 12px;
+            }
+        }
+
+    }
+
+    .social-login-authentication-channel {
+        margin: 0 0 20px;
+        overflow: hidden;
+
+        .actions-toolbar {
+            margin: 0 -#{$gutter};
+
+            @include sm {
+                flex-flow: row nowrap;
+            }
+
+            @include xs {
+                flex-flow: column nowrap;
+            }
+
+            > .social-btn {
+                flex: 1;
+                margin: 0 $gutter;
+                box-sizing: border-box;
+
+                > a {
+                    color: $white;
+                }
+
+                @include xs {
+                    width: 100%;
+                    padding: 0 $gutter;
+                    margin: 0 $gutter $gutter;
+                }
+            }
+        }
+    }
+
+    .create {
+        h2 {
+            margin-bottom: 22px;
+            padding: 0 0 8px;
+            @extend %decoration-underline;
+
+            @include xs {
+                margin: 25px 0 30px;
+            }
+        }
+
+        .fieldset {
+            @extend %custom-cols;
+
+            .legend {
+                @extend %custom-col;
+                flex: 0 1 $col12;
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: $black;
+                margin: 0;
+                float: none;
+            }
+            .field {
+                @extend %custom-col;
+                flex: 0 1 $col6;
+                margin: 0 0 10px;
+
+                @include xs {
+                    flex: 0 1 $col12;
+                }
+            }
+            .full-field {
+                flex: 0 1 $col12;
+            }
+
+            &.info {
+                margin-bottom: 12px;
+                @include xs {
+                    margin-bottom: 22px;
+
+                }
+            }
+        }
+
+        #password-strength-meter-container {
+            background: $social-border-left;
+            line-height: 1;
+            display: none;
+        }
+
+        #password-strength-meter-container div,
+        .mage-error {
+            display: inline-block;
+            padding: 0 15px 0 3px;
+            background: $bg-error;
+            color:  $font-required;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.6;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        .choice {
+            margin: 0;
+
+            label {
+                padding: 7px 10px 5px 7px;
+                flex-direction: row;
+                position: relative;
+                z-index: 9999;
+
+                a {
+                    &:after {
+                        bottom: 1px;
+                    }
+                }
+            }
+
+            label,
+            p {
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 1.62;;
+                color: $font-base;
+                letter-spacing: 0;
+            }
+
+            @include xs {
+                input[type="checkbox"]+label:before {
+                    top: 17px;
+                }
+            }
+
+
+            div.mage-error {
+                position: relative;
+            }
+        }
+        .newsletter {
+            margin: 2px 0 0;
+            padding: 0;
+            background: none;
+        }
+    }
+
+    .actions-toolbar-main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 40px 0 20px;
+
+        @include xs {
+            flex-direction: column-reverse;
+            margin: 20px 0;
+        }
+
+        > div {
+            @include xs {
+                flex: 0 1 $col12;
+            }
+        }
+
+        .submit,
+        .login {
+            @extend %btn.btn-lg;
+            @extend %btn.btn-hot;
+
+            @include xs {
+                margin: 0 0 15px;
+                width: 100%;
+            }
+        }
+
+        .log,
+        .remind {
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: uppercase;
+
+            &:after {
+                bottom: -8px;
+            }
+        }
+    }
+
+
+    .links-type {
+        display: flex;
+        margin: 0 0 14px;
+
+        @include sm {
+            margin: 0 -2px 14px;
+        }
+        @include xs {
+            margin: 0 -2px 30px;
+        }
+
+        > div {
+            @include sm {
+                padding: 0 2px;
+            }
+            @include xs {
+                @include flex(0, 1, $col4);
+            }
+        }
+
+        .btn-link {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 0 22px;
+            text-transform: uppercase;
+            border: 0;
+
+            &:hover {
+                text-decoration: none;
+                border: 0;
+            }
+
+            @include sm {
+                background: $btn-primary-bg;
+            }
+            @include xxs {
+                padding: 10px 0;
+            }
+        }
+    }
+}
+
+
+.customer-account-login {
+    .note{
+        margin: 20px 0 40px;
+    }
+}
