@@ -9,12 +9,67 @@ Nav Main
         >span{
             font-size: 16px;
             color: $nikal-text-color;
-
+            border-bottom: 3px solid transparent;
             &:hover {
                 color: $nikal-main-color;
-                border-bottom: 2px solid $nikal-main-color;
             }
 
         }
+
+        >span{
+            &:hover {
+                border-bottom: 3px solid $nikal-main-color;
+            }
+        }
+
+        > .submenu {
+
+            > li {
+
+                @include lg {
+                    padding: 80px 15px;
+                }
+
+                > a {
+                    margin-bottom: 35px;
+                    font-size: 16px;
+                    color: $nikal-main-color;
+                }
+
+
+                &.item-type-cms-block{
+
+                    img{
+                        margin-bottom: 30px;
+                        -webkit-box-shadow: 10px 10px 50px 0px rgba(0,0,0,0.3);
+                        -moz-box-shadow: 10px 10px 50px 0px rgba(0,0,0,0.3);
+                        box-shadow: 10px 10px 50px 0px rgba(0,0,0,0.3);
+                    }
+
+                    p{
+                        font-size: 18px;
+                    }
+
+                    a{
+                        font-size: 14px;
+                        font-family: $font-fam-title;
+                        color: $nikal-main-color;
+                    }
+
+                }
+            }
+        }
     }
+
+    .level1 {
+
+        > li {
+            margin-bottom: 15px;
+
+            > a {
+                font-size: 16px;
+            }
+        }
+    }
+
 }
