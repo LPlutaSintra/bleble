@@ -1,0 +1,20 @@
+/*--------------------------------------------------
+Nav Main
+--------------------------------------------------*/
+.navigation {
+
+    .level0{
+
+        >a,
+        >span{
+            font-size: 16px;
+            color: $nikal-text-color;
+
+            &:hover {
+                color: $nikal-main-color;
+                border-bottom: 2px solid $nikal-main-color;
+            }
+
+        }
+    }
+}
