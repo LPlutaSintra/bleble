@@ -5,3 +5,39 @@
 $nikal-main-color: #0234fc;
 $nikal-background-color: #efeff1;
 $nikal-text-color: #222323;
+
+//--------------------------------------------------
+// Nikal fonts
+//--------------------------------------------------
+
+@font-face {
+    font-family: "NotesEsaReg";
+    src: url("../fonts/NotesEsaReg.eot");
+    src: url("../fonts/NotesEsaReg.eot?#iefix") format("embedded-opentype"), url("../fonts/NotesEsaReg.woff") format("woff"), url("../fonts/NotesEsaReg.ttf") format("truetype"), url("../fonts/NotesEsaReg.svg#NotesEsaReg") format("svg");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "NotesEsaRegIta";
+    src: url("../fonts/NotesEsaRegIta.eot");
+    src: url("../fonts/NotesEsaRegIta.eot?#iefix") format("embedded-opentype"), url("../fonts/NotesEsaRegIta.woff") format("woff"), url("../fonts/NotesEsaRegIta.ttf") format("truetype"), url("../fonts/NotesEsaRegIta.svg#NotesEsaRegIta") format("svg");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "NotesEsaBol";
+    src: url("../fonts/NotesEsaBol.eot");
+    src: url("../fonts/NotesEsaBol.eot?#iefix") format("embedded-opentype"), url("../fonts/NotesEsaBol.woff") format("woff"), url("../fonts/NotesEsaBol.ttf") format("truetype"), url("../fonts/NotesEsaBol.svg#NotesEsaBol") format("svg");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "NotesEsaBolIta";
+    src: url("../fonts/NotesEsaBolIta.eot");
+    src: url("../fonts/NotesEsaBolIta.eot?#iefix") format("embedded-opentype"), url("../fonts/NotesEsaBolIta.woff") format("woff"), url("../fonts/NotesEsaBolIta.ttf") format("truetype"), url("../fonts/NotesEsaBolIta.svg#NotesEsaBolIta") format("svg");
+    font-weight: normal;
+    font-style: normal
+}
