@@ -2,6 +2,22 @@
 Nav Main
 --------------------------------------------------*/
 .navigation {
+    background-color: transparent;
+
+    > ul {
+
+        > li {
+            > a,
+            > span {
+                padding: 5px 15px;
+
+                @include md {
+                    padding: 5px;
+                }
+            }
+
+        }
+    }
 
     .level0{
 
@@ -10,8 +26,21 @@ Nav Main
             font-size: 16px;
             color: $nikal-text-color;
             border-bottom: 3px solid transparent;
+
+            .cms-home &{
+                color: #ffffff;
+
+                @include sm {
+                    color: $nikal-text-color;
+                }
+            }
+
             &:hover {
                 color: $nikal-main-color;
+            }
+
+            @include sm {
+                border-bottom: none;
             }
 
         }
@@ -19,21 +48,34 @@ Nav Main
         >span{
             &:hover {
                 border-bottom: 3px solid $nikal-main-color;
+
+                @include sm {
+                    border-bottom: none;
+                }
             }
         }
 
         > .submenu {
 
             > li {
+                padding: 80px 15px;
 
-                @include lg {
-                    padding: 80px 15px;
+                @include md {
+                    padding: 30px 15px;
+                }
+
+                @include sm {
+                    padding: 0;
                 }
 
                 > a {
                     margin-bottom: 35px;
                     font-size: 16px;
                     color: $nikal-main-color;
+
+                    @include sm {
+                        margin-bottom: 0;
+                    }
                 }
 
 
@@ -66,10 +108,50 @@ Nav Main
         > li {
             margin-bottom: 15px;
 
+            @include sm {
+                margin-bottom: 0;
+            }
+
             > a {
                 font-size: 16px;
             }
         }
     }
 
+    //Mobile navigation
+
+    @include sm {
+
+        .ui-menu {
+
+            .submenu {
+
+                > li {
+                    > a {
+                        color: $font-base;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                    }
+
+                    &.back-to-parent {
+
+                        > a {
+                            font-weight: 400;
+                            font-size: 16px;
+                            letter-spacing: 1px;
+                            text-transform: uppercase;
+                            color: $black;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+/* Menu mobile */
+.nav-sections {
+    position: static;
 }
