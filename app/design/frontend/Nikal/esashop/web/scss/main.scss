@@ -14,10 +14,11 @@ Website by WsTechlab
 //@import '_plugins/slick';
 //
 ///*##### GENERIC */
-//@import '_modules/layout';
+@import '_modules/base';
+@import '_modules/layout';
 @import '_modules/typography';
 //@import '_modules/global';
-//@import '_modules/header';
+@import '_modules/header';
 //@import '_modules/modals';
 @import '_modules/nav';
 //@import '_modules/breadcrubms';
@@ -59,4 +60,3 @@ Website by WsTechlab
 //
 ///*##### Custom icons font */
 //@import '_fonts/custom-icons';
-@import '_modules/header';
