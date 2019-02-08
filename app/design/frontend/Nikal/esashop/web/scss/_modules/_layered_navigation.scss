@@ -1,0 +1,62 @@
+.layered-filter-block-container {
+
+  .filter-current {
+
+    .remove {
+      color: $nikal-main-color;
+    }
+  }
+
+  .filter-options-title {
+    font-size: 15px;
+    border-bottom: none;
+    border-top: none;
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  .filter-options-content{
+
+    .item{
+      &.on>a {
+        background: url(../images/checkbox_checked.png) no-repeat 0 6px;
+      }
+      a{
+        font-family: $font-fam-secondary;
+        font-size: 15px;
+        padding: 5px 15px 0 34px;
+        background: url(../images/checkbox_empty.png) no-repeat 0 6px;
+        text-transform: capitalize;
+      }
+
+      .ln_slider_container {
+
+        #ln_slider_text_price{
+          font-family: $font-fam-secondary;
+          font-size: 15px;
+        }
+
+        .ui-slider-handle {
+          background: $nikal-main-color;
+          height: 11px;
+          width: 11px;
+          padding: 0;
+          margin: -5px 0 0;
+        }
+
+        .ui-slider {
+          height: 1px;
+          background: $nikal-main-color;
+        }
+
+      }
+    }
+
+  }
+}
+
+.layered-filter-block-container .filter-options-content .item.on>a {
+  background: url(../images/checkbox_checked.png) no-repeat 0 6px;
+}
