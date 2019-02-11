@@ -2,8 +2,20 @@
 
   .filter-current {
 
+    .item {
+      padding: 10px 0;
+    }
+
     .remove {
       color: $nikal-main-color;
+
+      i{
+        font-size: 18px;
+      }
+    }
+
+    .filter-label, .filter-value{
+      font-size: 15px;
     }
   }
 
@@ -11,15 +23,27 @@
     font-size: 15px;
     border-bottom: none;
     border-top: none;
+    padding: 20px 10px;
 
     &:after {
       opacity: 1;
     }
   }
 
+  .filter-actions {
+    padding: 10px 12px;
+
+    .filter-clear {
+      span{
+        font-size: 15px;
+      }
+    }
+  }
+
   .filter-options-content{
 
     .item{
+
       &.on>a {
         background: url(../images/checkbox_checked.png) no-repeat 0 6px;
       }
@@ -54,9 +78,30 @@
       }
     }
 
-  }
-}
+    .filter-container {
+      padding: 10px 30px 10px 40px;
+    }
 
-.layered-filter-block-container .filter-options-content .item.on>a {
-  background: url(../images/checkbox_checked.png) no-repeat 0 6px;
+    .swatch-attribute-options {
+
+      .swatch-option {
+        width: 18px;
+        height: 18px;
+        border-radius: 10px;
+        margin: 3px 0 3px 20px;
+        border: 1px solid #d1d2d4;
+      }
+
+      .swatch-option-link-layered{
+        padding: 5px 15px 0 34px!important;
+
+        p {
+          font-size: 15px;
+          line-height: 1.75;
+          text-transform: capitalize;
+          font-family: $font-fam-secondary;
+        }
+      }
+    }
+  }
 }
