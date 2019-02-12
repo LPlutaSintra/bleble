@@ -20,15 +20,24 @@ body {
       background-image: $background-image-home;
       .page-header {
         color: $header-text-color-home;
+        @media screen and (max-width: $sm-width) {
+          color: $header-text-color;
+        }
         .switchers {
           .switcher {
             strong {
               span {
                 color: $header-text-color-home;
+                @media screen and (max-width: $sm-width) {
+                  color: $header-text-color;
+                }
               }
             }
             .material-icons{
               color: $details-home;
+              @media screen and (max-width: $sm-width) {
+                border-bottom-color: $details;
+              }
             }
             .options {
               ul {
@@ -42,10 +51,17 @@ body {
               }
               a {
                 color: $header-text-color-home;
+                @media screen and (max-width: $sm-width) {
+                  color: $header-text-color;
+                }
               }
               .switcher-trigger {
                 strong {
                   border-bottom-color: $details-home;
+
+                  @media screen and (max-width: $sm-width) {
+                    border-bottom-color: $details;
+                  }
                 }
               }
             }
@@ -54,6 +70,9 @@ body {
                 li {
                   > a {
                     border-bottom-color: $details-home;
+                    @media screen and (max-width: $sm-width) {
+                      border-bottom-color: $details;
+                    }
                   }
                 }
               }
@@ -64,6 +83,9 @@ body {
         button,
         .material-icons{
           color: $header-text-color-home;
+          @media screen and (max-width: $sm-width) {
+            color: $header-text-color;
+          }
         }
       }
     }
@@ -72,13 +94,22 @@ body {
       #circle-orbit-container {
         .orbit:not(.inner) {
           border: 1px $details-home solid;
+          @media screen and (max-width: $sm-width) {
+            border: 1px $details solid;
+          }
 
           .cirlces {
             border: 1px solid $details-home;
+            @media screen and (max-width: $sm-width) {
+              border: 1px $details solid;
+            }
           }
 
           .counter {
             color: $details-home;
+            @media screen and (max-width: $sm-width) {
+              color: $details;
+            }
           }
         }
       }
