@@ -11,6 +11,8 @@ use Magento\Theme\Model\Config;
 use Magento\Theme\Model\Data\Design\Config as DesignConfig;
 use Magento\Framework\App\Config\ReinitableConfigInterface;
 use Magento\Framework\Indexer\IndexerRegistry;
+use Magento\Cms\Model\PageFactory;
+use Magento\Cms\Model\BlockFactory;
 
 /**
  * @codeCoverageIgnore
@@ -41,23 +43,39 @@ class InstallData implements InstallDataInterface
     private $themeList;
 
     /**
+     * @var \Magento\Cms\Model\PageFactory pageFactory
+     */
+    private $pageFactory;
+
+    /**
+     * @var \Magento\Cms\Model\BlockFactory blockFactory
+     */
+    private $blockFactory;
+
+    /**
      * InstallData constructor.
      *
      * @param \Magento\Framework\View\Design\Theme\ListInterface $themeList
      * @param \Magento\Theme\Model\Config $config
      * @param ReinitableConfigInterface $reinitableConfig
      * @param IndexerRegistry $indexerRegistry
+     * @param PageFactory $pageFactory
+     * @param BlockFactory $blockFactory
      */
     public function __construct(
         ListInterface $themeList,
         Config $config,
         ReinitableConfigInterface $reinitableConfig,
-        IndexerRegistry $indexerRegistry
+        IndexerRegistry $indexerRegistry,
+        PageFactory $pageFactory,
+        BlockFactory $blockFactory
     ) {
         $this->themeList = $themeList;
         $this->config = $config;
         $this->reinitableConfig = $reinitableConfig;
         $this->indexerRegistry = $indexerRegistry;
+        $this->pageFactory = $pageFactory;
+        $this->blockFactory = $blockFactory;
     }
 
     /**
@@ -90,6 +108,20 @@ class InstallData implements InstallDataInterface
             $this->config->assignToStore($theme, [Store::DEFAULT_STORE_ID], ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
             $this->reinitableConfig->reinit();
             $this->indexerRegistry->get(DesignConfig::DESIGN_CONFIG_GRID_INDEXER_ID)->reindexAll();
+        }
+    }
+
+    protected function createTopBanner()
+    {
+        $topBannerBlock = [
+            'title' => 'Top banner',
+            'identifier' => 'top-banner',
+            'stores' => [0],
+            'is_active' => 1,
+        ];
+        try {
+            $this->blockFactory->create()->setData($topBannerBlock)->save();
+        } catch (\Exception $e) {
         }
     }
 }
