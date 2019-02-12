@@ -11,7 +11,7 @@
             <div class="action toggle switcher-trigger" id="switcher-language-trigger<?php /* @escapeNotVerified */ echo $id?>">
                 <strong class="view-<?php echo $block->escapeHtml($block->getCurrentStoreCode()) ?>">
                     <span><img alt="<?php echo $block->escapeHtml($block->getStoreName()) ?>"
-                               src="<?= $block->getViewFileUrl('images/flags/' . $block->getStoreCode() . '.png') ?>"/></span>
+                               src="<?= $block->getViewFileUrl('images/flags/4x3/' . $block->getStoreCode() . '.png') ?>"/></span>
                     <span class="material-icons">arrow_drop_down</span>
                 </strong>
             </div>
@@ -27,7 +27,8 @@
                         <li class="view-<?php echo $block->escapeHtml($_lang->getCode()); ?> switcher-option">
                             <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_lang); ?>'>
                                 <img alt="<?php echo $block->escapeHtml($_lang->getName()) ?>"
-                                    src="<?= $block->getViewFileUrl('images/flags/' . $_lang->getCode() . '.png') ?>"/>
+                                    src="<?= $block->getViewFileUrl('images/flags/4x3/' . $_lang->getCode() . '.png') ?>"/>
+                                <span><?= $_lang->getCode() ?></span>
                             </a>
                         </li>
                     <?php endif; ?>
