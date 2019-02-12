@@ -1,0 +1,114 @@
+.layered-filter-block-container {
+
+  .filter-current {
+
+    .item {
+      padding: 10px 0;
+    }
+
+    .remove {
+      color: $nikal-main-color;
+
+      i{
+        font-size: 18px;
+      }
+    }
+
+    .filter-label, .filter-value{
+      font-size: 15px;
+    }
+  }
+
+  .filter-options-title {
+    font-size: 15px;
+    border-bottom: none;
+    border-top: none;
+    padding: 20px 10px;
+
+    &:after {
+      opacity: 1;
+      padding: 23px 15px;
+    }
+  }
+
+  .filter-actions {
+    padding: 10px 12px;
+
+    .filter-clear {
+      span{
+        font-size: 15px;
+      }
+    }
+  }
+
+  .filter-options-content{
+
+    .item{
+
+      &.on>a {
+        background: url(../images/checkbox_checked.png) no-repeat 0 6px;
+      }
+      a{
+        font-family: $font-fam-secondary;
+        font-size: 15px;
+        padding: 5px 15px 0 34px;
+        background: url(../images/checkbox_empty.png) no-repeat 0 6px;
+        text-transform: capitalize;
+      }
+
+      .ln_slider_container {
+
+        #ln_slider_text_price{
+          font-family: $font-fam-secondary;
+          font-size: 15px;
+        }
+
+        .ui-slider-handle {
+          background: $nikal-main-color;
+          height: 11px;
+          width: 11px;
+          padding: 0;
+          margin: -5px 0 0;
+        }
+
+        .ui-slider {
+          height: 1px;
+          background: $nikal-main-color;
+        }
+
+      }
+    }
+
+    .filter-container {
+      padding: 0 30px 30px 40px;
+    }
+
+    .swatch-attribute-options {
+
+      .swatch-option {
+        width: 18px;
+        height: 18px;
+        border-radius: 10px;
+        margin: 3px 0 3px 20px;
+        border: 1px solid #d1d2d4;
+
+        &.selected {
+          border: 1px solid #d1d2d4;
+        }
+      }
+
+      .swatch-option-link-layered{
+        padding: 5px 15px 0 34px!important;
+        margin: 0 0 0px !important;
+
+        p {
+          font-size: 15px;
+          line-height: 1.75;
+          text-transform: capitalize;
+          font-family: $font-fam-secondary;
+          min-width: 75px;
+        }
+      }
+    }
+  }
+}

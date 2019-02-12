@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="toolbar toolbar-products" data-mage-init='<?php /* @escapeNotVerified */ echo $block->getWidgetOptionsJson(); ?>'>     
+        <div class="sidebar-actions active">
+            <div data-role="title" class="filters-trigger filters-shown">
+                <span><?php echo __('Hide') ?></span> <?php /* @escapeNotVerified */ echo __('filters') ?>
+            </div>
+            <div data-role="title" class="filters-trigger filters-hidden">
+                <span><?php echo __('Show') ?></span> <?php /* @escapeNotVerified */ echo __('filters') ?>
+                <span class="info">
+                    <span class="count-active-checkboxes">0</span>
+                    <span><?php echo __('active filters') ?></span>
+                </span>
+            </div>
+        </div>
+        
+        <?php echo $block->getPagerHtml() ?>
+
+        <?php if ($block->isExpanded()): ?>
+            <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+        <?php endif; ?>
+    </div>
+<?php endif ?>
