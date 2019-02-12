@@ -1,13 +1,14 @@
 /*--------------------------------------------------
 Header
 --------------------------------------------------*/
-
+@import "../variables";
 $dropdowns-background: rgba(0,0,0,0.2);
 
 $dropdowns-border-color: #000;
 $header-text-color: #000;
 $details: #0234fc;
 $background-image: url('../images/home-bg-light.jpg');
+$mobile-header-bg-color: #fff;
 
 $header-text-color-home: #fff;
 $dropdowns-border-color-home: #fff;
@@ -157,7 +158,9 @@ body {
     background-size: cover;
     padding-top: 160px;
     background-repeat: no-repeat;
-
+    @media screen and (max-width: $sm-width) {
+      padding-top: 120px;
+    }
     .top-banner {
       position: absolute;
       top: 0px;
@@ -167,6 +170,10 @@ body {
       background-color: #000;
       box-sizing: border-box;
       z-index: 1;
+      @media screen and (max-width: $sm-width) {
+        position: fixed;
+        z-index: 2;
+      }
     }
 
   }
@@ -175,6 +182,13 @@ body {
 .page-header {
   top: 73px;
   background: transparent;
+  @media screen and (max-width: $sm-width) {
+    position: fixed;
+    top: 60px;
+    background-color: $mobile-header-bg-color;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cccccc;
+  }
   .switchers {
     max-width: 100%;
     width: 100%;
@@ -295,6 +309,12 @@ body {
       width: 150px;
       position: absolute;
       top: -15px;
+      @media screen and (max-width: $sm-width) {
+        width: 130px;
+        height: 40px;
+        top: 5px;
+      }
+
     }
   }
   .nav-sections {
