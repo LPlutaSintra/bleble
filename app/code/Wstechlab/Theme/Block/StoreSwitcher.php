@@ -36,12 +36,25 @@ class StoreSwitcher extends \Magento\Framework\View\Element\Template {
      * @var \Magento\Framework\Stdlib\CookieManagerInterface
      */
     protected $cookieManager;
-    
 
     /**
-     * Locale constructor.
+     * @var \Magento\Customer\Model\Session
+     */
+    protected $_customerSession;
+
+
+    /**
+     * StoreSwitcher constructor.
+     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param CheckoutSession $checkoutSession
+     * @param \Magento\Framework\Data\Helper\PostHelper $postDataHelper
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param \Magento\Framework\Session\SessionManagerInterface $coreSession
+     * @param \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Customer\Model\Session $customerSession
+     * @param array $data
      */
     public function __construct(
     \Magento\Framework\View\Element\Template\Context $context, 
@@ -51,7 +64,8 @@ class StoreSwitcher extends \Magento\Framework\View\Element\Template {
             \Magento\Framework\ObjectManagerInterface $objectManager, 
             \Magento\Framework\Session\SessionManagerInterface $coreSession, 
             \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
-            \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig, 
+            \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+            \Magento\Customer\Model\Session $customerSession,
             array $data = []
     ) {
         $this->storeManager = $storeManager;
@@ -61,6 +75,7 @@ class StoreSwitcher extends \Magento\Framework\View\Element\Template {
         $this->checkoutSession = $checkoutSession;
         $this->_coreSession = $coreSession;
         $this->cookieManager = $cookieManager;
+        $this->_customerSession = $customerSession;
         parent::__construct($context, $data);
     }
 
@@ -78,6 +93,12 @@ class StoreSwitcher extends \Magento\Framework\View\Element\Template {
         $websites = $this->storeManager->getWebsites();
 
         foreach ($websites as $website) {
+
+            // exclude b2b from store switcher
+            if ($website->getCode()=='website_b2b') continue;
+
+
+
             $url = null;
             $storeObj = null;
             foreach ($website->getStores() as $store) {
