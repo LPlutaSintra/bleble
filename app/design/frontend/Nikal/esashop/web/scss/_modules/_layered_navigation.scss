@@ -27,6 +27,7 @@
 
     &:after {
       opacity: 1;
+      padding: 23px 15px;
     }
   }
 
@@ -79,7 +80,7 @@
     }
 
     .filter-container {
-      padding: 10px 30px 10px 40px;
+      padding: 0 30px 30px 40px;
     }
 
     .swatch-attribute-options {
@@ -90,16 +91,22 @@
         border-radius: 10px;
         margin: 3px 0 3px 20px;
         border: 1px solid #d1d2d4;
+
+        &.selected {
+          border: 1px solid #d1d2d4;
+        }
       }
 
       .swatch-option-link-layered{
         padding: 5px 15px 0 34px!important;
+        margin: 0 0 0px !important;
 
         p {
           font-size: 15px;
           line-height: 1.75;
           text-transform: capitalize;
           font-family: $font-fam-secondary;
+          min-width: 75px;
         }
       }
     }

@@ -1,0 +1,35 @@
+/*--------------------------------------------------
+Category listing
+--------------------------------------------------*/
+.toolbar-products {
+    .sidebar-actions{
+        display: none;
+
+        @include xs {
+            display: flex;
+            text-transform: uppercase;
+        }
+    }
+
+    .toolbar-sorter {
+
+        .sorter-label {
+            font-size: 15px;
+            text-transform: uppercase;
+            flex: 0 1 120%;
+        }
+
+        .sorter-options {
+            border-bottom: 1px solid $nikal-main-color;
+            font-size: 15px;
+            font-weight: 100;
+        }
+
+        select{
+            color: $nikal-main-color;
+            background-image:
+                linear-gradient(45deg, transparent 45%, $nikal-main-color 55%),
+                linear-gradient(135deg, $nikal-main-color 55%, transparent 45%);
+        }
+    }
+}
