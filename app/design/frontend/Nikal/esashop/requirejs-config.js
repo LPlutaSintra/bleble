@@ -1,4 +1,7 @@
 var config = {
+    deps: [
+        "js/logo"
+    ],
     map: {
         "*": {
         }
@@ -8,5 +11,6 @@ var config = {
     },
 
     shim: {
-    }
+    },
+
 };

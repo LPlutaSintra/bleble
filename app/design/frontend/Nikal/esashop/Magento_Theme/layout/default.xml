@@ -16,7 +16,13 @@
                 </block>
             </container>
         </referenceContainer>
-
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/ESA-logo-Black.svg</argument>
+                <argument name="logo_img_width" xsi:type="number">300</argument>
+                <argument name="logo_img_height" xsi:type="number">300</argument>
+            </arguments>
+        </referenceBlock>
         <move element="currency" destination="header.stores.switchers" before="store_switch_dropdown"  />
         <move element="store_switch_dropdown" destination="header.stores.switchers" before="store_language" />
         <move element="store_language" destination="header.stores.switchers" />
