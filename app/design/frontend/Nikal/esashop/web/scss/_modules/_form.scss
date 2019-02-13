@@ -25,4 +25,8 @@ select {
         color: $nikal-main-color;
         border-bottom: 1px solid $nikal-main-color;
     }
+
+    &::-ms-expand {
+        display: none;
+    }
 }
