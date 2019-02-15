@@ -1,0 +1,26 @@
+{
+    "name": "nikal/module-products",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        },
+        {
+            "name": "Luca Piccini",
+            "email": "l.piccini@sintraconsulting.eu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nikal\\Products\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
