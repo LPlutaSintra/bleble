@@ -39,6 +39,15 @@ Nav Main
                 }
             }
 
+            .scroll-on &{
+                color: $nikal-text-color;
+            }
+
+            .navigation-open.cms-home &{
+                color: $nikal-text-color;
+                transition: color .3s ease-in-out;
+            }
+
             &:hover {
                 color: $nikal-main-color;
             }
@@ -60,25 +69,44 @@ Nav Main
         }
 
         > .submenu {
+            top: -114px;
+            z-index: -1;
 
+            @include sm {
+                top: 0;
+                z-index: 1;
+            }
+
+
+            &:before {
+                left: 49%;
+            }
             > li {
-                padding: 80px 15px;
+                margin-top: 114px;
+                padding: 70px 15px;
+
+                //@include md {
+                //    padding: 30px 15px;
+                //}
 
                 @include md {
-                    padding: 30px 15px;
+                    width: 20%;
                 }
 
                 @include sm {
+                    width: 100%;
+                    margin-top: 0;
                     padding: 0;
                 }
 
                 > a {
                     margin-bottom: 35px;
                     font-size: 16px;
-                    color: $nikal-main-color;
+                    color: $nikal-main-color!important;
 
                     @include sm {
                         margin-bottom: 0;
+                        color: $nikal-text-color!important;
                     }
                 }
 
@@ -111,6 +139,12 @@ Nav Main
                     position: absolute;
                     left:57%;
                 }
+                .scroll-on &{
+
+                    .ie11 &{
+                        left:49%;
+                    }
+                }
             }
         }
     }
@@ -137,6 +171,7 @@ Nav Main
         .ui-menu {
 
             .submenu {
+                //background: #fff;
 
                 > li {
                     > a {
