@@ -87,7 +87,7 @@ class InstallData implements InstallDataInterface
                 'apply_to' => '',
                 'system' => 1,
                 'group' => 'General',
-                'option' => array()
+                'option' => array('values' => array(""))
             ]
         );
 
