@@ -28,7 +28,7 @@ Nav Main
             border-bottom: 3px solid transparent;
 
             .ie11 &{
-                letter-spacing: normal;
+                display: block;
             }
 
             .cms-home &{
@@ -77,17 +77,9 @@ Nav Main
                 z-index: 1;
             }
 
-
-            &:before {
-                left: 49%;
-            }
             > li {
                 margin-top: 114px;
                 padding: 70px 15px;
-
-                //@include md {
-                //    padding: 30px 15px;
-                //}
 
                 @include md {
                     width: 20%;
@@ -128,21 +120,6 @@ Nav Main
                         font-size: 14px;
                         font-family: $font-fam-title;
                         color: $nikal-main-color;
-                    }
-
-                }
-            }
-
-            &:before {
-
-                .ie11 &{
-                    position: absolute;
-                    left:57%;
-                }
-                .scroll-on &{
-
-                    .ie11 &{
-                        left:49%;
                     }
                 }
             }
