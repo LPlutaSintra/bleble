@@ -84,6 +84,8 @@ body {
               .cirlces {
                 border: 1px solid $nikal-text-color;
               }
+            }
+            .orbit.inner {
               .counter {
                 color: $nikal-text-color;
               }
@@ -195,7 +197,15 @@ body {
           .counter {
             color: $details-home;
             @media screen and (max-width: $sm-width) {
-              color: $details;
+              color: $details-home;
+            }
+          }
+        }
+        .orbit {
+          .counter {
+            color: $details-home;
+            @media screen and (max-width: $sm-width) {
+              color: $details-home;
             }
           }
         }
@@ -226,9 +236,6 @@ body {
       background-image: $background-image;
       .page-header {
         color: $header-text-color;
-        span {
-          font-size: $header-desktop-font-size;
-        }
         @media screen and (max-width: $sm-width) {
           span {
             font-size: $header-mobile-font-size;
@@ -342,6 +349,9 @@ body {
 .page-header {
   padding-top:13px;
   top: 60px;
+  span:not(.counter) {
+    font-size: $header-desktop-font-size;
+  }
   @media screen and (max-width: $sm-width) {
     padding: 10px 0px;
     height: 70px;
@@ -609,7 +619,8 @@ body {
         left: 1px;
         right: 0px;
         bottom: 0px;
-        background: $details;
+        background: transparent;
+        color: $details;
       }
     }
   }
