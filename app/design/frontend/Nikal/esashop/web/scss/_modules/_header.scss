@@ -84,6 +84,9 @@ body {
               .cirlces {
                 border: 1px solid $nikal-text-color;
               }
+              .counter {
+                color: $nikal-text-color;
+              }
             }
           }
         }
@@ -606,7 +609,7 @@ body {
         left: 1px;
         right: 0px;
         bottom: 0px;
-        background: transparent;
+        background: $details;
       }
     }
   }
