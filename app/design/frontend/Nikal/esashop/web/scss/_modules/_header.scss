@@ -1,33 +1,46 @@
 /*--------------------------------------------------
 Header
 --------------------------------------------------*/
-
+@import "../variables";
 $dropdowns-background: rgba(0,0,0,0.2);
 
 $dropdowns-border-color: #000;
 $header-text-color: #000;
 $details: #0234fc;
 $background-image: url('../images/home-bg-light.jpg');
+$mobile-header-bg-color: #fff;
 
 $header-text-color-home: #fff;
 $dropdowns-border-color-home: #fff;
 $details-home: #fff;
 $background-image-home: url('../images/home-bg.png');
+$minicart-planets-bg: #fff;
+$minicart-planets-bg-home: transparent;
+$minicart-planets-bg-mobile: #fff;
 body {
   &.cms-home {
     .page-wrapper {
       background-image: $background-image-home;
       .page-header {
         color: $header-text-color-home;
+        @media screen and (max-width: $sm-width) {
+          color: $header-text-color;
+        }
         .switchers {
           .switcher {
             strong {
               span {
                 color: $header-text-color-home;
+                @media screen and (max-width: $sm-width) {
+                  color: $header-text-color;
+                }
               }
             }
             .material-icons{
               color: $details-home;
+              @media screen and (max-width: $sm-width) {
+                border-bottom-color: $details;
+              }
             }
             .options {
               ul {
@@ -41,10 +54,17 @@ body {
               }
               a {
                 color: $header-text-color-home;
+                @media screen and (max-width: $sm-width) {
+                  color: $header-text-color;
+                }
               }
               .switcher-trigger {
                 strong {
                   border-bottom-color: $details-home;
+
+                  @media screen and (max-width: $sm-width) {
+                    border-bottom-color: $details;
+                  }
                 }
               }
             }
@@ -53,6 +73,9 @@ body {
                 li {
                   > a {
                     border-bottom-color: $details-home;
+                    @media screen and (max-width: $sm-width) {
+                      border-bottom-color: $details;
+                    }
                   }
                 }
               }
@@ -63,6 +86,15 @@ body {
         button,
         .material-icons{
           color: $header-text-color-home;
+          @media screen and (max-width: $sm-width) {
+            color: $header-text-color;
+          }
+        }
+        .logo svg path {
+          fill: $header-text-color-home !important;
+          @media screen and (max-width: $sm-width) {
+            fill: $header-text-color !important;
+          }
         }
       }
     }
@@ -71,13 +103,24 @@ body {
       #circle-orbit-container {
         .orbit:not(.inner) {
           border: 1px $details-home solid;
+          @media screen and (max-width: $sm-width) {
+            border: 1px $details solid;
+          }
 
           .cirlces {
             border: 1px solid $details-home;
+            background-color: $minicart-planets-bg-home;
+            @media screen and (max-width: $sm-width) {
+              background-color: $minicart-planets-bg-mobile;
+              border: 1px $details solid;  
+            }
           }
 
           .counter {
             color: $details-home;
+            @media screen and (max-width: $sm-width) {
+              color: $details;
+            }
           }
         }
       }
@@ -157,7 +200,9 @@ body {
     background-size: cover;
     padding-top: 160px;
     background-repeat: no-repeat;
-
+    @media screen and (max-width: $sm-width) {
+      padding-top: 120px;
+    }
     .top-banner {
       position: absolute;
       top: 0px;
@@ -167,6 +212,10 @@ body {
       background-color: #000;
       box-sizing: border-box;
       z-index: 1;
+      @media screen and (max-width: $sm-width) {
+        position: fixed;
+        z-index: 2;
+      }
     }
 
   }
@@ -175,12 +224,19 @@ body {
 .page-header {
   top: 73px;
   background: transparent;
+  @media screen and (max-width: $sm-width) {
+    position: fixed;
+    top: 60px;
+    background-color: $mobile-header-bg-color;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cccccc;
+  }
   .switchers {
     max-width: 100%;
     width: 100%;
     flex: inherit;
     justify-content: flex-end;
-    z-index: 0;
+    z-index: -1;
 
     .switcher {
       strong {
@@ -189,6 +245,9 @@ body {
         background-color: transparent;
         &:hover {
           background-color: transparent;
+        }
+        .ui-dialog {
+          z-index: 1;
         }
         ul {
           border-bottom: 0;
@@ -290,11 +349,27 @@ body {
     display: block;
     padding: inherit;
     text-align: initial;
-    .logo img {
-      object-fit: contain;
-      width: 150px;
-      position: absolute;
-      top: -15px;
+    .logo {
+      svg {
+        transform: scale(1.7, 1.7);
+        margin: -8px 30px;
+        @media screen and (max-width: $sm-width) {
+          fill: $header-text-color !important;
+          transform: scale(1, 1);
+          margin: 7px -15px;
+        }
+      }
+      img {
+        object-fit: contain;
+        width: 150px;
+        position: absolute;
+        top: -15px;
+        @media screen and (max-width: $sm-width) {
+          width: 130px;
+          height: 40px;
+          top: 5px;
+        }
+      }
     }
   }
   .nav-sections {
@@ -310,7 +385,7 @@ body {
     }
   }
   .panel.wrapper {
-    z-index: -1;
+    z-index: 0;
     min-height: 70px;
   }
 }
@@ -359,7 +434,10 @@ body {
         height: 5px;
         width: 5px;
         border-radius: 100%;
-        background-color: transparent;
+        background-color: $minicart-planets-bg;
+        @media screen and (max-width: $sm-width) {
+          background-color: $minicart-planets-bg-mobile;
+        }
         &.middle {
           top: 18px;
         }
@@ -369,8 +447,8 @@ body {
       }
       .counter {
         position: relative;
-        top: 0px;
-        left: 0px;
+        top: 1px;
+        left: 1px;
         right: 0px;
         bottom: 0px;
         background: transparent;

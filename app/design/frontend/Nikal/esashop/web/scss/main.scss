@@ -27,7 +27,7 @@ Website by WsTechlab
 //@import '_modules/copyright';
 //@import '_modules/footer';
 //@import '_modules/newsletter';
-//@import '_modules/form';
+@import '_modules/form';
 //@import '_modules/login';
 //@import '_modules/dropdown';
 //@import '_modules/cart';
@@ -46,8 +46,9 @@ Website by WsTechlab
 //
 ///*##### SECTION */
 //@import '_modules/product';
-//@import '_modules/category';
+@import '_modules/category';
 //@import '_modules/related';
+@import '_modules/layered_navigation';
 //
 ///*##### CMS */
 //@import '_cms/cms_product_page_promo_block';
