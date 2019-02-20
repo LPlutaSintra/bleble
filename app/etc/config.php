@@ -146,6 +146,7 @@ return [
         'Mageplaza_Smtp' => 1,
         'Mageplaza_SocialLogin' => 1,
         'MagicToolbox_MagicZoom' => 1,
+        'Nikal_Setup' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
         'WebShopApps_MatrixRate' => 1,
