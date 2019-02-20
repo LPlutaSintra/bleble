@@ -1,6 +1,67 @@
 /*--------------------------------------------------
 Category listing
 --------------------------------------------------*/
+
+.products-grid {
+
+    .product-items {
+
+        .product-item-link{
+            font-size: 20px;
+            color: $nikal-text-color;
+            font-family: $font-fam-base;
+            font-weight: 100;
+        }
+    }
+}
+
+.product-items {
+
+    .product-item {
+
+        .product-sku{
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 15px;
+            text-transform: uppercase;
+            color: $nikal-main-color;
+            font-size: 14px;
+            transform: rotate(-90deg) translate(-100%, 0%);
+            transform-origin: 0 0;
+        }
+
+        .product-item-details{
+            padding: 0 10%;
+        }
+
+        .product-item-name {
+            text-align: left;
+        }
+
+        .price-box-list{
+            text-align: left;
+            align-items: left;
+            justify-content: left;
+        }
+
+        .price{
+            font-size: 20px;
+            color: $nikal-text-color;
+        }
+
+        .swatch-attribute-options {
+
+            .image,
+            .color {
+                min-width: 18px;
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}
+
 .toolbar-products {
     .sidebar-actions{
         display: none;
@@ -30,8 +91,8 @@ Category listing
             min-width: 130px;
             color: $nikal-main-color;
             background-image:
-                linear-gradient(45deg, transparent 45%, $nikal-main-color 55%),
-                linear-gradient(135deg, $nikal-main-color 55%, transparent 45%);
+            linear-gradient(45deg, transparent 45%, $nikal-main-color 55%),
+            linear-gradient(135deg, $nikal-main-color 55%, transparent 45%);
 
 
             @include xxs{
