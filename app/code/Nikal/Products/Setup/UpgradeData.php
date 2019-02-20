@@ -127,41 +127,92 @@ class UpgradeData implements UpgradeDataInterface
 
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'barcode',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'color_filter',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'collection',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'missions',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'author',
                 'system',
                 0);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'customizable',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'expiration_date',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'concept',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'size',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
 
+        }
+
+        if (version_compare($context->getVersion(), "1.0.3", "<")) {
+            $eavSetup->removeAttribute(
+                \Magento\Catalog\Model\Product::ENTITY,
+                'collection');
+
+            $eavSetup->addAttribute(
+                \Magento\Catalog\Model\Product::ENTITY,
+                'esa_collection',
+                [
+                    'type' => 'int',
+                    'backend' => '',
+                    'frontend' => '',
+                    'label' => 'Collection',
+                    'input' => 'select',
+                    'class' => '',
+                    'source' => '',
+                    'global' => 0,
+                    'visible' => true,
+                    'required' => false,
+                    'user_defined' => true,
+                    'default' => null,
+                    'searchable' => false,
+                    'filterable' => true,
+                    'comparable' => true,
+                    'visible_on_front' => true,
+                    'used_in_product_listing' => true,
+                    'unique' => false,
+                    'apply_to' => '',
+                    'system' => 0,
+                    'group' => 'General',
+                    'option' => array('values' => array("Collection1","Collection2"))
+                ]
+            );
         }
     }
 }
