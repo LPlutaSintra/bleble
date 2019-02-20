@@ -539,6 +539,9 @@ body {
   .panel.wrapper {
     z-index: 0;
     min-height: 70px;
+    @media screen and (max-width: $sm-width) {
+      min-height: 50px;
+    }
   }
 }
 
