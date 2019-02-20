@@ -77,6 +77,10 @@ Nav Main
                 z-index: 1;
             }
 
+            &:before {
+                left: 49%;
+            }
+
             > li {
                 margin-top: 114px;
                 padding: 70px 15px;

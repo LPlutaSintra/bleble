@@ -35,6 +35,25 @@ define([
             $(window).on('resize', function () {
                 self.element.find('.submenu-reverse').removeClass('submenu-reverse');
             });
+
+            $('a.level0.level-top').on("touchstart", function (e) {
+                "use strict";
+                var link = $(this);
+
+                if(!link.parent().hasClass("ui-menu-parent")){
+                   return;
+                }
+
+                if (link.hasClass('ui-state-focus')) {
+                    self._close();
+                    link.removeClass('ui-state-focus');
+                    $('body').removeClass('navigation-open');
+                } else {
+                    self.focus(e, link.parent());
+                }
+
+                e.preventDefault();
+            });
         },
 
         /**
@@ -98,7 +117,7 @@ define([
             }
 
             nested = item.children( ".ui-menu" );
-            if ( nested.length && event && ( /^mouse/.test( event.type ) ) ) {
+            if ( nested.length && event && ( /^mouse/.test( event.type )||/^touchstart/.test( event.type ) ) ) {
                 this._startOpening(nested);
             }
             this.activeMenu = item.parent();
