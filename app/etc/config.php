@@ -156,7 +156,7 @@ return [
         'Wstechlab_B2cRegister' => 1,
         'Wstechlab_Catalog' => 1,
         'Wstechlab_ContentManager' => 1,
-        'Wstechlab_DoctorRegister' => 1,
+        'Wstechlab_DoctorRegister' => 0,
         'Wstechlab_LayeredNavigation' => 1,
         'Wstechlab_SocialLogin' => 1,
         'Wstechlab_Theme' => 1

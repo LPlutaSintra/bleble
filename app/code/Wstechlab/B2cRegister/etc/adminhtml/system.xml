@@ -11,10 +11,10 @@
             <resource>Wstechlab_BaseRegister::baseRegister_config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General Configuration</label>
-                <field id="facilitatedVatB2c" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <!--<field id="facilitatedVatB2c" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Facilitated VAT B2C Group</label>
                     <source_model>Wstechlab\BaseRegister\Model\Config\Source\UserGroups</source_model>
-                </field>
+                </field>-->
                 <field id="normalVatB2c" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Normal VAT B2C Group</label>
                     <source_model>Wstechlab\BaseRegister\Model\Config\Source\UserGroups</source_model>
