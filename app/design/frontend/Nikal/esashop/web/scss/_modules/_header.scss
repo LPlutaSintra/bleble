@@ -18,83 +18,56 @@ $minicart-planets-bg: #fff;
 $minicart-planets-bg-home: transparent;
 $minicart-planets-bg-mobile: #fff;
 body {
-  &.cms-home {
-    &.navigation-open, &.scroll-on{
-      .page-wrapper {
-        .page-header{
-          color: $nikal-text-color;
-          transition: color .3s ease-in-out;
-          a,
-          button,
-          .material-icons{
-            color: $nikal-text-color;
-            transition: color .3s ease-in-out;
-          }
-          .logo svg path {
-            fill: $nikal-text-color !important;
-            transition: fill .3s ease-in-out;
-          }
-          .switchers {
-            z-index: 1;
-            .switcher {
-              strong {
-                span {
-                  color: $nikal-text-color;
-                  transition: .3s ease-in-out;
-                }
-              }
-              .material-icons{
-                color: $nikal-text-color;
-                transition: color .3s ease-in-out;
-              }
-              .options {
-                ul {
-                  border: 1px solid $nikal-text-color;
-                  transition: color .3s ease-in-out;
-                }
-                a {
-                  color: $nikal-text-color;
-                  border-bottom: 1px solid $nikal-text-color;
-                  transition: color .3s ease-in-out;
-                }
-                .switcher-trigger {
-                  strong {
-                    border-bottom-color: $nikal-text-color;
-                    transition: color .3s ease-in-out;
-                  }
-                }
-              }
-              &.switcher-currency {
-                strong.change, ul {
-                  li {
-                    > a {
-                      border-bottom-color: $nikal-text-color;
-                      transition: color .3s ease-in-out;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        .action.showcart {
-          #circle-orbit-container {
-            .orbit:not(.inner) {
-              border: 1px $nikal-text-color solid;
-              .cirlces {
-                border: 1px solid $nikal-text-color;
-              }
-            }
+  .scroll-on {
+    .page-header {
+      padding: 0px 0;
+      height: 70px;
+      .header.content {
+        .logo {
+          svg {
+            margin: 10px -15px;
           }
         }
       }
+      .panel.header {
+        top: -4px;
+        .panel.wrapper {
+          min-height: 60px;
+        }
+      }
     }
+  }
+  &.cms-home {
     .page-wrapper {
       background-image: $background-image-home;
+      #esa-header {
+        background-color: #222;
+        display: flex;
+        position: relative;
+        height: 60px;
+        color: #fff;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+        border-bottom: 4px solid #CCC;
+        #esa-header--logo {
+          height: 30px;
+          margin-left: auto;
+          padding-left: 20px;
+        }
+      }
       .page-header {
         color: $header-text-color-home;
         @media screen and (max-width: $sm-width) {
           color: $header-text-color;
+          padding-bottom: 0px;
+          padding-top: 0px;
+          span {
+            font-size: $header-mobile-font-size;
+          }
+        }
+        span {
+          font-size: $header-desktop-font-size;
         }
         .switchers {
           .switcher {
@@ -119,6 +92,11 @@ body {
                 li {
                   &:hover{
                     background: $dropdowns-background;
+                  }
+                  a {
+                    span {
+                      font-size: $header-switcher-font-size;
+                    }
                   }
                 }
               }
@@ -158,20 +136,17 @@ body {
           color: $header-text-color-home;
           @media screen and (max-width: $sm-width) {
             color: $header-text-color;
-            &.section-close .material-icons{
-              color: $header-text-color-home;
-            }
           }
         }
         .logo svg path {
           fill: $header-text-color-home !important;
-
           @media screen and (max-width: $sm-width) {
             fill: $header-text-color !important;
           }
         }
       }
     }
+
     .action.showcart {
       #circle-orbit-container {
         .orbit:not(.inner) {
@@ -185,7 +160,7 @@ body {
             background-color: $minicart-planets-bg-home;
             @media screen and (max-width: $sm-width) {
               background-color: $minicart-planets-bg-mobile;
-              border: 1px $details solid;  
+              border: 1px $details solid;
             }
           }
 
@@ -199,25 +174,7 @@ body {
       }
     }
   }
-  &.scroll-on{
-    .page-wrapper {
-      .page-header{
-        background: $nikal-background-color;
 
-        .ie11 &{
-          max-width: none;
-        }
-
-        >.content{
-          padding: 0 20px;
-
-          .ie11 &{
-            text-align: left;
-          }
-        }
-      }
-    }
-  }
   &:not(.cms-home) {
     .page-wrapper {
       background-image: $background-image;
@@ -313,15 +270,7 @@ body {
 }
 
 .page-header {
-  padding-top:13px;
-  top: 60px;
-
-  body.scroll-on &{
-    padding: 50px 0;
-    height: 160px;
-    top: 0;
-  }
-
+  top: 73px;
   background: transparent;
   @media screen and (max-width: $sm-width) {
     position: fixed;
@@ -473,11 +422,6 @@ body {
   }
   .nav-sections {
     position: relative;
-    z-index: -1;
-
-    @include sm {
-      z-index: 1;
-    }
   }
   .panel.header {
     .header.links {
