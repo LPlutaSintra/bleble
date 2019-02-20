@@ -20,6 +20,11 @@ define(["jquery"], function($) {
             }
         });
     });
-    mut.observe(document.querySelector(".currency .actions.options.switcher-options"),config);
-    mut.observe(document.querySelector(".language .actions.options.switcher-options"),config);
+    if(document.querySelector(".currency .actions.options.switcher-options")) {
+        mut.observe(document.querySelector(".currency .actions.options.switcher-options"),config);
+    }
+    if(document.querySelector(".language .actions.options.switcher-options")) {
+        mut.observe(document.querySelector(".language .actions.options.switcher-options"),config);
+    }
+
 });
