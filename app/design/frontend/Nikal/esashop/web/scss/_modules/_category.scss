@@ -11,6 +11,9 @@ Category listing
             color: $nikal-text-color;
             font-family: $font-fam-base;
             font-weight: 100;
+            @include xxs {
+                font-size: 12px;
+            }
         }
     }
 }
@@ -18,6 +21,63 @@ Category listing
 .product-items {
 
     .product-item {
+
+        .product-item-info{
+            &:hover {
+                height: auto;
+
+                .actions-buttons{
+                    display: none;
+                }
+            }
+
+            &.item-out-of-stock {
+
+                .product-item-details,
+                .product-img {
+                    opacity: 1;
+                }
+
+                .product-item-photo{
+                    opacity: .5;
+                }
+            }
+        }
+
+        .actions-buttons{
+            display: none;
+
+            @include sm {
+                display: none;
+            }
+        }
+
+        .product-item-inner{
+            display: none;
+        }
+
+        .stock.unavailable{
+            background-color: transparent;
+            width: 100%;
+            z-index: 1;
+            padding: 0 30px;
+            box-sizing: border-box;
+
+            span{
+                font-size: 40px;
+                font-family: $font-fam-base;
+                text-transform: uppercase;
+                color: $nikal-main-color;
+
+                @include lg {
+                    font-size: 30px;
+                }
+
+                @include md {
+                    font-size: 20px;
+                }
+            }
+        }
 
         .product-sku{
             position: absolute;
@@ -29,6 +89,11 @@ Category listing
             font-size: 14px;
             transform: rotate(-90deg) translate(-100%, 0%);
             transform-origin: 0 0;
+
+            @include xxs {
+                display: none;
+                font-size: 10px;
+            }
         }
 
         .product-item-details{
@@ -39,15 +104,49 @@ Category listing
             text-align: left;
         }
 
+        .salebox-new{
+            display: none;
+        }
+
         .price-box-list{
             text-align: left;
             align-items: left;
             justify-content: left;
         }
 
+        .special-price{
+            .price{
+                color: $nikal-text-color;
+            }
+        }
+
+        .old-price{
+            .price-wrapper{
+                color: $nikal-main-color;
+                text-decoration: line-through;
+                font-weight: bold;
+            }
+            .price{
+                color: $nikal-text-color;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+
+        .price-box{
+
+            >span{
+                margin: 0 5px 0 0;
+            }
+        }
+
         .price{
             font-size: 20px;
             color: $nikal-text-color;
+
+            @include xxs {
+                font-size: 12px;
+            }
         }
 
         .swatch-attribute-options {
