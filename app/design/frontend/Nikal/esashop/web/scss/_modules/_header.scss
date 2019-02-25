@@ -397,7 +397,7 @@ body {
         }
       }
       &.switcher-shipping {
-        display: none;
+        //display: none;
       }
       &.switcher-currency {
         strong.change, ul {
@@ -455,7 +455,8 @@ body {
           }
         }
       }
-      &.switcher-language {
+      &.switcher-language,
+      &.switcher-shipping{
         .switcher-label {
           display: none;
         }
