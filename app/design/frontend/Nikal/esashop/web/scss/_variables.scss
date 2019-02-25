@@ -238,12 +238,12 @@ $btn-primary-border-hover: none;
 
 // Secondary
 $btn-secondary-bg: #ffffff;
-$btn-secondary-font: #000000;
-$btn-secondary-border: 1px solid #000;
+$btn-secondary-font: #0234fc;
+$btn-secondary-border: 2px solid #0234fc;
 
-$btn-secondary-bg-hover: #000000;
+$btn-secondary-bg-hover: #0234fc;
 $btn-secondary-font-hover: #ffffff;
-$btn-secondary-border-hover: 1px solid #000;
+$btn-secondary-border-hover: 2px solid #0234fc;
 
 // Gray
 $btn-gray-bg: linear-gradient(#{$btn-gradient-deg}deg, #d2d2d2, #e2e2e2);

@@ -136,7 +136,7 @@ Category listing
         .price-box{
 
             >span{
-                margin: 0 5px 0 0;
+                margin: 0 10px 0 0;
             }
         }
 
@@ -162,6 +162,9 @@ Category listing
 }
 
 .toolbar-products {
+    border-top: none;
+    border-bottom: none;
+
     .sidebar-actions{
         display: none;
 
@@ -196,6 +199,106 @@ Category listing
 
             @include xxs{
                 min-width: auto;
+            }
+        }
+    }
+}
+
+.toolbar-last {
+
+    @include sm {
+
+        .toolbar-products {
+            display: flex;
+        }
+    }
+
+    @include xs {
+
+        .toolbar-products {
+            display: none;
+        }
+    }
+
+    .pages {
+        border-top: none;
+        .pages-items {
+            text-align: center;
+            margin: 0 auto;
+            width: auto;
+            border-left: none;
+        }
+    }
+
+}
+
+.pager, .toolbar{
+    height: 40px;
+
+    .pages-items {
+
+        .item{
+            border-right:none;
+            padding: 0 5px;
+            margin: 0 15px;
+
+            @include sm {
+                margin: 0 5px;
+            }
+
+            .page{
+                color: $nikal-text-color;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            &:hover{
+                border-bottom: 2px solid $nikal-main-color;
+
+                .page{
+                    color: $nikal-main-color;
+                }
+            }
+
+            &.current {
+                border-bottom: 2px solid $nikal-main-color;
+
+                .page{
+                    color: $nikal-main-color;
+                }
+            }
+
+            &.pages-item-next,
+            &.pages-item-previous{
+                margin: 0 20px 0 30px;
+                @include sm {
+                    margin: 0 10px;
+                }
+                border-bottom: 2px solid transparent;
+
+                .next,
+                .previous{
+                    color: $nikal-text-color;
+                    border-bottom: 2px solid transparent;
+                }
+
+                &:hover{
+                    border-bottom: 2px solid transparent;
+
+                    a.next,
+                    a.previous{
+                        color: $nikal-main-color;
+                        border-bottom: 2px solid $nikal-main-color;
+                    }
+                }
+            }
+
+            &.pages-item-previous{
+                margin: 0 30px 0 20px;
+
+                @include sm {
+                    margin: 0 10px;
+                }
             }
         }
     }
