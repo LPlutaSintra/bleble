@@ -22,4 +22,5 @@ define(["jquery"], function($) {
     });
     mut.observe(document.querySelector(".currency .actions.options.switcher-options"),config);
     mut.observe(document.querySelector(".language .actions.options.switcher-options"),config);
+    mut.observe(document.querySelector(".shipping .actions.options.switcher-options"),config);
 });

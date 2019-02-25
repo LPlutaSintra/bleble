@@ -17,6 +17,27 @@ $background-image-home: url('../images/home-bg.png');
 $minicart-planets-bg: #fff;
 $minicart-planets-bg-home: transparent;
 $minicart-planets-bg-mobile: #fff;
+@mixin scrollbars($size, $foreground-color, $background-color: #fff) {/*mix($foreground-color, white, 50%)*/
+  ::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
 body {
   &.cms-home {
     &.navigation-open, &.scroll-on{
@@ -374,8 +395,24 @@ body {
         .ui-dialog {
           z-index: 1;
         }
+        >div {
+          max-height: 126px;
+        }
+
+        @include scrollbars(.5em, black);
         ul {
           border-bottom: 0;
+
+          &.shipping-dropdown {
+            border-right: 0px!important;
+            //width: 200px;
+            li {
+              a {
+                display: flex;
+                justify-content: space-between;
+              }
+            }
+          }
           li {
           }
         }
@@ -469,7 +506,9 @@ body {
         }
       }
     }
-
+    .switcher-shipping:before{
+      display:none;
+    }
   }
   .header.content {
     display: block;
@@ -507,6 +546,30 @@ body {
     }
   }
   .panel.header {
+    width: 100%;
+    .block-search {
+      flex:1;
+      .btn.btn-empty {
+        border-bottom: 3px solid transparent;
+        letter-spacing: 1px;
+        line-height: 28px;
+        transition: none;
+        &:hover {
+          border-bottom: 3px solid #0234fc;
+          color: #0234fc;
+          span {
+            color: #0234fc;
+          }
+        }
+        span {
+          transition: none;
+          &.material-icons {
+            font-size: 24px;
+            line-height: 0.5;
+          }
+        }
+      }
+    }
     .header.links {
       .authorization-link {
         .material-icons {
@@ -519,6 +582,7 @@ body {
     z-index: 0;
     min-height: 70px;
   }
+
 }
 
 .action.showcart {

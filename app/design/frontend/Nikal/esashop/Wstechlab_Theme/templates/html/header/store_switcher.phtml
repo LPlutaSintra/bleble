@@ -1,6 +1,7 @@
 <?php
 /**
  * Stores switcher template
+ * <?php echo $block->escapeHtml($_lang['code']); ?>
  */
 $countries = $block->getCountriesForAllStores();
 ?>
@@ -11,7 +12,8 @@ $countries = $block->getCountriesForAllStores();
     <div class="actions options switcher-options">
         <div class="action toggle switcher-trigger" id="switcher-shipping-trigger<?php /* @escapeNotVerified */ echo $id?>">
             <strong class="change view-<?php echo $block->escapeHtml($block->getCurrentShippingCode()) ?>">
-                <span id="current-store-cookie-shipping"><?php  echo $block->getCurrentShippingCountry(); ?></span>
+                <img alt="<?php echo $block->getCurrentShippingCountry() ?>"
+                     src="<?= $block->getViewFileUrl('images/flags/4x3/' . strtolower($block->escapeHtml($block->getCurrentShippingCode())) . '.png') ?>"/></span>
                 <span class="material-icons">arrow_drop_down</span>
             </strong>
         </div>
@@ -25,7 +27,9 @@ $countries = $block->getCountriesForAllStores();
                 <?php foreach ($countries as $_lang): ?>
                         <li class="view-<?php echo $block->escapeHtml($_lang['code']); ?> switcher-option">
                             <a href="#" data-post='<?php /* @escapeNotVerified */ echo $_lang['url']; ?>' >
-                                aaa<?php echo $block->escapeHtml($_lang['label']) ?>
+                                <img alt="<?php echo $block->escapeHtml($_lang['label']) ?>"
+                                     src="<?= $block->getViewFileUrl('images/flags/4x3/' . strtolower($block->escapeHtml($_lang['code'])) . '.png') ?>"/>
+                                <span><?php echo $block->escapeHtml($_lang['label']) ?></span>
                             </a>
                         </li>
                 <?php endforeach; ?>
