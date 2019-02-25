@@ -1,6 +1,3 @@
-/*
- * Replace all SVG images with inline SVG
- */
 define(["jquery"], function($) {
     "use strict";
     let config = {
@@ -25,6 +22,9 @@ define(["jquery"], function($) {
     }
     if(document.querySelector(".language .actions.options.switcher-options")) {
         mut.observe(document.querySelector(".language .actions.options.switcher-options"),config);
+    }
+    if(document.querySelector(".shipping .actions.options.switcher-options")) {
+        mut.observe(document.querySelector(".shipping .actions.options.switcher-options"),config);
     }
 
 });
