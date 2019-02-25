@@ -8,15 +8,15 @@ $dropdowns-border-color: #000;
 $header-text-color: #000;
 $details: #0234fc;
 $background-image: url('../images/home-bg-light.jpg');
-$mobile-header-bg-color: #fff;
+$mobile-header-bg-color: initial;//#fff;
 
 $header-text-color-home: #fff;
 $dropdowns-border-color-home: #fff;
 $details-home: #fff;
 $background-image-home: url('../images/home-bg.png');
 $minicart-planets-bg: #fff;
-$minicart-planets-bg-home: transparent;
-$minicart-planets-bg-mobile: #fff;
+$minicart-planets-bg-home: #FFF;
+$minicart-planets-bg-mobile: #FFF;
 @mixin scrollbars($size, $foreground-color, $background-color: #fff) {/*mix($foreground-color, white, 50%)*/
   ::-webkit-scrollbar {
     width:  $size;
@@ -101,11 +101,16 @@ body {
         .action.showcart {
           #circle-orbit-container {
             .orbit:not(.inner) {
-              border: 1px $nikal-text-color solid;
+              border: 1px solid $nikal-text-color;
               .cirlces {
                 border: 1px solid $nikal-text-color;
               }
             }
+            .orbit.inner {
+               .counter {
+                 color: $nikal-text-color;
+               }
+             }
           }
         }
       }
@@ -131,9 +136,10 @@ body {
       .page-header {
         color: $header-text-color-home;
         @media screen and (max-width: $sm-width) {
-          color: $header-text-color;span {
-          font-size: $header-mobile-font-size;
-        }
+          color: $header-text-color;
+          span {
+            font-size: $header-mobile-font-size;
+          }
         }
         span {
           font-size: $header-desktop-font-size;
@@ -204,7 +210,7 @@ body {
         .material-icons{
           color: $header-text-color-home;
           @media screen and (max-width: $sm-width) {
-            color: $header-text-color;
+            //color: $header-text-color;
             &.section-close .material-icons{
               color: $header-text-color-home;
             }
@@ -214,7 +220,7 @@ body {
           fill: $header-text-color-home !important;
 
           @media screen and (max-width: $sm-width) {
-            fill: $header-text-color !important;
+            //fill: $header-text-color !important;
           }
         }
       }
@@ -224,7 +230,7 @@ body {
         .orbit:not(.inner) {
           border: 1px $details-home solid;
           @media screen and (max-width: $sm-width) {
-            border: 1px $details solid;
+            border: 1px solid #fff; //$details;
           }
 
           .cirlces {
@@ -232,14 +238,22 @@ body {
             background-color: $minicart-planets-bg-home;
             @media screen and (max-width: $sm-width) {
               background-color: $minicart-planets-bg-mobile;
-              border: 1px $details solid;
+              border: 1px solid #fff; //$details;
             }
           }
 
           .counter {
             color: $details-home;
             @media screen and (max-width: $sm-width) {
-              color: $details;
+              color: $details-home;
+            }
+          }
+        }
+        .orbit {
+          .counter {
+            color: $details-home;
+            @media screen and (max-width: $sm-width) {
+              color: $details-home;
             }
           }
         }
@@ -270,6 +284,11 @@ body {
       background-image: $background-image;
       .page-header {
         color: $header-text-color;
+        @media screen and (max-width: $sm-width) {
+          span {
+            font-size: $header-mobile-font-size;
+          }
+        }
         .switchers {
           .switcher {
             strong {
@@ -336,10 +355,27 @@ body {
 
   .page-wrapper {
     background-size: cover;
-    padding-top: 160px;
+    padding-top: 170px;
     background-repeat: no-repeat;
     @media screen and (max-width: $sm-width) {
-      padding-top: 120px;
+      padding-top: 130px;
+    }
+    #esa-header {
+      background-color: #222;
+      display: flex;
+      position: relative;
+      height: 60px;
+      color: #fff;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 20px;
+      border-bottom: 4px solid #CCC;
+
+      #esa-header--logo {
+        height: 30px;
+        margin-left: auto;
+        padding-left: 20px;
+      }
     }
     .top-banner {
       position: absolute;
@@ -362,11 +398,23 @@ body {
 .page-header {
   padding-top:13px;
   top: 60px;
-
+  span:not(.counter) {
+    font-size: $header-desktop-font-size;
+  }
+  @media screen and (max-width: $sm-width) {
+    padding: 10px 0px;
+    height: 70px;
+    //padding-top: 3px;
+  }
   body.scroll-on &{
     padding: 50px 0;
     height: 160px;
     top: 0;
+    @media screen and (max-width: $sm-width) {
+      padding: 10px 0;
+      height: 70px;
+      top: 60px;
+    }
   }
 
   background: transparent;
@@ -375,7 +423,13 @@ body {
     top: 60px;
     background-color: $mobile-header-bg-color;
     padding-bottom: 5px;
-    border-bottom: 1px solid #cccccc;
+    padding: 10px 12px;
+    border-bottom: 0px solid #cccccc;
+  }
+  .block-search {
+    @media screen and (max-width: $xs-width) {
+      display:none
+    }
   }
   .switchers {
     max-width: 100%;
@@ -410,6 +464,9 @@ body {
               a {
                 display: flex;
                 justify-content: space-between;
+                span {
+                  font-size: $header-switcher-font-size;
+                }
               }
             }
           }
@@ -514,6 +571,9 @@ body {
     display: block;
     padding: inherit;
     text-align: initial;
+    @media screen and (max-width: $sm-width) {
+      padding: 0 20px;
+    }
     .logo {
       svg {
         transform: scale(1.7, 1.7);
@@ -521,7 +581,7 @@ body {
         @media screen and (max-width: $sm-width) {
           fill: $header-text-color !important;
           transform: scale(1, 1);
-          margin: 7px -15px;
+          margin: 3px -15px;
         }
       }
       img {
@@ -581,6 +641,9 @@ body {
   .panel.wrapper {
     z-index: 0;
     min-height: 70px;
+    @media screen and (max-width: $sm-width) {
+      min-height: 50px;
+    }
   }
 
 }
@@ -589,6 +652,9 @@ body {
   align-items: center;
   justify-content: center;
   display: flex;
+  @media screen and (max-width: $xs-width) {
+    display:none
+  }
   #circle-orbit-container {
     position: relative;
     height: 45px;
@@ -647,6 +713,7 @@ body {
         right: 0px;
         bottom: 0px;
         background: transparent;
+        color: $details;
       }
     }
   }
