@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="block newsletter">
+    <div class="content-newsletter">
+        <div class="newsletter-wrapper">
+            <div class="title"><?php echo __("Newsletter") ?></div>
+            <form class="form subscribe"
+                  novalidate
+                  action="<?php /* @escapeNotVerified */ echo $block->getFormActionUrl() ?>"
+                  method="post"
+                  data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                  id="newsletter-validate-detail">
+                <div class="field">
+                    <div class="control">
+                        <input name="email" type="email" id="newsletter-email"
+                               placeholder="<?php /* @escapeNotVerified */ echo __('Indirizzo email') ?>"
+                               data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="action subscribe-btn primary" title="<?php /* @escapeNotVerified */ echo __('Subscribe') ?>" type="submit">
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="social-wrapper">
+            <div class="newsletter-social">
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_newsletter_social')->toHtml();?>
+            </div>
+        </div>
+        <div class="footer-payments-wrapper">
+            <div class="footer-payments">
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer-payments')->toHtml();?>
+            </div>
+        </div>
+    </div>
+</div>
