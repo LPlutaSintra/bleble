@@ -492,6 +492,10 @@ body {
       }
       &.switcher-shipping {
         //display: none;
+        div.ui-dialog {
+          left: -98px;
+        }
+
       }
       &.switcher-currency {
         strong.change, ul {
