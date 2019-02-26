@@ -1,3 +1,5 @@
+$footer-font-size: 14px;
+
 .page-footer {
   .footer.content {
     background-color: #fff;
@@ -11,6 +13,58 @@
     .footer-columns {
       max-width: 50%;
       margin: 0px;
+      .cols {
+        margin: 0px;
+        .col {
+          padding: 0px;
+          &:nth-child(2) {
+
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+      .general-info {
+        //display: flex;
+        //justify-content: flex-end;
+        .title {
+          display: block;
+          width: 100%;
+          color: $nikal-main-color;
+          padding-bottom: 20px;
+          text-transform: uppercase;
+        }
+        a {
+          line-height: 2.4;
+          &:hover {
+            color: $nikal-main-color;
+            border-bottom: 3px solid #0234fc;
+            padding-bottom: 3px;
+          }
+        }
+      }
+      .menu {
+        li {
+          display: inline-block;
+          width: 49%;
+          padding-bottom: 20px;
+          text-transform: uppercase;
+          a {
+            color: $nikal-main-color;
+            font-size: $footer-font-size;
+            &:hover {
+              border-bottom: 3px solid #0234fc;
+              padding-bottom: 3px;
+            }
+          }
+        }
+      }
+      .bulk {
+        .btn-bulk {
+          padding: 0px 16px;
+          min-width: 270px;
+        }
+      }
     }
     .newsletter {
       max-width: 50%;
@@ -18,9 +72,10 @@
       background-color: transparent;
       margin-left: auto;
       .title {
+        padding-bottom: 0px;
         color: $nikal-main-color;
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: $footer-font-size;
       }
       .content-newsletter {
         display: block;
