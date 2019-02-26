@@ -3,10 +3,23 @@
   .toolbar-first {
     left: 0;
   }
+  .toolbar-first,
+  .toolbar-last {
+
+    .toolbar {
+      background-color: transparent;
+    }
+  }
 }
 
-.layered-filter-block-container {
 
+.layered-filter-block-container {
+  padding-top: 120px;
+  border-right: none;
+  
+  @include sm{
+    padding-top: 43px;
+  }
   .filter-current {
 
     .item {

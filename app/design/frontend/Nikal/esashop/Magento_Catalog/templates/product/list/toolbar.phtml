@@ -29,11 +29,13 @@ use Magento\Catalog\Model\Product\ProductList\Toolbar;
                 </span>
             </div>
         </div>
-        
+
         <?php echo $block->getPagerHtml() ?>
 
         <?php if ($block->isExpanded()): ?>
             <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
         <?php endif; ?>
+
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
     </div>
 <?php endif ?>

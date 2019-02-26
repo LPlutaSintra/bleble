@@ -6,16 +6,26 @@ Category listing
     box-shadow: $box-shadow-base;
 
     .category-view-info {
+
         .page-title{
             font-family: $font-fam-base;
             font-size: 54px;
+            line-height: 1;
             text-transform: uppercase;
             font-weight:100 ;
             margin-bottom: 30px;
+
+            @include sm {
+                font-size: 36px;
+            }
         }
 
         .text {
             padding: 80px 70px;
+
+            @include sm {
+                padding: 30px 40px;
+            }
         }
     }
 
@@ -24,6 +34,9 @@ Category listing
             font-size: 18px;
             font-family: $font-fam-secondary;
             font-weight: 400;
+            @include sm {
+                font-size: 14px;
+            }
         }
     }
 }
@@ -190,6 +203,7 @@ Category listing
 .toolbar-products {
     border-top: none;
     border-bottom: none;
+    justify-content: space-between;
 
     .sidebar-actions{
         display: none;
@@ -201,11 +215,19 @@ Category listing
     }
 
     .toolbar-sorter {
+        left: -360px;
+        top: 70px;
+        position: absolute;
+        width: 300px;
+
+        @include sm{
+            position: static;
+            width: auto;
+        }
 
         .sorter-label {
             font-size: 15px;
             text-transform: uppercase;
-            flex: 0 1 120%;
             min-width: 100px;
         }
 
@@ -227,6 +249,11 @@ Category listing
                 min-width: auto;
             }
         }
+    }
+
+    .toolbar-amount{
+        border-left: none;
+        margin-left: auto;
     }
 }
 
