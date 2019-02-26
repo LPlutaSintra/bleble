@@ -498,7 +498,8 @@ body {
           > span, > li {
             padding-left: 5px;
             > span, > a {
-              font-size: 0px;
+              //font-size: 0px;
+              font-size: initial;
 
             }
           }
@@ -506,14 +507,14 @@ body {
             > span {
               > span {
                 &:before {
-                  content: '€';
+                  //content: '€';
                   font-size: initial;
                 }
               }
             }
             > a {
               &:before {
-                content: '€\7C\a0\a0';
+                //content: '€\7C\a0\a0';
                 font-size: initial;
               }
             }
@@ -523,14 +524,14 @@ body {
             > span{
               > span{
                 &:before {
-                  content: '$';
+                  //content: '$';
                   font-size: initial;
                 }
               }
             }
             > a {
               &:before {
-                content: '$\a0\a0';
+                //content: '$\a0\a0';
                 font-size: initial;
               }
             }
@@ -643,6 +644,9 @@ body {
     min-height: 70px;
     @media screen and (max-width: $sm-width) {
       min-height: 50px;
+    }
+    .ie11 &{
+      margin-top: 18px;
     }
   }
 
