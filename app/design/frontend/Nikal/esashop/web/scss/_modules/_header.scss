@@ -494,6 +494,9 @@ body {
         //display: none;
         div.ui-dialog {
           left: -98px;
+          .ie11 &{
+            max-width: 127px;
+          }
         }
 
       }
