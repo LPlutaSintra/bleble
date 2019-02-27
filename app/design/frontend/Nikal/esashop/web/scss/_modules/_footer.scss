@@ -24,6 +24,9 @@ $footer-font-size: 14px;
         width: 100%;
         max-width: 100%;
       }
+      .ie11 & {
+        width: 100%;
+      }
       .cols {
         margin: 0px;
         @media screen and (max-width: $sm-width) {
