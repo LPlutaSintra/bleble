@@ -36,6 +36,7 @@ atlassian*
 
 /pub/media/*
 !/pub/media/.htaccess
+!/pub/media/svg/
 
 /pub/static/*
 !/pub/static/.htaccess
