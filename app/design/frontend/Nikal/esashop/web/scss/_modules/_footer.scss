@@ -1,6 +1,9 @@
 $footer-font-size: 14px;
 
 .page-footer {
+  margin: 0 auto;
+  width: 100%;
+  max-width: $content-max-width;
   .footer.content {
     background-color: #fff;
     border-top: 2px solid $nikal-main-color;
@@ -36,6 +39,7 @@ $footer-font-size: 14px;
         }
         a {
           line-height: 2.4;
+          color: #000;
           &:hover {
             color: $nikal-main-color;
             border-bottom: 3px solid #0234fc;
@@ -140,6 +144,33 @@ $footer-font-size: 14px;
         padding: 0px;
         border: 0px;
       }
+    }
+  }
+}
+.copyright {
+  margin: 0 auto;
+  max-width: $content-max-width;
+  span {
+    &:before {
+      display: none;
+    }
+    span {
+      display: inline-block;
+      margin-bottom: 15px;
+      font-size: $footer-font-size;
+      width: 80%;
+    }
+    span:nth-child(1) {
+      color: $nikal-main-color;
+    }
+    span:nth-child(2) {
+      float: right;
+      text-align: right;
+      max-width: 100px;
+    }
+    span:nth-child(3) {
+      line-height: 1.4;
+      max-width: 835px;
     }
   }
 }
