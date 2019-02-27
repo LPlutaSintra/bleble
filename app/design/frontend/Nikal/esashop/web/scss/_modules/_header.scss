@@ -354,7 +354,7 @@ body {
   }
 
   .page-wrapper {
-    background-size: contain;
+    background-size: 100% auto;
     padding-top: 170px;
     background-repeat: no-repeat;
     @media screen and (max-width: $sm-width) {
