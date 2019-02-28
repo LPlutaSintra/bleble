@@ -1,0 +1,212 @@
+/*--------------------------------------------------
+CMS homepage
+--------------------------------------------------*/
+.cms-home {
+
+    .main {
+
+        p {
+            margin: 0 0 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            position: relative;
+            line-height: 1.33;
+            letter-spacing: 2px;
+
+            @include sm {
+                line-height: 36px;
+                font-size: 24px;
+                margin-top: 0;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 25px;
+                height: 2px;
+                bottom: -10px;
+                background-color: $black;
+            }
+        }
+    }
+
+    .homepage-collections {
+        padding: 0;
+        margin: 50px -#{$gutter} 75px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        @include sm {
+            width: 100%;
+            display: block;
+            margin: 0 -#{$gutter};
+        }
+
+        .collection {
+            margin-bottom: 20px;
+
+            @include xs {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        &.blog-collections {
+            .collection {
+                padding: 0;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+
+                @include sm {
+                    padding: 0 $gutter;
+                    flex-flow: column wrap;
+                }
+
+                > img,
+                > .box {
+                    padding: 0 $gutter;
+                    box-sizing: border-box;
+
+                    @include sm {
+                        padding: 0;
+                    }
+                }
+
+                > img {
+                    width: 66.666%;
+
+                    @include sm {
+                        width: 100%;
+                    }
+                }
+
+                > .box {
+                    width: 33.333%;
+
+                    @include sm {
+                        width: 100%;
+                        padding: 0 30px;
+
+                    }
+
+                    &:before {
+                        width: 100px;
+                        height: 1px;
+                        left: -50px;
+
+                        @include sm {
+                            width: 1px;
+                            height: 50px;
+                            left: 10px;
+                        }
+                    }
+                }
+
+                .title {
+                    font-size: 24px;
+                    line-height: 1.5;
+                    letter-spacing: 2px;
+
+                    @include sm {
+                        margin-top: 10px;
+                    }
+                }
+
+                p {
+                    margin : 0 0 20px;
+                    font-size: 15px;
+                    font-weight: 300;
+                    line-height: 1.67;
+                    letter-spacing: normal;
+
+                }
+            }
+        }
+    }
+}
+
+.homepage-slider-widget {
+    @include clearfix;
+    width: 100%;
+
+    .homepage-slider-wrapper {
+        @include clearfix;
+        position: relative;
+        width: 100%;
+
+        img {
+            max-width: 100%;
+        }
+
+        .slider-wrapper {
+            max-width: 100%;
+        }
+
+        .slider-img {
+            max-width: 100%;
+            height: 750px;
+
+            @include md {
+                height: 600px;
+            }
+
+            @include sm {
+                height: 480px;
+            }
+
+            @include xs {
+                height: 270px;
+            }
+
+            img {
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: opacity .5s ease 0s;
+            }
+        }
+
+        .homepage-slider-arrows {
+            margin: 10px 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .homepage-slider-arrow-prev,
+        .homepage-slider-arrow-next {
+            @extend %btn.btn-empty;
+            height: 26px;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+
+            i {
+                width: 16px;
+                height: 16px;
+            }
+
+            &.disabled {
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        .current-slide-number {
+            margin: 0 10px;
+            color: $font-gray-select;
+            font-family: $font-fam-title;
+            letter-spacing: 3.3px;
+
+            > .current {
+                color: $black;
+            }
+        }
+    }
+}

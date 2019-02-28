@@ -1,0 +1,251 @@
+/*--------------------------------------------------
+CMS page - Why Choose Us
+--------------------------------------------------*/
+
+.cms-page {
+  &.cms-about-us {
+    background-image: url('../images/cms/bn-chisiamo.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+
+    @include sm {
+      padding-top: 180px;
+    }
+
+    > p {
+      text-align: center;
+    }
+
+    > div {
+
+      &:nth-of-type(1) {
+        margin-top: 100px;
+
+        @include sm {
+          margin-top: 50px;
+        }
+
+        @include xs {
+          text-align: center;
+        }
+
+        > div {
+          &:first-child {
+            width: 60%;
+            align-items: center;
+
+            @include md {
+              width: 50%;
+            }
+
+            @include xs {
+              width: 100%;
+            }
+
+          }
+
+          &:last-child {
+            width: 40%;
+
+            @include md {
+              width: 50%;
+            }
+
+            @include xs {
+              width: 100%;
+            }
+
+            strong {
+              color: $font-base;
+              font-family: $font-fam-title;
+              font-weight: normal;
+              font-style: normal;
+              font-size: 24px;
+              line-height: .69;
+              margin: 0 3px;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(2) {
+
+        @include md {
+          align-items: center;
+        }
+
+
+        > div {
+          &:first-child {
+            width: 33.333%;
+
+            @include md{
+              width: 50%;
+            }
+
+            @include xs {
+              width: 100%;
+              align-items: flex-start;
+            }
+
+            h2 {
+              margin: 0;
+            }
+
+            p {
+              line-height: 1.5;
+            }
+          }
+
+          &:last-child {
+            width: 66.666%;
+            align-items: center;
+
+            @include md {
+              width: 50%;
+            }
+
+            @include xs {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(3) {
+        flex-flow: row wrap;
+        align-items: stretch;
+
+        > div {
+          width: 33.333%;
+          display: flex;
+          flex-flow: column nowrap;
+          min-height: 100%;
+
+          @include xs {
+            width: 50%;
+            align-items: flex-start;
+          }
+
+          @include xxs {
+            width: 100%;
+          }
+
+          > h3 {
+            text-transform: uppercase;
+          }
+
+          > p {
+            &:first-of-type {
+              margin: 10px 0;
+              font-size: 24px;
+              font-stretch: condensed;
+              line-height: 1.5;
+              letter-spacing: 3px;
+            }
+
+            &:last-child {
+              flex: 1;
+            }
+          }
+
+          &:first-child {
+            justify-content: flex-start;
+
+            > h2 {
+              margin-top: 50px;
+
+              @include md {
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(4) {
+        align-items: flex-start;
+
+        @include md {
+          align-items: center;
+        }
+
+        @include xs {
+          flex-flow: column-reverse nowrap;
+        }
+
+        h2 {
+          font-size: 36px;
+          line-height: 1.33;
+          letter-spacing: 3px;
+          margin-top: 50px;
+
+          @include md {
+            margin-top: 0;
+          }
+
+          @include sm {
+            font-size: 32px;
+            line-height: 46px;
+            letter-spacing: 3px;
+          }
+
+        }
+
+        > div {
+          &:first-child {
+            width: 66.66%;
+
+            @include md{
+              width: 50%;
+            }
+
+            @include xs {
+              width: 100%;
+            }
+          }
+
+          &:last-child {
+            width: 33.33%;
+            align-items: center;
+
+            @include md{
+              width: 50%;
+            }
+
+            @include xs {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(5) {
+        background-image: url('../images/cms-page-title-bg.jpg');
+        background-position: center;
+        background-color: $bg-alternative;
+        padding: 40px $gutter 20px;
+        text-align: center;
+
+        h2 {
+          font-size: 36px;
+        }
+
+        > p {
+          max-width: 1170px;
+          margin: 0 auto 20px;
+
+          a:not(.btn) {
+            font-size: 16px;
+            margin-top: 15px;
+            display: inline-block;
+          }
+        }
+
+        > .btn {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
