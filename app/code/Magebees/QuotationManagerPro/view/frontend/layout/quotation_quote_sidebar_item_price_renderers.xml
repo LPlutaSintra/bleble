@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="miniquote">
+            <block class="Magento\Checkout\Block\Item\Price\Renderer" name="quotation.quote.item.price.sidebar" template="quote/item/price/sidebar.phtml"/>
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="miniquote_content" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="item.renderer" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="quotation.quote.item.price.sidebar" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Magebees_QuotationManagerPro/miniquote/item/price</item>
+                                                <item name="displayArea" xsi:type="string">priceSidebar</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

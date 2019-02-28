@@ -1,0 +1,117 @@
+<?php
+/** @var  $block \Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer */
+$_item = $block->getItem();
+$itemId=$_item->getId();
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$quote_id=$block->getRequest()->getParam('quote_id');
+$productId=$_item->getProduct()->getId();
+//$_quotes=$quote_helper->getQuoteDataById($quote_id);
+$_quote=$quote_helper->loadQuoteById($quote_id);
+$quotationtierQty=$quote_helper->getDynamicQuoteQty($itemId,$quote_id,$productId);
+?>
+<tr id="order-item-row-<?= /* @escapeNotVerified */ $_item->getId() ?>">
+    <td class="col name" data-th="<?= $block->escapeHtml(__('Product Name')) ?>">
+		<span class="product-item-photo">          
+            <?php echo $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml(); ?>
+           </span>
+		<div class="product-item-details">
+        <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
+		<p><strong><?= $block->escapeHtml(__('SKU:')) ?></strong><?= /* @escapeNotVerified */ $quote_helper->prepareString($_item->getSku()) ?> 		
+        <?php if ($_options = $quote_helper->getBackendOptions($_item)): ?>
+        <dl class="item-options">
+        <?php foreach ($_options as $_option) : ?>
+            <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+            <?php if (!$block->getPrintStatus()): ?>
+                <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option); ?>
+                <dd>
+                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                        <?= /* @escapeNotVerified */ $_formatedOptionValue['full_view'] ?>
+                    <?php else: ?>
+                        <?= /* @escapeNotVerified */ $_formatedOptionValue['value'] ?>
+                    <?php endif; ?>
+                </dd>
+            <?php else: ?>
+                <dd>
+                    <?= nl2br($block->escapeHtml((isset($_option['print_value']) ? $_option['print_value'] : $_option['value']))) ?>
+                </dd>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </dl>
+        <?php endif; ?>
+		 <?php if ($messages = $block->getMessages()) : ?>
+                <?php foreach ($messages as $message) : ?>
+	<?php	if($quote_helper->getErrorMsgArr())
+			{
+				$errorArr=$quote_helper->getErrorMsgArr();
+				array_push($errorArr,$message);
+				//print_r($errorArr);
+			}
+			else
+			{
+				$quote_helper->setErrorMsgArr(array($message));
+			}?>
+                    <div class="quote item message <?php echo $message['type'] ?>">
+                        <div><?php echo $block->escapeHtml($message['text']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        <?php $addtInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addtInfoBlock) :?>
+            <?= $addtInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+			</div>
+    </td>
+	<td class="col comments-qoute">	
+		<?= $_item->getRequestInfo()?>	
+		</td>
+   
+    <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+		<?php 
+		$is_show_price=$quote_helper->isShowPriceBeforeProposal($_quote->getStatus());	?>
+		<?php if($is_show_price):?>
+        <?= $block->getUnitPriceHtml($_item,'customer_quote_page') ?>
+		<?php else: ?>
+		<?php echo "--";?>
+		<?php endif; ?>
+    </td>
+    <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
+		<?php if(count($quotationtierQty->getData())>0):?>		
+		<?php foreach($quotationtierQty as $qty):?>		
+			<div><?php if($_quote->getStatus()>20):?><input type="radio" class="qty_proposal" data-base-price="<?= $qty->getRequestQtyPrice()?>" data-item-id="<?= $_item->getId()?>" value="<?= $qty->getRequestQty()?>" request_id="<?= $qty->getRequestId()?>" <?php if($qty->getIsDefault()):?>checked="checked"<?php endif;?>><?php endif;?><?= $qty->getRequestQty()?></div>
+		<?php endforeach;?>			
+		<?php else:?>
+      <?= $_item->getQty()?>
+		<?php endif;?>
+    </td>
+	 <td class="col proposal" data-th="<?= $block->escapeHtml(__('Proposal')) ?>">
+		
+		<?php if($_quote->getStatus()<20)
+		{
+			echo "Waiting..";
+		}
+		 elseif(count($quotationtierQty->getData())>0)
+		 {?>
+			<?php foreach($quotationtierQty as $qty):?>
+		<?php $req_qty_price=$quote_helper->getConvertedPrice($qty->getRequestQtyPrice());?>	
+			<div>  <?= $quote_helper->getFormatedPrice($req_qty_price) ?></div>
+		<?php endforeach;?>
+		<?php } ?>
+		
+	</td>
+	 <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Sub Total')) ?>">
+		
+		<?php if($_quote->getStatus()<20)
+		{
+			echo "Waiting..";
+		}
+		 elseif(count($quotationtierQty->getData())>0)
+		 { ?>
+			<?php foreach($quotationtierQty as $qty):?>
+		<?php $req_qty_price=($quote_helper->getConvertedPrice($qty->getRequestQtyPrice()))*($qty->getRequestQty());?>	
+			<div>  <?= $quote_helper->getFormatedPrice($req_qty_price) ?></div>
+		<?php endforeach;?>
+		<?php }
+		 ?>		
+	</td>    
+</tr>

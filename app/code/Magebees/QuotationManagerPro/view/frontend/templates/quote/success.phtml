@@ -1,0 +1,18 @@
+<?php /** @var $block \Magebees\QuotationManagerPro\Block\Quote\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getQuoteId()):?>           
+            <p><?= __('Your Quote Id is: # <span>%1</span>.', $block->escapeHtml($block->getIncrementId())) ?></p>
+        
+	  <?php if ($block->getCustomerId()):?> 
+            <p><?= /* @escapeNotVerified */ __('You can check the status of your quote by logging into your account.') ?></p>
+	<?php else:?>
+	<p><?= /* @escapeNotVerified */ __('We\'ll email you an quote confirmation with details.') ?></p>
+    <?php endif;?>  
+    <?php endif;?>  
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= /* @escapeNotVerified */ $block->getContinueUrl() ?>"><span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span></a>
+        </div>
+    </div>
+</div>

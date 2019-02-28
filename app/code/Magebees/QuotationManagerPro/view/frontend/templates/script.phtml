@@ -1,0 +1,29 @@
+<script type="text/javascript">
+	/*requirejs(['jquery','domReady!','magebeesQuote'], function($){			
+		 var widget = $(this).magebeesQuote({});
+	});*/
+	require([
+        'jquery',
+		'domReady!',
+        'Magebees_QuotationManagerPro/js/quotation',
+		'Magebees_QuotationManagerPro/js/sidebar'
+    ], function($,magebeesQuote,quoteSidebar){
+		 var widget = $(this).magebeesQuote({});
+		
+	});
+</script>
+
+<!-- Start script for add to quote form submit -->
+  <script type="text/x-magento-init">
+        {
+            "[data-role=toquote-form], .form.map.checkout": {
+                "catalogAddToCart": {
+						"addToCartButtonSelector": ".action.toquote",
+                        "addToCartButtonTextDefault": "<?php echo __('Add to Quote') ?>",
+                        "addToCartButtonTextWhileAdding": "<?php echo __('Adding to Quote...') ?>",
+                        "minicartSelector": "[data-block=\"miniquote\"]"
+                }
+            }
+        }
+   </script>
+<!-- End script for add to quote form submit -->

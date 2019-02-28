@@ -1,0 +1,283 @@
+<?php
+/** @var  $block \Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Items\Renderer\DefaultRenderer */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$priceHelper =$this->helper('Magento\Framework\Pricing\Helper\Data'); 
+$tax_config=$quote_helper->getTaxConfig();
+$is_include_tax=$tax_config['price_tax'];
+$backend_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Admin');
+$_item = $block->getItem();
+$itemId=$_item->getId();
+$quote_id=$block->getRequest()->getParam('quote_id');
+$_quote=$quote_helper->loadQuoteById($quote_id);
+$quote_status=$_quote->getStatus();
+$change_allow=$backend_helper->checkStatusAllowForProposal($quote_status);
+$quote_currency=$_quote->getCurrencyCode();
+$base_currency=$_quote->getBaseCurrencyCode();
+$backend_helper->getSession()->setCurrencyId($quote_currency);
+$item_price=$quote_helper->getConvertedPrice($_item->getCalculationPrice(),$quote_currency);
+
+$productId=$_item->getProduct()->getId();
+
+$quotationtierQty=$quote_helper->getDynamicQuoteQty($itemId,$quote_id,$productId);
+$save_image_url=$block->getViewFileUrl('Magebees_QuotationManagerPro::images/save.png');
+
+
+?>
+<tr id="order-item-row-<?= /* @escapeNotVerified */ $_item->getId() ?>">
+    <td class="col name" data-th="<?= $block->escapeHtml(__('Product Name')) ?>">
+		
+        <div class="product name product-item-name"><a href="<?= $block->getUrl('catalog/product/edit', ['id' =>$productId])?>"><?= $block->escapeHtml($_item->getName()) ?></a></div>
+		<p><strong><?= $block->escapeHtml(__('SKU:')) ?></strong> <?= /* @escapeNotVerified */ $quote_helper->prepareString($_item->getSku()) ?></p> 		
+		
+        <?php if ($_options = $block->getOptionList()): ?>
+		<button  title="Configure" type="button" class="action-default item-configure" data-item-id="<?= /* @escapeNotVerified */ $_item->getId() ?>" <?php if(!$change_allow):?>disabled=""<?php endif;?>>
+			<span><?= $block->escapeHtml(__('Configure')) ?></span>
+		</button>
+        <dl class="item-options">
+        <?php foreach ($_options as $_option) : ?>
+            <dt><strong><?= $block->escapeHtml($_option['label']) ?>:</strong></dt>
+            <?php if (!$block->getPrintStatus()): ?>
+                <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                <dd>
+                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                        <?= /* @escapeNotVerified */ $_formatedOptionValue['full_view'] ?>
+                    <?php else: ?>
+                        <?= /* @escapeNotVerified */ $_formatedOptionValue['value'] ?>
+                    <?php endif; ?>
+                </dd>
+            <?php else: ?>
+                <dd>
+                    <?= nl2br($block->escapeHtml((isset($_option['print_value']) ? $_option['print_value'] : $_option['value']))) ?>
+                </dd>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </dl>
+        <?php endif; ?>
+		
+			 <?php $hasMessageError = false; ?>
+                    <?php foreach ($_item->getMessage(false) as $messageError):?>
+                        <?php if (!empty($messageError)) {
+                            $hasMessageError = true;
+                        }
+                        ?>
+                    <?php endforeach; ?>
+
+                    <?php if ($hasMessageError):?>
+                      
+                                <?php foreach ($_item->getMessage(false) as $message):
+									if($quote_helper->getErrorMsgArr())
+									{
+										$errorArr=$quote_helper->getErrorMsgArr();
+										array_push($errorArr,$message);
+										//print_r($errorArr);
+									}
+									else
+									{
+										$quote_helper->setErrorMsgArr(array($message));
+									}
+                                    if (empty($message)) {
+                                        continue;
+                                    }
+                                    ?>
+                                    <div class="message <?php if ($_item->getHasError()): ?>message-error<?php else: ?>message-notice<?php endif; ?>">
+                                        <?= $block->escapeHtml($message) ?>
+                                    </div>
+                                <?php endforeach; ?>
+                           
+                    <?php endif;?>
+        <?php $addtInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addtInfoBlock) :?>
+            <?= $addtInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+	<td>
+	
+		<textarea  class="col request_info" name="quote_req_info[<?php echo $itemId ?>][request_info]" rows="4" style="min-width:205px;" item_id="<?php echo $itemId ?>" id="quote[<?php echo $itemId ?>][request_info]"><?php if($_item->getRequestInfo()){echo $_item->getRequestInfo(); }?></textarea>
+	
+	
+		</td>
+     <td class="col orig_price" data-th="<?= $block->escapeHtml(__('Original Price')) ?>">     
+       
+        <?= /* @escapeNotVerified */ $quote_helper->getFormatedPrice($_item->getCalculationPrice(),$base_currency) ?>
+		 <?php if($quote_currency!=$base_currency):?>
+		 <br>[ <?= /* @escapeNotVerified */ $quote_helper->getFormatedPrice($item_price,$quote_currency) ?> ] 
+     <?php endif;?>
+    </td>
+	 <td class="col cost_price" data-th="<?= $block->escapeHtml(__('Cost Price')) ?>">    
+		 <?php  $qty_count=0;?>
+		
+		 <div id="qcostpricediv_<?= $itemId ?>" nowrap="nowrap" class="costprice-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+     <?php foreach($quotationtierQty as $qty): $qty_count++;?>
+			 <?php $qitem_id=$qty->getItemId();
+			  $load_item=$quote_helper->getProductIdConfig($qitem_id)->getData();
+			  if(isset($load_item[0]['id']))
+			 {
+				 $load_item_id=$load_item[0]['id'];
+				 $load_item_opt_data=$quote_helper->getItemOptByItemId($load_item_id)->getData();
+				$product_id=$load_item_opt_data[0]['product_id'];				
+			 }
+			 else
+			 {
+				 $product_id=$qty->getProductId();			
+			 }
+			
+			$_product=$quote_helper->loadProduct($product_id);
+			 if($_product->getCost())
+			 {
+				 if(!$qty->getCostPrice())
+				 {
+				 $qty->setCostPrice($_product->getCost());
+				$qty->save();
+				 }
+			 }
+			
+			?>
+		<div id="costprice_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId()?>" qpid="<?php echo $itemId ?>" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>" <?php if($qty->getCostPrice()):?>data-cost-price="<?= $qty->getCostPrice()?>" data-cost-value="<?= $qty->getCostPrice()?>"<?php endif; ?> <?php if(!$qty->getCostPrice()):?><?php if($quote_currency==$base_currency):?>class="add-total-dynamic"<?php endif;?><?php endif;?>>
+			<?php if($qty->getCostPrice()):?>
+				<?php $convert_cost_price=$quote_helper->getConvertedPrice($qty->getCostPrice(),$quote_currency);?>
+				 <?=  $quote_helper->getFormatedPrice($qty->getCostPrice(),$base_currency) ?>	
+				  <?php if($quote_currency!=$base_currency):?>
+				 <br> [ <?=$quote_helper->getFormatedPrice($convert_cost_price,$quote_currency);	?> ]
+		 	<?php endif; ?>
+			<?php else :?>
+				N/A
+			<?php endif;?>
+		 	<a id="change_cost_<?= $itemId ?>_<?= $qty_count ?>"  <?php if($change_allow):?>class="change_cost"<?php endif;?> index="<?php echo $qty_count ?>">Change</a>
+		</div>
+    <?php endforeach;?>
+			 </div>
+    </td>
+    <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">  
+		<?php  $qty_count=0;?>
+		<div id="qpricediv_<?= $itemId ?>" nowrap="nowrap" class="price-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+				<?php foreach($quotationtierQty as $qty): $qty_count++;?>
+			<div id="price_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId() ?>" class="add-row-tier" index="<?php echo $qty_count ?>">
+   <input id="Ownerbaseprice_<?= $itemId ?>_<?= $qty_count ?>" value="<?= $qty->getRequestQtyPrice() ?>" name="RequestedItem[<?php echo $itemId ?>][price][]" size="6" class="required-entry validate-zero-or-greater" type="text" <?php if(!$change_allow):?>disabled=""<?php endif;?>>
+				</div>
+			<?php endforeach;?>
+    </div>
+    </td>
+    <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
+		<?php  $qty_count=0;?>
+		<div id="qqtydiv_<?= $itemId ?>" nowrap="nowrap" class="qty-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+			<?php foreach($quotationtierQty as $qty): $qty_count++;?>
+			<div id="qty_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId()?>" qpid="<?php echo $itemId ?>" class="add-row-tier" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>">
+			<input class="defaultitemrequest" value="<?= $qty->getRequestQty()?>" id="default_req_<?= $itemId ?>_<?= $qty_count ?>" name="RequestedItemDefault[<?php echo $itemId ?>][]" type="radio" <?php if($qty->getIsDefault()):?>checked="checked"<?php endif;?> <?php if(!$change_allow):?>disabled=""<?php endif;?>>
+			<input id="Ownerqty_<?= $itemId ?>_<?= $qty_count ?>" value="<?= $qty->getRequestQty()?>" name="RequestedItem[<?php echo $itemId ?>][qty][]" size="6" class="required-entry validate-zero-or-greater qty" type="text" <?php if(!$change_allow):?>disabled=""<?php endif;?>>
+					 				
+				</div>
+			
+		<?php endforeach;?>			
+		</div>
+		<?php if($change_allow):?>
+		<a class="addqty_<?php echo $itemId?>" name="quote[<?php echo $itemId ?>][add_qty]" id="quote[<?php echo $itemId ?>][add_qty]">Add Qty</a>	
+		<?php endif;?>
+    </td>
+	<td class="col action">
+		<?php  $qty_count=0;?>
+		<div id="qactiondiv_<?php echo $itemId ?>" nowrap="nowrap" class="action-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+			<?php foreach($quotationtierQty as $qty): $qty_count++;?>
+			<div id="action_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId()?>" qpid="<?php echo $itemId ?>" class="add-row-tier" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>">
+				<button class="save_req" id="btn_save_<?= $itemId ?>_<?= $qty_count ?>" <?php if(!$change_allow):?>disabled=""<?php endif;?>>Save</button>
+				<button class="delete_req" id="btn_del_<?= $itemId ?>_<?= $qty_count ?>" <?php if(!$change_allow):?>disabled=""<?php endif;?>>Cancel</button></div>
+			<?php endforeach;?>
+			</div>
+	</td>   
+	<td class="col row_total">
+		<?php  $qty_count=0;?>
+		<div id="qrowtotal_div_<?php echo $itemId ?>" nowrap="nowrap" class="row_total-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+			<?php foreach($quotationtierQty as $qty): $qty_count++;?>
+		<div id="row_total_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId()?>" qpid="<?php echo $itemId ?>" class="add-row-total <?php if($quote_currency==$base_currency):?> add-total-dynamic<?php endif;?>" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>">
+			<?php $req_qty_price=$qty->getRequestQty()*$qty->getRequestQtyPrice();
+			$convert_req_qty_price=$quote_helper->getConvertedPrice($req_qty_price,$quote_currency);?>
+		<?=$quote_helper->getFormatedPrice($qty->getRequestQty()*$qty->getRequestQtyPrice(),$base_currency);	?>
+		 <?php if($quote_currency!=$base_currency):?>
+			<br> [ <?=$quote_helper->getFormatedPrice($convert_req_qty_price,$quote_currency);	?> ]
+			 <?php endif; ?>
+			</div>
+		<?php endforeach;?>
+			</div>
+	</td> 
+	 <?php if($is_include_tax):?>
+	<td class="col tax">
+		<?php  $qty_count=0;?>
+		<div id="qrowtax_div_<?php echo $itemId ?>" nowrap="nowrap" class="tax-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+			<?php foreach($quotationtierQty as $qty): $qty_count++;?>
+		<div id="tax_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId()?>" qpid="<?php echo $itemId ?>" class="add-row-total <?php if($quote_currency==$base_currency):?> add-total-dynamic<?php endif;?>" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>">
+			<?php $req_qty_price=$qty->getRequestQty()*$qty->getRequestQtyPrice();
+			$req_qty_price_incl_tax=$qty->getRequestQty()*$qty->getReqQtyPriceInclTax();
+		$product_tax=$req_qty_price_incl_tax-$req_qty_price;
+			$convert_product_tax=$quote_helper->getConvertedPrice($product_tax,$quote_currency);?>
+		<?=$quote_helper->getFormatedPrice($product_tax,$base_currency);	?>
+		 <?php if($quote_currency!=$base_currency):?>
+			<br> [ <?=$quote_helper->getFormatedPrice($convert_product_tax,$quote_currency);	?> ]
+			 <?php endif; ?>
+			</div>
+		<?php endforeach;?>
+			</div>
+	</td> 
+	 <?php endif; ?>
+		<td class="col margin">
+			<?php  $qty_count=0;?>
+		<div id="qmargin_div_<?php echo $itemId ?>" nowrap="nowrap" class="margin-div" qpid="<?php echo $itemId ?>" product_id="<?php echo $productId ?>">
+			<?php foreach($quotationtierQty as $qty): $qty_count++;?>
+		<div id="margin_<?= $itemId ?>_<?= $qty_count ?>" isdefault="<?= $qty->getIsDefault()?>" requestid="<?= $qty->getRequestId()?>" qpid="<?php echo $itemId ?>" class="add-margin add-total-dynamic" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>">
+			<?php if($qty->getCostPrice()>0){
+				 $profitamount = $qty->getRequestQtyPrice() - $qty->getCostPrice();
+				$profitpercentage = ($profitamount/$qty->getRequestQtyPrice())*100;
+				echo number_format($profitpercentage,2)."%";				
+				}else{
+					echo "&nbsp";
+				}?>
+			</div>
+		<?php endforeach;?>
+			</div>
+		</td>	
+	<td class="col action">
+		<button name="item[<?php echo $itemId ?>][action]" class="remove_item" data-item-id="<?php echo $itemId ?>" <?php if(!$change_allow):?>disabled=""<?php endif;?>><?= $block->escapeHtml(__('Remove Item')) ?></button>
+	</td>
+</tr>
+<script type="text/javascript">
+	requirejs(['jquery','domReady!','manageQuote'], function($){	
+		
+		 var widget = $(this).manageQuote({});				
+		var itemId="<?= $itemId ?>";		
+		var price="<?= $_item->getPrice(); ?>";		
+		var quote_id="<?= $_item->getQuoteId(); ?>";		
+		var product_id="<?= $_item->getProduct()->getId() ?>";		
+		//var count="<?php //echo count($quotationtierQty->getData());?>";	
+		var qty_count="<?= $qty_count ?>";		
+		var inputName="quote_request[<?= $itemId ?>][qty][]";	
+		  $('.addqty_'+itemId).click(function () {			  		<?php 
+	
+	$load_item=$quote_helper->getProductIdConfig($_item->getId())->getData();
+			  if(isset($load_item[0]['id']))
+			 {
+				 $load_item_id=$load_item[0]['id'];
+				 $load_item_opt_data=$quote_helper->getItemOptByItemId($load_item_id)->getData();
+				$product_id=$load_item_opt_data[0]['product_id'];					
+			 }
+			 else
+			 {
+				 $product_id=$_item->getProduct()->getId();	
+			 }
+	$_product=$quote_helper->loadProduct($product_id);
+		if($_product->getCost())
+		{
+			 $converted_cost_price = $priceHelper->currency($_product->getCost(), true, false);
+			 $cost_price = $_product->getCost();
+		}
+		else
+		{
+			$cost_price='N/A';
+			$converted_cost_price='N/A';
+		}?>
+		var converted_cost_price="<?= $converted_cost_price ?>";	
+		var cost_price="<?= $cost_price ?>";	
+			 widget.manageQuote('addTierPrice',itemId,product_id,inputName,qty_count,price,quote_id,converted_cost_price,cost_price);			
+                     });	
+		
+	});
+</script>	
+	

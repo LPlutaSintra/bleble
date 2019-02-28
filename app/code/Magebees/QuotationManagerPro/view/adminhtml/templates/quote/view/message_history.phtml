@@ -1,0 +1,90 @@
+<?php 
+$quote_id=$block->getRequest()->getParam('quote_id');
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$quote=$quote_helper->loadQuoteById($quote_id);
+if($quote_helper->getQuoteMessages($quote_id)){?>
+<div class="admin__page-section order-addresses">
+	<div class="admin__page-section-title">
+	   <span class="title"><?= /* @escapeNotVerified */ __('Message History') ?></span>
+	</div>
+	<div class="admin__page-section-content">
+		<?php
+		$message_data=$quote_helper->getQuoteMessages($quote_id);
+		$encoded_communication=$message_data['communication'];
+		$decoded_communication=$quote_helper->getUnserializeData($encoded_communication);
+		$message_detail=$decoded_communication['messages'];?>
+		<div class="quote-msg-collection">
+		 <div class="quote-msg-content">
+
+			 <div class="quote-msg-accordion">
+		<?php if(is_array($message_detail)) {
+		 foreach(array_reverse($message_detail) as $key=>$value):
+			$status=$quote_helper->getStatus($value['quoteStatus']);
+		//if($value['display_at_front']){
+			if(isset($value['is_admin']))
+			{
+				if(isset($value['admin_id']))
+				{
+					$admin_id=$value['admin_id'];
+				}
+				else
+				{
+					$admin_id=$quote->getAssignTo();
+				}
+
+				 $admin=$quote_helper->getUserInfoById($admin_id);
+				 $admin_first_name=$admin->getFirstName();
+				 $admin_last_name=$admin->getLastName();
+				 $message_sender=$admin_first_name." ".$admin_last_name;?>
+					<h3><?=$key."|".$status."| By ".$message_sender."| System Message"?></h3>
+			<?php }
+			else
+			{
+
+				$customer=$quote_helper->loadCustomerById($quote->getCustomerId());
+				$customer_first_name=$customer->getFirstName();
+				$customer_last_name=$customer->getLastName();
+				$message_sender=$customer_first_name." ".$customer_last_name;?>
+				<h3><?=$key."|".$status."| By ".$message_sender?></h3>
+			<?php }
+			 ?>
+				 <div>			 
+					 <?php	
+			if(isset($value['is_customer_notify']))
+			{
+
+			if($value['is_customer_notify']==1)
+			{?>
+			<strong><?= /* @escapeNotVerified */ __('Customer Notified') ?></strong>
+		 	<?php	}
+			else
+			{?>
+			<strong><?= /* @escapeNotVerified */ __('Customer Not Notified') ?></strong>
+			<?php	}
+			}
+			if(isset($value['message']))
+			{
+			$message=$value['message'];?>
+			<div>	<?=$message ?></div>
+			<?php } ?>
+			<div class="noti-qoute"><strong><?= $status ?></strong></div>
+
+		<?php if(isset($value['files']))
+		{
+		$quote_files=$quote_helper->getUnserializeData($value['files']);
+			 foreach($quote_files as $file):?>
+			<div>
+			<a href="<?= $quote_helper->getQuoteFilePath($file['path']) ?>"><?=$file['name']?></a>	
+		</div>
+		<?php endforeach;
+		}?>
+			</div>
+		<?php // }
+		endforeach;
+		}?>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+<?php } ?>

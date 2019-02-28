@@ -1,0 +1,45 @@
+<?php $_quote = $block->getQuote() ?>
+<?php if ($_quote): ?>
+    <?php $_items = $_quote->getAllItems(); ?>
+    <table class="email-items">
+        <thead>
+            <tr>
+				 <th class="item-image">
+                    <?= /* @escapeNotVerified */  __('Image') ?>
+                </th>
+                <th class="item-info">
+                    <?= /* @escapeNotVerified */  __('Items') ?>
+                </th>
+				 <th class="item-price">
+                    <?= /* @escapeNotVerified */  __('Price') ?>
+                </th>
+                <th class="item-qty">
+                    <?= /* @escapeNotVerified */  __('Qty') ?>
+                </th>               
+				<?php if($_quote->getStatus()>20): ?>
+				 <th class="item-proposal-price">
+                    <?= /* @escapeNotVerified */  __('Proposal Price') ?>
+                </th>
+				<?php endif; ?>
+				<?php if($_quote->getStatus()>20): ?>
+				 <th class="item-subtotal">
+                    <?= /* @escapeNotVerified */  __('Subtotal') ?>
+                </th>
+				<?php endif; ?>
+            </tr>
+        </thead>
+        <?php foreach ($_items as $_item): ?>
+            <?php
+                if ($_item->getParentItem()) {
+                    continue;
+                }
+            ?>
+            <tbody>
+                <?= $block->getEmailItemHtml($_item) ?>
+            </tbody>
+        <?php endforeach; ?>
+        <tfoot class="quote-totals">
+            <?= $block->getChildHtml('quote_totals') ?>
+        </tfoot>
+    </table>  
+<?php endif; ?>

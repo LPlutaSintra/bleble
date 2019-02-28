@@ -1,0 +1,24 @@
+<div class="page-create-quote">
+	<script>
+		require(["Magebees_QuotationManagerPro/quote/view/form"], function(){
+			quote.setCurrencySymbol('<?= /* @escapeNotVerified */ $block->getCurrencySymbol($block->getCurrentCurrencyCode()) ?>')
+		});
+	</script>
+       
+	<div class="store-switcher quote-currency">
+		<label class="admin__field-label" for="currency_switcher">
+			<strong><?= /* @escapeNotVerified */ __('Quote Currency:') ?></strong>
+		</label>
+		<select id="currency_switcher"
+				class="admin__control-select"
+				name="quote[currency]"
+				onchange="quote.setCurrencyId(this.value); quote.setCurrencySymbol(this.options[this.selectedIndex].getAttribute('symbol'));">
+			<?php foreach ($block->getAvailableCurrencies() as $_code): ?>
+				<option value="<?= /* @escapeNotVerified */ $_code ?>"<?php if ($_code == $block->getCurrentCurrencyCode()): ?> selected="selected"<?php endif; ?> symbol="<?= /* @escapeNotVerified */ $block->getCurrencySymbol($_code) ?>">
+					<?= /* @escapeNotVerified */ $block->getCurrencyName($_code) ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+	</div>
+            
+</div>

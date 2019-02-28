@@ -1,0 +1,32 @@
+	.buttoncheckout {
+    background-image: none;
+	text-decoration: none !important;
+    background: #d3d3d3;
+	/*color:#FFFFFF !important;*/
+    border: 1px solid #1979c3;   
+    cursor: pointer;
+	float: right;
+    display: inline-block;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    padding: 7px 15px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.buttoncheckout:hover {
+  /*color:#FFFFFF !important;*/
+	text-decoration: none !important;
+}
+.buttoncheckout:focus {
+ /* color:#FFFFFF !important;*/
+	text-decoration: none !important;
+}
+.buttoncheckout:visited {
+ /* color:#FFFFFF !important;*/
+	text-decoration: none !important;
+}
+.buttoncheckout:link {
+/*  color:#FFFFFF !important;*/
+	text-decoration: none !important;
+}

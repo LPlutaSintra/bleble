@@ -1,0 +1,20 @@
+<script>
+require([
+    "prototype",   
+	"Magebees_QuotationManagerPro/quote/view/form",
+    "Magento_Catalog/catalog/product/composite/configure",
+    "domReady!"
+], function(){
+
+   
+    if (window.productConfigure) {
+        productConfigure.addListType('product_to_add', {
+            urlFetch: '<?= /* @escapeNotVerified */ $block->getUrl('quotation/quote_create/quoteProductToAdd') ?>'
+        });
+        productConfigure.addListType('quote_items', {
+            urlFetch: '<?= /* @escapeNotVerified */ $block->getUrl('quotation/quote_create/configureQuoteItems') ?>'
+        });
+    }
+
+});
+</script>

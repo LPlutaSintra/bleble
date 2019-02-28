@@ -1,0 +1,55 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "%store_name" store_name=$store.getFrontendName()}}: Quotation # {{trans "%increment_id" increment_id=$quote.increment_id}} is Updated at {{trans "%updated_at" updated_at=$updated_at}}  @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var quote.getEmailCustomerNote()":"Email quote Note",
+"var quote.increment_id":"quote Id"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">
+				{{trans " Hello %name," name=$owner_name}}
+				</p>			
+        </td>
+    </tr>
+	<tr class="email-summary">
+        <td>
+            <h1>{{trans 'Quote <span class="no-link">#%increment_id</span>' increment_id=$quote.increment_id |raw}}</h1>
+            <p>{{trans 'Updated on <span class="no-link">%updated_at</span>' updated_at=$updated_at |raw}}</p>
+        </td>		
+    </tr>
+	<tr>
+		<td>
+			
+            <p>
+                {{trans
+                    "Your quote #%increment_id has been updated by %customer_name."
+	
+                    increment_id=$quote.increment_id
+                    customer_name=$customer_name
+                |raw}}
+            </p>
+			<p>
+				{{trans " Status: %quote_status" quote_status=$quote_status}}
+			</p>
+			<p>				
+				{{depend editor_text}}
+				{{trans 'Reply: %editor_text' editor_text=$editor_text |raw}}			
+				{{/depend}}
+				</p> 
+           
+			</td>
+		</tr>
+   
+</table>
+
+{{template config_path="design/email/footer_template"}}

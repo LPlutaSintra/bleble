@@ -1,0 +1,55 @@
+<?php
+/** @var $block \Magebees\QuotationManagerPro\Block\Quote\Sidebar */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$config=$quote_helper->getConfig();
+?>
+ <?php if($config['enable']): ?>
+<div data-block="miniquote" class="miniquote-wrapper">
+    <a class="action showquote" href="<?php echo $block->getQuoteCartUrl(); ?>"
+       data-bind="scope: 'miniquote_content'">
+        <span class="text"><?php echo __('My Quote'); ?></span>
+        <span class="counter qty empty"
+              data-bind="css: { empty: quote().summary_count == 0 }, blockLoader: isLoading">
+            <span class="counter-number"><!-- ko text: quote().summary_count --><!-- /ko --></span>
+            <span class="counter-label">
+            <!-- ko if: quote().summary_count -->
+                <!-- ko text: quote().summary_count --><!-- /ko -->
+                <!-- ko text: $t('items') --><!-- /ko -->
+            <!-- /ko -->
+            </span>
+        </span>
+    </a>
+    
+        <div class="block block-miniquote empty"
+             data-role="dropdownDialog"
+             data-mage-init='{"dropdownDialog":{
+                "appendTo":"[data-block=miniquote]",
+                "triggerTarget":".showquote",
+                "timeout": "2000",
+                "closeOnMouseLeave": false,
+                "closeOnEscape": true,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "buttons":[]}}'>
+            <div id="miniquote-content-wrapper" data-bind="scope: 'miniquote_content'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+        </div>
+ 
+    <script>
+        window.quotation = <?php echo \Zend_Json::encode($block->getConfig()); ?>;
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='miniquote']": {
+            "Magento_Ui/js/core/app": <?php echo $block->getJsLayout(); ?>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>"
+        }
+    }
+    </script>
+</div>
+ <?php endif; ?>
+
+

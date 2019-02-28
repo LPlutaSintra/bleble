@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd"> 
+	<!--Start for manage load customer section "magebees_quote" -->
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <arguments>
+            <argument name="sectionSourceMap" xsi:type="array">
+                <item name="magebees_quote" xsi:type="string">Magebees\QuotationManagerPro\CustomerData\Quote</item>
+                <item name="directory-data" xsi:type="string">Magebees\QuotationManagerPro\CustomerData\QuoteDirectoryData</item>
+            </argument>
+        </arguments>
+    </type>
+	 <preference for="Magebees\QuotationManagerPro\CustomerData\ItemPoolInterface"
+                type="Magebees\QuotationManagerPro\CustomerData\ItemPool"/>
+	 <type name="Magebees\QuotationManagerPro\CustomerData\ItemPoolInterface">
+        <arguments>
+            <argument name="defaultItemId" xsi:type="string">Magebees\QuotationManagerPro\CustomerData\DefaultItem</argument>
+        </arguments>
+    </type>
+	<!--End for manage load customer section "magebees_quote" -->	
+	
+	<!--Start for hide price box -->
+	<type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
+    	<plugin name="quotehideprice_finalpricebox" type="Magebees\QuotationManagerPro\Plugin\FinalPriceBox"/>
+	</type>	
+	<!-- start for hide select option price -->
+	<type name="Magento\Catalog\Block\Product\View\Options">
+<plugin name="quote_hide_all_opt_price" sortOrder="14"
+type="Magebees\QuotationManagerPro\Block\Product\View\OptionPrice"/>
+</type>
+	<type name="Magento\Downloadable\Block\Catalog\Product\Links">
+<plugin name="quote_hide_download_opt_price" sortOrder="12"
+type="Magebees\QuotationManagerPro\Block\Product\Linked"/>
+</type>
+	<type name="Magento\Catalog\Block\Product\View\Options\Type\Select">
+<plugin name="quote_hide_opt_select_price" sortOrder="10"
+type="Magebees\QuotationManagerPro\Block\Product\View\Options\Type\Select"/>
+</type>	
+	<type name="Magento\Catalog\Block\Product\View\Options\AbstractOptions">
+<plugin name="quote_hide_abstractopt_price" sortOrder="10"
+type="Magebees\QuotationManagerPro\Block\Product\View\Options\AbstractOptions"/>
+</type>
+	<!--End for hide price box -->
+	
+	<!--Start for calculate shipping rate on default quote address -->
+	<!--	<type name="Magento\Customer\Model\Address\AbstractAddress">-->
+	
+	
+	<!--End for calculate shipping rate on default quote address -->
+		
+	
+	
+	
+</config>

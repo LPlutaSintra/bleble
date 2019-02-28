@@ -1,0 +1,116 @@
+<?php
+/** @var $block \Magebees\QuotationManagerPro\Block\Quote\Email\Items\Quote\DefaultQuote */
+
+/** @var $_item \Magebees\QuotationManagerPro\Model\QuoteItem */
+$_item = $block->getItem();
+$itemId=$_item->getId();
+$_quote = $_item->getQuote();
+$quote_id=$_quote->getId();
+$productId=$_item->getProduct()->getId();
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$quotationtierQty=$quote_helper->getDynamicQuoteQty($itemId,$quote_id,$productId);
+$product=$quote_helper->loadProduct($productId);
+$url=$quote_helper->getMediaUrl().'catalog/product'.$product->getThumbnail();
+$is_show_price=$quote_helper->isShowPriceBeforeProposal($_quote->getStatus());	
+?>
+<tr>
+	<td>
+		<img width="100" src="<?php echo $url; ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" style="margin-bottom:10px;display:block;"/>
+	</td>
+    <td class="item-info<?php if ($block->getItemOptions()): ?> has-extra<?php endif; ?>">
+        <p class="product-name"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <p class="sku"><?= /* @escapeNotVerified */  __('SKU') ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+       <?php if ($_options = $quote_helper->getBackendOptions($_item)): ?>
+            <dl class="item-options">
+            <?php foreach ($_options as $_option): ?>
+                <dt><strong><em><?= /* @escapeNotVerified */  $_option['label'] ?></em></strong></dt>
+               <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                <dd>
+                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                        <?= /* @escapeNotVerified */ $_formatedOptionValue['full_view'] ?>
+                    <?php else: ?>
+                        <?= /* @escapeNotVerified */ $_formatedOptionValue['value'] ?>
+                    <?php endif; ?>
+                </dd>
+            <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) :?>
+            <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+	 <td class="item-price">
+			<?php 	if($is_show_price):?> 
+		  <strong><?= /* @escapeNotVerified */  $block->getItemPrice($_item) ?></strong>
+		<?php else: ?>
+		<?php echo "--";?>
+		<?php endif; ?>	
+    </td>
+    <td class="item-qty">
+	<?php $count=0;?>
+		<?php if(count($quotationtierQty->getData())>0):	?>		
+		<?php foreach($quotationtierQty as $qty):?>		
+			<?php if($count==0):?><strong><?php endif;?><div><?= $qty->getRequestQty()?></div><?php if($count==0):?></strong><?php endif;?>
+		<?php $count++;?>
+		<?php endforeach;?>
+			
+		<?php else:?>		
+		<?= /* @escapeNotVerified */  $_item->getQty() * 1 ?>
+		<?php endif;?>
+	</td>   
+	<?php if($_quote->getStatus()>20): ?>
+	 <td class="item-proposal-price">
+		<?php $count=0;?>
+		<?php if(count($quotationtierQty->getData())>0):	?>		
+		<?php foreach($quotationtierQty as $qty):	
+		 $req_qty_price=$quote_helper->getConvertedPrice($qty->getRequestQtyPrice());?>	
+			<?php if($count==0):?><strong><?php endif;?><div>
+		<?php 	if($is_show_price):?> 
+		<?= $quote_helper->getFormatedPrice($req_qty_price) ?>
+		<?php else: ?>
+		<?php echo "--";?>
+		<?php endif; ?></div><?php if($count==0):?></strong><?php endif;?>
+		<?php $count++;?>
+		<?php endforeach;?>
+			
+		<?php else:?>	
+		<?php 	if($is_show_price):?> 
+        <?= /* @escapeNotVerified */  $block->getItemPrice($_item) ?>
+			<?php else: ?>
+		<?php echo "--";?>
+		<?php endif; ?>
+		
+		<?php endif;?>
+    </td>
+	<?php endif; ?>
+	<?php if($_quote->getStatus()>20): ?>
+	 <td class="item-subtotal">
+		<?php $count=0;?>
+		<?php if(count($quotationtierQty->getData())>0):	?>		
+		<?php foreach($quotationtierQty as $qty):	
+		// $req_qty_price=$quote_helper->getConvertedPrice($qty->getRequestQtyPrice());
+		 $req_qty_price=($quote_helper->getConvertedPrice($qty->getRequestQtyPrice()))*($qty->getRequestQty());
+		 ?>	
+			<?php if($count==0):?><strong><?php endif;?><div>
+		<?php 	if($is_show_price):?> 
+		<?= $quote_helper->getFormatedPrice($req_qty_price) ?>
+		<?php else: ?>
+		<?php echo "--";?>
+		<?php endif; ?></div><?php if($count==0):?></strong><?php endif;?>
+		<?php $count++;?>
+		<?php endforeach;?>
+			
+		<?php else:?>	
+		<?php 	if($is_show_price):?> 
+        <?= /* @escapeNotVerified */  $block->getItemPrice($_item) ?>
+			<?php else: ?>
+		<?php echo "--";?>
+		<?php endif; ?>
+		
+		<?php endif;?>
+    </td>
+	<?php endif; ?>
+</tr>
+

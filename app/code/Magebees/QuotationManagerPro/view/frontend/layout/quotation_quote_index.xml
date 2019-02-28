@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="quotation_quote_item_renderers"/>
+    <!--<update handle="quotation_quote_checkout"/>-->
+   <!-- <update handle="quote_customer_account_create"/>-->
+  <!--  <update handle="quote_customer_account_login"/>-->
+  <!--  <update handle="quote_checkout_index_index"/>-->
+    <body>
+        <referenceContainer name="page.messages">
+            <block class="Magento\Checkout\Block\Cart\ValidationMessages" name="quotation.quote.validationmessages"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magebees\QuotationManagerPro\Block\Quote" name="quotation.quote" template="quote.phtml" cacheable="false">
+                <container name="quotation.quote.items" as="with-items">
+                    <container name="quotation.quote.widget" as="checkout_cart_widget" label="Shopping Cart Items After"/>
+                    <container name="quotation.quote.container" htmlTag="div" htmlClass="quote-container" before="-">
+						 <block class="Magebees\QuotationManagerPro\Block\CustomerForm" name="magebees_quote_sidebar" template="Magebees_QuotationManagerPro::quote/customer_form.phtml">
+            </block>
+						<block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magebees_QuotationManagerPro::form/login.phtml" />
+	<block class="Magebees\QuotationManagerPro\Block\Customer\RegisterForm" name="quote_customer_address_edit" template="Magebees_QuotationManagerPro::form/address/edit.phtml" cacheable="false"/>
+						<block class="Magebees\QuotationManagerPro\Block\Customer\RegisterForm" name="customer_form_register" template="Magebees_QuotationManagerPro::form/register.phtml">
+                <container name="form.additional.info" as="form_additional_info"/>
+                <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+				<!--<action method="setShowAddressFields">
+                        <argument name="show.address.fields" xsi:type="boolean">true</argument>
+                    </action>-->
+            </block>
+						
+                        <container name="quotation.quote.form.before" as="form_before" label="Quotation Quote Items Before" htmlTag="div" htmlClass="rewards" before="quotation.quote.form"/>
+                        <block class="Magebees\QuotationManagerPro\Block\Quote" name="quotation.quote.form" as="quote-items" template="quote/form.phtml">
+                            <block class="Magento\Framework\View\Element\RendererList" name="quotation.quote.item.renderers" as="renderer.list"/>
+                            <block class="Magento\Framework\View\Element\Text\ListText" name="quotation.quote.quote.actions"/>
+                        </block>
+                    </container>
+                </container>
+                <container name="quotation.quote.noitems" as="no-items">
+                    <block class="Magebees\QuotationManagerPro\Block\Quote" name="quotation.quote.empty" before="-" template="quote/noItems.phtml"/>
+                    <container name="quotation.quote.empty.widget" as="quotation.quote_empty_widget" label="Empty Quotation Quote Content Before"/>
+                </container>
+            </block>
+			
+        </referenceContainer>
+        <block class="Magebees\QuotationManagerPro\Block\Cart\Additional\Info" name="additional.product.info" template="Magento_Checkout::cart/additional/info.phtml">
+       
+        </block>
+    <!--  <referenceContainer name="page.messages" remove="true"/>-->
+		<referenceContainer name="footer-container">
+
+</referenceContainer>
+		
+    </body>
+</page>

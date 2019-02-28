@@ -1,0 +1,73 @@
+<?php
+/**  @var $block \Magebees\QuotationManagerPro\Block\Quote */
+?>
+<?php 
+$form = $block->getForm(); 
+$quoteId = $block->getQuoteId(); 
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$tax_config=$quote_helper->getTaxConfig();
+$enable_shipping=$tax_config['enable_shipping'];
+$quote_helper->unsetErrorMsgArr();
+$frontend_config=$quote_helper->getFrontendConfig();
+//$enable_qprice=$frontend_config['enable_qprice'];
+$enable_qprice=$quote_helper->isShowPriceWithoutProduct();
+?>
+<?php $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
+
+<?php echo $this->getChildHtml('quotation.quote.validationmessages') ?>
+
+<form action="<?= /* @escapeNotVerified */ $block->getUrl('quotation/quote/updatePost') ?>" method="post" id="quoteItemlist" name="quoteItemlist"
+      data-mage-init='{"validation":{}}' class="form form-cart">
+	<input type="hidden" value="<?php echo $quoteId;?>" name="quote_id" id="magebees_quote_id"/>
+	<input type="hidden" value="<?php echo $enable_shipping;?>" name="enable_shipping" id="enable_shipping"/>
+    <?php echo $block->getBlockHtml('formkey'); ?>
+    <?php echo $block->getCustomerNote() ?>
+
+    <div class="cart table-wrapper<?php echo $mergedCells == 2 ? ' detailed' : ''; ?>">
+        <table id="shopping-quote-table" class="cart items data table">
+            <caption role="heading" aria-level="2" class="table-caption"><?php echo __('Quote Items') ?></caption>
+            <thead>
+            <tr>
+                <th class="col item" scope="col"><span><?php echo __('Item') ?></span></th>
+				 <?php if($frontend_config['enable_remark']): ?>	
+                <th class="col information" scope="col"><span><?php echo __('Request Information') ?></span></th>
+				<?php endif; ?>
+				   <?php if ($enable_qprice) : ?>
+                <th class="col price" scope="col"><span><?php echo __('Price') ?></span></th>	<?php endif; ?>
+                <th class="col qty" scope="col"><span><?php echo __('Qty') ?></span></th>
+            </tr>
+            </thead>
+
+            <?php foreach ($block->getItems() as $item) : ?>
+                <?php echo $block->getItemHtml($item) ?>
+                <?php //print_r($item->getData());die; ?>
+            <?php endforeach ?>
+
+            <div class="quote main actions">
+                <td colspan="4">
+                    <div style="text-align: right;">
+                        <button type="submit" name="update_quote_action"
+                                value="empty_quote"
+                                title="<?php echo $block->escapeHtml(__('Clear Quote')); ?>"
+                                class="action clear"
+                                id="empty_quote_button">
+                            <span><?php echo __('Clear Quote'); ?></span>
+                        </button>
+						 <button type="submit"
+							name="update_quote_action"
+							data-quote-item-update=""
+							value="update_qty"
+							title="<?= $block->escapeHtml(__('Update Quotation')) ?>"
+							class="action update">
+							<span><?= /* @escapeNotVerified */ __('Update Quotation') ?></span>
+						</button>
+                    </div>
+                </td>
+            </div>
+        </table>
+    </div>
+</form>
+<?php echo $block->getChildHtml('quotation.quote.order.actions') ?>
+<?php echo $block->getChildHtml('quotation.quote.table.after'); ?>
+<?php echo $form; ?>
+

@@ -1,0 +1,177 @@
+<?php 
+$backend_helper=$this->helper('Magebees\QuotationManagerPro\Helper\Admin');
+$quote_helper=$this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$tax_config=$quote_helper->getTaxConfig();
+$enable_shipping=$tax_config['enable_shipping'];
+$is_include_tax=$tax_config['price_tax'];
+$outofStockStatus=$quote_helper->getOutOfStockStatus();
+$startStatus=$quote_helper->getStartingStatus();
+$quote_id=$backend_helper->getSession()->getQuoteId();
+$_quote=$quote_helper->loadQuoteById($quote_id);
+$quote_status=$_quote->getStatus();
+$button_allow=$backend_helper->checkAllowForBackendButton($quote_status);
+//$quote_currency=$backend_helper->getSession()->getCurrencyId();
+$quote_currency=$_quote->getCurrencyCode();
+$base_currency=$_quote->getBaseCurrencyCode();
+$total_data=$backend_helper->getDefaultTotalData();
+$shipping_handling_excl_tax=$total_data['shipping_handling_excl_tax'];
+$shipping_handling_incl_tax=$total_data['shipping_handling_incl_tax'];
+$total_orig_price=$total_data['orig_price'];
+$total_orig_price_incl_tax=$total_data['orig_price_incl_tax'];
+$total_row_price=$total_data['row_total'];
+$total_row_price_incl_tax=$total_data['row_total_incl_tax'];
+$adjustment_quote=$total_row_price-$total_orig_price;
+$adjustment_quote_incl_tax=$total_row_price_incl_tax-$total_orig_price_incl_tax;
+$tax=$total_data['tax'];
+$grand_total=$total_row_price;
+if($is_include_tax)
+{
+	$grand_total+=$tax;
+}
+if($enable_shipping)
+{
+	if($is_include_tax)
+	{
+	$grand_total+=$shipping_handling_incl_tax;
+	}
+	else
+	{
+	$grand_total+=$shipping_handling_excl_tax;
+	}
+}
+$grand_total_incl_tax=$total_row_price_incl_tax+$shipping_handling_incl_tax;
+$convert_total_orig_price=$quote_helper->getConvertedPrice($total_orig_price,$quote_currency);
+$convert_total_orig_price_incl_tax=$quote_helper->getConvertedPrice($total_orig_price_incl_tax,$quote_currency);
+$convert_adjustment_quote=$quote_helper->getConvertedPrice($adjustment_quote,$quote_currency);
+$convert_adjustment_quote_incl_tax=$quote_helper->getConvertedPrice($adjustment_quote_incl_tax,$quote_currency);
+$convert_total_row_price=$quote_helper->getConvertedPrice($total_row_price,$quote_currency);
+$convert_total_row_price=$quote_helper->getConvertedPrice($total_row_price_incl_tax,$quote_currency);
+$convert_shipping_handling_excl_tax=$quote_helper->getConvertedPrice($shipping_handling_excl_tax,$quote_currency);
+$convert_shipping_handling_incl_tax=$quote_helper->getConvertedPrice($shipping_handling_incl_tax,$quote_currency);
+$convert_grand_total=$quote_helper->getConvertedPrice($grand_total,$quote_currency);
+$convert_grand_total_incl_tax=$quote_helper->getConvertedPrice($grand_total_incl_tax,$quote_currency);
+?>
+<div class="admin__page-section-item quote-totals">
+	<div class="admin__page-section-item-title">
+		<span class="title"><?= /* @escapeNotVerified */ __('Quote Totals') ?></span>
+	</div>
+    <table class="data-table admin__table-secondary quote-subtotal-table">
+		<tbody>
+			<!--<tr class="">
+				<td class="label"></td>
+				<b><td class="label">Excl.Tax</td></b>
+				<b><td class="label">Incl.Tax</td></b>
+				
+			</tr>-->
+			<tr class="">
+				<td class="label"><?= /* @escapeNotVerified */ __('Subtotal Original') ?>
+				</td>
+				<td class="section_subtotal_org">
+					<?= $quote_helper->getFormatedPrice($total_orig_price,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_total_orig_price,$quote_currency);	?> ]
+					<?php endif;?>
+					
+				</td>	
+				<!--<td class="section_subtotal_org_incl_tax">
+					<?= $quote_helper->getFormatedPrice($total_orig_price_incl_tax,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_total_orig_price_incl_tax,$quote_currency);	?> ]					<?php endif;?>					
+				</td>	-->
+			</tr>
+			<tr>
+			<td class="label"><?= /* @escapeNotVerified */ __('Adjustment Quotation') ?>
+				
+			</td>
+			<td class="section_adjust_quote">
+				<?= $quote_helper->getFormatedPrice($adjustment_quote,$base_currency)?>
+					 <?php if($quote_currency!=$base_currency):?>
+				<br> [ <?=$quote_helper->getFormatedPrice($convert_adjustment_quote,$quote_currency);	?> ]<?php endif;?>
+			
+            </td>
+			<!--	<td class="section_adjust_quote_incl_tax">
+				<?= $quote_helper->getFormatedPrice($adjustment_quote_incl_tax,$base_currency)?>
+					 <?php if($quote_currency!=$base_currency):?>
+				<br> [ <?=$quote_helper->getFormatedPrice($convert_adjustment_quote_incl_tax,$quote_currency);	?> ]<?php endif;?>			
+            </td>	-->			
+           </tr>
+			<tr class="col-2">
+				<td class="label"><?= /* @escapeNotVerified */ __('Subtotal') ?>					
+				</td>
+				<td class="section_subtotal">
+					<?= $quote_helper->getFormatedPrice($total_row_price,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_total_row_price,$quote_currency);	?> ]<?php endif;?>
+				</td>
+			<!--	<td class="section_subtotal_incl_tax">
+					<?= $quote_helper->getFormatedPrice($total_row_price_incl_tax,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_total_row_price_incl_tax,$quote_currency);	?> ]<?php endif;?>
+				</td>-->
+			</tr>  
+			<?php if($is_include_tax):?>
+			<tr class="col-2">
+				<td class="label"><?= /* @escapeNotVerified */ __('Tax') ?>
+					
+				</td>
+			<!--	<td class="section_tax">
+				-
+				</td>-->
+				<td class="section_tax">
+					<?= $quote_helper->getFormatedPrice($tax,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($tax,$quote_currency);	?> ]<?php endif;?>
+				</td>
+			</tr>
+			<?php endif; ?>
+<?php if($enable_shipping):?>
+			<tr class="col-2">
+				<td class="label"><?= /* @escapeNotVerified */ __('Shipping & Handling') ?>
+					
+				</td>
+			<!--	<td class="section_shipping_handling">
+					<?= $quote_helper->getFormatedPrice($shipping_handling_excl_tax,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_shipping_handling_excl_tax,$quote_currency);	?> ]<?php endif;?>
+				</td>-->
+				<td class="section_shipping_handling_incl_tax">
+					<?= $quote_helper->getFormatedPrice($shipping_handling_incl_tax,$base_currency)?>
+						 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_shipping_handling_excl_tax,$quote_currency);	?> ]<?php endif;?>
+				</td>
+			</tr> 
+			<?php endif; ?>
+			<tr>
+			<td class="label"><?= /* @escapeNotVerified */ __('Grand Total') ?>		
+						
+    		</td>
+   			
+       	<!--	<td><?= $quote_helper->getFormatedPrice($grand_total,$base_currency)?>
+					 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_grand_total,$quote_currency);	?> ]<?php endif;?>
+			</td>-->
+				<td class="section_grandtotal_incl_tax">
+       		<?= $quote_helper->getFormatedPrice($grand_total,$base_currency)?>
+					 <?php if($quote_currency!=$base_currency):?>
+					<br> [ <?=$quote_helper->getFormatedPrice($convert_grand_total,$quote_currency);	?> ]<?php endif;?>
+			</td>
+			</tr>
+		</tbody>
+    </table>
+	<?php if($_quote->getIsBackend()):?>
+	<?php  if(!$quote_helper->getErrorMsgArr()):?>
+	<div><button class="primary" id="submitproposal" <?php if(!$button_allow):?>disabled=""<?php endif;?>><?= /* @escapeNotVerified */ __('Submit Proposal') ?></button></div><br>
+	<div><button class="primary" id="createorder" <?php if(!$button_allow):?>disabled=""<?php endif;?>><?= /* @escapeNotVerified */ __('Create Order') ?></button></div>	
+	
+	<?php if($quote_status==$outofStockStatus):	
+	 	$quote=$quote_helper->loadQuoteById($quote_id);
+		$quote->setStatus($startStatus);
+		$quote->save();
+		endif;?>	
+	<?php else: 	
+		$quote=$quote_helper->loadQuoteById($quote_id);
+		$quote->setStatus($outofStockStatus);
+		$quote->save();	
+	 endif;?>
+	<?php endif;?>
+        </div>

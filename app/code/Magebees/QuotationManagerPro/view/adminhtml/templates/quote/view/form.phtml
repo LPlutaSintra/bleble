@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php 
+$infoblock=$this->getLayout()->getBlock('quote_info');
+$_quote = $infoblock->getQuote();?>
+<div class="quote_error">
+	</div>
+<form id="edit_form" data-quote-config='<?php echo $infoblock->getQuoteDataJson() ?>'
+      data-load-base-url="<?php echo $infoblock->getLoadBlockUrl($_quote->getId()) ?>" data-send-action="<?php echo $block->getSendUrl() ?>" action="<?= /* @escapeNotVerified */ $block->getUrl('*/*/save',['quote_id'=>$_quote->getId()]) ?>" method="post" enctype="multipart/form-data">
+    <?= $block->getBlockHtml('formkey') ?>
+  <?= $block->getChildHtml('quote_info') ?>	
+	   <div id="quote-search" style="display:none;" class="admin__page-section quote-search-items">
+            <?= $block->getChildHtml('search') ?>
+        </div>
+    <?= $block->getChildHtml('quote_items') ?>
+	<?= $block->getChildHtml('shipping_address') ?>
+	<?//= $block->getChildHtml('shipping_method') ?>
+  <?= $block->getChildHtml('quote_totals') ?>
+  <?//= $block->getChildHtml('quote_message') ?>
+
+</form>

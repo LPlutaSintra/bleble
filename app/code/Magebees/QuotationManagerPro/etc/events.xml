@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">   
+    <event name="magebees_quote_item_qty_set_after">
+        <observer name="magebees_inventory" instance="Magebees\QuotationManagerPro\Observer\QuantityValidatorObserver"/>
+    </event> 
+	<!-- <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="magebees_customcheckout_before_dispatch" instance="Magebees\QuotationManagerPro\Observer\DispatchCheckout" />
+    </event>-->
+	<event name="customer_register_success">
+        <observer name="customer_register_success_observer_magebees" instance="Magebees\QuotationManagerPro\Observer\CustomerRegisterSuccess" />
+	</event> 
+	<event name="customer_login">
+        <observer name="customer_login_observer_magebees" instance="Magebees\QuotationManagerPro\Observer\CustomerLogin" />
+    </event>
+	 <event name="customer_logout">
+        <observer name="unset_quote_magebees" instance="Magebees\QuotationManagerPro\Observer\UnsetAllObserver" />
+    </event>	
+	 <event name="sales_quote_product_add_after">
+        <observer name="backend_customprice" instance="Magebees\QuotationManagerPro\Observer\BackendCustomPrice" />
+    </event>
+	 <event name="controller_action_postdispatch_checkout_onepage_success">
+       <observer name="magebees_after_order_place" instance="Magebees\QuotationManagerPro\Observer\OrderPlaced" />
+   </event>
+	<event name="controller_action_postdispatch_sales_order_create_save">
+        <observer name="magebees_quote_backend_order_submit" instance="Magebees\QuotationManagerPro\Observer\BackendOrderPlaced" />
+    </event>
+	<event name="controller_action_postdispatch_sales_order_create_index">
+        <observer name="backend_customprice_total" instance="Magebees\QuotationManagerPro\Observer\UpdateOrderTotal" />
+    </event>
+	<!-- Start compatibility with one page checkout-->
+	<event name="controller_action_predispatch_onepage_quote_update">
+        <observer name="quotation_onepage_quote_update" instance="Magebees\QuotationManagerPro\Observer\onePageConfigure" />
+    </event>
+	<!--End compatibility with one page checkout -->
+	<event name="controller_action_predispatch_checkout_cart_configure">
+        <observer name="quotation_checkout_cart_configure" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_cart_updatepost">
+        <observer name="quotation_checkout_cart_updatepost" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_cart_updateitemoptions">
+        <observer name="quotation_checkout_cart_updateitemoptions" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_cart_delete">
+        <observer name="quotation_checkout_cart_delete" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_cart_add">
+        <observer name="quotation_checkout_cart_add" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_cart_addgroup">
+        <observer name="quotation_checkout_cart_addgroup" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_wishlist_index_cart">
+        <observer name="quotation_wishlist_index_cart" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_wishlist_index_allcart">
+        <observer name="quotation_wishlist_index_allcart" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_sidebar_removeitem">
+        <observer name="quotation_checkout_sidebar_removeitem" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	<event name="controller_action_predispatch_checkout_sidebar_updateitemqty">
+        <observer name="quotation_checkout_sidebar_updateitemqty" instance="Magebees\QuotationManagerPro\Observer\checkoutConfigure" />
+    </event>
+	   <event name="backend_auth_user_login_success">
+        <observer name="magebees_quote_admin_login_success_observer" instance="Magebees\QuotationManagerPro\Observer\AdminLoginSucceeded" />
+    </event>
+</config>

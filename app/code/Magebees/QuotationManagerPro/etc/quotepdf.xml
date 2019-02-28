@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magebees_QuotationManagerPro:etc/pdf_file.xsd">
+    <renderers>
+        <page type="quotation">
+            <renderer product_type="default">Magebees\QuotationManagerPro\Model\Pdf\Items\Quote\DefaultQuote</renderer>
+        </page>        
+    </renderers>
+    <totals>
+        <total name="subtotal">
+            <title translate="true">Subtotal Original</title>
+            <source_field>subtotal_orig</source_field>
+            <font_size>7</font_size>
+            <display_zero>true</display_zero>
+            <sort_order>100</sort_order>
+        </total>        
+        <total name="adjustment_negative">
+            <title translate="true"> Adjustment Quotation </title>
+            <source_field>adjustment</source_field>
+            <font_size>7</font_size>
+            <display_zero>true</display_zero>
+            <sort_order>600</sort_order>
+        </total>
+		 <total name="quote_total">
+            <title translate="true">Quoted Total</title>
+            <source_field>quote_total</source_field>
+            <font_size>8</font_size>
+            <display_zero>true</display_zero>
+            <sort_order>700</sort_order>
+        </total>
+		 <total name="tax">
+            <title translate="true">Tax</title>
+            <source_field>tax</source_field>
+            <font_size>7</font_size>
+            <display_zero>true</display_zero>
+            <sort_order>800</sort_order>
+        </total>
+		<total name="shipping">
+            <title translate="true">Shipping and Handling</title>
+            <source_field>shipping</source_field>
+            <font_size>7</font_size>
+            <display_zero>true</display_zero>
+            <sort_order>850</sort_order>
+        </total>
+        <total name="grand_total">
+            <title translate="true">Grand Total</title>
+            <source_field>grand_total</source_field>
+            <font_size>8</font_size>
+            <display_zero>true</display_zero>
+            <sort_order>900</sort_order>
+        </total>
+    </totals>
+</config>

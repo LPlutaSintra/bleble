@@ -13,6 +13,7 @@ return [
         'Magento_Indexer' => 1,
         'Magento_Cms' => 1,
         'Magento_Catalog' => 1,
+        'Magebees_QuotationManagerPro' => 1,
         'Magento_Quote' => 1,
         'Magento_AdvancedPricingImportExport' => 1,
         'Magento_Config' => 1,

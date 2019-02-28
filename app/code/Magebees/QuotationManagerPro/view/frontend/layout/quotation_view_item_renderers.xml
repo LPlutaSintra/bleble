@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="quotation_item_price_renderers"/>
+    <body>
+		  <referenceBlock name="quote.view.items.renderers">
+			 <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer" as="default" template="Magebees_QuotationManagerPro::customer/view/default.phtml"/>
+          </referenceBlock>
+		
+    </body>
+</page>

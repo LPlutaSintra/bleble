@@ -1,0 +1,49 @@
+<?php
+
+/* $block Magebees\QuotationManagerPro\Block\Quote\History */
+
+?>
+<?php if($block->isCustomerLogin()):
+?>
+<?php $_quotes = $block->getQuotes();
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+?>
+
+<?php if ($_quotes && count($_quotes)): ?>
+    <div class="table-wrapper quotes-history">
+        <table class="data table table-quote-items history" id="my-quotes-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Quotes') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Quote #') ?></th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date') ?></th> 
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
+                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_quotes as $_quote): ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Quote #')) ?>" class="col id"><?= $_quote->getIncrementId()?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= $block->formatQuoteDate($_quote->getCreatedAt())?></td>
+						<td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= $quote_helper->getStatus($_quote->getStatus())?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                            <a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_quote) ?>" class="action view">
+                                <span><?= /* @escapeNotVerified */ __('View Quote') ?></span>
+                            </a>
+                            
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="quote-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no quotes.') ?></span></div>
+<?php endif ?>
+<?php else:?>
+ 	<div class="message info empty"><span><?= /* @escapeNotVerified */ __('Please sign in with your email addres to view quotes.') ?></span></div>
+<?php endif ?>

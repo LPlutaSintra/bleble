@@ -1,0 +1,28 @@
+<?php
+/** @var $block \Magento\Checkout\Block\Item\Price\Renderer */
+$_item = $block->getItem();
+$quoteHelper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$item_price=$quoteHelper->getConvertedPrice($_item->getCalculationPrice());
+$item_price_incl_tax=$quoteHelper->getConvertedPrice($_item->getPriceInclTax());
+$tax_config=$quoteHelper->getTaxConfig();
+$is_include_tax=$tax_config['price_tax'];
+?>
+<?php if($is_include_tax && ($item_price_incl_tax!=$item_price)):?>
+<span class="price-including-tax" data-label="<?= $block->escapeHtml(__('Incl. Tax')) ?>">
+    <span class="cart-price">
+        <?= /* @escapeNotVerified */ $quoteHelper->getFormatedPrice($item_price_incl_tax) ?>
+    </span>
+</span>
+<span class="price-excluding-tax" data-label="<?= $block->escapeHtml(__('Excl. Tax')) ?>">	
+    <span class="cart-price">
+        <?= /* @escapeNotVerified */ $quoteHelper->getFormatedPrice($item_price) ?>
+    </span>
+</span>
+
+<?php else: ?>
+<span class="price-excluding-tax" data-label="<?= $block->escapeHtml(__('Excl. Tax')) ?>">	
+    <span class="cart-price">
+        <?= /* @escapeNotVerified */ $quoteHelper->getFormatedPrice($item_price) ?>
+    </span>
+</span>
+<?php endif; ?>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	
+	<!-- Start for set the default cart quantity and cart items when calculate shipping rate-->
+   <preference for="Magento\Quote\Model\Quote" type="Magebees\QuotationManagerPro\Model\DefaultQuote"/>
+	<preference for="Magento\Quote\Model\ShippingMethodManagement" type="Magebees\QuotationManagerPro\Model\ShippingMethodManagement"/>
+		<type name="Magento\Quote\Model\Quote\Address">
+    	<plugin name="magebees_quote_address_item_collection" type="Magebees\QuotationManagerPro\Plugin\AddressItem"/>
+	</type>
+	<!-- End for set the default cart quantity and cart items when calculate shipping rate-->	
+    <type name="Magebees\QuotationManagerPro\Model\Pdf\Config\Reader">
+        <arguments>
+            <argument name="fileName" xsi:type="string">quotepdf.xml</argument>
+            <argument name="converter" xsi:type="object">Magento\Sales\Model\Order\Pdf\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">Magebees\QuotationManagerPro\Model\Pdf\Config\SchemaLocator</argument>
+        </arguments>
+    </type>
+    <virtualType name="quotePdfConfigDataStorage" type="Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">Magebees\QuotationManagerPro\Model\Pdf\Config\Reader</argument>
+            <argument name="cacheId" xsi:type="string">quote_pdf_config</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magebees\QuotationManagerPro\Model\Pdf\Config">
+        <arguments>
+            <argument name="dataStorage" xsi:type="object">quotePdfConfigDataStorage</argument>
+        </arguments>
+    </type>
+   
+</config>

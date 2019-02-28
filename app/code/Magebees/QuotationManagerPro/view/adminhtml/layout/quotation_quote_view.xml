@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+ <head>    
+		<css src="Magebees_QuotationManagerPro/css/mageb-admin-style.css"/>    
+    </head>
+    <body>
+	<referenceContainer name="admin.scope.col.wrap" htmlClass="admin__old" /> <!-- ToDo UI: remove this wrapper with old styles removal. The class name "admin__old" is for tests only, we shouldn't use it in any way -->
+
+	<referenceContainer name="content">
+	   <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View" name="quotation_quote_edit">
+		<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Form" template="Magebees_QuotationManagerPro::quote/view/form.phtml" name="quote_view_form" as="form">
+		<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info" name="quote_info" template="Magebees_QuotationManagerPro::quote/view/info.phtml"/>
+				<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info" name="shipping_address" template="Magebees_QuotationManagerPro::quote/view/address_info.phtml"/>
+			 <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Shipping\Method" template="Magebees_QuotationManagerPro::quote/create/abstract.phtml" name="shipping_method">
+                <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Shipping\Method\Form" template="Magebees_QuotationManagerPro::quote/create/shipping/method/form.phtml" name="order.create.shipping.method.form" as="form"/>
+            </block>
+		<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info" name="quote_totals" template="Magebees_QuotationManagerPro::quote/view/totals.phtml"/>		
+	   <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Search" template="Magebees_QuotationManagerPro::quote/create/abstract.phtml" name="search">
+			<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Search\SearchGrid" name="search_grid" as="grid"/>
+		</block>
+	 	<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Items" name="quote_items" template="Magebees_QuotationManagerPro::quote/view/items.phtml">                       
+		   <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Items\Renderer\DefaultRenderer" as="default" name="default_quote_items_renderer" template="Magebees_QuotationManagerPro::quote/view/items/renderer/default.phtml"/>
+		 </block>  
+	   	</block>  
+		</block>  
+		<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info" name="quote_message" template="Magebees_QuotationManagerPro::quote/view/send_message.phtml"/>	
+			<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info" name="quote_message_history" template="Magebees_QuotationManagerPro::quote/view/message_history.phtml"/>
+	</referenceContainer>
+		  <referenceContainer name="after.body.start">
+            <block class="Magento\Backend\Block\Template" name="optional_zip_countries" as="optional_zip_countries" template="Magento_Directory::js/optional_zip_countries.phtml"/>
+            <block class="Magento\Catalog\Block\Adminhtml\Product\Composite\Configure" name="after.body.start.product_composite_configure" template="Magento_Catalog::catalog/product/composite/configure.phtml"/>
+        </referenceContainer>
+		  <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="Magebees_QuotationManagerPro::quote/view/js.phtml" name="create"/>
+        </referenceContainer>
+       
+    </body>
+</page>

@@ -1,0 +1,44 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "%store_name" store_name=$store.getFrontendName()}}:  Quotation request # {{trans "%increment_id" increment_id=$quote.increment_id}} is rejected @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var quote.getEmailCustomerNote()":"Email quote Note",
+"var quote.increment_id":"quote Id"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans " Hello %name," name=$customer_name}}</p>			
+        </td>
+    </tr>
+	<tr class="email-summary">
+        <td>
+            <h1>{{trans 'Quote <span class="no-link">#%increment_id</span>' increment_id=$quote.increment_id |raw}}</h1>          
+        </td>		
+    </tr>
+	<tr>
+		<td>
+			
+            <p>
+              Your Quotation Request <span class="no-link">#{{var quoteId}}</span> has been rejected from {{trans '%store_name' store_name=$store.getFrontendName() }}
+            </p>			
+			<p>You can check or update quotation using <a href="{{var quoteAccessLink}}" style="color:#1E7EC8;"> #{{var quoteId}}</a></p>
+			<p>
+							If you have any questions, please feel free to contact us at
+                            <a href="mailto:{{var store_email}}">{{var store_email}}</a>
+                            {{depend store_phone}} or by phone at <a href="tel:{{var phone}}">{{var store_phone}}</a>{{/depend}}.
+                        </p>
+			</td>
+		</tr>
+   
+</table>
+
+{{template config_path="design/email/footer_template"}}

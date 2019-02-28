@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magebees" translate="label" sortOrder="100">
+            <label>Magebees</label>
+        </tab>
+        <section id="quotation" translate="label" type="text" sortOrder="40" showInDefault="1" 
+				 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Quotation Manager Pro</label>
+            <tab>magebees</tab>
+            <resource>Magebees_QuotationManagerPro::quotation_config</resource>
+
+			<group id="code" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Default Package Code</label>
+		    <field id="fronttag" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+				    <label>Call Via Frontend Template File</label>
+				   <frontend_model>Magebees\QuotationManagerPro\Block\Adminhtml\DefaultFrontend</frontend_model>
+				  <comment>Add this code in custom product listing page for display Add To Quote button</comment> 				
+		    </field>
+	   </group>
+
+            <group id="setting" translate="label" type="text" sortOrder="1" showInDefault="1" 
+				   showInWebsite="1" showInStore="1">
+				<label>Settings</label>
+				<field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Enabled</label> 
+					<comment>Select Yes for enable quotation manager in frontend.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>	
+				<field id="assign_to" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Assign Quotation To Selected Admin</label>
+					<comment>Assign Generated Quotation To Selected Admin</comment>
+					<source_model>Magebees\QuotationManagerPro\Model\Config\AdminList</source_model>
+				</field>
+				<field id="access_quote_user" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Access Quotation By</label>
+					<comment>Access Generated Quotation To Selected Admin</comment>
+					<source_model>Magebees\QuotationManagerPro\Model\Config\AccessAdminList</source_model>
+				</field>
+					<field id="allow_guest" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Allow Guest Customer To Submit Quote</label> 
+					<comment>Select Yes for allow guest customer to submit quote.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>	
+				<field id="allow_customer_checkout" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Allow Customer Checkout On Quote</label> 
+					<comment>Select Yes for allow customer to checkout for quote.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+					<field id="enable_expiration_time" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Enable Quote Expiration Time</label> 
+					<comment>Select Yes for enable quote expiration time</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				 <field id="expiration_time" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					 <depends>						
+						 <field id="enable_expiration_time">1</field>
+					</depends>
+				 <validate>validate-number</validate>      
+				<label>Default Expiration Time</label> 
+					<comment>In Days. Defines default quote expiry date.</comment>			
+			 </field>
+				
+
+			</group>	
+			
+			<group id="frontendsetting" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+            	<label>Front End Settings</label>	
+				 
+				<field id="enable_quote_button" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Apply Add To Quote Button To</label>
+					<comment>Apply Add to Quote button for all products or apply for specific product using 'Apply Add To Quote' attribute.</comment>
+					<source_model>Magebees\QuotationManagerPro\Model\Config\Addtoquote</source_model>
+				</field>
+				<field id="enable_qcustomer_group" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Display Quote Button for Selected Group(s)</label> 
+					<comment>Select Yes for display Add to Quote button for selected customer groups only.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="quote_customer_group" translate="label comment" type="multiselect" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<depends>						
+						 <field id="enable_qcustomer_group">1</field>
+					</depends>
+				<label>Choose Customer Group(s) for Allow Quotation</label> 
+				<comment> Add to Quote button will be display for the selected customer groups only.</comment> 				<source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model> 
+			 </field>
+				<field id="enable_btn_cat" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Display Button on Category Page</label> 
+					<comment>Select Yes for display "Add To Quote" button on category page.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="enable_btn_product" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Display Button on Product Detail Page</label> 
+					<comment>Select Yes for display "Add To Quote" button on product detail page.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="enable_qaddtocart" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1"> 					
+					<label>Display Add To Cart Button</label> 
+					<comment><![CDATA[Select Yes for display add to cart button.<br>Note: Works only if Add To Quote button is enable for product.<br>When Hide product price is enabled then Add To Cart Button will not display.
+]]></comment> 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="enable_manage_stock" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Enable Manage Stock for Quote</label> 
+					<comment>Select Yes for manage stock for quote.</comment> 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>		
+				<field id="enable_tier_price" translate="label comment" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Enable Tier Price Option</label> 
+					<comment>Select Yes for enable tier price option.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+					<field id="enable_remark" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Product Remark Info</label> 
+					<comment>Select Yes for enable product remark info.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+					<field id="lock_proposal" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Lock Proposal</label> 
+					<comment>Proposal items cannot be removed or added from quote via the shopping cart.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="enable_redirect_quote" translate="label comment" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>After Adding a Product Redirect to Quotation List</label> 
+					<comment>Select Yes for redirect to quotation list after adding a product to quote.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>	
+				
+			</group>
+			 <group id="taxsetting" translate="label" type="text" sortOrder="5" showInDefault="1" 
+				   showInWebsite="1" showInStore="1">
+				<label>Tax Settings</label>
+				
+			<!--	<field id="price_tax" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display Prices</label>
+					<comment>Display quote item prices including and excluding tax</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Tax</source_model>
+				</field>-->
+				  <field id="price_tax" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Include Product Tax in Quote</label> 
+					  <comment><![CDATA[Select Yes for include product tax quote.<br>
+			Note: Work only if "Display Product Prices In Catalog" is applied with include tax from tax configuration.
+				]]></comment> 
+					  	<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>	
+				 <field id="enable_shipping" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Include Shipping Method in Quote</label> 
+					<comment>Select Yes for Include shipping method while submit quote.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>	
+				 
+			</group>	
+			 <group id="hidepricesetting" translate="label" type="text" sortOrder="5" showInDefault="1" 
+				   showInWebsite="1" showInStore="1">
+				<label>Hide Price Settings</label>
+			<field id="enable_qprice" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Hide Product Price</label> 
+					<comment><![CDATA[Select Yes for hide product price for all produts.<br>]]></comment> 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				 <field id="hide_price_not_applied_for" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0"> 
+				 <depends>						
+					 <field id="enable_qprice">1</field>
+				</depends>
+				<label>Not Applied for Product SKUs</label> 
+					<comment>Seperated by comma</comment>			
+			 </field>
+				 <field id="enable_price_before_proposal" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Show Price before admin sent Quote proposal</label> 
+					 <depends>						
+						 <field id="enable_qprice">1</field>
+					</depends>
+					<comment>Select Yes for show price before admin sent quote proposal in quote view page.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>				
+				 <field id="hide_price_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					 <depends>						
+						 <field id="enable_qprice">1</field>
+					</depends>
+					<label>Hide Price Text</label> 
+						<comment>Set Hide Price Text</comment>			
+				 </field>
+				  <field id="hide_price_text_url" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					 <depends>						
+						 <field id="enable_qprice">1</field>
+					</depends>
+					<label>Hide Price Text Url</label> 
+					   <validate>validate-url</validate>
+						<comment>Set Hide Price Text Url</comment>			
+				 </field>
+			<field id="price_customer_group" translate="label comment" type="multiselect" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<depends>						
+						 <field id="enable_qprice">1</field>
+					</depends>
+				<label>Apply For Customer Group(s)</label> 
+				<comment> Hide price for the selected customer groups only.</comment> 				<source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model> 
+			 </field>	
+			  
+			</group>	
+			<group id="quotationsetting" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+            	<label>Quotation Number Format</label>	
+					 <field id="quote_prefix" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					<label>Quotation Number Prefix</label> 
+						<comment>Set quotation number prefix </comment>			
+				 </field>
+				<field id="current_quote" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					<label>Current Quotation Number</label> 
+						<comment>Set current quotation number</comment>			
+				 </field>
+				<field id="increment_quote" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					<label>Quotation Increment Number</label> 
+						<comment>Set quotation increment number</comment>			
+				 </field>
+			</group>
+			<group id="filesetting" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+            	<label>File Upload Settings</label>	
+				 
+				<field id="enable_file_upload" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					<label>Allow File Upload</label> 
+					<comment>Select Yes for allow file upload.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="file_type" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0"> 
+					<label>Allowed File Type</label> 
+						<comment>Set allowed file extension [ex:png,jpg,pdf]</comment>			
+				 </field>
+			</group>
+				<group id="emailsetting" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            	<label>Email Notification Settings</label>	
+					  <field id="email_sender" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Quote Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+					<field id="copy_mail_to" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Send Quote Email Copy To</label> 
+						<comment>Comma-separated</comment>			
+				 </field>
+				<field id="quote_request" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>New Quote Request Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\NewQuote</source_model>
+				</field>
+						<field id="quote_proposal" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Quote Proposal Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\QuoteProposal</source_model>
+				</field>
+						<field id="proposal_cancel" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Quote Request Cancel Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\ProposalCancel</source_model>
+				</field>
+						<field id="proposal_reject" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Quote Request Reject Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\ProposalReject</source_model>
+				</field>
+						<field id="proposal_accept" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Proposal Accept Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\ProposalAccept</source_model>
+				</field>
+						<field id="notify_admin" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Customer Reply To Admin Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\NotifyAdmin</source_model>
+				</field>
+						<field id="notify_customer" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Admin Reply To Customer Template</label>
+					<comment>Select email template to be sent.</comment>					<source_model>Magebees\QuotationManagerPro\Model\Config\Email\NotifyCustomer</source_model>
+				</field>					
+			</group>
+			<group id="pdfsetting" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+            	<label>Proposal PDF Settings</label>
+				<field id="enable_remark" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Show Remark In PDF</label> 
+					<comment>Disable to hide remark in PDF.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="show_quote_adjustment" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Show Quote Adjustment to Customers</label> 
+					<comment>Total quote discount will be visible for customers in the Proposal total block.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="remark" translate="label comment" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Set Standard (Fixed) Remark with Proposal</label> 
+						<depends>
+						<field id="enable_remark">1</field>
+					</depends>
+						<comment>Add remark that appears in the quote proposal PDF.</comment>			
+				 </field>
+				</group>
+             <group id="support" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Info</label>
+					<field id="style" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"> 
+						<label>Info</label> 
+						<frontend_model>Magebees\QuotationManagerPro\Model\Support</frontend_model>
+					</field>
+				</group>
+        </section>
+    </system>
+</config>

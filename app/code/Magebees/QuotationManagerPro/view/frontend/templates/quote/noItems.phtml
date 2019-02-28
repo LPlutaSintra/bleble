@@ -1,0 +1,10 @@
+<?php
+/**  @var $block \Magebees\QuotationManagerPro\Block\Quote */
+?>
+<div class="quote-empty">   
+    <p><?php echo __('You have no items in your quote.') ?></p>
+    <p><?php echo __(
+        'Click <a href="%1">here</a> to continue shopping.',
+        $block->escapeUrl($block->getContinueShoppingUrl())
+    ) ?></p> 
+</div>

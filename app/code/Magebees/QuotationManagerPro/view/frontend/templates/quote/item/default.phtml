@@ -1,0 +1,241 @@
+<?php
+/** @var $block \Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer */
+
+$item = $block->getItem();
+$itemId=$item->getId();
+$quote_id=$item->getQuoteId();
+$product = $item->getProduct();
+$productId = $product->getId();
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$frontend_config=$quote_helper->getFrontendConfig();
+//$enable_qprice=$frontend_config['enable_qprice'];
+$enable_qprice=$quote_helper->isShowPriceWithoutProduct();
+$quotationtierQty=$quote_helper->getDynamicQuoteQty($itemId,$quote_id,$productId);
+if(count($quotationtierQty->getData())>0){
+		foreach($quotationtierQty as $qty):
+			$qty->setRequestQtyPrice($item->getPrice());	
+			$price_incl_tax=$quote_helper->getProductPriceInclTax($product,$item->getPrice(),true);
+		$qty->setReqQtyPriceInclTax($price_incl_tax);		
+			$qty->save();
+		endforeach;
+	}
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper('Magento\Msrp\Helper\Data');
+
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+?>
+<tbody class="quote item">
+<tr class="item-info">
+    <td data-th="<?php echo $block->escapeHtml(__('Item')); ?>" class="col item">
+        <?php if ($block->hasProductUrl()) :?>
+        <a href="<?php echo $block->getProductUrl() ?>"
+           title="<?php echo $block->escapeHtml($block->getProductName()) ?>"
+           tabindex="-1"
+           class="product-item-photo">
+            <?php else : ?>
+            <span class="product-item-photo">
+            <?php endif; ?>
+            <?php echo $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml(); ?>
+            <?php if ($block->hasProductUrl()) : ?>  </span>
+        </a>
+        <?php else : ?>
+      
+        <?php endif; ?>
+        <div class="product-item-details">
+            <strong class="product-item-name">
+                <?php if ($block->hasProductUrl()) : ?>
+                    <a href="<?php echo $block->getProductUrl() ?>"
+                    ><?php echo $block->escapeHtml($block->getProductName()) ?></a>
+                <?php else : ?>
+                    <?php echo $block->escapeHtml($block->getProductName()) ?>
+                <?php endif; ?>
+            </strong>
+            <?php if ($_options = $block->getOptionList()) : ?>
+                <dl class="item-options">
+                    <?php foreach ($_options as $_option) : ?>
+                        <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                        <dt><?php echo $block->escapeHtml($_option['label']) ?></dt>
+                        <dd>
+                            <?php if (isset($_formatedOptionValue['full_view'])) : ?>
+                                <?php echo $_formatedOptionValue['full_view'] ?>
+                            <?php else : ?>
+                                <?php echo $_formatedOptionValue['value'] ?>
+                            <?php endif; ?>
+                        </dd>
+                    <?php endforeach; ?>
+                </dl>
+            <?php endif; ?>
+            <?php if ($messages = $block->getMessages()) : ?>
+                <?php foreach ($messages as $message) : 
+			if($quote_helper->getErrorMsgArr())
+			{
+				$errorArr=$quote_helper->getErrorMsgArr();
+				array_push($errorArr,$message);
+			//	print_r($errorArr);
+			}
+			else
+			{
+				$quote_helper->setErrorMsgArr(array($message));
+			}
+		
+			?>
+                    <div class="quote item message <?php echo $message['type'] ?>">
+                        <div><?php echo $block->escapeHtml($message['text']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+            <?php if ($addInfoBlock) : ?>
+                <?php echo $addInfoBlock->setItem($item)->toHtml() ?>
+            <?php endif; ?>
+        </div>
+        <?php $cols = 1; ?>
+    </td>
+	 <?php if($frontend_config['enable_remark']): ?>	
+	<td class="col info-textarea">
+		<textarea  class="col request_info" name="quote[<?php echo $itemId ?>][request_info]" rows="4" style="min-width:205px;" item_id="<?php echo $itemId ?>" id="quote[<?php echo $itemId ?>][request_info]"><?php if($item->getRequestInfo()){echo $item->getRequestInfo(); }?></textarea>
+	</td>
+	<?php endif; ?>
+    <?php if ($enable_qprice) : ?>
+    <?php if ($canApplyMsrp) : ?>
+        <td class="col msrp" data-th="<?php echo $block->escapeHtml(__('Price')); ?>">
+                <span class="pricing msrp">
+                    <span class="msrp notice"><?php echo __('See price before quote confirmation.'); ?></span>
+                    <?php $helpLinkId = 'quote-msrp-help-' . $itemId; ?>
+                    <a href="#" class="action help map" id="<?php echo($helpLinkId); ?>"
+                        <?php
+                        $json = '{"addToCart":{"helpLinkId": "#';
+                        $json .= $helpLinkId;
+                        $json .= '","productName": "';
+                        $json .= $product->getName();
+                        $json .= '","showAddToCart": false}}';
+                        ?>
+                       data-mage-init='<?php echo $json; ?>'>
+                        <span><?php echo __("What's this?"); ?></span>
+                    </a>
+                </span>
+            <?php $cols++; ?>
+        </td>
+    <?php else : ?>
+        <td class="col price" data-th="<?php echo $block->escapeHtml(__('Price')); ?>">
+            <?php echo $block->getUnitPriceHtml($item); ?>
+            <?php $cols++; ?>
+        </td>
+    <?php endif; ?>
+    <?php endif; ?>
+	
+    <td class="col qty" data-th="<?php echo $block->escapeHtml(__('Qty')); ?>">
+        <div class="field qty">
+            <label class="label" for="quote-<?php echo $itemId ?>-qty">
+                <!--<span><?php echo __('Qty') ?></span>-->
+            </label>
+
+			<?php if($frontend_config['enable_tier_price']): ?>	
+            <div class="control qty" id="qdiv_<?php echo $itemId ?>">
+             
+				<?php 
+		$qty_count=0;
+		if(count($quotationtierQty->getData())>0){
+			
+		foreach($quotationtierQty as $qty):
+			$qty_count++;?>
+			<div id="div_<?php echo $itemId ?>_<?php echo $qty_count ?>" quote_id="<?php echo $quote_id ?>" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>" qpid="<?php echo $itemId ?>" price="<?php echo $item->getPrice() ?>">
+				<input type="text" name="quote[<?php echo $itemId ?>][qty]" id="quote_<?php echo $itemId ?>_<?php echo $qty_count ?>" value="<?php echo $qty->getRequestQty();?>"  class="required-entry validate-zero-or-greater<?php if(!$qty->getIsDefault()):?>qty-add-rmv <?php else: ?> qty<?php endif;?>" request_id="<?php echo $qty->getRequestId();?>" isdefault="<?php echo $qty->getIsDefault();?>">
+				<?php if(!$qty->getIsDefault()):?>
+				<a href="#" id="tier_rmv_<?php echo $itemId ?>_<?php echo $qty_count ?>" class="btn-remove-quote-tier" title="Remove Tier Price" request_id="<?php echo $qty->getRequestId();?>"><?= /* @escapeNotVerified */ __('Remove') ?></a>	
+				<?php endif;?>
+				</div>
+		<?php	
+		endforeach;
+	}
+				   else
+				   {?>
+					<div id="div_<?php echo $itemId ?>_<?php echo $qty_count ?>" quote_id="<?php echo $quote_id ?>" index="<?php echo $qty_count ?>" product_id="<?php echo $productId ?>" qpid="<?php echo $itemId ?>" price="<?php echo $item->getPrice() ?>">
+				   <input id="quote-<?php echo $itemId ?>-qty"                      
+					   name="quote[<?php echo $itemId ?>][qty]"
+                       data-quote-item-id="<?php echo $item->getSku() ?>"
+                       value="<?php echo $block->getQty() ?>"
+                       type="text"
+                       size="4"
+                       title="<?php echo $block->escapeHtml(__('Qty')); ?>"
+                       class="qty"
+                       maxlength="12" 
+					   isdefault="1"
+                       data-validate="{required:true,'validate-greater-than-zero':true}"
+                       data-role="quote-item-qty"/>
+				<!-- data-mage-init='{"productUpdater":{
+                                "itemId": <?php echo $itemId; ?>,
+                                "sessionProductKey": "qty"
+                       }}' -->
+					   </div>
+				<?php   }
+		?>	
+            </div>
+			<?php else: ?>
+			 <input id="quote-<?php echo $itemId ?>-qty"                      
+					   name="quote[<?php echo $itemId ?>][qty]"
+                       data-quote-item-id="<?php echo $item->getSku() ?>"
+                       value="<?php echo $block->getQty() ?>"
+                       type="text"
+                       size="4"
+                       title="<?php echo $block->escapeHtml(__('Qty')); ?>"
+                       class="qty"
+                       maxlength="12" 
+					   isdefault="1"
+                       data-validate="{required:true,'validate-greater-than-zero':true}"
+                       data-role="quote-item-qty"/>
+				<!-- data-mage-init='{"productUpdater":{
+                                "itemId": <?php echo $itemId; ?>,
+                                "sessionProductKey": "qty"
+                       }}' -->
+			<?php endif; ?>
+			
+			
+			
+			
+        </div>
+        <?php $cols++; ?>
+			<?php if($frontend_config['enable_tier_price']): ?>	
+		<a class="addqty_<?php echo $itemId?> add-qty-link" name="quote[<?php echo $itemId ?>][add_qty]" id="quote[<?php echo $itemId ?>][add_qty]"><?= /* @escapeNotVerified */ __('Add Qty') ?></a>		
+			<?php endif; ?>
+    </td>
+</tr>
+<tr class="item-actions">
+    <td colspan="4">
+        <div class="actions-toolbar">
+            <?php echo $block->getActions($item) ?>
+        </div>
+    </td>
+</tr>
+</tbody>
+
+<script type="text/javascript">
+	require([
+        'jquery',
+		'domReady!',
+        'Magebees_QuotationManagerPro/js/quotation'
+    ], function($,magebeesQuote){
+		
+		 var widget = $(this).magebeesQuote({});	
+			<?php if($frontend_config['enable_tier_price']): ?>	
+		var itemId="<?php echo $itemId ?>";		
+		var price="<?php echo $item->getPrice(); ?>";		
+		var quote_id="<?php echo $item->getQuoteId(); ?>";		
+		var product_id="<?php echo $product->getId() ?>";		
+		//var count="<?php //echo count($quotationtierQty->getData());?>";	
+		var qty_count="<?php echo $qty_count ?>";		
+		var inputName="quote_request[<?php echo $itemId ?>][qty][]";	
+		  $('.addqty_'+itemId).click(function () {			  		
+			 widget.magebeesQuote('addTierPrice',itemId,product_id,inputName,qty_count,price,quote_id);			
+                     });	
+		<?php endif; ?>
+	/*	$('[id]').each(function(){
+  var ids = $('[id="'+this.id+'"]');
+  if(ids.length>1 && ids[0]==this)
+    console.warn('Multiple IDs #'+this.id);
+});*/
+	});
+	
+</script>	
+	

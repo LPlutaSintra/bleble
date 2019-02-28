@@ -1,0 +1,20 @@
+<?php $quote_id=$block->getQuoteId();
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$config=$quote_helper->getConfig();
+$enable_expiration_time=$config['enable_expiration_time'];
+$_quotes=$quote_helper->getQuoteDataById($quote_id);
+foreach ($_quotes as $_quote): 
+?>
+<span class="order-status f-right"><?= /* @escapeNotVerified */ $quote_helper->getStatus($_quote->getStatus()) ?></span>
+<button class="print_pdf" onclick="setLocation('<?= $block->getUrl('quotation/quote/printPdf/',array('_secure' => true,'id'=>$quote_id)); ?>');"><?= /* @escapeNotVerified */ __('Print PDF') ?></button>
+<br/>
+<div class="quote_req_date" style="float:right;">	
+    <?= /* @escapeNotVerified */ __('<span class="label"><b>Quote Request Date:</b></span> %1', '<date>' . $block->formatDate($_quote->getCreatedAt(), \IntlDateFormatter::LONG) . '</date>') ?>
+</div>
+<br/>
+<?php if($enable_expiration_time): ?>
+<div class="quote_exp_date" style="float:right;">
+    <?= /* @escapeNotVerified */ __('<span class="label"><b>Quote Expiry Date:</b></span> %1', '<date>' . $block->formatDate($_quote->getExpiredAt(), \IntlDateFormatter::LONG) . '</date>') ?>
+</div>
+<?php endif; ?>
+<?php endforeach; ?>

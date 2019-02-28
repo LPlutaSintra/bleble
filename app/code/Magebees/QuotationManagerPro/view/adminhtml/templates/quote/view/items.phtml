@@ -1,0 +1,111 @@
+<?php
+/**
+ * @var \Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Items $block
+ */
+
+
+$backend_helper=$this->helper('Magebees\QuotationManagerPro\Helper\Admin');
+$quote_helper=$this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$tax_config=$quote_helper->getTaxConfig();
+$is_include_tax=$tax_config['price_tax'];
+$_quote = $block->getQuote();
+$quote_id=$_quote->getId();
+$quote_status=$_quote->getStatus();
+$change_allow=$backend_helper->checkStatusAllowForProposal($quote_status);
+$total_data=$backend_helper->getDefaultTotalData();
+$quote_currency=$_quote->getCurrencyCode();
+//$quote_currency=$backend_helper->getSession()->getCurrencyId();
+$base_currency=$_quote->getBaseCurrencyCode();
+$total_orig_price=$total_data['orig_price'];
+$total_cost_price=$total_data['cost_price'];
+$total_row_price=$total_data['row_total'];
+$tax=$total_data['tax'];
+$total_row_price_incl_tax=$total_data['row_total_incl_tax'];
+$convert_total_orig_price=$quote_helper->getConvertedPrice($total_orig_price,$quote_currency);
+$convert_tax=$quote_helper->getConvertedPrice($tax,$quote_currency);
+$convert_total_cost_price=$quote_helper->getConvertedPrice($total_cost_price,$quote_currency);
+$convert_total_row_price=$quote_helper->getConvertedPrice($total_row_price,$quote_currency);
+
+$convert_total_row_price_incl_tax=$quote_helper->getConvertedPrice($total_row_price_incl_tax,$quote_currency);
+if(isset($total_data['margin']))
+{
+//$total_margin=$total_data['margin'];
+$total_margin='----';
+}
+else
+{
+	$total_margin='----';
+}
+?>
+<section id="quote-items" class="admin__page-section quote-items">
+	<button class="action-secondary action-add" type="button" id="add_products" <?php if(!$change_allow):?>disabled=""<?php endif;?>><span><?= /* @escapeNotVerified */ __('Add Products') ?></span></button>
+<div class="admin__table-wrapper" id="quote-items_grid">
+	<input type="hidden" value="<?= $block->getQuote()->getId() ?>" id="magebees_quote" name="quote_id"/>
+    <table class="data-table admin__table-primary edit-quote-table">
+        <thead>
+          <tr>
+                <th class="col name"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
+                <th class="col name"><?= /* @escapeNotVerified */ __('Comment') ?></th>                
+                <th class="col orig_price"><?= /* @escapeNotVerified */ __('Original Price') ?></th>
+                <th class="col cost_price"><?= /* @escapeNotVerified */ __('Cost Price') ?></th>
+                <th class="col price"><?= /* @escapeNotVerified */ __('Price') ?></th>
+                <th class="col qty"><?= /* @escapeNotVerified */ __('Qty') ?></th> 
+                <th class="col action"><?= /* @escapeNotVerified */ __('Action') ?></th> 
+                <th class="col row_total"><?= /* @escapeNotVerified */ __('Row Total') ?></th> 
+			  <?php if($is_include_tax):?>
+                <th class="col tax"><?= /* @escapeNotVerified */ __('Tax') ?></th> 
+			  <?php endif; ?>
+                <th class="col margin"><?= /* @escapeNotVerified */ __('Margin (GP)') ?></th> 
+                <th class="col action"><?= /* @escapeNotVerified */ __('Remove Item') ?></th> 
+				
+            </tr>			
+        </thead>
+        <?php $_items = $block->getItemsCollection();
+		$quote_helper->unsetErrorMsgArr();?>
+		
+        <?php foreach ($_items as $_item):?>
+           
+            <tbody>
+                <?= $block->getItemHtml($_item) ?>               
+            </tbody>
+        <?php endforeach; ?>
+		<tfoot>
+		<tr>
+			<td class="footer_product"><?= /* @escapeNotVerified */ __('Total ') ?><?= count($block->getItemsCollection())?><?= /* @escapeNotVerified */ __(' product(s)') ?></td>
+			<td class="footer_subtotal"><?= /* @escapeNotVerified */ __('Sub Total') ?></td>
+			<td class="footer_pricetotal"> <?= $quote_helper->getFormatedPrice($total_orig_price,$base_currency)?>
+				 <?php if($quote_currency!=$base_currency):?>
+			 <br> [ <?=$quote_helper->getFormatedPrice($convert_total_orig_price,$quote_currency);	?> ]
+			 <?php endif;?>
+			</td>
+			<td class="footer_costtotal"> ----</td>
+			<td class="footer_req_price"> ----</td>
+			<td class="footer_qty">----</td>
+			<td class="footer_action">---- </td>
+			<td class="footer_rowtotal"> <?= $quote_helper->getFormatedPrice($total_row_price,$base_currency)?>
+				 <?php if($quote_currency!=$base_currency):?>
+			 <br> [ <?=$quote_helper->getFormatedPrice($convert_total_row_price,$quote_currency);	?> ]
+			 <?php endif;?>
+			</td>
+			 <?php if($is_include_tax):?>
+			<td class="footer_tax">
+				 <?= $quote_helper->getFormatedPrice($tax,$base_currency)?>
+				 <?php if($quote_currency!=$base_currency):?>
+			 <br> [ <?=$quote_helper->getFormatedPrice($convert_tax,$quote_currency);	?> ]
+			 <?php endif;?>
+			</td>
+			 <?php endif;?>
+			<td class="footer_margin">
+				<?= $total_margin ?>
+			</td>
+			<td class="footer_margin">
+				&nbsp;
+			</td>
+		</tr>
+		</tfoot>
+    </table>
+	<button  title="<?= /* @escapeNotVerified */ __('Update Items and Quantities') ?>" type="button" class="action-default update_items" <?php if(!$change_allow):?>disabled=""<?php endif;?>>
+    	<span><?= /* @escapeNotVerified */ __('Update Items and Quantities') ?></span>
+	</button>
+</div>
+</section>

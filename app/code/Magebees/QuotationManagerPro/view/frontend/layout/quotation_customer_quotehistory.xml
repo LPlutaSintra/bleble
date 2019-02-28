@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"> 
+<update handle="customer_account"/> 
+<body> 
+    <referenceBlock name="page.main.title"> 
+            <action method="setPageTitle"> 
+                <argument translate="true" name="title" xsi:type="string">Manage Quotations</argument> 
+            </action> 
+     </referenceBlock> 
+     <referenceContainer name="content"> 
+        <block class="Magebees\QuotationManagerPro\Block\Quote\History" name="magebees_cust_quote_history" template="Magebees_QuotationManagerPro::customer/quoteList.phtml" cacheable="false"> 
+        </block> 
+    </referenceContainer> 
+</body> 
+</page>
