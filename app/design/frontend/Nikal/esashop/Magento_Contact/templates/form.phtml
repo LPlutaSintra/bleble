@@ -33,12 +33,11 @@
                 <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('Message')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
             </div>
         </div>
-        <div class="field">
-            <input type="checkbox" id="policy" name="policy" class="required-entry" value="yes"/>
-            <label class="label required" for="policy">
-                <span><?php echo $block->escapeHtml(__('I accept')) ?> <a data-role="aw-rma-show-policy" href="#"><?php echo $block->escapeHtml(__('Return Policy')) ?></a> <?php echo $block->escapeHtml(__('regulations')) ?></span>
-            </label>
+        <div class="field policy">
+            <input type="checkbox" id="policy" name="policy" class="required-entry" value="<?php echo $block->escapeHtml(__('yes')) ?>"/>
+            <label class="label required" for="policy"><?php echo $block->escapeHtml(__('I accept the Privacy Policy regulations')) ?> </label>
         </div>
+        <a href="<?php echo $block->getUrl('privacy-policy-cookie-restriction-mode') ?>" target="_blank"><?php echo $block->escapeHtml(__('Read the Privacy Policy here')) ?></a>
         <?= $block->getChildHtml('form.additional.info') ?>
     </fieldset>
     <div class="actions-toolbar">

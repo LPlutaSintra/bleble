@@ -7,8 +7,10 @@ use Magento\Contact\Model\ConfigInterface;
 use Magento\Contact\Model\MailInterface;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Psr\Log\LoggerInterface;
 use Magento\Framework\DataObject;
+use Magento\Framework\Exception\LocalizedException;
+use Psr\Log\LoggerInterface;
+
 
 class Post extends \Magento\Contact\Controller\Index\Post
 {
