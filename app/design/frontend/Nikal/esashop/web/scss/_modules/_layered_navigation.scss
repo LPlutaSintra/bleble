@@ -12,13 +12,13 @@
   }
 }
 
-
 .layered-filter-block-container {
   padding-top: 120px;
   border-right: none;
-  
+
   @include sm{
     padding-top: 43px;
+    border-left: none;
   }
   .filter-current {
 
@@ -131,4 +131,8 @@
       }
     }
   }
+}
+
+.filter-content.sticky{
+  padding-top: 80px;
 }

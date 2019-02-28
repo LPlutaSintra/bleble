@@ -225,6 +225,10 @@ Category listing
             width: auto;
         }
 
+        @include xs{
+            border-left: none;
+        }
+
         .sorter-label {
             font-size: 15px;
             text-transform: uppercase;
@@ -235,6 +239,14 @@ Category listing
             border-bottom: 1px solid $nikal-main-color;
             font-size: 15px;
             font-weight: 100;
+
+            @include xs{
+                width: auto;
+            }
+
+            @include xxs{
+                width: 40px;
+            }
         }
 
         select{
@@ -254,6 +266,10 @@ Category listing
     .toolbar-amount{
         border-left: none;
         margin-left: auto;
+        font-size: 15px;
+        .toolbar-number{
+            color: $nikal-main-color;
+        }
     }
 }
 

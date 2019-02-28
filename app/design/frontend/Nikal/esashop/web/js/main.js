@@ -397,17 +397,17 @@ require(['domReady', 'jquery', 'stickyPlugin'], function (domReady, $) {
             }
         });
 
-        categoryListPin();
-        categoryLayerPin();
+        //categoryListPin();
+        //categoryLayerPin();
         cartSummaryPin();
 
-        productContainer.on('contentUpdated', function() {
-            categoryListPin();
-        });
-
-        layerContainer.on('contentUpdated', function() {
-            categoryLayerPin();
-        });
+        //productContainer.on('contentUpdated', function() {
+        //    categoryListPin();
+        //});
+        //
+        //layerContainer.on('contentUpdated', function() {
+        //    categoryLayerPin();
+        //});
 
     });
 });
