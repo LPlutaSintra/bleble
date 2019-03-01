@@ -17,6 +17,27 @@ $background-image-home: url('../images/home-bg.png');
 $minicart-planets-bg: #fff;
 $minicart-planets-bg-home: #FFF;
 $minicart-planets-bg-mobile: #FFF;
+@mixin scrollbars($size, $foreground-color, $background-color: #fff) {/*mix($foreground-color, white, 50%)*/
+  ::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
 body {
   &.cms-home {
     &.navigation-open, &.scroll-on{
@@ -86,20 +107,42 @@ body {
               }
             }
             .orbit.inner {
-              .counter {
-                color: $nikal-text-color;
-              }
-            }
+               .counter {
+                 color: $nikal-text-color;
+               }
+             }
           }
         }
       }
     }
     .page-wrapper {
       background-image: $background-image-home;
+      #esa-header {
+        background-color: #222;
+        display: flex;
+        position: relative;
+        height: 60px;
+        color: #fff;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+        border-bottom: 4px solid #CCC;
+        #esa-header--logo {
+          height: 30px;
+          margin-left: auto;
+          padding-left: 20px;
+        }
+      }
       .page-header {
         color: $header-text-color-home;
         @media screen and (max-width: $sm-width) {
           color: $header-text-color;
+          span {
+            font-size: $header-mobile-font-size;
+          }
+        }
+        span {
+          font-size: $header-desktop-font-size;
         }
         .switchers {
           .switcher {
@@ -124,6 +167,11 @@ body {
                 li {
                   &:hover{
                     background: $dropdowns-background;
+                  }
+                  a {
+                    span {
+                      font-size: $header-switcher-font-size;
+                    }
                   }
                 }
               }
@@ -306,7 +354,7 @@ body {
   }
 
   .page-wrapper {
-    background-size: cover;
+    background-size: 100% auto;
     padding-top: 270px;
     background-repeat: no-repeat;
     @media screen and (max-width: $sm-width) {
@@ -322,6 +370,7 @@ body {
       justify-content: flex-start;
       padding: 0 20px;
       border-bottom: 4px solid #CCC;
+
       #esa-header--logo {
         height: 30px;
         margin-left: auto;
@@ -357,7 +406,6 @@ body {
     height: 70px;
     //padding-top: 3px;
   }
-
   body.scroll-on &{
     padding: 50px 0;
     height: 160px;
@@ -375,12 +423,12 @@ body {
     top: 60px;
     background-color: $mobile-header-bg-color;
     padding-bottom: 5px;
-    padding: 10px 0px;
+    padding: 10px 12px;
     border-bottom: 0px solid #cccccc;
   }
   .block-search {
     @media screen and (max-width: $xs-width) {
-      //display:none
+      display:none
     }
   }
   .switchers {
@@ -401,14 +449,28 @@ body {
         .ui-dialog {
           z-index: 1;
         }
+        >div {
+          max-height: 126px;
+        }
+
+        @include scrollbars(.5em, black);
         ul {
           border-bottom: 0;
-          li {
-          }
-          a {
-            span {
-              font-size: $header-switcher-font-size;
+
+          &.shipping-dropdown {
+            border-right: 0px!important;
+            //width: 200px;
+            li {
+              a {
+                display: flex;
+                justify-content: space-between;
+                span {
+                  font-size: $header-switcher-font-size;
+                }
+              }
             }
+          }
+          li {
           }
         }
         .switcher-trigger {
@@ -429,14 +491,22 @@ body {
         }
       }
       &.switcher-shipping {
-        display: none;
+        //display: none;
+        div.ui-dialog {
+          left: -98px;
+          .ie11 &{
+            max-width: 127px;
+          }
+        }
+
       }
       &.switcher-currency {
         strong.change, ul {
           > span, > li {
             padding-left: 5px;
             > span, > a {
-              font-size: 0px;
+              //font-size: 0px;
+              font-size: initial;
 
             }
           }
@@ -444,14 +514,14 @@ body {
             > span {
               > span {
                 &:before {
-                  content: '€';
+                  //content: '€';
                   font-size: initial;
                 }
               }
             }
             > a {
               &:before {
-                content: '€\7C\a0\a0';
+                //content: '€\7C\a0\a0';
                 font-size: initial;
               }
             }
@@ -461,14 +531,14 @@ body {
             > span{
               > span{
                 &:before {
-                  content: '$';
+                  //content: '$';
                   font-size: initial;
                 }
               }
             }
             > a {
               &:before {
-                content: '$\a0\a0';
+                //content: '$\a0\a0';
                 font-size: initial;
               }
             }
@@ -487,7 +557,8 @@ body {
           }
         }
       }
-      &.switcher-language {
+      &.switcher-language,
+      &.switcher-shipping{
         .switcher-label {
           display: none;
         }
@@ -500,7 +571,9 @@ body {
         }
       }
     }
-
+    .switcher-shipping:before{
+      display:none;
+    }
   }
   .header.content {
     display: block;
@@ -541,6 +614,30 @@ body {
     }
   }
   .panel.header {
+    width: 100%;
+    .block-search {
+      flex:1;
+      .btn.btn-empty {
+        border-bottom: 3px solid transparent;
+        letter-spacing: 1px;
+        line-height: 28px;
+        transition: none;
+        &:hover {
+          border-bottom: 3px solid #0234fc;
+          color: #0234fc;
+          span {
+            color: #0234fc;
+          }
+        }
+        span {
+          transition: none;
+          &.material-icons {
+            font-size: 24px;
+            line-height: 0.5;
+          }
+        }
+      }
+    }
     .header.links {
       .authorization-link {
         .material-icons {
@@ -555,13 +652,20 @@ body {
     @media screen and (max-width: $sm-width) {
       min-height: 50px;
     }
+    .ie11 &{
+      margin-top: 18px;
+    }
   }
+
 }
 
 .action.showcart {
   align-items: center;
   justify-content: center;
   display: flex;
+  @media screen and (max-width: $xs-width) {
+    display:none
+  }
   #circle-orbit-container {
     position: relative;
     height: 45px;

@@ -27,6 +27,8 @@
         <move element="store_switch_dropdown" destination="header.stores.switchers" before="store_language" />
         <move element="store_language" destination="header.stores.switchers" />
 
+        <move element="form.subscribe" destination="footer" after="-"/>
+
         <referenceBlock name="wishlist" remove="true"/>
     </body>
 </page>

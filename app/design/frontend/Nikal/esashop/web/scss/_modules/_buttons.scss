@@ -221,3 +221,17 @@ Buttons
   }
 }
 
+.btn.btn-bulk {
+  border: 1px solid $nikal-main-color;
+  border-radius: 2px;
+  color: $nikal-main-color;
+  font-size: $h6-font-size;
+  &:hover,
+  &:active{
+    background-color: $nikal-main-color;
+    color: #fff;
+  }
+  &:active {
+    transform:scale(.98);
+  }
+}
