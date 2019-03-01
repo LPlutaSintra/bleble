@@ -68,7 +68,9 @@ Category listing
         .product-item{
             .ie11 &{
                 display: block;
-                width: 33%;
+                width: 29%;
+                margin-left: 2%;
+                margin-right: 2%;
                 float:left;
             }
         }
@@ -98,6 +100,10 @@ Category listing
                 .product-item-photo{
                     opacity: .5;
                 }
+            }
+
+            .ie11 &{
+                display: block;
             }
         }
 
@@ -169,6 +175,9 @@ Category listing
             text-align: left;
             align-items: left;
             justify-content: left;
+            .ie11 &{
+                display: block;
+            }
         }
 
         .special-price{
