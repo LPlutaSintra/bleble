@@ -5,6 +5,7 @@ Nav Main
     background-color: transparent;
 
     > ul {
+        width: auto;
 
         > li {
             > a,
@@ -71,6 +72,7 @@ Nav Main
         > .submenu {
             top: -114px;
             z-index: -1;
+            width: 100vw;
 
             @include sm {
                 top: 0;
@@ -78,7 +80,7 @@ Nav Main
             }
 
             &:before {
-                left: 49%;
+                //left: 49%;
             }
 
             > li {

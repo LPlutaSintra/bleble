@@ -65,6 +65,13 @@ Category listing
                 font-size: 12px;
             }
         }
+        .product-item{
+            .ie11 &{
+                display: block;
+                width: 33%;
+                float:left;
+            }
+        }
     }
 }
 

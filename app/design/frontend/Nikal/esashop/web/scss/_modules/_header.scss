@@ -270,7 +270,10 @@ body {
         }
 
         >.content{
-          padding: 0 20px;
+
+          .logo{
+            padding: 0 20px;
+          }
 
           .ie11 &{
             text-align: left;
@@ -577,12 +580,16 @@ body {
   }
   .header.content {
     display: block;
-    padding: inherit;
+    padding: 0;
     text-align: initial;
-    @media screen and (max-width: $sm-width) {
-      padding: 0 20px;
+    box-sizing: border-box;
+
+    .ie11 &{
+      padding:inherit;
+      text-align: left;
     }
     .logo {
+      padding: 0 20px;;
       svg {
         transform: scale(1.7, 1.7);
         margin: -8px 30px;
