@@ -323,6 +323,21 @@ Category listing
             margin: 0 auto;
             width: auto;
             border-left: none;
+            .ie11 &{
+                display: block;
+            }
+
+            .item{
+                .ie11 &{
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            }
+        }
+
+        .ie11 &{
+            display: block;
+            text-align: center;
         }
     }
 
