@@ -1,15 +1,14 @@
 /*--------------------------------------------------
 Buttons
 --------------------------------------------------*/
-
 @include buttons {
   text-align: center;
-  padding: 0 24px;
+  padding: 10px 24px;
   position: relative;
   text-decoration: none;
   overflow: hidden;
   font-size: 16px;
-  height: 30px;
+  height: 50px;
   line-height: 30px;
   text-transform: uppercase;
   font-weight: 600;
@@ -21,6 +20,7 @@ Buttons
   transition: all .3s ease 0s;
   background: $btn-secondary-bg;
   border: $btn-secondary-border;
+  border-radius: 3px;
   color: $btn-secondary-font;
 
   @include xxs {

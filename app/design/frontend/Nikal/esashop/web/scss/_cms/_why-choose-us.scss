@@ -1,0 +1,182 @@
+/*--------------------------------------------------
+CMS page - Why Choose Us
+--------------------------------------------------*/
+.cms-page {
+  &.cms-why-choose-us {
+
+    > h3 {
+      + p {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+
+        @include sm {
+          margin-top: 25px;
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    > p {
+      strong {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.17;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+
+        @include sm {
+          font-size: 18px;
+          line-height: 26px;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    > div {
+
+      &:nth-of-type(1) {
+
+        > div {
+          width: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: flex-end;
+          align-items: flex-start;
+
+          @include sm {
+            flex-flow: column nowrap;
+            align-items: center;
+          }
+
+          h3 {
+            font-size: 48px;
+            font-weight: 600;
+            font-style: normal;
+            font-stretch: condensed;
+            letter-spacing: 5px;
+            text-align: right;
+            text-transform: uppercase;
+            line-height: initial;
+            background-color: rgba($bg-cta-alt, .4);
+            margin-right: 2 * $gutter;
+            margin-top: 8px;
+            max-width: calc(50% - #{$gutter});
+            padding: 3px;
+
+            @include sm {
+              margin: 0 0 20px;
+              text-align: center;
+              max-width: initial;
+              font-size: 32px;
+              line-height: 46px;
+              letter-spacing: 3px;
+            }
+          }
+
+          p {
+            width: calc(50% - #{$gutter});
+            margin-bottom: 20px;
+
+            @include sm {
+              width: initial;
+              text-align: center;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(2) {
+
+        > div {
+
+          @include sm {
+            width: 100%;
+          }
+
+          img {
+            max-width: 100%;
+            display: inline-block;
+          }
+
+          &:last-child {
+
+            > p {
+              margin-bottom: 20px;
+              position: relative;
+              padding-left: 45px;
+
+              @include sm {
+                padding-left: 30px;
+              }
+
+              @include material-icon('check', before, 36px);
+
+              &:before {
+                color: $bg-cta;
+                position: absolute;
+                top: 3px;
+                left: 0;
+
+                @include sm {
+                  font-size: 24px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(3) {
+
+        @include xs {
+          flex-flow: column-reverse nowrap;
+        }
+
+        > div {
+
+          &:first-child {
+
+            > a {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(4) {
+        background-image: url('../images/cms-page-title-bg.jpg');
+        background-position: center;
+        background-color: $bg-alternative;
+        padding: 40px $gutter 20px;
+        text-align: center;
+
+        h2 {
+          font-size: 36px;
+          margin-bottom: 60px;
+        }
+
+        > p {
+          max-width: 1170px;
+          margin: 0 auto 20px;
+
+          a:not(.btn) {
+            font-size: 16px;
+            margin-top: 15px;
+            display: inline-block;
+          }
+        }
+
+        > .btn {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

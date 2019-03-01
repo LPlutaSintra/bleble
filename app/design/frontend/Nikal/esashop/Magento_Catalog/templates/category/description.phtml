@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+
+<div class="category-view-info">
+
+    <div class="text">
+        <?= $block->getChildHtml('page.main.title') ?>
+
+        <?php if ($block->getCurrentCategory()->getCustomProductsPage()): ?>
+            <?php $blockId = 'page-' . $block->getCurrentCategory()->getCustomProductsPage() . '-description'; ?>
+            <div class="category-description">
+                <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($blockId)->toHtml(); ?>
+            </div>
+        <?php elseif ($_description = $block->getCurrentCategory()->getDescription()): ?>
+            <div class="category-description">
+                <?php /* @escapeNotVerified */
+                echo $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($block->getCurrentCategory(), $_description, 'description') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($block->isContentMode()): ?>
+            <a href="#" id="scroll-category">
+                <?php echo __('Esplora le categorie') ?>
+            </a>
+        <?php endif; ?>
+    </div>
+</div>

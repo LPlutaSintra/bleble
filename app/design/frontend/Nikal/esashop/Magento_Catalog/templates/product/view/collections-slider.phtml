@@ -1,0 +1,26 @@
+<div id="collections-slider" class="collections-slider" data-slick='{
+            "mobileFirst": true,
+            "dots": true,
+            "arrows": false,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "infinite": true,
+            "responsive": [
+                {
+                   "breakpoint": 480,
+                   "settings": {
+                        "slidesToShow": 2,
+                        "dots": true
+                    }
+                },
+                {
+                    "breakpoint": 768,
+                    "settings": "unslick"
+                }
+            ]
+        }'>
+
+    <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('catalog_collection_1')->toHtml();?>
+    <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('catalog_collection_2')->toHtml();?>
+    <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('catalog_collection_3')->toHtml();?>
+</div>

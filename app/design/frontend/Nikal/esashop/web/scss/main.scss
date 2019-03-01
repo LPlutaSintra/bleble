@@ -11,7 +11,7 @@ Website by WsTechlab
 //@import '_modules/fonts';
 //
 ///*##### PLUGINS */
-//@import '_plugins/slick';
+@import '_plugins/slick';
 //
 ///*##### GENERIC */
 @import '_modules/base';
@@ -35,6 +35,7 @@ Website by WsTechlab
 //@import '_modules/tax';
 //@import '_modules/_compare';
 //@import '_modules/register';
+@import '_modules/related';
 //@import '_modules/customer';
 //@import '_modules/checkout';
 //@import '_modules/blog';
@@ -58,6 +59,11 @@ Website by WsTechlab
 //@import '_cms/cms_category_items_block.scss';
 //@import '_cms/cms_privacy';
 //@import '_cms/cms_take_care';
+@import '_cms/cms_page';
+//@import '_cms/homepage';
+//@import '_cms/about-us';
+//@import '_cms/why-choose-us';
+
 //
 ///*##### Custom icons font */
 //@import '_fonts/custom-icons';

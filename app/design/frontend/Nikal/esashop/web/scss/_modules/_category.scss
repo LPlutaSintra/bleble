@@ -1,7 +1,221 @@
 /*--------------------------------------------------
 Category listing
 --------------------------------------------------*/
+.page-products{
+    .page-wrapper>.page-main{
+        padding-bottom: 150px;
+        border-bottom: 1px solid $nikal-background-color;
+
+        @include xs {
+            padding-bottom: 50px;
+        }
+    }
+}
+
+.category-view {
+    margin-bottom: 50px;
+    box-shadow: $box-shadow-base;
+
+    .category-view-info {
+
+        .page-title{
+            font-family: $font-fam-base;
+            font-size: 54px;
+            line-height: 1;
+            text-transform: uppercase;
+            font-weight:100 ;
+            margin-bottom: 30px;
+
+            @include sm {
+                font-size: 36px;
+            }
+        }
+
+        .text {
+            padding: 80px 70px;
+
+            @include sm {
+                padding: 30px 40px;
+            }
+        }
+    }
+
+    .category-description {
+        p{
+            font-size: 18px;
+            font-family: $font-fam-secondary;
+            font-weight: 400;
+            @include sm {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.products-grid {
+
+    .product-items {
+
+        .product-item-link{
+            font-size: 20px;
+            color: $nikal-text-color;
+            font-family: $font-fam-base;
+            font-weight: 100;
+            @include xxs {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.product-items {
+
+    .product-item {
+
+        .product-item-info{
+            &:hover {
+                height: auto;
+
+                .actions-buttons{
+                    display: none;
+                }
+            }
+
+            &.item-out-of-stock {
+
+                .product-item-details,
+                .product-img {
+                    opacity: 1;
+                }
+
+                .product-item-photo{
+                    opacity: .5;
+                }
+            }
+        }
+
+        .actions-buttons{
+            display: none;
+
+            @include sm {
+                display: none;
+            }
+        }
+
+        .product-item-inner{
+            display: none;
+        }
+
+        .stock.unavailable{
+            background-color: transparent;
+            width: 100%;
+            z-index: 1;
+            padding: 0 30px;
+            box-sizing: border-box;
+
+            span{
+                font-size: 40px;
+                font-family: $font-fam-base;
+                text-transform: uppercase;
+                color: $nikal-main-color;
+
+                @include lg {
+                    font-size: 30px;
+                }
+
+                @include md {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .product-sku{
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 15px;
+            text-transform: uppercase;
+            color: $nikal-main-color;
+            font-size: 14px;
+            transform: rotate(-90deg) translate(-100%, 0%);
+            transform-origin: 0 0;
+
+            @include xxs {
+                display: none;
+                font-size: 10px;
+            }
+        }
+
+        .product-item-details{
+            padding: 0 10%;
+        }
+
+        .product-item-name {
+            text-align: left;
+        }
+
+        .salebox-new{
+            display: none;
+        }
+
+        .price-box-list{
+            text-align: left;
+            align-items: left;
+            justify-content: left;
+        }
+
+        .special-price{
+            .price{
+                color: $nikal-text-color;
+            }
+        }
+
+        .old-price{
+            .price-wrapper{
+                color: $nikal-main-color;
+                text-decoration: line-through;
+                font-weight: bold;
+            }
+            .price{
+                color: $nikal-text-color;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+
+        .price-box{
+
+            >span{
+                margin: 0 10px 0 0;
+            }
+        }
+
+        .price{
+            font-size: 20px;
+            color: $nikal-text-color;
+
+            @include xxs {
+                font-size: 12px;
+            }
+        }
+
+        .swatch-attribute-options {
+
+            .image,
+            .color {
+                min-width: 18px;
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}
+
 .toolbar-products {
+    border-top: none;
+    border-bottom: none;
+    justify-content: space-between;
+
     .sidebar-actions{
         display: none;
 
@@ -12,11 +226,23 @@ Category listing
     }
 
     .toolbar-sorter {
+        left: -360px;
+        top: 70px;
+        position: absolute;
+        width: 300px;
+
+        @include sm{
+            position: static;
+            width: auto;
+        }
+
+        @include xs{
+            border-left: none;
+        }
 
         .sorter-label {
             font-size: 15px;
             text-transform: uppercase;
-            flex: 0 1 120%;
             min-width: 100px;
         }
 
@@ -24,14 +250,22 @@ Category listing
             border-bottom: 1px solid $nikal-main-color;
             font-size: 15px;
             font-weight: 100;
+
+            @include xs{
+                width: auto;
+            }
+
+            @include xxs{
+                width: 40px;
+            }
         }
 
         select{
             min-width: 130px;
             color: $nikal-main-color;
             background-image:
-                linear-gradient(45deg, transparent 45%, $nikal-main-color 55%),
-                linear-gradient(135deg, $nikal-main-color 55%, transparent 45%);
+            linear-gradient(45deg, transparent 45%, $nikal-main-color 55%),
+            linear-gradient(135deg, $nikal-main-color 55%, transparent 45%);
 
 
             @include xxs{
@@ -39,4 +273,237 @@ Category listing
             }
         }
     }
+
+    .toolbar-amount{
+        border-left: none;
+        margin-left: auto;
+        font-size: 15px;
+        .toolbar-number{
+            color: $nikal-main-color;
+        }
+    }
+}
+
+.toolbar-last {
+
+    @include sm {
+
+        .toolbar-products {
+            display: flex;
+        }
+    }
+
+    @include xs {
+
+        .toolbar-products {
+            display: none;
+        }
+    }
+
+    .pages {
+        border-top: none;
+        .pages-items {
+            text-align: center;
+            margin: 0 auto;
+            width: auto;
+            border-left: none;
+        }
+    }
+
+}
+
+.pager, .toolbar{
+    height: 40px;
+
+    .pages-items {
+
+        .item{
+            border-right:none;
+            padding: 0 5px;
+            margin: 0 15px;
+
+            @include sm {
+                margin: 0 5px;
+            }
+
+            .page{
+                color: $nikal-text-color;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            &:hover{
+                border-bottom: 2px solid $nikal-main-color;
+
+                .page{
+                    color: $nikal-main-color;
+                }
+            }
+
+            &.current {
+                border-bottom: 2px solid $nikal-main-color;
+
+                .page{
+                    color: $nikal-main-color;
+                }
+            }
+
+            &.pages-item-next,
+            &.pages-item-previous{
+                margin: 0 20px 0 30px;
+                @include sm {
+                    margin: 0 10px;
+                }
+                border-bottom: 2px solid transparent;
+
+                .next,
+                .previous{
+                    color: $nikal-text-color;
+                    border-bottom: 2px solid transparent;
+                }
+
+                &:hover{
+                    border-bottom: 2px solid transparent;
+
+                    a.next,
+                    a.previous{
+                        color: $nikal-main-color;
+                        border-bottom: 2px solid $nikal-main-color;
+                    }
+                }
+            }
+
+            &.pages-item-previous{
+                margin: 0 30px 0 20px;
+
+                @include sm {
+                    margin: 0 10px;
+                }
+            }
+        }
+    }
+}
+
+.product-collections {
+
+    > .collections1 {
+
+    }
+}
+
+.page-bottom{
+    margin-top: 100px;
+
+    @include xs {
+        margin-top: 50px;
+    }
+
+    h2, h3{
+        text-align: center;
+        font-size: 42px;
+        font-family: $font-fam-secondary;
+        line-height: 1.25;
+        font-weight: 100;
+        margin-bottom: 50px;
+
+        @include xs {
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        span{
+            color: $nikal-main-color;
+            font-weight: 500;
+        }
+    }
+
+    .products-grid {
+        padding: 30px 0 100px;
+
+        .product-items {
+
+            .product-item-link{
+                @include xxs {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .product-items {
+        .product-item{
+            margin: 0 0 60px;
+            @include md {
+                width: calc(33.333% - #{2 * $gutter});
+            }
+            @include xs {
+                margin: 0 0 20px;
+            }
+
+            .product-item-info{
+                //width: auto;
+                max-width: 490px;
+                padding: 0 10px;
+                border: none;
+                box-shadow: none;
+
+                &:hover{
+                    border: none;
+                    box-shadow: none;
+                }
+
+            }
+
+            .product-img{
+                max-height: 590px;
+            }
+
+            .price-box-list{
+               margin-bottom: 30px;
+            }
+
+            .price{
+                @include xxs {
+                    font-size: 20px;
+                }
+            }
+            
+            .action.more{
+                text-align: center;
+                padding: 10px 24px;
+                position: relative;
+                text-decoration: none;
+                overflow: hidden;
+                font-size: 16px;
+                height: 50px;
+                line-height: 30px;
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 1px;
+                outline: none;
+                cursor: pointer;
+                display: inline-block;
+                box-sizing: border-box;
+                transition: all .3s ease 0s;
+                background: $btn-secondary-bg;
+                border: $btn-secondary-border;
+                border-radius: 3px;
+                color: $btn-secondary-font;
+                width: fit-content;
+                @include xxs {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    height: auto;
+                    line-height: 1.2;
+                }
+
+                &:hover, &:active {
+                    background: $btn-secondary-bg-hover;
+                    border: $btn-secondary-border-hover;
+                    color: $btn-secondary-font-hover;
+                }
+            }
+        }
+    }
+
 }
