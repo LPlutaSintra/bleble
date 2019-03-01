@@ -245,13 +245,13 @@
   font-size: 6px;
   line-height: 20px;
   text-align: center;
-  color: #000;
+  color: $nikal-main-color;
   opacity: .25;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
 }
 
 .slick-dots li.slick-active button:before {
-  color: #000;
+  color: $nikal-main-color;
   opacity: .75
 }
