@@ -1,0 +1,105 @@
+/*--------------------------------------------------
+Cart
+--------------------------------------------------*/
+.cart-container {
+
+    .item-info {
+
+        > .price {
+
+            .cart-price {
+                .price {
+                    color: $nikal-text-color;
+                    font-size: $font-size-m;
+                }
+            }
+
+            .price-excluding-tax,
+            .price-including-tax {
+                display: inline;
+                margin-right: 10px;
+            }
+
+            .old-price,
+            .price-box-list {
+                font-weight: bold;
+                font-size: $font-size-m;
+                margin-left: 0;
+                .price{
+                    color: $nikal-text-color;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
+
+            .old-price {
+                > span {
+                    text-decoration: line-through;
+                    color: $nikal-main-color;
+                }
+            }
+
+        }
+
+        >.item {
+            .product-item-name{
+                font-size: $font-size-m;
+                color: $nikal-text-color;
+                font-family: $font-fam-base;
+                font-weight: 100;
+
+                a{
+                    color: $nikal-text-color;
+                }
+            }
+
+            .item-options {
+                > dt,
+                > dd {
+                    font-size: $font-size-sm;
+
+                    @include sm {
+                        font-size: $font-size-xs;
+                    }
+                }
+            }
+        }
+        > .subtotal {
+
+            .cart-price {
+                .price {
+                    color: $nikal-text-color;
+                    font-size: $font-size-m;
+
+                    @include sm {
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+        }
+    }
+
+    .actions-toolbar {
+        border-bottom: 1px solid $nikal-background-color;
+
+        .action {
+            font-size: $font-size-sm;
+        }
+    }
+}
+/*--------------------------------------------------
+Qty add subtract buttons
+--------------------------------------------------*/
+.qty-sub,
+.qty-add {
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border: 2px solid $nikal-main-color;
+    border-radius: 3px;
+
+    + .qty,
+    + .item-qty {
+        height: 36px;
+    }
+}

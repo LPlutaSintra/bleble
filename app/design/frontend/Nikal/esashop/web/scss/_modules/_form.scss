@@ -30,3 +30,13 @@ select {
         display: none;
     }
 }
+
+@include inputs {
+    border: none;
+    border-bottom: 1px solid $nikal-main-color;
+    color: $nikal-text-color;
+
+    &:focus {
+        border-color: $nikal-main-color;
+    }
+}
