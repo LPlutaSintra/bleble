@@ -24,15 +24,11 @@
 
 <script type="text/javascript">
     require(['jquery'], function ($) {
-        var isSidebarRight = <?php echo $block->isSidebarRight(); ?>,
+        var isSidebarRight = <?php echo $block->getHelper()->getBlogConfig('sidebar_left_right',$block->getStoreId()) ?>,
             body = $('body');
 
         body.removeClass('page-layout-1column');
-        if (isSidebarRight) {
-            body.addClass('page-layout-2columns-right');
-        } else {
-            body.addClass('page-layout-2columns-left');
-        }
+        body.addClass('page-layout-'+isSidebarRight);
 
         <?php if ($block->getCurrentTheme() == "Etheme/yourstore") :?>
         body.addClass('mpblog-etheme-yourstore');
