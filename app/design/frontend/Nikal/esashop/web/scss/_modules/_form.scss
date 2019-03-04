@@ -40,3 +40,50 @@ select {
         border-color: $nikal-main-color;
     }
 }
+
+input[type="checkbox"] {
+    + label {
+        float: none;
+
+        &:before {
+            background-color: $white;
+            width: 20px;
+            height: 20px;
+            box-sizing: border-box;
+        }
+
+        @include material-icon($checkbox-icon-name, after, 12px);
+
+        &:after {
+            line-height: 17px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 17px;
+            padding: 3px;
+        }
+    }
+
+    &:hover {
+        + label {
+            &:before {
+                border: $checkbox-border-hover;
+            }
+        }
+    }
+
+    &:checked{
+
+        + label {
+
+            &:before {
+                background-color: $checkbox-bg-active;
+                border: $checkbox-border-active;
+            }
+
+            &:after {
+                color: $checkbox-icon-color-active;
+
+            }
+        }
+    }
+}

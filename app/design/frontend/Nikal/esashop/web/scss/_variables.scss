@@ -276,15 +276,15 @@ $bg-google-hover: #d82a12;
 
 $checkbox-bg: $white;
 $checkbox-bg-hover: $white;
-$checkbox-bg-active: $white;
+$checkbox-bg-active: #0234fc;
 
-$checkbox-border: 1px solid #cccccc;
-$checkbox-border-hover: 1px solid #cccccc;
-$checkbox-border-active: 1px solid #cccccc;
+$checkbox-border: 1px solid  #0234fc;
+$checkbox-border-hover: 1px solid  #0234fc;
+$checkbox-border-active: 1px solid  #0234fc;
 
 $checkbox-icon-color: transparent;
-$checkbox-icon-color-hover: #cccccc;
-$checkbox-icon-color-active: $black;
+$checkbox-icon-color-hover:  #0234fc;
+$checkbox-icon-color-active: $white;
 
 $checkbox-icon-name: 'done';
 
