@@ -221,11 +221,13 @@ Buttons
   }
 }
 
-.btn.btn-bulk {
+.btn.btn-bulk,
+.bottom-minicart .actions .primary .action.primary.shopping-cart {
   border: 1px solid $nikal-main-color;
   border-radius: 2px;
   color: $nikal-main-color;
   font-size: $h6-font-size;
+  background: $white;
   &:hover,
   &:active{
     background-color: $nikal-main-color;

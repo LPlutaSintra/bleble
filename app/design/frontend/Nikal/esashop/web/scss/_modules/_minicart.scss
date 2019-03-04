@@ -1,0 +1,123 @@
+
+.minicart-wrapper {
+  .dropdown {
+    width: 525px;
+    .ui-dialog {
+      padding: 35px;
+    }
+  }
+}
+#minicart-content-wrapper {
+
+  .block-title {
+    .text span {
+      font-family: NotesEsaReg;
+      font-size: $h3-font-size - 2px;
+      text-transform: uppercase;
+    }
+    .qty {
+      width: 22px;
+      height: 22px;
+      line-height: 23px;
+      margin-left: 25px;
+    }
+    .products span{
+      font-family: NotesEsaReg;
+      font-size: $h5-font-size;
+      text-transform: uppercase;
+      color: $font-link;
+      margin-left: 10px;
+    }
+    #btn-minicart-close {
+      display: none;
+    }
+  }
+  .block-content {
+    .minicart-items-wrapper {
+      .minicart-items {
+        .item {
+          &:first-child {
+            border-top: none;
+          }
+
+          .product-item-photo {
+            box-shadow: 5px 6px 12px -2px rgba(0,0,0,0.25);
+          }
+          .product-item-details {
+            .product-item-name {
+              a {
+                font-family: NotesEsaBol;
+              }
+            }
+            .product.options {
+              .content {
+                .product.options.list {
+                  .label {
+                    font-family: NotesEsaReg;
+                    font-size: $h5-font-size - 2px;
+                    text-transform: uppercase;
+
+                  }
+                  .values {
+                    span {
+                      font-family: NotesEsaReg;
+                      font-size: $h5-font-size - 2px;
+                      text-transform: uppercase;
+                      color: $font-link;
+                      &:after {
+                        margin: 0 15px;
+                        background-color: $white;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .product-availability {
+              .stock-text {
+                span {
+                  font-family: NotesEsaReg;
+                  font-size: $h5-font-size - 2px;
+                  text-transform: uppercase;
+                }
+              }
+              .stock-qty {
+                span {
+                  font-family: NotesEsaReg;
+                  font-size: $h5-font-size - 2px;
+                  text-transform: uppercase;
+                  color: $font-link;
+                }
+              }
+              .stock-unit {
+                span {
+                  font-family: NotesEsaReg;
+                  font-size: $h5-font-size - 2px;
+                  text-transform: uppercase;
+                  color: $font-link;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .bottom-minicart {
+      display: flex;
+      justify-content: space-between;
+      border-top: 0px;
+      .subtotal {
+        display: inline-block;
+      }
+      .actions {
+        display: inline-block;
+        .action.primary.shopping-cart {
+
+        }
+        .action.continue.close {
+          display: none;
+        }
+      }
+    }
+  }
+}
