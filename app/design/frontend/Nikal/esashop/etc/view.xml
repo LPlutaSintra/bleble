@@ -17,8 +17,8 @@
                 <height>100</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
-                <width>330</width>
-                <height>361</height>
+                <width>490</width>
+                <height>590</height>
             </image>
             <image id="new_products_content_widget_grid" type="small_image">
                 <width>490</width>
@@ -37,12 +37,12 @@
                 <height>361</height>
             </image>
             <image id="related_products_list" type="small_image">
-                <width>330</width>
-                <height>361</height>
+                <width>490</width>
+                <height>590</height>
             </image>
             <image id="upsell_products_list" type="small_image">
-                <width>330</width>
-                <height>361</height>
+                <width>490</width>
+                <height>590</height>
             </image>
             <image id="swatch_image" type="swatch_image">
                 <width>30</width>

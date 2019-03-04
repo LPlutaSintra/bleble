@@ -372,7 +372,7 @@ require(['domReady', 'jquery', 'stickyPlugin'], function (domReady, $) {
 
         cartPagePin.hcSticky({
             stickTo: '.cart-container',
-            top: 50,
+            top: 160,
             responsive: {
                 992: {
                     disable: true

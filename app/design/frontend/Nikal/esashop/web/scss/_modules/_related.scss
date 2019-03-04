@@ -6,4 +6,33 @@
 .related,
 .crosssell {
   background-color: transparent;
+
+  .product-items {
+    .product-item{
+      width: calc(33.333% - #{2 * $gutter});
+      
+      @include md {
+        width: calc(50% - #{2 * $gutter});
+      }
+    }
+  }
+  .block-title {
+    text-align: center;
+    font-size: 42px;
+    font-family: $font-fam-secondary;
+    line-height: 1.25;
+    font-weight: 100;
+    margin-bottom: 50px;
+
+    @include xs {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    strong{
+      font-family: $font-fam-secondary;
+      font-weight: 100;
+    }
+  }
+
 }

@@ -252,13 +252,13 @@ $btn-secondary-font-hover: #ffffff;
 $btn-secondary-border-hover: 2px solid #0234fc;
 
 // Gray
-$btn-gray-bg: linear-gradient(#{$btn-gradient-deg}deg, #d2d2d2, #e2e2e2);
-$btn-gray-font: #000000;
-$btn-gray-border: none;
+$btn-gray-bg: #ffffff;
+$btn-gray-font: #0234fc;
+$btn-gray-border: 2px solid #0234fc;
 
-$btn-gray-bg-hover: linear-gradient(#{$btn-gradient-deg}deg, #dddddd, #f0f0f0);
-$btn-gray-font-hover: #666666;
-$btn-gray-border-hover: none;
+$btn-gray-bg-hover: #0234fc;
+$btn-gray-font-hover: #ffffff;
+$btn-gray-border-hover: 2px solid #0234fc;
 
 //--------------------------------------------------
 // Social media
