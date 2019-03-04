@@ -222,16 +222,47 @@ Buttons
 }
 
 .btn.btn-bulk,
-.bottom-minicart .actions .primary .action.primary.shopping-cart {
+.bottom-minicart .actions .primary .action.primary.shopping-cart,
+.qty button,
+.qty button{
   border: 1px solid $nikal-main-color;
   border-radius: 2px;
   color: $nikal-main-color;
   font-size: $h6-font-size;
   background: $white;
+  &.qty-sub,
+  &.qty-add{
+    width: 22px;
+    height: 22px;
+    i {
+      width: 22px;
+      height: 22px;
+      color: $nikal-main-color;
+      &:after {
+        background-image: none;
+        font-size: 28px;
+        line-height: 0.8;
+      }
+    }
+    &.qty-sub i:after {
+      content: "-";
+    }
+    &.qty-add i:after {
+      content: "+";
+      font-size: 24px;
+      line-height: 0.9;
+    }
+  }
   &:hover,
   &:active{
     background-color: $nikal-main-color;
-    color: #fff;
+    color: $white;
+    &.qty-sub,
+    &.qty-add{
+      i {
+        color: $white;
+      }
+    }
   }
   &:active {
     transform:scale(.98);

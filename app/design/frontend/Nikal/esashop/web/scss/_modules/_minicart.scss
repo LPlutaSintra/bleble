@@ -8,7 +8,7 @@
   }
 }
 #minicart-content-wrapper {
-
+  color: $black;
   .block-title {
     .text span {
       font-family: NotesEsaReg;
@@ -36,17 +36,24 @@
     .minicart-items-wrapper {
       .minicart-items {
         .item {
+          padding: 30px 0px;
           &:first-child {
             border-top: none;
           }
 
           .product-item-photo {
             box-shadow: 5px 6px 12px -2px rgba(0,0,0,0.25);
+            height: 160px;
+            img {
+              height: 160px !important;
+              object-fit: cover;
+            }
           }
           .product-item-details {
             .product-item-name {
               a {
                 font-family: NotesEsaBol;
+                font-size: $h5-font-size;
               }
             }
             .product.options {
@@ -82,19 +89,66 @@
                 }
               }
               .stock-qty {
-                span {
                   font-family: NotesEsaReg;
                   font-size: $h5-font-size - 2px;
                   text-transform: uppercase;
                   color: $font-link;
-                }
               }
               .stock-unit {
-                span {
                   font-family: NotesEsaReg;
                   font-size: $h5-font-size - 2px;
                   text-transform: uppercase;
                   color: $font-link;
+              }
+            }
+            .product-item-pricing {
+              margin: 10px 0px;
+              .price {
+                font-size: $h4-font-size;
+              }
+            }
+            .product-actions-wrapper {
+              .primary {
+                padding: 0px;
+                border: 0px;
+              }
+              .qty.control {
+                max-width: 110px;
+              }
+              input {
+                color: $black;
+                border-bottom: 1px solid $nikal-main-color;
+                margin: 0px 10px;
+                margin-top: -3px;
+              }
+              .action {
+                i {
+                  color: $nikal-main-color;
+                  &:after {
+                    width: 40px;
+                    height: 30px;
+                    display: inline-block;
+                  }
+                }
+                &.delete i {
+                  content: " ";
+                  font-size: 0px;
+                  &:after {
+                    content: " ";
+                    background-image: url('../images/esa-icons/Fb.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                  }
+                }
+                &.wishlist i {
+                  content: " ";
+                  font-size: 0px;
+                  &:after {
+                    content: " ";
+                    background-image: url('../images/esa-icons/astronaut_WishlistOff.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                  }
                 }
               }
             }
@@ -108,6 +162,14 @@
       border-top: 0px;
       .subtotal {
         display: inline-block;
+        margin-top: 0px;
+        .label {
+          margin-bottom: 3px;
+          display: block;
+        }
+        .price {
+          color: $nikal-main-color;
+        }
       }
       .actions {
         display: inline-block;
