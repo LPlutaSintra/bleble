@@ -37,22 +37,33 @@ define([
             });
 
             $('a.level0.level-top').on("touchstart", function (e) {
-                "use strict";
+                //only for tablets
                 var link = $(this);
 
-                if(!link.parent().hasClass("ui-menu-parent")){
-                   return;
-                }
+                mediaCheck({
+                    media: self.options.mediaBreakpoint,
+                    entry: $.proxy(function () {
+                        //do nothing on mobile
+                    }, this),
+                    exit: $.proxy(function () {
+                        "use strict";
 
-                if (link.hasClass('ui-state-focus')) {
-                    self._close();
-                    link.removeClass('ui-state-focus');
-                    $('body').removeClass('navigation-open');
-                } else {
-                    self.focus(e, link.parent());
-                }
+                        if(!link.parent().hasClass("ui-menu-parent")){
+                            return;
+                        }
 
-                e.preventDefault();
+                        if (link.hasClass('ui-state-focus')) {
+                            self._close();
+                            link.removeClass('ui-state-focus');
+                            $('body').removeClass('navigation-open');
+                        } else {
+                            self.focus(e, link.parent());
+                        }
+
+                        e.preventDefault();
+                    }, this)
+                });
+
             });
         },
 

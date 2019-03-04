@@ -216,6 +216,15 @@ body {
             }
           }
         }
+
+        .nav-sections{
+          a,
+          button,
+          .material-icons{
+            color: $nikal-text-color;
+          }
+        }
+
         .logo svg path {
           fill: $header-text-color-home !important;
 
@@ -281,6 +290,13 @@ body {
         }
       }
     }
+    .nav-sections{
+      @include md {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
   }
   &:not(.cms-home) {
     .page-wrapper {
@@ -292,6 +308,15 @@ body {
             font-size: $header-mobile-font-size;
           }
         }
+
+        .nav-sections{
+          @media screen and (max-width: $sm-width) {
+            span {
+              font-size: $font-size-sm;
+            }
+          }
+        }
+
         .switchers {
           .switcher {
             strong {
@@ -401,6 +426,11 @@ body {
 .page-header {
   padding-top:13px;
   top: 60px;
+
+  @include md {
+    height: 140px;
+  }
+
   span:not(.counter) {
     font-size: $header-desktop-font-size;
   }
@@ -615,6 +645,10 @@ body {
   .nav-sections {
     position: relative;
     z-index: -1;
+
+    @include md {
+      position: absolute;
+    }
 
     @include sm {
       z-index: 1;

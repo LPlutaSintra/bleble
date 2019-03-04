@@ -10,7 +10,7 @@
   .product-items {
     .product-item{
       width: calc(33.333% - #{2 * $gutter});
-      
+
       @include md {
         width: calc(50% - #{2 * $gutter});
       }
