@@ -151,7 +151,7 @@ $content-max-width: 1560px;
 //--------------------------------------------------
 
 // Form elements
-$font-size-base: 13px;
+$font-size-base: 15px;
 $font-size-select: $font-size-base;
 $font-size-label: $font-size-base;
 
@@ -196,7 +196,7 @@ $col12: 100%;
 // Shopping cart
 //--------------------------------------------------
 
-$bg-shopping-cart: #f8f8f8;
+$bg-shopping-cart: transparent;
 $bg-qty-btn: #eeeeee;
 $bg-qty-input-border: 0;
 $bg-block-title: #eeeeee;
@@ -234,13 +234,13 @@ $font-discount-price: #f44141;
 $btn-gradient-deg: 180;
 
 // Primary
-$btn-primary-bg: linear-gradient(#{$btn-gradient-deg}deg, #e17031, #d75523);
-$btn-primary-font: #ffffff;
-$btn-primary-border: none;
+$btn-primary-bg: #ffffff;
+$btn-primary-font: #0234fc;
+$btn-primary-border: 2px solid #0234fc;
 
-$btn-primary-bg-hover: linear-gradient(#{$btn-gradient-deg}deg, #df5e2b, #d84920);
+$btn-primary-bg-hover: #0234fc;
 $btn-primary-font-hover: #ffffff;
-$btn-primary-border-hover: none;
+$btn-primary-border-hover: 2px solid #0234fc;
 
 // Secondary
 $btn-secondary-bg: #ffffff;
@@ -252,13 +252,13 @@ $btn-secondary-font-hover: #ffffff;
 $btn-secondary-border-hover: 2px solid #0234fc;
 
 // Gray
-$btn-gray-bg: linear-gradient(#{$btn-gradient-deg}deg, #d2d2d2, #e2e2e2);
-$btn-gray-font: #000000;
-$btn-gray-border: none;
+$btn-gray-bg: #ffffff;
+$btn-gray-font: #0234fc;
+$btn-gray-border: 2px solid #0234fc;
 
-$btn-gray-bg-hover: linear-gradient(#{$btn-gradient-deg}deg, #dddddd, #f0f0f0);
-$btn-gray-font-hover: #666666;
-$btn-gray-border-hover: none;
+$btn-gray-bg-hover: #0234fc;
+$btn-gray-font-hover: #ffffff;
+$btn-gray-border-hover: 2px solid #0234fc;
 
 //--------------------------------------------------
 // Social media

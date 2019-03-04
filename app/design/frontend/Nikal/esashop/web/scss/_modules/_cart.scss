@@ -1,0 +1,209 @@
+/*--------------------------------------------------
+Cart
+--------------------------------------------------*/
+.cart-container {
+
+    > .cart-main-wrapper{
+        .ie11 &{
+            display: block;
+        }
+    }
+
+    > .cart-summary-wrapper {
+
+        @include sm {
+            margin-top: 30px;
+        }
+    }
+
+    .item-info {
+
+        > .price {
+
+            .cart-price {
+                .price {
+                    color: $nikal-text-color;
+                    font-size: $font-size-m;
+                }
+            }
+
+            .price-excluding-tax,
+            .price-including-tax {
+                display: inline;
+                margin-right: 10px;
+            }
+
+            .old-price,
+            .price-box-list {
+                font-weight: bold;
+                font-size: $font-size-m;
+                margin-left: 0;
+                line-height: 1.5;
+                .price{
+                    color: $nikal-text-color;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
+
+            .old-price {
+                > span {
+                    text-decoration: line-through;
+                    color: $nikal-main-color;
+                }
+            }
+
+        }
+
+        >.item {
+            .product-item-name{
+                font-size: $font-size-m;
+                color: $nikal-text-color;
+                font-family: $font-fam-base;
+                font-weight: 100;
+
+                a{
+                    color: $nikal-text-color;
+                }
+            }
+
+            .item-options {
+                > dt,
+                > dd {
+                    font-size: $font-size-sm;
+
+                    @include sm {
+                        font-size: $font-size-xs;
+                    }
+                }
+            }
+        }
+        > .subtotal {
+
+            .cart-price {
+                .price {
+                    color: $nikal-text-color;
+                    font-size: $font-size-m;
+
+                    @include sm {
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+        }
+    }
+
+    .actions-toolbar {
+        border-bottom: 1px solid $nikal-background-color;
+
+        .action {
+            font-size: $font-size-sm;
+        }
+    }
+
+    .block{
+
+        &.discount{
+            background-color: $nikal-background-color;
+            margin: 0;
+            width: 100%;
+
+            .block-label{
+
+                @include sm {
+                    font-size: 15px;
+                }
+            }
+
+            .block-actions {
+                .apply{
+                    padding: 0 20px;
+                    line-height: 28px;
+                    height: 30px;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        &.shipping{
+            >.title{
+                background-color: $nikal-background-color;
+                padding: 0 15px;
+
+                @include sm {
+                    padding: 6px 15px;
+                }
+
+                >strong{
+                    font-size: 15px;
+                    line-height: 2;
+                }
+
+                &:after{
+                    padding: 9px;
+                }
+            }
+        }
+
+        .content{
+            background-color: $nikal-background-color;
+        }
+    }
+
+    .cart-summary {
+
+        >.title{
+            border-bottom: none;
+
+            @include sm {
+                margin-bottom: 20px;
+            }
+        }
+
+        .cart-totals {
+            padding: 30px 0;
+        }
+
+        .amount{
+            font-size: 15px;
+        }
+       .grand {
+           .amount{
+               line-height: 2;
+           }
+       }
+
+        .totals,
+        .totals-tax{
+            >th{
+                font-size: 18px;
+
+                strong{
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .shipping {
+            .value{
+                font-size: 15px;
+            }
+        }
+    }
+}
+/*--------------------------------------------------
+Qty add subtract buttons
+--------------------------------------------------*/
+.qty-sub,
+.qty-add {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 2px solid $nikal-main-color;
+    border-radius: 3px;
+
+    + .qty,
+    + .item-qty {
+        height: 30px;
+    }
+}

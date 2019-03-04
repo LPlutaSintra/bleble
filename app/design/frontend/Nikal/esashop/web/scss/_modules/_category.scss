@@ -81,7 +81,13 @@ Category listing
 
     .product-item {
 
+        .product-img{
+            max-height: 590px;
+        }
+
         .product-item-info{
+            max-width: 490px;
+
             &:hover {
                 height: auto;
 

@@ -7,7 +7,7 @@ select {
     border: none;
     border-bottom: 1px solid $nikal-main-color;
     font-size: 15px;
-    color: $nikal-main-color;
+    color: $nikal-main-color!important;
     background-image:
         linear-gradient(45deg, transparent 45%, $nikal-main-color 55%),
         linear-gradient(135deg, $nikal-main-color 55%, transparent 45%);
@@ -28,5 +28,15 @@ select {
 
     &::-ms-expand {
         display: none;
+    }
+}
+
+@include inputs {
+    border: none;
+    border-bottom: 1px solid $nikal-main-color;
+    color: $nikal-text-color;
+
+    &:focus {
+        border-color: $nikal-main-color;
     }
 }
