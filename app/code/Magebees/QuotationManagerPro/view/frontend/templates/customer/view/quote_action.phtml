@@ -1,0 +1,120 @@
+<?php 
+$quote_id=$block->getRequest()->getParam('quote_id');
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$outofStockStatus=$quote_helper->getOutOfStockStatus();
+$startStatus=$quote_helper->getStartingStatus();
+$config=$quote_helper->getConfig();
+$quote=$quote_helper->loadQuoteById($quote_id);
+$quote_status=$quote->getStatus();
+$allow_customer_checkout=$config['allow_customer_checkout'];
+$submit_allow=$quote_helper->IsStatusAllowForProposal($quote_status);
+?>
+
+<div class="entry-edit">
+	
+<form method='post' id="customerResponse" name="customerResponse" enctype="multipart/form-data" action='<?= $block->getUrl('quotation/customer/quoteProcess/',array('_secure' =>true)); ?>'>
+    <?php echo $block->getBlockHtml('formkey'); ?>
+  					<input type="hidden" name="currentQuoteId" id="currentQuoteId" value="<?= $quote_id?>">
+	<?php if($submit_allow):?>
+    <table class="form-list" cellspacing="0">
+                    <tbody>
+					<tr>
+					<td>
+					
+					<button onclick="rejectQuote('<?= $block->getUrl('quotation/customer/quoteReject/',array('_secure' => true)); ?>');" class="button btn-update button-secondary " title="Reject Proposal" type="button"><span><span><?= /* @escapeNotVerified */ __('Reject Proposal') ?></span></span></button>
+					
+					</td>
+					
+					<?php 
+					if($quote_status!=70): 
+						// Magebees_QuotationManagerPro_Model_Status::PROPOSAL_ACCEPTED ?>
+					<td>
+					
+					<button onclick="editQuote('<?= $block->getUrl('quotation/customer/editQuote/',array('_secure' =>true)); ?>');" class="button btn-update button-secondary" title="Edit Quote" type="button"><span><span><?= /* @escapeNotVerified */ __('Edit Quote') ?></span></span></button>
+					
+					</td>
+					<?php endif;?>
+					<?php 
+					if($quote_status!=60): 
+//				 if(!count($quote_helper->getErrorMsgArr())):
+					if(!$quote_helper->getErrorMsgArr()):
+						// Magebees_QuotationManagerPro_Model_Status::PROPOSAL_REJECTED ?>
+					<td class="a-right">
+					<?php if($allow_customer_checkout):?>
+					<button onclick="conformCheckout('<?= $block->getUrl('quotation/customer/quoteProcess/',array('_secure' => true)); ?>');" class="button btn-proceed-checkout btn-checkout" title="Confirm and Checkout" type="button"><span><span><?= /* @escapeNotVerified */ __('Confirm and Checkout') ?></span></span></button>
+						<?php elseif($quote_status!=70): ?>
+						<button onclick="acceptQuote('<?= $block->getUrl('quotation/customer/quoteAccept/',array('_secure' => true,'quote_id'=>$quote_id)); ?>');" class="button btn-quote-accept" title="Accept Quotation" type="button"><span><span><?= /* @escapeNotVerified */ __('Accept Quotation') ?></span></span></button>
+						<?php endif; ?>
+					</td>
+						<?php if($quote_status==$outofStockStatus):	
+	 	$quote=$quote_helper->loadQuoteById($quote_id);
+		$quote->setStatus($startStatus);
+		$quote->save();
+		endif;?>	
+	<?php else: 	
+		$quote=$quote_helper->loadQuoteById($quote_id);
+		$quote->setStatus($outofStockStatus);
+		$quote->save();	
+	 endif;?>
+					
+					<?php endif;?>
+					</tr>
+					</tbody></table>
+
+	<?php endif;?>
+</form>
+<div class="clear"></div>
+	<?php if($submit_allow):?>
+<script>
+function conformCheckout(url){
+	 customerResponse = $('customerResponse');
+    if (customerResponse) {
+        var validator = new Validation(customerResponse);
+        if (validator) {
+            if (validator.validate()) {
+				customerResponse.writeAttribute('action', url);
+                    customerResponse.submit();
+			}
+		}
+	}
+}
+	function acceptQuote(url){
+	 customerResponse = $('customerResponse');
+    if (customerResponse) {
+        var validator = new Validation(customerResponse);
+        if (validator) {
+            if (validator.validate()) {
+				customerResponse.writeAttribute('action', url);
+                    customerResponse.submit();
+			}
+		}
+	}
+}
+function rejectQuote(url){
+	customerResponse = $('customerResponse');
+    if (customerResponse) {
+        var validator = new Validation(customerResponse);
+        if (validator) {
+            if (validator.validate()) {
+				customerResponse.writeAttribute('action', url);
+                    customerResponse.submit();
+			}
+		}
+	}
+}
+function editQuote(url){
+	customerResponse = $('customerResponse');
+    if (customerResponse) {
+        var validator = new Validation(customerResponse);
+        if (validator) {
+            if (validator.validate()) {
+				customerResponse.writeAttribute('action', url);
+                    customerResponse.submit();
+			}
+		}
+	}
+}
+
+</script>
+	<?php endif;?>
+</div>

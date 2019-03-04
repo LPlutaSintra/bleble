@@ -1,0 +1,11 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+           <referenceBlock name="customer_form">
+             <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Edit\Tab\Customer" name="customer_edit_tab_quote" after="wishlist" ifconfig="quotation/setting/enable">
+              <action method="setTabLabel">
+                  <argument name="label" xsi:type="string">Customer Quote</argument>
+              </action>
+            </block>
+          </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,94 @@
+<?php 
+$quote_id=$block->getRequest()->getParam('quote_id');
+
+$backend_helper=$this->helper('Magebees\QuotationManagerPro\Helper\Admin');
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$_quote=$quote_helper->loadQuoteById($quote_id);
+$tax_config=$quote_helper->getTaxConfig();
+$enable_shipping=$tax_config['enable_shipping'];
+$is_include_tax=$tax_config['price_tax'];
+$total_data=$backend_helper->getDefaultTotalData($quote_id);
+$total_orig_price=$total_data['orig_price'];
+$total_orig_price_incl_tax=$total_data['orig_price_incl_tax'];
+$converted_total_orig_price=$quote_helper->getConvertedPrice($total_orig_price);
+$converted_total_orig_price_incl_tax=$quote_helper->getConvertedPrice($total_orig_price_incl_tax);
+$total_row_price=$total_data['row_total'];
+$total_row_price_incl_tax=$total_data['row_total_incl_tax'];
+$converted_total_row_price=$quote_helper->getConvertedPrice($total_row_price);
+$converted_total_row_price_incl_tax=$quote_helper->getConvertedPrice($total_row_price_incl_tax);
+$adjustment_quote_incl_tax=$total_row_price_incl_tax-$total_orig_price_incl_tax;
+$adjustment_quote=$total_row_price-$total_orig_price;
+$converted_adjustment_quote=$quote_helper->getConvertedPrice($adjustment_quote);
+$tax=$total_data['tax'];
+$shipping_handling_excl_tax=$total_data['shipping_handling_excl_tax'];
+$shipping_handling_incl_tax=$total_data['shipping_handling_incl_tax'];
+if($_quote->getStatus()>20)
+{
+$grand_total=$total_row_price;
+}
+else
+{
+	$grand_total=$total_orig_price;
+}
+
+if($is_include_tax)
+{
+	$grand_total+=$tax;
+}
+
+if($enable_shipping)
+{
+	if($is_include_tax)
+	{
+	$grand_total+=$shipping_handling_incl_tax;
+	}
+	else
+	{
+	$grand_total+=$shipping_handling_excl_tax;
+	}
+}
+//print_r($grand_total);die;
+$grand_total_incl_tax=$total_row_price_incl_tax+$shipping_handling_incl_tax;
+$converted_grand_total=$quote_helper->getConvertedPrice($grand_total);
+$converted_grand_total_incl_tax=$quote_helper->getConvertedPrice($grand_total_incl_tax);
+$converted_tax=$quote_helper->getConvertedPrice($tax);
+$converted_shipping_handling_excl_tax=$quote_helper->getConvertedPrice($shipping_handling_excl_tax);
+$converted_shipping_handling_incl_tax=$quote_helper->getConvertedPrice($shipping_handling_incl_tax);
+$is_show_price=$quote_helper->isShowPriceBeforeProposal($_quote->getStatus());	
+?>
+<?php if($is_show_price):?>
+<tr>
+	<th colspan="5" scope="row"><?= /* @escapeNotVerified */ __('Original Subtotal') ?></th>
+	<td class="section_subtotal_org"><?= $quote_helper->getFormatedPrice($converted_total_orig_price)?></td>	
+</tr>
+<?php if($_quote->getStatus()>20): ?>
+<tr>
+	<th colspan="5" scope="row"><?= /* @escapeNotVerified */ __('Adjustment Quotation') ?></th>
+	<td class="section_adjustment_quote"><?= $quote_helper->getFormatedPrice($converted_adjustment_quote)?></td>	
+</tr>
+<tr>
+	<th colspan="5" scope="row"><?= /* @escapeNotVerified */ __('Subtotal') ?></th>
+	<td  class="section_subtotal" ><?= $quote_helper->getFormatedPrice($converted_total_row_price)?></td>	
+</tr>
+<?php endif; ?>
+<?php if($is_include_tax):?>
+<tr>
+	
+	<th colspan="5" scope="row"><?= /* @escapeNotVerified */ __('Tax') ?></th>	
+	<td class="section_proposal_price" ><?= $quote_helper->getFormatedPrice($converted_tax)?></td>
+</tr>
+	<?php endif; ?>
+<?php if($enable_shipping):?>
+<tr>
+	<th colspan="5" scope="row"><?= /* @escapeNotVerified */ __('Shipping & Handling') ?></th>
+	<!--<td class="section_proposal_price" ><?= $quote_helper->getFormatedPrice($converted_shipping_handling_excl_tax)?></td>-->
+	<td class="section_proposal_price" ><?= $quote_helper->getFormatedPrice($converted_shipping_handling_incl_tax)?></td>
+</tr>
+<?php endif; ?>
+<tr>
+	<th colspan="5" scope="row"><?= /* @escapeNotVerified */ __('Grand Total') ?></th>	
+	<td class="section_grandtotal"><?= $quote_helper->getFormatedPrice($converted_grand_total)?></td>
+</tr>
+<?php endif; ?>
+
+ 	

@@ -1,0 +1,100 @@
+<?php
+$quote_id=$block->getCurrentQuoteId();
+$customer_id=$block->getCurrentCustomerId();
+$htmlprefix='quote-shipping_address_';
+if ($block->getIsShipping()):
+    $_fieldsContainerId = 'quote-shipping_address_fields';
+    $_addressChoiceContainerId = 'quote-shipping_address_choice';
+	$htmlprefix='quote-shipping_address_';
+	$htmlnameprefix='quote[shipping_address]';
+    ?>
+    <script>
+    require(["Magebees_QuotationManagerPro/quote/view/form"], function(){
+
+        quote.shippingAddressContainer = '<?= /* @escapeNotVerified */ $_fieldsContainerId ?>';
+        quote.setAddresses(<?= /* @escapeNotVerified */ $block->getAddressCollectionJson() ?>);
+
+    });
+    </script>
+    <?php
+else:
+    $_fieldsContainerId = 'quote-billing_address_fields';
+    $_addressChoiceContainerId = 'quote-billing_address_choice';
+	$htmlprefix='quote-billing_address_';
+	$htmlnameprefix='quote[billing_address]';
+    ?>
+    <script>
+        require(["Magebees_QuotationManagerPro/quote/view/form"], function(){
+            quote.billingAddressContainer = '<?= /* @escapeNotVerified */ $_fieldsContainerId ?>';
+        });
+    </script>
+    <?php
+endif; ?>
+
+<fieldset class="admin__fieldset">
+    <legend class="admin__legend <?= /* @escapeNotVerified */ $block->getHeaderCssClass() ?>">
+        <span><?= /* @escapeNotVerified */ $block->getHeaderText() ?></span>
+    </legend><br>
+
+    <fieldset id="<?= /* @escapeNotVerified */ $_addressChoiceContainerId ?>" class="admin__fieldset quote-choose-address">
+	<input type="hidden" name="current_quote" value="<?php echo $quote_id;?>">
+	<input type="hidden" name="current_customer" value="<?php echo $customer_id;?>">
+    <?php if ($block->getIsShipping()): ?>
+        <div class="admin__field admin__field-option admin__field-shipping-same-as-billing">
+            <input type="checkbox" id="quote-shipping_same_as_billing" name="shipping_same_as_billing"
+                   onclick="quote.setShippingAsBilling(this.checked)" class="admin__control-checkbox"
+                   <?php if ($block->getIsAsBilling()): ?>checked<?php endif; ?> />
+            <label for="quote-shipping_same_as_billing" class="admin__field-label">
+                <?= /* @escapeNotVerified */ __('Same As Billing Address') ?>
+            </label>
+        </div>
+    <?php endif; ?>
+        <div class="admin__field admin__field-select-from-existing-address">
+            <label class="admin__field-label"><?= /* @escapeNotVerified */ __('Select from existing customer addresses:') ?></label>
+            <?php $_id = $htmlprefix . 'customer_address_id' ?>
+            <div class="admin__field-control">
+                <select id="<?= /* @escapeNotVerified */ $_id ?>"
+                        name="<?= $htmlnameprefix ?>[customer_address_id]"
+                        onchange="quote.selectAddress(this, '<?= /* @escapeNotVerified */ $_fieldsContainerId ?>')"
+                        class="admin__control-select">
+                    <option value=""><?= /* @escapeNotVerified */ __('Add New Address') ?></option>
+                    <?php foreach ($block->getAddressCollection() as $_address): ?>
+                        <?php //if($block->getQuoteAddressAsString($_address)!=$block->getQuoteAddressAsString($block->getAddress())): ?>
+                        <option
+                            value="<?= /* @escapeNotVerified */ $_address->getId() ?>"<?php if ($_address->getId() == $block->getAddressId()): ?> selected="selected"<?php endif; ?>>
+                            <?= /* @escapeNotVerified */ $block->getQuoteAddressAsString($_address) ?>
+                        </option>
+                        <?php //endif; ?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="quote-address admin__fieldset" id="<?= /* @escapeNotVerified */ $_fieldsContainerId ?>">
+        <?= $block->getForm()->toHtml() ?>
+
+        <div class="admin__field admin__field-option quote-save-in-address-book">
+            <input name="<?= $htmlnameprefix ?>[save_in_address_book]" type="checkbox"
+                   id="<?= $htmlprefix ?>save_in_address_book"
+                   value="1"                  
+                   class="admin__control-checkbox"/>
+            <label for="<?= $htmlprefix ?>save_in_address_book"
+                   class="admin__field-label"><?= /* @escapeNotVerified */ __('Save in address book') ?></label>
+        </div>
+    </div>
+    <?php $hideElement = 'address-' . ($block->getIsShipping() ? 'shipping' : 'billing') . '-overlay'; ?>
+    <div style="display: none;" id="<?= /* @escapeNotVerified */ $hideElement ?>" class="quote-methods-overlay">
+        <span><?= /* @escapeNotVerified */ __('You don\'t need to select a shipping address.') ?></span>
+    </div>
+
+    <script>
+        require(["Magebees_QuotationManagerPro/quote/view/form"], function(){
+                quote.bindAddressFields('<?= /* @escapeNotVerified */ $_fieldsContainerId ?>');
+                quote.bindAddressFields('<?= /* @escapeNotVerified */ $_addressChoiceContainerId ?>');
+                <?php if ($block->getIsShipping() && $block->getIsAsBilling()): ?>
+                quote.disableShippingAddress(true);
+                <?php endif; ?>
+        });
+    </script>
+</fieldset>

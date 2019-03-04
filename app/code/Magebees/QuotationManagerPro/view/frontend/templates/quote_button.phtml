@@ -1,0 +1,37 @@
+<?php $quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$is_enable_groupwise=$quote_helper->isEnableCustomerGroupWise();
+$config=$quote_helper->getConfig();
+$frontend_config=$quote_helper->getFrontendConfig();
+$quoteButtonTitle = __('Add to Quote');
+$quote_block=$this->getLayout()->createBlock('Magebees\QuotationManagerPro\Block\Button');
+$_product=$this->getProduct();
+$check_addtocart=false;
+$enable_addtocart=$frontend_config['enable_qaddtocart'];
+$stockwise_quote=$quote_helper->isEnableStockWise($_product);
+$attributewise_quote=$quote_helper->isEnableAttributeWise($_product);
+?>
+
+ <!-- Quote button start -->
+   
+  <?php if($config['enable']): ?>
+ 
+		<?php if(($attributewise_quote=='Yes')&&($is_enable_groupwise)&&($stockwise_quote)):
+				$check_addtocart=true;?>
+        <?php $postParamsQuote = $quote_block->getAddToQuoteParams($_product); ?>
+		<form data-role="toquote-form" action="<?php echo $postParamsQuote['action']; ?>" method="post">
+            <input type="hidden" name="product" value="<?php echo $postParamsQuote['data']['product']; ?>">
+            <input type="hidden" name="uenc"
+                   value="<?php echo $postParamsQuote['data']['uenc']; ?>">
+            <button type="submit"
+                    title="<?php echo $block->escapeHtml($quoteButtonTitle); ?>"
+                    class="action toquote quote-btn-list">
+                <span><?php echo $quoteButtonTitle ?></span>
+            </button>
+        </form>   			   
+   			  
+   			
+   			   <?php endif; ?>
+		   <?php endif; ?>
+<br/>
+		
+    <!-- Quote button stop -->

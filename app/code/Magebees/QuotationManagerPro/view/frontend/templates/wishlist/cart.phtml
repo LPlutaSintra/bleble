@@ -1,0 +1,38 @@
+<?php
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$version=$quote_helper->getMagentoVersion();
+if(version_compare($version, '2.2.0', '<'))
+{
+	$escaper=$this->helper(\Magento\Framework\EscapeHelper::class);
+}
+else
+{
+	$escaper=$block;
+}
+?>
+<?php foreach ($block->getChildNames() as $childName): ?>
+    <?= /* @noEscape */ $block->getLayout()->renderElement($childName, false) ?>
+<?php endforeach;?>
+<div class="box-tocart">
+    <fieldset class="fieldset">
+    <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility()): ?>
+        <div class="field qty">
+            <label class="label" for="qty[<?= $escaper->escapeHtmlAttr($item->getId()) ?>]"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+            <div class="control">
+                <input type="number" data-role="qty" id="qty[<?= $escaper->escapeHtmlAttr($item->getId()) ?>]" class="input-text qty" data-validate="{'required-number':true,'validate-greater-than-zero':true}"
+               name="qty[<?= $escaper->escapeHtmlAttr($item->getId()) ?>]" value="<?= /* @noEscape */ (int)($block->getAddToCartQty($item) * 1) ?>">
+            </div>
+        </div>
+    <?php endif; ?>
+ 
+    <div class="product-item-actions">
+        <div class="actions-primary">
+            <?php echo $block->getLayout()->createBlock('Magebees\QuotationManagerPro\Block\Button')->setListProduct($product)->setTemplate('Magebees_QuotationManagerPro::product/list/addtocart.phtml')->toHtml();?>
+        </div>
+    </div>
+  
+    </fieldset>
+</div>

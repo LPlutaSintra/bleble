@@ -1,0 +1,34 @@
+<?php
+		$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');		
+		$outofStockStatus=$quote_helper->getOutOfStockStatus();
+		$startStatus=$quote_helper->getStartingStatus();
+		$config=$quote_helper->getConfig();
+		$file_upload_config=$quote_helper->getFileUploadConfig();
+		$allow_guest=$config['allow_guest'];	$allow_file_upload=$file_upload_config['enable_file_upload'];
+		$quoteId = $block->getQuoteId(); 
+		$quote=$quote_helper->loadQuoteById($quoteId);
+		$quote_status=$quote->getStatus();
+	$image_url=$block->getViewFileUrl('Magebees_QuotationManagerPro::images/ajax_loader.gif'); 	
+	?>
+		
+	<?php if($quoteId): ?> 
+		<?php if(!$quote_helper->isCustomerLoggedIn()): ?> 
+<div class="quote-summary">
+	<div class="quote-summary-inner">
+			<p>
+				<button class="action primary" id="login-popup">Sign In For Request Quote</button>
+				<!--<?php if($allow_guest): ?>
+				<button class="action primary" id="login-popup">sign in</button>
+			<?php else: ?>
+				<button class="action primary proceed-to-checkout" href="javascript:void(0);"><?= /* @escapeNotVerified */ __('Login For Request Quote') ?></button>
+				<?php endif; ?>-->
+			</p>
+			</div>
+</div>
+		<?php endif; ?>
+		<?php endif; ?>
+
+
+<script>
+	 window.magebeesQuoteConfig = <?= /* @escapeNotVerified */ $quote_helper->getSerializedQuoteConfig() ?>;
+</script>

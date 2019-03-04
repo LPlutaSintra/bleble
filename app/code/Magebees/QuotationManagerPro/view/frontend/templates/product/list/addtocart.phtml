@@ -1,0 +1,89 @@
+<?php
+use Magento\Framework\App\Action\Action;
+$_product = $block->getListProduct(); 
+
+$check_addtocart=false;
+$cartButtonTitle = __('Add to Cart');
+$quoteButtonTitle = __('Add to Quote'); ?>
+<form></form><?php
+//$parentBlock = $block->getParentBlock(); 
+$parentBlock = $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct'); 
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$is_enable_groupwise=$quote_helper->isEnableCustomerGroupWise();
+$config=$quote_helper->getConfig();
+$frontend_config=$quote_helper->getFrontendConfig();
+$hideprice_config=$quote_helper->getHidePriceConfig();
+$enable_addtocart=$frontend_config['enable_qaddtocart'];
+$enable_price=$quote_helper->isEnablePriceCustGroupWise($_product);
+$enable_manage_stock=$frontend_config['enable_manage_stock'];
+$stockwise_quote=$quote_helper->isEnableStockWise($_product);
+$attributewise_quote=$quote_helper->isEnableAttributeWise($_product);
+?>
+ <!-- Quote button start -->
+   
+<?php if($config['enable']): ?>
+<?php if($frontend_config['enable_btn_cat']): ?>
+<?php if(($attributewise_quote=='Yes')&&($is_enable_groupwise)&&($stockwise_quote)):?>	
+        <?php 
+		$check_addtocart=true;
+		$postParamsQuote = $block->getAddToQuoteParams($_product); ?>
+        <form data-role="toquote-form" action="<?php echo $postParamsQuote['action']; ?>" method="post">
+            <input type="hidden" name="product" value="<?php echo $postParamsQuote['data']['product']; ?>">
+            <input type="hidden" name="<?php echo Action::PARAM_NAME_URL_ENCODED; ?>"
+                   value="<?php echo $postParamsQuote['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+            <button type="submit"
+                    title="<?php echo $block->escapeHtml($quoteButtonTitle); ?>"
+                    class="action toquote quote-btn-list">
+                <span><?php echo $quoteButtonTitle ?></span>
+            </button>
+
+        </form>   			  
+   			   <?php endif; ?>
+   			   <?php endif; ?>
+		   <?php endif; ?>
+    <!-- Quote button stop -->
+<br/>
+ <?php if($check_addtocart)
+{	
+	$is_show_addtocart=$enable_addtocart;
+	if($is_show_addtocart)
+	{
+		if($enable_price)
+		{
+			$is_show_addtocart=$enable_addtocart;
+		}
+		else
+		{
+			$is_show_addtocart=false;
+		}
+	}
+}
+else
+{
+	$is_show_addtocart=true;
+}?>
+    <!-- Cart button start -->
+ <?php  if ($_product->isSaleable()) : ?>
+		<?php //if(($quote_attribute=='Yes')&&($enable_addtocart)):?>
+		<?php if($is_show_addtocart):?>
+        <?php $postParamsCart = $parentBlock->getAddToCartPostParams($_product); ?>
+        <form data-role="tocart-form" action="<?php echo $postParamsCart['action']; ?>" method="post">
+            <input type="hidden" name="product" value="<?php echo $postParamsCart['data']['product']; ?>">
+            <input type="hidden" name="<?php echo Action::PARAM_NAME_URL_ENCODED; ?>"
+                   value="<?php echo $postParamsCart['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+            <?php echo $parentBlock->getBlockHtml('formkey')?>
+            <button type="submit"
+                    title="<?php echo $block->escapeHtml($cartButtonTitle); ?>"
+                    class="action tocart primary">
+                <span><?php echo $cartButtonTitle ?></span>
+            </button>
+        </form>
+   <?php endif; ?>
+    <!-- Cart button stop -->
+<?php else : ?>
+    <?php if ($_product->getIsSalable()) : ?>
+        <div class="stock available"><span><?php echo __('In stock') ?></span></div>
+    <?php else : ?>
+        <div class="stock unavailable"><span><?php echo __('Out of stock') ?></span></div>
+    <?php endif; ?>
+<?php endif; ?>

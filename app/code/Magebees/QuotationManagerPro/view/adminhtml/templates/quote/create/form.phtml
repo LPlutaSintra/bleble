@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** $block Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Form */
+?>
+
+<form id="edit_form" data-quote-config='<?php echo $block->getQuoteDataJson() ?>' data-load-base-url="<?php echo $block->getLoadBlockUrl() ?>" data-send-action="<?php echo $block->getSendUrl() ?>" action="<?= /* @escapeNotVerified */ $block->getUrl('*/*/save') ?>" method="post" enctype="multipart/form-data">
+    <?= $block->getBlockHtml('formkey') ?>
+
+	<div id="quote-customer-selector" class="fieldset-wrapper quote-customer-selector" style="display:<?= /* @escapeNotVerified */ $block->getQuoteCustomerSelectorDisplay() ?>">
+		<?= $block->getChildHtml('customer') ?>
+    </div>
+	
+	<div id="quote-store-selector" class="fieldset-wrapper" style="display:<?= /* @escapeNotVerified */ $block->getQuoteStoreSelectorDisplay() ?>">
+		<?= $block->getChildHtml('currency_swicher') ?>
+	   	<?= $block->getChildHtml('store') ?>
+    </div>
+	 <div id="quote-data" style="display:<?= /* @escapeNotVerified */ $block->getQuoteDataSelectorDisplay() ?>">
+        <?= $block->getChildHtml('data') ?>
+    </div>
+</form>

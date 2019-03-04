@@ -1,0 +1,72 @@
+<?php 
+$quote_id=$block->getRequest()->getParam('quote_id');
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$quote=$quote_helper->loadQuoteById($quote_id);
+if($quote_helper->getQuoteMessages($quote_id)){?>
+<?php
+$message_data=$quote_helper->getQuoteMessages($quote_id);
+$encoded_communication=$message_data['communication'];
+$decoded_communication=$quote_helper->getUnserializeData($encoded_communication);
+$message_detail=$decoded_communication['messages'];
+$is_msg_exist= array_search('1', array_column($message_detail, 'display_at_front'));
+if($is_msg_exist)
+{?>
+ <div class="block block-quote-details-view">
+<div class="block-title">
+   <strong> <?= /* @escapeNotVerified */ __('Message History') ?></strong>
+</div>
+</div>
+<?php }?>
+ <div class="quote-msg-collection">
+ <div class="quote-msg-content">
+	 
+	 <div class="quote-msg-accordion">
+<?php if(is_array($message_detail)) {
+ foreach(array_reverse($message_detail) as $key=>$value):
+if($value['display_at_front']){
+	if(isset($value['is_admin']))
+	{
+	
+		 $admin=$quote_helper->getUserInfoById($quote->getAssignTo());
+		 $admin_first_name=$admin->getFirstName();
+		 $admin_last_name=$admin->getLastName();
+		 $message_sender=$admin_first_name." ".$admin_last_name;
+	}
+	else
+	{
+		
+		$customer=$quote_helper->loadCustomerById($quote->getCustomerId());
+		$customer_first_name=$customer->getFirstName();
+		$customer_last_name=$customer->getLastName();
+		$message_sender=$customer_first_name." ".$customer_last_name;
+	}
+	 $status=$quote_helper->getStatus($value['quoteStatus']);?>
+		<h3><?=$key."|".$status."| By ".$message_sender?></h3>
+
+		 <div>
+			 <?php
+	if(isset($value['message']))
+{
+$message=$value['message'];?>
+	<?=$message ?>
+<?php } ?>
+	
+<?php if(isset($value['files']))
+{
+$quote_files=$quote_helper->getUnserializeData($value['files']);
+	 foreach($quote_files as $file):?>
+	<div>
+	<a href="<?= $quote_helper->getQuoteFilePath($file['path']) ?>"><?=$file['name']?></a>	
+</div>
+<?php endforeach;
+}?>
+	</div>
+<?php }
+endforeach;
+}?>
+</div>
+</div>
+</div>
+<?php	}
+
+?>

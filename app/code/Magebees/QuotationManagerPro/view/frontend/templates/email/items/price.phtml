@@ -1,0 +1,10 @@
+<?php
+/** @var \Magebees\QuotationManagerPro\Block\Quote\Email\Items\DefaultItems $block */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$_item = $block->getItem();
+
+/** @var \Magebees\QuotationManagerPro\Model\Quote $_quote */
+$_quote = $_item->getQuote();
+?>
+
+<?= /* @escapeNotVerified */  $quote_helper->getFormatedPrice($_item->getPrice()) ?>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+ <menu>
+	<add id="Magebees_QuotationManagerPro::Heading" title="MageBees Quotation Manager Pro" module="Magebees_QuotationManagerPro" sortOrder="150" parent="Magento_Sales::sales" resource="Magebees_QuotationManagerPro::Heading" />	
+	<add id="Magebees_QuotationManagerPro::grid" title="Manage Quotations"  action="quotation/quote" module="Magebees_QuotationManagerPro" sortOrder="150" parent="Magebees_QuotationManagerPro::Heading" resource="Magebees_QuotationManagerPro::quotation"/>
+	 <add id="Magebees_QuotationManagerPro::config" title="Configuration"  action="adminhtml/system_config/edit/section/quotation" module="Magebees_QuotationManagerPro" sortOrder="180" parent="Magebees_QuotationManagerPro::Heading"  resource="Magebees_QuotationManagerPro::config"/>
+ </menu>
+</config>
+

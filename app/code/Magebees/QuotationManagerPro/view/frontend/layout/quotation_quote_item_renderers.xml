@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="quotation_item_price_renderers"/>
+    <body>
+		  <referenceBlock name="quotation.quote.item.renderers">
+			   <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer" as="default" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="quotation.quote.item.renderers.default.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="quotation.quote.item.renderers.default.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="quotation.quote.item.renderers.default.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>
+			  <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\RenderBundle" as="bundle" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="quotation.quote.item.renderers.bundle.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="quotation.quote.item.renderers.bundle.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="quotation.quote.item.renderers.bundle.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>
+            <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\RenderDownloadable" as="downloadable" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="quotation.quote.item.renderers.downloadable.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="quotation.quote.item.renderers.downloadable.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="quotation.quote.item.renderers.downloadable.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>
+			     <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\RenderConfigurable" as="configurable" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="quotation.quote.item.renderers.configurable.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="quotation.quote.item.renderers.configurable.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="quotation.quote.item.renderers.configurable.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>
+        </referenceBlock>
+		 
+           
+			    
+       <!-- <referenceBlock name="quotation.quote.item.renderers">
+            <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer" name="quote.item.renderer.simple" as="simple" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.simple.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.simple.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.simple.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>-->
+          <!--  <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer" name="quote.item.renderer.default" as="default" template="Magebees_QuotationManagerPro::quote/item/default.phtml"/>
+            <block class="Magento\Downloadable\Block\Checkout\Cart\Item\Renderer" name="downloadable.product.links" template="Magento_Downloadable::checkout/links.phtml"/>
+            <block class="Magento\ConfigurableProduct\Block\Cart\Item\Renderer\Configurable" name="quote.item.renderer.configurable" as="configurable" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.configurable.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.configurable.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.configurable.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>
+            <block class="Magento\Bundle\Block\Checkout\Cart\Item\Renderer" name="quote.item.renderer.bundle" as="bundle" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.bundle.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.bundle.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.bundle.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>
+            <block class="Magento\GroupedProduct\Block\Cart\Item\Renderer\Grouped" name="quote.item.renderer.grouped" as="grouped" template="Magebees_QuotationManagerPro::quote/item/default.phtml">
+                <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.grouped.actions" as="actions">
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.grouped.actions.edit" template="Magebees_QuotationManagerPro::quote/item/edit.phtml"/>
+                    <block class="Magebees\QuotationManagerPro\Block\Checkout\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.grouped.actions.remove" template="Magebees_QuotationManagerPro::quote/item/remove.phtml"/>
+                </block>
+            </block>-->
+      
+    </body>
+</page>

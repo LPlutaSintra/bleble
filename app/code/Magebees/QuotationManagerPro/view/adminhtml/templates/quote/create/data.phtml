@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="page-create-order">
+   
+   <!-- <div class="quote-details<?php //if ($block->getCustomerId()): ?> quote-details-existing-customer<?php //endif; ?>">-->
+    <div class="quote-details">
+        <section id="quote-form_account" class="admin__page-section quote-account-information">
+            <?= $block->getChildHtml('form_account') ?>
+        </section>
+
+        <section id="quote-addresses" class="admin__page-section quote-addresses">
+            <div class="admin__page-section-title">
+                <span class="title"><?= /* @escapeNotVerified */ __('Address Information') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div id="quote-billing_address" class="admin__page-section-item quote-billing-address">
+                    <?= $block->getChildHtml('billing_address') ?>
+                </div>
+                <div id="quote-shipping_address" class="admin__page-section-item quote-shipping-address">
+                    <?= $block->getChildHtml('shipping_address') ?>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

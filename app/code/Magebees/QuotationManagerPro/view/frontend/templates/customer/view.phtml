@@ -1,0 +1,59 @@
+<?php
+/** @var \Magebees\QuotationManagerPro\Block\Quote\View $block */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$quote_helper->unsetErrorMsgArr();
+?>
+<div class="table-wrapper quote-items">
+<div id="editqtyurl" style="display:none;"><?=$block->getUrl('quotation/quote/editQtyProposal');?></div>
+<input type="hidden" id="magebees_quote" value="<?=$block->getQuoteId();?>"/>
+    <table class="data table table-quote-items" id="my-quote-table" summary="<?= /* @escapeNotVerified */ __('Quote Items') ?>">
+        <caption class="table-caption"><?= /* @escapeNotVerified */ __('Quote Items') ?></caption>
+        <thead>
+            <?php //if($block->isPagerDisplayed()): ?>
+              <!--  <tr>
+                    <td colspan="5" data-block="quote-items-pager-top" class="quote-pager-wrapper quote-pager-wrapper-top">
+                        <?= $block->getPagerHtml() ?>
+                    </td>
+                </tr>-->
+            <?php //endif ?>
+            <tr>
+                <th class="col name"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
+                <th class="col name"><?= /* @escapeNotVerified */ __('Comment') ?></th>                
+                <th class="col price"><?= /* @escapeNotVerified */ __('Price') ?></th>
+                <th class="col qty"><?= /* @escapeNotVerified */ __('Qty') ?></th> 
+				<th class="col proposal"><?= /* @escapeNotVerified */ __('Proposal') ?></th>
+				<th class="col subtotal"><?= /* @escapeNotVerified */ __('Sub Total') ?></th>
+            </tr>
+        </thead>
+        <?php $items = $block->getItems(); 
+		$quote_helper->unsetErrorMsgArr();?>       
+        <?php foreach ($items as $item): ?>        
+            <tbody>
+                <?= $block->getItemHtml($item) ?>              
+            </tbody>
+        <?php endforeach; ?>
+      <tfoot>
+            <?php if($block->isPagerDisplayed()): ?>
+              <!--  <tr>
+                    <td colspan="5" data-block="quote-items-pager-bottom" class="quote-pager-wrapper quote-pager-wrapper-bottom">
+                        <?= $block->getPagerHtml() ?>
+                    </td>
+                </tr>-->
+            <?php endif ?>
+           <?= $block->getChildHtml('quote_totals') ?>
+          
+        </tfoot>
+    </table>
+</div>
+ <?= $block->getChildHtml('quote_actions') ?>
+
+<script type="text/javascript">
+	require([
+        'jquery',
+		'domReady!',
+        'Magebees_QuotationManagerPro/js/quotation'
+    ], function($,magebeesQuote){
+		
+		 var widget = $(this).magebeesQuote({});	
+		});
+</script>

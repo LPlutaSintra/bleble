@@ -1,0 +1,247 @@
+Root,Root
+Customer Quote,Customer Quote
+Customer Quotation,Customer Quotation
+ID,ID
+First Name,First Name
+Last Name,Last Name
+Email,Email
+Signed-up Point,Signed-up Point
+Product,Product
+SKU,SKU
+Select,Select
+Quantity,Quantity
+Please select a customer,Please select a customer
+Create New Quote for %1 in %2,Create New Quote for %1 in %2
+Create New Quote in %1,Create New Quote in %1
+Create New Quote for %1,Create New Quote for %1
+Create New Quote for New Customer,Create New Quote for New Customer
+Please select products,Please select products
+Please select a store,Please select a store
+Delete,Delete
+Quote Assign To,Quote Assign To
+Customer First Name,Customer First Name
+Customer Last Name,Customer Last Name
+Quote Requested At,Quote Requested At
+Store Views,Store Views
+Status,Status
+Action,Action
+Save Quotation And Continue,Save Quotation And Continue
+Delete Quotation,Delete Quotation
+Back,Back
+Edit Quote,Edit Quote
+Print PDF,Print PDF
+Quotations,Quotations
+Create New Quote,Create New Quote
+My Quotations,My Quotations
+Quotation,Quotation
+Quotes,Quotes
+This quote no longer exists,This quote no longer exists
+Status Change From,Status Change From
+To,To
+The Proposal has been sent,The Proposal has been sent
+Quote Item does not exist for proposal,Quote Item does not exist for proposal
+Please set the shipping address before create order,Please set the shipping address before create order
+A quote have been deleted,A quote have been deleted
+Quote has been edited succesfully,Quote has been edited succesfully
+Manage Quotations,Manage Quotations
+Please select quote(s),Please select quote(s)
+A total of,A total of
+quote(s) have been deleted,quote(s) have been deleted
+The Quote has been saved,The Quote has been saved
+Please Enter Message,Please Enter Message
+Requested Quantity already available For This Product,Requested Quantity already available For This Product
+Not allow to access this Quotation,Not allow to access this Quotation
+Exception occurred during quote load,Exception occurred during quote load
+Quote item id is not received,Quote item id is not received
+Quote item is not loaded,Quote item is not loaded
+New Quote,New Quote
+Successfully log-out from the current quote confirmation mode,Successfully log-out from the current quote confirmation mode
+Quotation #,Quotation #
+had been rejected,had been rejected
+You added %1 to your quotation,You added %1 to your quotation
+We can\'t add this item to your quotation right now,We can\'t add this item to your quotation right now
+Out of stock,Out of stock
+We can't find the quote item,We can't find the quote item
+We cannot configure the product,We cannot configure the product
+We can\'t remove the item,We can\'t remove the item
+Please Enter Message,Please Enter Message
+Your quote request generated successfully,Your quote request generated successfully
+We can\'t generate the Quote,We can\'t generate the Quote
+%1 was updated in your quote,%1 was updated in your quote
+We can\'t update the item right now,We can\'t update the item right now
+We can\'t update the quote,We can\'t update the quote
+We can\'t update the quote items,We can\'t update the quote items
+Not allow to access this Quotation,Not allow to access this Quotation
+"Quote Request in Process, Please Wait for Price Proposal","Quote Request in Process, Please Wait for Price Proposal"
+Quotation does not exist,Quotation does not exist
+%1 doesn\'t extend,%1 doesn\'t extend
+We can\'t get the quote instance right now,We can\'t get the quote instance right now
+Message has been sent,Message has been sent
+"We could not add a product to quote by the ID ""%1""","We could not add a product to quote by the ID ""%1"""
+Disable Email Notification,Disable Email Notification
+New Quotation Submit (Default Template),New Quotation Submit (Default Template)
+Notify Admin For Update Quote By Customer(Default Template),Notify Admin For Update Quote By Customer(Default Template)
+Notify Customer For Update Quote By Admin(Default Template),Notify Customer For Update Quote By Admin(Default Template)
+Proposal Accepted (Default Template),Proposal Accepted (Default Template)
+Proposal Cancelled (Default Template),Proposal Cancelled (Default Template)
+Proposal Rejected (Default Template),Proposal Rejected (Default Template)
+New Quote Proposal (Default Template),New Quote Proposal (Default Template)
+All Products,All Products
+"Product in which ""Apply Add To Quote"" attribute applied","Product in which ""Apply Add To Quote"" attribute applied"
+The quote object is not specified,The quote object is not specified
+The source object is not specified,The source object is not specified
+An quote item object is not specified,An quote item object is not specified
+A Quote PDF object is not specified,A Quote PDF object is not specified
+A Quote PDF page object is not specified,A Quote PDF page object is not specified
+The PDF total model %1 must be or extend,The PDF total model %1 must be or extend 
+Products,Products
+Price,Price
+Proposal Price,Proposal Price
+Qty,Qty
+Subtotal,Subtotal
+Quote Created Date,Quote Created Date
+Quote Updated Date,Quote Updated Date
+Sold to,Sold to
+Ship to,Ship to
+We found an invalid renderer model,We found an invalid renderer model
+Please define the Quote PDF object before using,Please define the Quote PDF object before using
+"We don\'t recognize the draw line data. Please define the ""lines"" array","We don\'t recognize the draw line data. Please define the ""lines"" array"
+The stock item for Product in option is not valid,The stock item for Product in option is not valid
+The stock item for Product is not valid,The stock item for Product is not valid
+This product is out of stock,This product is out of stock
+Some of the products are out of stock,Some of the products are out of stock
+The qty value is required to update quote item,The qty value is required to update quote item
+NEW REQUESTED,NEW REQUESTED
+NEW REQUESTED ACTION FOR STORE OWNER,NEW REQUESTED ACTION FOR STORE OWNER
+NEW REQUESTED ACTION FOR CUSTOMER,NEW REQUESTED ACTION FOR CUSTOMER
+PROPOSAL PROCESSING,PROPOSAL PROCESSING
+PROPOSAL PROCESSING ACTION STORE OWNER,PROPOSAL PROCESSING ACTION STORE OWNER
+PROPOSAL PROCESSING ACTION CUSTOMER,PROPOSAL PROCESSING ACTION CUSTOMER
+PROPOSAL CREATED,PROPOSAL CREATED
+PROPOSAL SENT,PROPOSAL SENT
+PROPOSAL SENT ACTION STORE OWNER,PROPOSAL SENT ACTION STORE OWNER
+PROPOSAL SENT ACTION CUSTOMER,PROPOSAL SENT ACTION CUSTOMER
+PROPOSAL CANCELLED,PROPOSAL CANCELLED
+PROPOSAL CANCELLED OUTOF STOCK,PROPOSAL CANCELLED OUTOF STOCK
+PROPOSAL REJECTED,PROPOSAL REJECTED
+PROPOSAL ACCEPTED,PROPOSAL ACCEPTED
+PROPOSAL ORDERED,PROPOSAL ORDERED
+We can\'t find the product,We can\'t find the product
+We found an invalid request for adding product to quote,We found an invalid request for adding product to quote
+This quote item does not exist,This quote item does not exist
+The product does not exist,The product does not exist
+Quantity was recalculated from %1 to %2,Quantity was recalculated from %1 to %2
+We adjusted product quantities to fit the required increments,We adjusted product quantities to fit the required increments
+We found an invalid request for adding product to quote,We found an invalid request for adding product to quote
+Product that you are trying to add is not available,Product that you are trying to add is not available
+We found an invalid item option format,We found an invalid item option format
+Item qty declaration error,Item qty declaration error
+Some of the products below do not have all the required options,Some of the products below do not have all the required options
+Something went wrong during the item options declaration,Something went wrong during the item options declaration
+We found an item options declaration error,We found an item options declaration error
+Some of the selected options are not currently available,Some of the selected options are not currently available
+Selected option(s) or their combination is not currently available,Selected option(s) or their combination is not currently available
+Some item options or their combination are not currently available,Some item options or their combination are not currently available
+unavailable-configuration,unavailable-configuration
+An item option with code %1 already exists,An item option with code %1 already exists
+Action is blocked due to quotation proposal is locked.To update item in the Shopping cart ,Action is blocked due to quotation proposal is locked.To update item in the Shopping cart 
+log out,log out
+from Quotation confirmation mode,from Quotation confirmation mode
+Load customer quote error,Load customer quote error
+Quote Currency,Quote Currency
+Product Name,Product Name
+Configure,Configure
+SKU:,SKU:
+Original Price,Original Price
+Cost Price,Cost Price
+Price,Price
+Remove Item,Remove Item
+Quote & Account Information,Quote & Account Information
+Quote # %1,Quote # %1
+Quote Date (%1),Quote Date (%1)
+Quote Status,Quote Status
+Quotation Requested From,Quotation Requested From
+Account Information,Account Information
+Edit Customer,Edit Customer
+Customer Name,Customer Name
+Customer Group,Customer Group
+Add File To Quote,Add File To Quote
+Remove Attachment,Remove Attachment
+Address Information,Address Information
+Billing Address,Billing Address
+Add billing address,Add billing address
+Shipping Address,Shipping Address
+Add shipping address,Add shipping address
+Comment,Comment
+Action,Action
+Row Total,Row Total
+Margin (GP),Margin (GP)
+Total,Total
+product(s),product(s)
+Sub Total,Sub Total
+Update Items and Quantities,Update Items and Quantities
+Add Products,Add Products
+Message History,Message History
+By,By
+System Message,System Message
+Customer Notified,Customer Notified
+Customer Not Notified,Customer Not Notified
+Notify Customer by Email ,Notify Customer by Email 
+Attach Files,Attach Files
+Send Message,Send Message
+Quote Totals,Quote Totals
+Subtotal Original (Excluded Tax),Subtotal Original (Excluded Tax)
+Adjustment Quotation,Adjustment Quotation
+Subtotal (Excluded Tax),Subtotal (Excluded Tax)
+Grand Total (Excluded Tax),Grand Total (Excluded Tax) 
+Submit Proposal,Submit Proposal
+Create Order,Create Order
+Update Quote,Update Quote
+Proposal,Proposal
+Quote Address Information,Quote Address Information
+Reject Proposal,Reject Proposal
+Edit Quote,Edit Quote
+Confirm and Checkout,Confirm and Checkout
+Quote Attachments,Quote Attachments
+Proposal Base Price (Excluded Tax),Proposal Base Price (Excluded Tax)
+Print PDF,Print PDF
+Quote #,Quote #
+Date,Date
+Status,Status
+Actions,Actions
+View Quote,View Quote
+You have placed no quotes,You have placed no quotes
+Please sign in with your email addres to view quotes,Please sign in with your email addres to view quotes
+Quote Items,Quote Items
+Items,Items
+ Original Base Price(Excluded Tax), Original Base Price(Excluded Tax)
+Add to Cart,Add to Cart
+Add to Quote,Add to Quote
+In stock,In stock
+Out of stock,Out of stock
+We can\'t find products matching the selection,We can\'t find products matching the selection
+Add to Wish List,Add to Wish List
+Add to Compare,Add to Compare
+Learn More,Learn More
+Excl. Tax,Excl. Tax
+Item,Item
+See price before quote confirmation,See price before quote confirmation
+Remove,Remove
+Add Qty,Add Qty
+Login For Request Quote,Login For Request Quote
+Shipping Address Detail,Shipping Address Detail
+Use as Default,Use as Default
+Add New Address ,Add New Address 
+Billing Address Detail,Billing Address Detail
+Submit Quote,Submit Quote
+Note: Please set default shipping and billing address to continue quote request ,Note: Please set default shipping and billing address to continue quote request 
+you can set from,you can set from
+here,here
+Request Information,Request Information
+Clear Quote,Clear Quote
+Update Quotation,Update Quotation
+My Quote,My Quote
+You have no items in your quote,You have no items in your quote
+Click,Click
+to continue shopping,to continue shopping
+Adding to Quote...,Adding to Quote...

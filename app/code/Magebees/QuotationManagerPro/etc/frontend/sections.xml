@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+	<action name="quotation/quote/index">
+        <section name="magebees_quote"/>
+    </action>
+    <action name="quotation/quote/add">
+        <section name="magebees_quote"/>
+    </action>
+   <action name="quotation/quote/delete">
+        <section name="magebees_quote"/>
+    </action>  
+	<action name="quotation/sidebar/removeItem">
+        <section name="magebees_quote"/>
+    </action> 
+    <action name="quotation/quote/updateItemOptions">
+        <section name="magebees_quote"/>
+    </action>
+	 <action name="quotation/quote/saveTierQty">
+        <section name="magebees_quote"/>
+    </action>
+	 <action name="quotation/customer/logoutQuote">
+        <section name="cart"/>
+    </action>
+	
+</config>

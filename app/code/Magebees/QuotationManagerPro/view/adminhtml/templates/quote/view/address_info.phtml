@@ -1,0 +1,125 @@
+<?php
+/**
+ * @var \Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info $block
+ */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$tax_config=$quote_helper->getTaxConfig();
+$enable_shipping=$tax_config['enable_shipping'];
+$admin_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Admin');
+$quote_helper->unsetErrorMsgArr();
+$file_upload_config=$quote_helper->getFileUploadConfig();
+$allow_file_upload=$file_upload_config['enable_file_upload'];
+$quote = $admin_helper->getQuote();
+$quote_id=$quote->getId();
+if(!$quote_id)
+{
+$infoblock=$this->getLayout()->getBlock('quote_info');
+$quote = $infoblock->getQuote();
+	$quote_id=$quote->getId();
+}
+//if($quote->getCustomerId()){
+	
+$shipping_add_id=$quote->getshipAddressId();
+$avail_shipping=$quote_helper->IsCustomShipAddressAvail($quote_id);
+//if($shipping_add_id!=0)
+if($avail_shipping['is_default_address']!=0)
+{	
+	$avail_shipping=$quote_helper->IsCustomShipAddressAvail($quote_id);
+	$custom_shipping_add_id=$avail_shipping['address_id'];
+	$shipping_address=$quote_helper->renderCustomAddress($avail_shipping);
+	$shipping_add_id=$custom_shipping_add_id;
+}
+else
+{
+	//$shipping_address=$quote_helper->getFormattedAddress($shipping_add_id);
+	$default_shipping=$quote_helper->getDefaultAddressInQuote($quote_id,'shipping',$shipping_add_id);
+	$shipping_add_id=$default_shipping['address_id'];
+	$shipping_address=$quote_helper->renderCustomAddress($default_shipping);
+	
+}
+$billing_add_id=$quote->getbillAddressId();	
+$avail_billing=$quote_helper->IsCustomBillAddressAvail($quote_id);
+	//if($billing_add_id!=0)
+if($avail_billing['is_default_address']!=0)
+{	
+	$avail_billing=$quote_helper->IsCustomBillAddressAvail($quote_id);
+	$billing_address=$quote_helper->renderCustomAddress($avail_billing);
+	$custom_billing_add_id=$avail_billing['address_id'];
+	$billing_add_id=$custom_billing_add_id;
+}
+else
+{
+//$billing_address=$quote_helper->getFormattedAddress($billing_add_id);	
+	
+	$default_billing=$quote_helper->getDefaultAddressInQuote($quote_id,'billing',$billing_add_id);
+	$billing_add_id=$default_billing['address_id'];
+	$billing_address=$quote_helper->renderCustomAddress($default_billing);
+	
+	
+}
+/*$customer=$quote_helper->loadCustomerById($quote->getCustomerId());
+$billing_add_id=$quote->getbillAddressId()?$quote->getbillAddressId():$customer->getDefaultBilling();
+$shipping_add_id=$quote->getshipAddressId()?$quote->getshipAddressId():$customer->getDefaultShipping();
+if(!$quote->getbillAddressId())
+{
+$quote->setbillAddressId($customer->getDefaultBilling())->save();
+}
+if(!$quote->getshipAddressId())
+{
+	$quote->setshipAddressId($customer->getDefaultShipping())->save();
+}*/
+
+?>	
+	<section class="admin__page-section quote-addresses">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Address Information')) ?><?php if((!$billing_add_id)&&(!$shipping_add_id)):?><a onclick="setLocation('<?= $block->getUrl('quotation/quote_create/index/',array('_secure' => true)); ?>');"  target="_blank" class="add_billing_add">
+                <?= $block->escapeHtml(__('Change Address')) ?>
+                        </a><?php endif;?>   </span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-billing-address">
+            <?php /* Billing Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Billing Address')) ?></span>
+				<?php if($billing_add_id):?>
+				<a id="edit_bill_add" address_id="<?php echo $billing_add_id;?>" onclick="setLocation('<?= $block->getUrl('quotation/quote/address/',array('_secure' => true,'address_id'=>$billing_add_id)); ?>');">Edit</a>
+				<?php endif;?>
+               <!-- <div class="actions"><?= /* @noEscape */ $block->getAddressEditLink($billing_add_id); ?></div>-->
+            </div>
+			<?php if($billing_add_id):?>
+            <address class="admin__page-section-item-content"><?= /* @noEscape */ $billing_address; ?></address>
+				<?php else:?>
+				<!-- <a onclick="setLocation('<?//= $block->getUrl('quotation/quote/address/',array('_secure' => true,'quote_id'=>$quote_id)); ?>');"  target="_blank" class="add_billing_add">-->
+				<!-- <a onclick="setLocation('<?//= $block->getUrl('quotation/quote_create/index/',array('_secure' => true)); ?>');"  target="_blank" class="add_billing_add">
+                            <?//= $block->escapeHtml(__('Add billing address')) ?>
+                        </a>-->
+				<?php endif;?>
+        </div>
+      
+            <div class="admin__page-section-item order-shipping-address">
+                <?php /* Shipping Address */ ?>
+                <div class="admin__page-section-item-title">
+                    <span class="title"><?= $block->escapeHtml(__('Shipping Address')) ?></span>
+					<?php if($shipping_add_id):?>
+					<a id="edit_ship_add" address_id="<?php echo $shipping_add_id;?>" onclick="setLocation('<?= $block->getUrl('quotation/quote/address/',array('_secure' => true,'address_id'=>$shipping_add_id)); ?>');">Edit</a><?php endif;?>   
+              <!--      <div class="actions"><?= /* @noEscape */ $block->getAddressEditLink($shipping_add_id); ?></div>-->
+                </div>
+				<?php if($shipping_add_id):?>
+                <address class="admin__page-section-item-content"><?= /* @noEscape */ $shipping_address; ?></address>
+		<?php if($enable_shipping):?>		
+	<div id="quote-shipping-method-summary" class="quote-shipping-method-summary">
+        <a href="#" onclick="quote.loadShippingRates();return false" class="action-default">
+            <span><?= /* @escapeNotVerified */ __('Get shipping methods and rates') ?></span>
+        </a>
+       <!-- <input type="hidden" name="order[has_shipping]" value="" class="required-entry" />-->
+    </div><?php endif;?>   
+        <?php else:?>
+			<!--	 <a onclick="setLocation('<?//= $block->getUrl('quotation/quote/address/',array('_secure' => true,'quote_id'=>$quote_id)); ?>');" target="_blank" class="add_shipping_add">
+                            <?//= $block->escapeHtml(__('Add shipping address')) ?>
+                        </a>-->
+				<?php endif;?>   
+		</div>
+       
+    </div>
+</section>
+<?php //} ?>

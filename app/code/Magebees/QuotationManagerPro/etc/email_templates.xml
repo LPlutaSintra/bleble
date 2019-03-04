@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="magebees_email_new_quote_template" label="New Quote" file="new_quote.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	<template id="magebees_email_new_quote_guest_template" label="New Quote Guest" file="new_quote_guest.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	 <template id="magebees_email_quote_proposal_template" label="Quote Proposal" file="quote_proposal.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	 <template id="magebees_email_admin_notify_template" label="Notify Admin For Update Quote By Customer" file="notify_admin.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	 <template id="magebees_email_customer_notify_template" label="Notify Customer For Update Quote By Admin" file="notify_customer.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	<template id="magebees_email_proposal_accepted_template" label="Proposal Accepted" file="proposal_accepted.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	<template id="magebees_email_proposal_cancelled_template" label="Proposal Cancelled" file="proposal_cancelled.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+	<template id="magebees_email_proposal_rejected_template" label="Proposal Rejected" file="proposal_rejected.html" type="html" module="Magebees_QuotationManagerPro" area="frontend"/>
+</config>

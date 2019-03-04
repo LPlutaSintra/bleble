@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<!--Dispatch event and set content for dispatched event-->
+	
+	<event name="custom_cart_add_product_complete">
+        <observer name="magebees_quotation_item_addtocart" instance="Magebees\QuotationManagerPro\Observer\ProductAddToCart" />
+    </event>	
+	 <event name="magebees_reset_tax_address_submitquote">
+        <observer name="magebees_reset_tax_address" instance="Magebees\QuotationManagerPro\Observer\ResetTaxAddress" />
+ </event>
+</config>

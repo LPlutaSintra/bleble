@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magebees_QuotationManagerPro::css/mageb-quote-style.css"/>
+    </head>
+  <update handle="quotation_quote_sidebar_item_renderers"/>
+    <update handle="quotation_quote_sidebar_item_price_renderers"/>
+    <update handle="quotation_quote_sidebar_total_renderers"/>
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="quotation_page_head_components" template="Magebees_QuotationManagerPro::js/components.phtml"/>
+        </referenceBlock>  
+		 <referenceContainer name="header-wrapper">
+        <block class="Magebees\QuotationManagerPro\Block\Quote\Sidebar" name="miniquote" after="minicart" template="quote/miniquote.phtml">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="types" xsi:type="array"/>
+                    <item name="components" xsi:type="array">
+                        <item name="miniquote_content" xsi:type="array">
+                            <item name="component" xsi:type="string">Magebees_QuotationManagerPro/js/view/miniquote</item>
+                            <item name="config" xsi:type="array">
+                                <item name="template" xsi:type="string">Magebees_QuotationManagerPro/miniquote/content</item>
+                            </item>
+                            <item name="children" xsi:type="array">
+                                <item name="subtotal.container" xsi:type="array">
+                                    <item name="component" xsi:type="string">uiComponent</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="displayArea" xsi:type="string">subtotalContainer</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                        <item name="subtotal" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                          
+                                                <item name="config" xsi:type="array">
+                                                <!--    <item name="template" xsi:type="string">Magebees_QuotationManagerPro/miniquote/subtotal</item>-->
+                                                </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="extra_info" xsi:type="array">
+                                    <item name="component" xsi:type="string">uiComponent</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="displayArea" xsi:type="string">extraInfo</item>
+                                    </item>
+                                </item>
+                                <item name="promotion" xsi:type="array">
+                                    <item name="component" xsi:type="string">uiComponent</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="displayArea" xsi:type="string">promotion</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </block>       
+       
+     <!--   <referenceBlock name="head.components">
+            <block class="Magebees\QuotationManagerPro\Block\Css" name="quotation_css" template="extra_css.phtml" />
+        </referenceBlock>-->
+		</referenceContainer>
+		  <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="magebees.quotation.script">
+			 <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magebees_QuotationManagerPro::script.phtml</argument>
+            </action>
+			</block>
+		</referenceContainer>
+			 
+    </body>
+</page>

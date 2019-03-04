@@ -1,0 +1,232 @@
+<?php
+/**
+ * @var \Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\View\Info $block
+ */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$quote_helper->unsetErrorMsgArr();
+$file_upload_config=$quote_helper->getFileUploadConfig();
+$allow_file_upload=$file_upload_config['enable_file_upload'];
+$quote = $block->getQuote();
+if($quote->getCustomerId())
+{
+$customer=$quote_helper->loadCustomerById($quote->getCustomerId());
+$billing_add_id=$quote->getbillAddressId()?$quote->getbillAddressId():$customer->getDefaultBilling();
+$shipping_add_id=$quote->getshipAddressId()?$quote->getshipAddressId():$customer->getDefaultShipping();
+$customer_name=$customer->getFirstName()." ".$customer->getLastName();
+$customer_email=$customer->getEmail();
+/*if(!$quote->getbillAddressId())
+{
+$quote->setbillAddressId($customer->getDefaultBilling())->save();
+}
+if(!$quote->getshipAddressId())
+{
+	$quote->setshipAddressId($customer->getDefaultShipping())->save();
+}*/
+}
+else
+{
+	$quote_customer=$quote_helper->getQuoteCustomer($quote->getId());		
+	$customer_email=$quote_customer['email'];
+	$customer_name = $quote_customer['fname']." ".$quote_customer['lname'];
+}
+$assign_to=$quote->getAssignTo();
+//$assign_to_arr=explode(',',$assign_to);
+$status=$quote->getStatus();
+$all_admin=$quote_helper->getAllUserInfo();	
+$all_status=$quote_helper->getAllStatus();	
+$quoteCreateDate = $block->formatDate(
+     $block->getQuoteCreateAdminDate($quote->getCreatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+$quoteUpdateDate = $block->formatDate(
+     $block->getQuoteCreateAdminDate($quote->getUpdatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+$quoteCreateStoreDate = $block->formatDate(
+    $quote->getCreatedAt(),
+    \IntlDateFormatter::MEDIUM,
+    true,
+    $block->getTimezoneForStore($quote->getStoreId())
+);
+$quoteUpdateStoreDate = $block->formatDate(
+    $quote->getUpdatedAt(),
+    \IntlDateFormatter::MEDIUM,
+    true,
+    $block->getTimezoneForStore($quote->getStoreId())
+);
+?>
+
+<section class="admin__page-section quote-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Quote & Account Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item quote-information">
+            <?php /* Quote Information */ ?>
+           
+            <div class="admin__page-section-item-title">
+                <span class="title">                 
+                        <?= $block->escapeHtml(__('Quote # %1', $quote->getIncrementId())) ?>                   
+                </span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary quote-information-table">
+					<tr>
+						<th width="25%"><?= $block->escapeHtml(__('Quote Created Date')) ?></th>
+						<td width="75%"><?= $block->escapeHtml($quoteCreateDate) ?></td>
+					</tr>
+					<?php if ($quoteCreateDate != $quoteCreateStoreDate):?>
+						<tr>
+							<th width="25%"><?= $block->escapeHtml(__('Quote Date (%1)', $block->getTimezoneForStore($quote->getStore()))) ?></th>
+							<td width="75%"><?= $block->escapeHtml($quoteCreateStoreDate) ?></td>
+						</tr>
+					<?php endif;?>
+						  <tr>
+						<th width="25%"><?= $block->escapeHtml(__('Quote Updated Date')) ?></th>
+						<td width="75%"><?= $block->escapeHtml($quoteUpdateDate) ?></td>
+					</tr>
+					<?php if ($quoteUpdateDate != $quoteUpdateStoreDate):?>
+						<tr>
+							<th width="25%"><?= $block->escapeHtml(__('Quote Date (%1)', $block->getTimezoneForStore($quote->getStore()))) ?></th>
+							<td width="75%"><?= $block->escapeHtml($quoteUpdateStoreDate) ?></td>
+						</tr>
+					<?php endif;?>
+					<tr>
+						<th width="25%"><?= $block->escapeHtml(__('Quote Status')) ?></th>
+						<td width="75%">
+						<select name="quote_status">
+							<?php foreach($all_status as $key=>$value):?>
+							<option value="<?= $key ?>" <?php if($key==$status): ?>selected=selected<?php endif;?>><?=$value?></option>
+							<?php endforeach;?>
+						</select>					
+						</td>
+					</tr>
+					
+					<tr>
+						<th width="25%"><?= $block->escapeHtml(__('Expiry Date')) ?></th>
+					<td>
+					<?php  $date=date_create($quote->getExpiredAt());
+$expiry_date=date_format($date,"Y/m/d");?>
+<span id="expiry_date_wrap" class="datebox-datepicker">
+                <input type="text" id="expiry_date" class="input-text admin__control-text no-changes _has-datepicker"
+                       name="expiry_date"
+                       value="<?php echo $expiry_date; ?>" <?php echo $expiry_date; ?>/>
+                <button type="button" class="ui-datepicker-trigger expiry-trigger v-middle" <?php echo $expiry_date; ?>><span>Expiry Date</span></button>
+            </span>
+					</td>
+					</tr>
+					<tr>
+						<th width="20%"><?= $block->escapeHtml(__('Quote Assign To')) ?></th>
+						<td width="80%">
+						<select name="admin_assign">
+							<?php foreach($all_admin as $admin):
+							$user_id=$admin['user_id'];
+							$username=$admin['username'];?>
+							<option value="<?= $user_id ?>" <?php  if($user_id==$assign_to) :?>selected=selected<?php endif;?>><?=$username?></option>
+							<?php endforeach;?>
+						</select>					
+						</td>
+					</tr>
+                    <tr>
+                        <th width="20%"><?= $block->escapeHtml(__('Quotation Requested From')) ?></th>
+                        <td width="80%"><?= $block->escapeHtml($block->getQuoteStoreName(), ['br']) ?></td>
+                    </tr>
+					<tr>
+						  <th width="20%"><?= $block->escapeHtml(__('Remarks With Quote')) ?></th>
+                        <td width="80%"><textarea name="quote_request_info" rows="4" cols="50"><?php if($quote->getQuoteRequestInfo()) :?><?= $quote->getQuoteRequestInfo() ?><?php endif;?></textarea></td>
+					</tr>
+            	</table>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item quote-account-information">
+            <?php /* Account Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Account Information')) ?></span>
+              <!--  <div class="actions">
+                    <?php if ($customerUrl = $block->getCustomerViewUrl()) : ?>
+                        <a href="<?= /* @noEscape */ $block->getCustomerViewUrl() ?>" target="_blank">
+                            <?= $block->escapeHtml(__('Edit Customer')) ?>
+                        </a>
+                    <?php endif; ?>
+                </div>-->
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary quote-account-information-table">
+				
+                    <tr>
+                        <th width="25%"><?= $block->escapeHtml(__('Customer Name')) ?></th>
+                        <td width="75%">                           <?php if($quote->getCustomerId())
+{?>
+                                <a href="<?= $block->escapeUrl($customerUrl) ?>" target="_blank">
+									<?php } ?>
+                                    <span><?= $block->escapeHtml($customer_name) ?></span>
+									 <?php if($quote->getCustomerId())
+{?>
+                                </a>  <?php } ?>                       <?php if(!$quote->getCustomerId())
+{?>
+							<a onclick="setLocation('<?= $block->getUrl('quotation/quote_create/index/',array('_secure' => true)); ?>');"  target="_blank" class="assign_customer">
+                <?= $block->escapeHtml(__('Assign Customer')) ?>
+                        </a>
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="25%"><?= $block->escapeHtml(__('Email')) ?></th>
+                        <td width="75%"><a href="mailto:<?php echo $block->escapeHtml($customer_email) ?>"><?php echo $block->escapeHtml($customer_email) ?></a></td>
+                    </tr>
+					
+                    <?php 
+						if($quote->getCustomerId()): 
+						if ($groupName = $block->getCustomerGroupName()) : 
+						?>
+                        <tr>
+                            <th width="25%"><?= $block->escapeHtml(__('Customer Group')) ?></th>
+                            <td width="75%"><?= $block->escapeHtml($groupName) ?></td>
+                        </tr>
+                    <?php endif; 
+						endif; 
+					?>       
+                 
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+	<!----------------------Start section  Add File To Quote------------------------------------>
+	<section>
+		<?php //if($allow_file_upload):?>
+	  <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Add File To Quote')) ?></span>
+    </div> <input id="file_path" name="quote_file[]" multiple="" type="file">	
+	<br/>
+		<br/>
+		<?php //endif; ?>
+	<?php if($block->getQuoteFiles()):?>
+		 <div class="admin__page-section-title" id="attachment_title">
+        <span class="title"><?= $block->escapeHtml(__('Quote Attachments')) ?></span>
+    </div>
+ 	<?php foreach($block->getQuoteFiles() as $file):?>
+	<div id="attachment_<?= $file['id']?>">
+	<a href="<?= $quote_helper->getQuoteFilePath($file['file_path']) ?>" target="_blank"><?=$file['file_name']?></a>
+	<a data-id="<?= $file['id']?>" class="remove_file"><?= $block->escapeHtml(__('Remove Attachment')) ?></a>
+	</div>
+	
+	<?php endforeach;
+	endif;?>
+	</section>
+<script type="text/javascript">
+    require(["jquery", "jquery/ui"], function ($) {
+        $(document).ready(function () {
+            $("#expiry_date").datepicker({dateFormat: "yy/mm/dd"});
+            $(".expiry-trigger").removeAttr("style");
+            $(".expiry-trigger").click(function () {
+                $("#expiry_date").focus();
+            });
+        });
+    });
+</script>
+	<!----------------------End section  Add File To Quote------------------------------------>
+

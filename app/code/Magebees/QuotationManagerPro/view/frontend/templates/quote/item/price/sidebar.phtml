@@ -1,0 +1,12 @@
+<?php
+/** @var $block \Magento\Checkout\Block\Item\Price\Renderer */
+?>
+<?php
+$_item = $block->getItem();
+$quoteHelper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$item_price=$quoteHelper->getConvertedPrice($_item->getCalculationPrice());
+?>
+<div class="price-container">
+    <span class="price-label"><?php echo __('Price') ?></span>
+    <span class="price-wrapper"><?php echo $quoteHelper->getFormatedPrice($item_price) ?></span>
+</div>

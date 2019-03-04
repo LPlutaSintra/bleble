@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+ <head>    
+		<css src="Magebees_QuotationManagerPro/css/mageb-admin-style.css"/>    
+    </head>
+    <body>
+	<referenceContainer name="admin.scope.col.wrap" htmlClass="admin__old" /> <!-- ToDo UI: remove this wrapper with old styles removal. The class name "admin__old" is for tests only, we shouldn't use it in any way -->
+ <referenceBlock name="page.title">
+            <action method="setTitleId">
+                <argument translate="false" name="id" xsi:type="string">quote-header</argument>
+            </action>
+        </referenceBlock>
+	<referenceContainer name="content">
+		  <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create" name="quotation_quote_create">
+<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Form" template="Magebees_QuotationManagerPro::quote/create/form.phtml" name="quote_create_form" as="form">
+		
+		
+	   <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Customer" template="Magebees_QuotationManagerPro::quote/create/abstract.phtml" name="customer">
+			<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Customer\Grid" name="customer_grid" as="grid"/>
+		</block>
+	   <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Store" template="Magebees_QuotationManagerPro::quote/create/abstract.phtml" name="store">
+                        <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Store\Select" template="Magebees_QuotationManagerPro::quote/create/store/select.phtml" name="select"/>
+                    </block>
+	   <!--<block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Data" template="Magebees_QuotationManagerPro::quote/create/currency_swicher.phtml" name="currency_swicher"/>-->
+	 <block class="Magento\Sales\Block\Adminhtml\Order\Create\Data" template="Magebees_QuotationManagerPro::quote/create/currency_swicher.phtml" name="currency_swicher"/>
+	  <block class="Magento\Sales\Block\Adminhtml\Order\Create\Data" template="Magebees_QuotationManagerPro::quote/create/data.phtml" name="data">
+                        
+                        <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Form\Account" template="Magebees_QuotationManagerPro::quote/create/form/account.phtml" name="form_account"/>
+                        <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Shipping\Address" template="Magebees_QuotationManagerPro::quote/create/form/address.phtml" name="shipping_address"/>
+                        <block class="Magebees\QuotationManagerPro\Block\Adminhtml\Quotation\Create\Billing\Address" template="Magebees_QuotationManagerPro::quote/create/form/address.phtml" name="billing_address"/>
+                        
+                      
+                    </block>
+			  </block>  
+	   	</block>  
+		
+	</referenceContainer>
+		  <referenceContainer name="after.body.start">
+            <block class="Magento\Backend\Block\Template" name="optional_zip_countries" as="optional_zip_countries" template="Magento_Directory::js/optional_zip_countries.phtml"/>
+            <block class="Magento\Catalog\Block\Adminhtml\Product\Composite\Configure" name="after.body.start.product_composite_configure" template="Magento_Catalog::catalog/product/composite/configure.phtml"/>
+        </referenceContainer>
+		  <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="Magebees_QuotationManagerPro::quote/view/js.phtml" name="create"/>
+        </referenceContainer>
+       
+    </body>
+</page>

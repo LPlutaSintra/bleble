@@ -1,0 +1,3 @@
+<?php echo $block->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setProduct($_product)->setTemplate('Magebees_QuotationManagerPro::quote_button.phtml')->toHtml();?>
+
+ <?php echo	$block->getLayout()->createBlock('Magebees\QuotationManagerPro\Block\Button')->setListProduct($_item)->setTemplate('Magebees_QuotationManagerPro::product/list/addtocart.phtml')->toHtml();?>

@@ -1,0 +1,587 @@
+<?php
+/** @var \Magento\Customer\Block\Form\Register $block */
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');	
+$config=$quote_helper->getConfig();
+$allow_guest=$config['allow_guest'];
+$version=$quote_helper->getMagentoVersion();
+if(version_compare($version, '2.2.0', '<'))
+{
+	$escaper=$this->helper(\Magento\Framework\EscapeHelper::class);
+}
+else
+{
+	$escaper=$block;
+}
+$directoryHelper = $this->helper('Magento\Directory\Helper\Data');	
+$defaultCountryId = $directoryHelper->getDefaultCountry();
+$image_url=$block->getViewFileUrl('Magebees_QuotationManagerPro::images/ajax_loader.gif');
+$file_upload_config=$quote_helper->getFileUploadConfig();
+$allow_file_upload=$file_upload_config['enable_file_upload'];
+
+$quoteId = $block->getLayout()->createBlock('Magebees\QuotationManagerPro\Block\CustomerForm')->getQuoteId();
+$quote=$quote_helper->loadQuoteById($quoteId);
+$quote_ship_add_id=$quote->getshipAddressId();
+$quote_bill_add_id=$quote->getbillAddressId();
+$is_custom_ship_address=$quote_helper->IsCustomShipAddressAvail($quoteId);
+if(isset($is_custom_ship_address['is_default_address']))
+{	$quote_is_default_add_ship=$is_custom_ship_address['is_default_address'];
+}
+else
+{
+	$quote_is_default_add_ship='';
+}
+$is_custom_bill_address=$quote_helper->IsCustomBillAddressAvail($quoteId);
+if(isset($is_custom_bill_address['is_default_address']))
+{	$quote_is_default_add_bill=$is_custom_ship_address['is_default_address'];
+}
+else
+{
+	$quote_is_default_add_bill='';
+}
+$default_shipping_address=$quote_helper->getDefaultShippingAdd();
+$LoginPostUrl=$quote_helper->getLoginPostUrl();
+//print_r($default_shipping_address);die;
+//$shipping_add_id=$default_shipping_address['entity_id'];
+$default_billing_address=$quote_helper->getDefaultBillingAdd();
+$login_customer=$quote_helper->getLoggedInCustomer();
+$login_customer_data=$login_customer->getData();
+//$billing_add_id=$default_billing_address['entity_id'];
+//if(!$quote_helper->isCustomerLoggedIn()):
+
+?>
+<?php //if($allow_guest||($quote_helper->isCustomerLoggedIn())):?>
+<div class="quote-summary">
+	<div class="quote-summary-inner">
+<?= $block->getChildHtml('form_fields_before') ?>
+<?php /* Extensions placeholder */ ?>
+<?= $block->getChildHtml('customer.form.register.extra') ?>
+<form class="form create account form-quote-create-account" action="<?= $block->escapeUrl($quote_helper->getSubmitQuoteUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+	<input type="hidden" value="<?php echo $defaultCountryId;?>" name="default_country_id" id="default_country_id"/>
+	<input type="hidden" value="<?php echo $LoginPostUrl;?>"  id="quote_login_post_url"/>
+	<input type="hidden" value="<?php echo $allow_guest;?>"  id="quote_allow_guest" name="quote_allow_guest"/>
+    <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+	
+	<?php if(!$quote_helper->isCustomerLoggedIn()): ?> 
+    <fieldset class="fieldset create info">
+		<fieldset class="fieldset create account" data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <legend class="legend"><span class="quote_form_title"><?php if($allow_guest){ echo $block->escapeHtml(__('Submit Quote as a Guest'));}else{echo $block->escapeHtml(__('Create an Account'));} ?></span></legend><br>
+        <div class="field required">
+            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">           
+				     <input name="login[username]" value="<?= $escaper->escapeHtmlAttr($block->getUsername()) ?>" autocomplete="off" id="quote_email" type="email" class="input-text" title="<?= $escaper->escapeHtmlAttr(__('Email')) ?>"  data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+			
+			<div id="quote-pwd-create" style="<?php  if(!$allow_guest){?>display:block; <?php } else{?>display:none; <?php } ?>">
+				 <fieldset class="fieldset password info">
+			 <div class="field password required" <?php if((version_compare($version, '2.1.0', '>='))&&(version_compare($version, '2.2.0', '<'))): ?>
+				  data-mage-init='{"passwordStrengthIndicator": {}}'
+				  <?php endif;?> id="quote-register-pwd">
+            <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $escaper->escapeHtmlAttr(__('Password')) ?>"
+                       class="input-text"
+					   <?php if(version_compare($version, '2.1.0', '>='))
+:?>
+                       data-password-min-length="<?= $escaper->escapeHtmlAttr($block->getMinimumPwdLength()) ?>"
+                       data-password-min-character-sets="<?= $escaper->escapeHtmlAttr($block->getRequiredClassesNumber()) ?>"
+					   <?php endif;?>
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= $block->escapeHtml(__('Password Strength')) ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= $block->escapeHtml(__('No Password')) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field confirmation required" id="quote-confirm-pwd">
+            <label for="password-confirmation" class="label"><span><?= $block->escapeHtml(__('Confirm Password')) ?></span></label>
+            <div class="control">
+                <input type="password" name="password_confirmation" title="<?= $escaper->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+					 
+					  </fieldset>
+			</div>
+		 <div class="field password required" id="quote-password" style="display:none;">
+                    <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password"  autocomplete="off" class="input-text" id="reg_pass" title="<?= $escaper->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
+                    </div>
+                </div>  
+			<?php if((!$quote_helper->isCustomerLoggedIn())&&($allow_guest)): ?> 
+		<div id="quote-req-account">
+        <input type="checkbox" id="quote-req-customer-account" value="false" name="create_account">
+        <label for="chkbox-request-account">Create an account</label>
+ </div>
+   <?php endif; ?>
+        <?= $block->getChildHtml('form_additional_info') ?>
+    </fieldset>
+		
+  <div class="actions-toolbar" id="quote-login-action" style="display:none;">
+                    <div class="primary"><button  class="action submit primary" name="send" id="send21"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button></div>
+                    <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($quote_helper->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
+                </div>
+		<div id="basic_info" style="display:block;">
+			   <fieldset class="fieldset personal info">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Personal Information')) ?></span></legend><br>
+        <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
+        <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
+		
+        <?//= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+			
+       <div class="field field-name-firstname required">
+            <label class="label" for="firstname">
+                <span>First Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="firstname" name="firstname" value="" title="First Name" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>
+			
+			<div class="field field-name-lastname required">
+            <label class="label" for="lastname">
+                <span>Last Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="lastname" name="lastname" value="" title="Last Name" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>			
+		 </fieldset>
+			</div>
+		 </fieldset>
+	<?php endif; ?>
+		<!-- start for manage quote detail for upload file and remarks -->
+	<div id="quote_info">
+	<input type="hidden" value="<?php echo $quoteId;?>" name="quote_id"/>
+			
+			<?php if($allow_file_upload):?>
+				<h3 class="title-s"><?= /* @escapeNotVerified */ __('Add File To Quote') ?></h3>
+				<input id="file_path" name="upload_file[]" multiple="" type="file">
+			<hr/>
+			<?php endif; ?>
+			
+			<h3 class="title-s"><?= /* @escapeNotVerified */ __('Remarks') ?></h3>
+			<textarea name="quote_request_info" rows="4" style="min-width:205px;"></textarea>
+		</div>
+	<!-- end for manage quote detail for upload file and remarks -->
+		
+	<div id="create_address_info" style="<?php if(!isset($default_shipping_address['entity_id'])&&($quote_helper->isCustomerLoggedIn())){?>display:block;<?php } else if(!$allow_guest && !isset($default_shipping_address['entity_id']) ){?>display:block; <?php } else{?>display:none; <?php } ?>">
+    <?php //if ($block->getShowAddressFields()): ?>
+		
+		
+	
+        <fieldset class="fieldset address" id="fieldset_shipping">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Shipping Address Information')) ?></span></legend><br>
+            <input type="hidden" name="create_address" value=""/>
+			 <div class="field field-name-firstname required">
+            <label class="label" for="firstname">
+                <span>First Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="firstname_ship" name="firstname_ship" value="<?php if(isset($login_customer_data['firstname'])){ echo $login_customer_data['firstname'];} ?>" title="First Name" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>
+			
+			<div class="field field-name-lastname required">
+            <label class="label" for="lastname">
+                <span>Last Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="lastname_ship" name="lastname_ship" value="<?php if(isset($login_customer_data['lastname'])){ echo $login_customer_data['lastname'];} ?>" title="Last Name" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>
+			<div class="field field-name-telephone required">
+            <label class="label" for="telephone">
+                <span>Telephone</span>
+            </label>
+			   <div class="control">
+                    <input type="text" name="telephone" id="telephone" value="<?php echo $escaper->escapeHtmlAttr($block->getFormData()->getTelephone()) ?>" title="<?php echo $escaper->escapeHtmlAttr(__('Phone Number')) ?>" class="input-text <?php echo $escaper->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('telephone')) ?>">
+                </div>
+				</div>
+            <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+ <div class="field street required">
+                <label for="street_1" class="label"><span><?= $block->escapeHtml(__('Street Address')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="street[]" value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getStreet(0)) ?>" title="<?= $escaper->escapeHtmlAttr(__('Street Address')) ?>" id="street_1_ship" class="input-text <?= $escaper->escapeHtmlAttr($_streetValidationClass) ?>">
+                    <div class="nested">
+                        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                        <?php for ($_i = 2, $_n = $this->helper('Magento\Customer\Helper\Address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label" for="street_<?= /* @noEscape */ $_i ?>">
+                                    <span><?= $block->escapeHtml(__('Address')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getFormData()->getStreetLine($_i - 1)) ?>" title="<?= $escaper->escapeHtmlAttr(__('Street Address %1', $_i)) ?>" id="street_<?= /* @noEscape */ $_i ?>" class="input-text <?= $escaper->escapeHtmlAttr($_streetValidationClass) ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label for="city" class="label"><span><?= $block->escapeHtml(__('City')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="city" value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getCity()) ?>" title="<?= $escaper->escapeHtmlAttr(__('City')) ?>" class="input-text <?= $escaper->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city')) ?>" id="city">
+                </div>
+            </div>
+
+        <div class="field region required">
+                <label for="region_id" class="label"><span><?= $block->escapeHtml(__('State/Province')) ?></span></label>
+                <div class="control">
+                    <select id="region_id" name="region_id" title="<?= $escaper->escapeHtmlAttr(__('State/Province')) ?>" class="validate-select" style="display:none;">
+                        <option value=""><?= $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
+                    </select>
+                    <input type="text" id="region" name="region" value="<?= $block->escapeHtml($block->getRegion()) ?>" title="<?= $escaper->escapeHtmlAttr(__('State/Province')) ?>" class="input-text <?= $escaper->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region')) ?>" style="display:none;">
+                </div>
+            </div>
+            <div class="field zip required">
+                <label for="zip" class="label"><span><?= $block->escapeHtml(__('Zip/Postal Code')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="postcode" value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getPostcode()) ?>" title="<?= $escaper->escapeHtmlAttr(__('Zip/Postal Code')) ?>" id="zip" class="input-text validate-zip-international <?= $escaper->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode')) ?>">
+                </div>
+            </div>
+
+               <div class="field country required">
+                <label for="country" class="label"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
+                <div class="control">
+                    <?= $block->getCountryHtmlSelect() ?>
+                </div>
+            </div>
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+            <?php endif;?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+		
+		
+		
+		
+		 <fieldset class="fieldset address" id="fieldset_billing" style="display:none;">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Billing Address Information')) ?></span></legend><br>
+            
+			  <div class="field field-name-firstname required">
+            <label class="label" for="firstname">
+                <span>First Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="firstname_bill" name="firstname_bill" value="<?php if(isset($login_customer_data['firstname'])){ echo $login_customer_data['firstname'];} ?>" title="First Name" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>
+			
+			<div class="field field-name-lastname required">
+            <label class="label" for="lastname">
+                <span>Last Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="lastname_bill" name="lastname_bill" value="<?php if(isset($login_customer_data['lastname'])){ echo $login_customer_data['lastname'];} ?>" title="Last Name" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>
+			 <div class="field field-name-telephone required">
+            <label class="label" for="telephone">
+                <span>Telephone</span>
+            </label>
+			   <div class="control">
+                    <input type="text" name="telephone_bill" id="telephone_bill" value="<?php echo $escaper->escapeHtmlAttr($block->getFormData()->getTelephone()) ?>" title="<?php echo $escaper->escapeHtmlAttr(__('Phone Number')) ?>" class="input-text <?php echo $escaper->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('telephone')) ?>">
+                </div>
+				</div>
+            <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+ <div class="field street required">
+                <label for="street_1" class="label"><span><?= $block->escapeHtml(__('Street Address')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="street_bill[]" value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getStreet(0)) ?>" title="<?= $escaper->escapeHtmlAttr(__('Street Address')) ?>" id="street_1_bill" class="input-text <?= $escaper->escapeHtmlAttr($_streetValidationClass) ?>">
+                    <div class="nested">
+                        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                        <?php for ($_i = 2, $_n = $this->helper('Magento\Customer\Helper\Address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label" for="street_<?= /* @noEscape */ $_i ?>">
+                                    <span><?= $block->escapeHtml(__('Address')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getFormData()->getStreetLine($_i - 1)) ?>" title="<?= $escaper->escapeHtmlAttr(__('Street Address %1', $_i)) ?>" id="street_<?= /* @noEscape */ $_i ?>_bill" class="input-text <?= $escaper->escapeHtmlAttr($_streetValidationClass) ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label for="city" class="label"><span><?= $block->escapeHtml(__('City')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="city_bill" value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getCity()) ?>" title="<?= $escaper->escapeHtmlAttr(__('City')) ?>" class="input-text <?= $escaper->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city')) ?>" id="city_bill">
+                </div>
+            </div>
+
+        <div class="field region required">
+                <label for="region_id" class="label"><span><?= $block->escapeHtml(__('State/Province')) ?></span></label>
+                <div class="control">
+                    <select id="region_id_bill" name="region_id_bill" title="<?= $escaper->escapeHtmlAttr(__('State/Province')) ?>" class="validate-select" style="display:none;">
+                        <option value=""><?= $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
+                    </select>
+                    <input type="text" id="region_bill" name="region_bill" value="<?= $block->escapeHtml($block->getRegion()) ?>" title="<?= $escaper->escapeHtmlAttr(__('State/Province')) ?>" class="input-text <?= $escaper->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region')) ?>" style="display:none;">
+                </div>
+            </div>
+            <div class="field zip required">
+                <label for="zip" class="label"><span><?= $block->escapeHtml(__('Zip/Postal Code')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="postcode_bill" value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getPostcode()) ?>" title="<?= $escaper->escapeHtmlAttr(__('Zip/Postal Code')) ?>" id="zip_bill" class="input-text validate-zip-international <?= $escaper->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode')) ?>">
+                </div>
+            </div>
+
+               <div class="field country required">
+                <label for="country" class="label"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
+                <div class="control">
+					
+                    <?= $block->getCountryHtmlSelect('country_id_bill','country_id_bill','country_bill') ?>
+                    <?//= $block->getCountryHtmlSelect($countryId,'country_id_bill','country_id_bill','country_bill') ?>
+                </div>
+            </div>
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+            <?php endif;?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+		
+<div> <input type="checkbox" checked="checked" id="address_selector" name="same_billing_shipping"/>My billing and shipping address are the same 		
+				</div>
+    <?php //endif; ?>
+		</div>
+	
+	<?php
+	/**start for manage address*/
+	$default_shipping_address=$quote_helper->getDefaultShippingAdd(); 
+			$default_billing_address=$quote_helper->getDefaultBillingAdd();  
+			$all_address_data=$quote_helper->getCustomerAddresses(); 
+		 if($default_shipping_address): $default_shipping_id=$default_shipping_address['entity_id'];?>
+			<div class="block shipping-address-qoute" data-mage-init='{"collapsible":{"openedState": "active", "saveState": true}}'>
+				<div class="title" data-role="title">
+        			<strong id="block-shipping-heading" role="heading" aria-level="2"><?= /* @escapeNotVerified */ __('Shipping Address Detail') ?></strong>
+				</div>
+				<div id="shipping-address" data-bind="scope:'shipping-address'" class="content" data-role="content" aria-labelledby="block-shipping-heading">
+					<ul id="shipping_address_data">
+				<input type="hidden" value="<?php if(!isset($is_custom_ship_address['is_default_address']))
+{echo $default_shipping_id;}?>" name="ship_address_id" id="ship_address_id"/>
+				<input type="hidden" value="<?php if(isset($is_custom_ship_address['address_id'])){ echo $is_custom_ship_address['address_id'];}?>" name="custom_ship_address_id" id="custom_ship_address_id"/>
+				<?php 
+				foreach($all_address_data as $address):		
+					$add_id=$address['entity_id'];	
+					if((!$is_custom_ship_address)&&($default_shipping_id==$add_id))
+					{
+						$quote->setshipAddressId($add_id)->save();
+					}
+				?>
+				<li class="shipping_address_<?php echo $add_id;?> <?php if((isset($quote_is_default_add_ship))&&($quote_is_default_add_ship==0)&&($default_shipping_id==$add_id)):?>selected_address<?php endif;?>" address_id="<?php echo $add_id;?>" >
+					<div id="ship_add_data_<?php echo $add_id;?>">
+					<?php echo $quote_helper->getFormattedAddress($add_id); ?>
+						</div>
+						<button id="btn_default_shipping_<?php echo $add_id;?>" address_id="<?php echo $add_id;?>" class="default_shipping" <?php if((isset($quote_is_default_add_ship))&&($quote_is_default_add_ship==0)&&($default_shipping_id==$add_id)):?>style="display: none;"<?php endif;?>><?= /* @escapeNotVerified */ __('Use as Default') ?></button>
+
+				</li>
+				<?php endforeach; ?>
+			<!--	<li><a href="<?php //echo $block->getUrl('customer/address/new') ?>"><?//= /* @escapeNotVerified */ __('Add New Address') ?></a></li>-->
+						<?php if(!$is_custom_ship_address):?>
+						<li id="add_quote_ship_add"><a href="#"><?= /* @escapeNotVerified */ __('Add New Address') ?></a>					
+						</li>
+						<?php else: ?>
+						<li class="shipping_address_custom_<?php echo $is_custom_ship_address['address_id'];?> <?php if($is_custom_ship_address['is_default_address']!=0):?>selected_address<?php endif;?>" address_id="<?php echo $is_custom_ship_address['address_id'];?>" >
+							<div id="ship_add_data_custom_<?php echo $is_custom_ship_address['address_id'];?>">
+					<?php echo $quote_helper->renderCustomAddress($is_custom_ship_address);?>
+								</div>
+						<button id="btn_default_shipping_<?php echo $is_custom_ship_address['address_id'];?>" custom_address_id="<?php echo $is_custom_ship_address['address_id'];?>" class="default_shipping" <?php if($is_custom_ship_address['is_default_address']!=0):?>style="display: none;"<?php endif;?>><?= /* @escapeNotVerified */ __('Use as Default') ?></button>
+							<a id="edit_ship_add" address_id="<?php echo $is_custom_ship_address['address_id'];?>">Edit</a>
+							</li>
+						<?php endif; ?>
+							
+			</ul>
+				</div>
+			</div>
+		
+		<?php endif;?>
+			
+		<?php if($default_billing_address): $default_billing_id=$default_billing_address['entity_id'];?>
+		<div id="billing_address_detail">
+			<div class="block shipping-address-qoute" data-mage-init='{"collapsible":{"openedState": "active", "saveState": true}}'>
+				<div class="title" data-role="title">
+        			<strong id="block-billing-heading" role="heading" aria-level="2"><?= /* @escapeNotVerified */ __('Billing Address Detail') ?></strong>
+				</div>
+				<div id="billing-address-qoute" data-bind="scope:'billing-address-qoute'" class="content" data-role="content" aria-labelledby="block-billing-heading">
+					<ul id="billing_address_data">
+						<input type="hidden" value="<?php echo $default_billing_id;?>" name="bill_address_id" id="bill_address_id"/>	
+						<input type="hidden" value="<?php if(isset($is_custom_bill_address['address_id'])){ echo $is_custom_bill_address['address_id'];}?>" name="custom_bill_address_id" id="custom_bill_address_id"/>	
+						<?php foreach($all_address_data as $address): 
+						$add_id=$address['entity_id']; 
+						if((!$is_custom_bill_address)&&($default_billing_id==$add_id))
+					{
+						$quote->setbillAddressId($add_id)->save();
+					}
+						?>
+							<li class="billing_address_<?php echo $add_id;?> <?php if((!$is_custom_bill_address)&&($default_billing_id==$add_id)):?>selected_address<?php endif;?>"  address_id="<?php echo $add_id;?>">
+								<div id="bill_add_data_<?php echo $add_id;?>">
+								<?php echo $quote_helper->getFormattedAddress($add_id); ?>	
+								</div>
+								<button id="btn_default_billing_<?php echo $add_id;?>" class="default_billing" address_id="<?php echo $add_id;?>" <?php if((!$is_custom_bill_address)&&($default_billing_id==$add_id)):?>style="display: none;"<?php endif;?>><?= /* @escapeNotVerified */ __('Use as Default') ?></button>	
+							</li>
+						<?php endforeach; ?>
+							<!--<li><a href="<?php //echo $block->getUrl('customer/address/new') ?>"><?//= /* @escapeNotVerified */ __('Add New Address') ?></a></li>-->
+						<?php if(!$is_custom_bill_address):?>
+						<li id="add_quote_bill_add"><a href="#"><?= /* @escapeNotVerified */ __('Add New Address') ?></a>
+							</li>
+						<?php else: ?>
+						<li class="billing_address_custom_<?php echo $is_custom_bill_address['address_id'];?> <?php if($is_custom_bill_address):?>selected_address<?php endif;?>"  address_id="<?php echo $is_custom_bill_address['address_id'];?>">
+							
+							<div id="bill_add_data_custom_<?php echo $is_custom_bill_address['address_id'];?>">
+					<?php echo $quote_helper->renderCustomAddress($is_custom_bill_address);?>
+								</div>
+							<button id="btn_default_billing_<?php echo $is_custom_bill_address['address_id'];?>" class="default_billing" custom_address_id="<?php echo $is_custom_bill_address['address_id'];?>" <?php if($is_custom_bill_address):?>style="display: none;"<?php endif;?>><?= /* @escapeNotVerified */ __('Use as Default') ?></button>	
+							<a id="edit_bill_add" address_id="<?php echo $is_custom_bill_address['address_id'];?>">Edit</a>
+							</li>
+						<?php endif; ?>
+							
+					</ul>
+				</div>		
+			</div>		
+		</div>
+	
+		<?php endif;?>
+		
+	<div id="shiiping_address_loading" style="display:none;"><img src="<?php echo $image_url; ?>" alt="Loading..." /></div>
+	 <fieldset class="fieldset shipping_method" id="fieldset_shipping_method" style="<?php if(!$allow_guest){?>display:block; <?php } else{?>display:none;<?php } ?>">
+            <legend class="legend"><span id="quote_estimate_method"><?= $block->escapeHtml(__('Estimate Shipping Methods')) ?></span></legend><br>
+		<ul id="shipping_method">
+		</ul>	
+	</fieldset>
+<input type="hidden" class="applied_rate_incl_tax" name="applied_rate_incl_tax"/>
+<input type="hidden" class="applied_rate_excl_tax" name="applied_rate_excl_tax"/>
+
+	
+	
+	<?php /**end for manage address*/ ?>
+	 <div class="actions-toolbar" id="quote-create-action">
+		<?php if($quote_helper->getErrorMsgArr()==NULL):?>
+		 <?php //if(!count($quote_helper->getErrorMsgArr())):?>
+        <div class="primary">
+            <button type="submit" class="action primary submit_quote" title="<?= $escaper->escapeHtmlAttr(__('Submit Quote')) ?>"><span><?= $block->escapeHtml(__('Submit Quote')) ?></span></button>
+        </div>
+		 <?php endif;?>	
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Back')) ?></span></a>
+        </div>
+    </div>
+    
+</form>
+	</div>
+</div>
+<?php //endif;?>
+<script>
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+
+    var dataForm = $('#form-validate');
+    //var ignore = <?//= /* @noEscape */ $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null' ?>;
+    var ignore = 'null';
+
+   dataForm.mage('validation', {
+    <?php //if ($_dob->isEnabled()): ?>
+       /* errorPlacement: function(error, element) {
+            if (element.prop('id').search('full') !== -1) {
+                var dobElement = $(element).parents('.customer-dob'),
+                    errorClass = error.prop('class');
+                error.insertAfter(element.parent());
+                dobElement.find('.validate-custom').addClass(errorClass)
+                    .after('<div class="' + errorClass + '"></div>');
+            }
+            else {
+                error.insertAfter(element);
+            }
+        },
+        ignore: ':hidden:not(' + ignore + ')'*/
+    <?php //else: ?>
+        ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+    <?php //endif ?>
+    }).find('input:text').attr('autocomplete', 'off');
+
+});
+</script>
+<?php //if ($block->getShowAddressFields()): ?>
+<script type="text/x-magento-init">
+    {
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $block->getConfig('general/region/display_all') ? 'true' : 'false' ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "<?= (int) $block->getFormData()->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>
+<script type="text/x-magento-init">
+    {
+        "#country_bill": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $block->getConfig('general/region/display_all') ? 'true' : 'false' ?>,
+                "regionListId": "#region_id_bill",
+                "regionInputId": "#region_bill",
+                "postcodeId": "#zip_bill",
+                "form": "#form-validate",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "<?= (int) $block->getFormData()->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>
+<?php //endif; ?>
+
+ <?php if(version_compare($version, '2.2.0', '>=')): ?>
+<script type="text/x-magento-init">
+    {
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-quote-create-account"
+            }
+        }
+    }
+</script>
+<?php endif; ?>
+<script>
+	require(['jquery'],
+function($) {
+		$(".form-quote-create-account input").bind('keyup focusout change', function (){
+			$(this).valid();
+		});
+
+});
+	 window.magebeesQuoteConfig = <?= /* @escapeNotVerified */ $quote_helper->getSerializedQuoteConfig() ?>;
+</script>
+<?php //endif; ?>
