@@ -1,0 +1,106 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="block-title">
+    <strong class="text"><!-- ko i18n: 'Your quote' --><!-- /ko --></strong>
+    <p
+            class="qty empty"
+            data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                   attr: { title: $t('Items in Cart') }">
+        <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
+    </p>
+    <p class="products"><!-- ko i18n: 'Products' --><!-- /ko --></p>
+    <button type="button"
+            id="btn-minicart-close"
+            class="action close"
+            data-action="close">
+        <i class="material-icons">clear</i>
+    </button>
+</div>
+
+<div class="block-content">
+
+
+    <div data-action="scroll" class="minicart-items-wrapper">
+        <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+            <!-- ko foreach: $parent.getRegion($parent.getItemRenderer(item.product_type)) -->
+            <!-- ko template: {name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}} --><!-- /ko -->
+            <!-- /ko -->
+        </ol>
+    </div>
+
+    <div class="bottom-minicart">
+        <!-- ko if: getCartParam('summary_count') -->
+
+        <!-- ko if: getCartParam('possible_onepage_checkout') -->
+        <!-- ko foreach: getRegion('subtotalContainer') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+
+        <!-- ko ifnot: getCartParam('possible_onepage_checkout') -->
+        <span><!-- ko text: $t('Checkout is not allowed. Quantity of products in cart does not match to stock. Please change a products quantity in cart to continue to checkout.') --><!-- /ko --></span>
+        <!-- /ko -->
+
+        <div class="shipment-minicart" data-bind="html: minicartShippingBlock"></div>
+
+        <!-- ko foreach: getRegion('extraInfo') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+
+        <!-- ko if: getCartParam('possible_onepage_checkout') -->
+        <div class="actions">
+            <div class="primary">
+                <button
+                        id="top-cart-btn-shopping-cart"
+                        type="button"
+                        class="action primary shopping-cart"
+                        data-bind="attr: {title: $t('Go to Shopping Cart')}">
+                    <!-- ko i18n: 'View quote request' --><!-- /ko -->
+                </button>
+            </div>
+            <div class="secondary">
+                <button class="action continue close" data-action="close">
+                    <span><!-- ko text: $t('Continue Shopping') --><!-- /ko --></span>
+                </button>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+
+        <div id="minicart-widgets" class="minicart-widgets">
+            <!-- ko foreach: getRegion('promotion') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        </div>
+
+        <!-- ko ifnot: getCartParam('summary_count') -->
+        <strong class="subtitle empty" data-bind="visible: closeSidebar()">
+            <!-- ko i18n: 'You have no items in your shopping cart.' --><!-- /ko -->
+        </strong>
+        <!-- ko if: getCartParam('cart_empty_message') -->
+        <p class="minicart empty text"><!-- ko text: getCartParam('cart_empty_message') --><!-- /ko --></p>
+
+        <div class="actions">
+            <div class="primary">
+                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                    <span><!-- ko text: $t('View quote request') --><!-- /ko --></span>
+                </a>
+            </div>
+            <div class="secondary">
+                <button class="action continue close" data-action="close">
+                    <span><!-- ko text: $t('Continue Shopping') --><!-- /ko --></span>
+                </button>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+
+    </div>
+</div>
+<!-- ko foreach: getRegion('sign-in-popup') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
