@@ -1,0 +1,28 @@
+.popup-authentication-quicklogin {
+
+  .actions-toolbar {
+
+    .primary {
+
+      .action-login {
+        height: 50px;
+        margin: 4px 0 20px;
+      }
+    }
+  }
+
+  .block-new-customer {
+    margin: 50px 0 0;
+
+    h5{
+      font-size: $font-size-sm-uppercase;
+    }
+
+    ul {
+
+      li{
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
