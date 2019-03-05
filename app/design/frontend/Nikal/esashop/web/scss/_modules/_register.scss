@@ -11,6 +11,14 @@
 
     .info-list{
         margin: 0 0 40px;
+
+        li{
+            font-family: $font-fam-secondary;
+        }
+    }
+
+    .label{
+        font-family: $font-fam-secondary;
     }
 
     .create {
@@ -24,6 +32,7 @@
 
             .legend{
                 font-size: $font-size-sm-uppercase;
+                font-family: $font-fam-title;
             }
 
             .field{

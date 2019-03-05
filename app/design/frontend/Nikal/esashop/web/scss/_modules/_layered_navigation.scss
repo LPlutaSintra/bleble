@@ -113,6 +113,32 @@
       padding: 0 30px 30px 40px;
     }
 
+    .ln-items-cat {
+
+      .item-parent-categories{
+
+        >span{
+          font-size:$font-size-sm;
+          color: $nikal-text-color;
+          font-family: $font-fam-secondary;
+          padding-top: 5px;
+
+          &:before{
+            font-size:$font-size-sm;
+          }
+        }
+
+      }
+
+      .ln-items-cat-sub {
+        .item{
+          >a{
+            font-size:$font-size-sm;
+          }
+        }
+      }
+    }
+
     .swatch-attribute-options {
 
       .swatch-option {
