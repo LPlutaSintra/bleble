@@ -2,8 +2,15 @@
 .minicart-wrapper {
   .dropdown {
     width: 525px;
+    @media screen and (max-width: $sm-width) {
+      width: 325px;
+    }
     .ui-dialog {
       padding: 35px;
+      @media screen and (max-width: $sm-width) {
+        padding: 0px;
+        padding-left: 15px;
+      }
     }
   }
 }
@@ -112,6 +119,10 @@
                 padding: 0px;
                 border: 0px;
               }
+              .secondary {
+                padding: 0px;
+                border: 0px;
+              }
               .qty.control {
                 max-width: 110px;
               }
@@ -135,9 +146,10 @@
                   font-size: 0px;
                   &:after {
                     content: " ";
-                    background-image: url('../images/esa-icons/Fb.svg');
+                    background-image: url('../images/esa-icons/trash.svg');
                     background-size: contain;
                     background-repeat: no-repeat;
+                    max-width: 22px;
                   }
                 }
                 &.wishlist i {
@@ -148,6 +160,7 @@
                     background-image: url('../images/esa-icons/astronaut_WishlistOff.svg');
                     background-size: contain;
                     background-repeat: no-repeat;
+                    max-width: 30px;
                   }
                 }
               }

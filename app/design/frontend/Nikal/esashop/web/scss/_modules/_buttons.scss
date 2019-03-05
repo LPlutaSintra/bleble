@@ -223,6 +223,7 @@ Buttons
 
 .btn.btn-bulk,
 .bottom-minicart .actions .primary .action.primary.shopping-cart,
+.minicart-wrapper .block-minicart .product-actions-wrapper button.update-cart-item,
 .qty button,
 .qty button{
   border: 1px solid $nikal-main-color;
@@ -263,6 +264,10 @@ Buttons
         color: $white;
       }
     }
+  }
+  &.update-cart-item:hover {
+    background: $nikal-main-color;
+
   }
   &:active {
     transform:scale(.98);
