@@ -51,6 +51,16 @@
     }
   }
 
+  .filter-options-item{
+
+    &.active {
+
+      .filter-options-content{
+        display: block;
+      }
+    }
+  }
+  
   .filter-actions {
     padding: 10px 12px;
 

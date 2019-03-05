@@ -20,8 +20,31 @@ require(['domReady', 'jquery'], function (domReady, $) {
  // Slick
  ------------------------------- */
 require(['jquery', 'slick'], function ($) {
+    
     $(document).ready(function() {
         var items = $('[data-slick]');
+
+        if (typeof Object.assign != 'function') {
+            Object.assign = function(target) {
+                'use strict';
+                if (target == null) {
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+
+                target = Object(target);
+                for (var index = 1; index < arguments.length; index++) {
+                    var source = arguments[index];
+                    if (source != null) {
+                        for (var key in source) {
+                            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                                target[key] = source[key];
+                            }
+                        }
+                    }
+                }
+                return target;
+            };
+        }
 
         $(window).resize(function() {
 
@@ -164,6 +187,8 @@ require(['jquery'], function ($) {
             dir = 'left',
             isMobile = false;
 
+        var windowWidth = $(window).width();
+
         $(document).on('click', '.filters-trigger', function () {
 
             $(this).parent().toggleClass('active');
@@ -180,9 +205,13 @@ require(['jquery'], function ($) {
         });
 
         $(window).on('resize', function() {
-            filters.attr('style', '');
 
-            isMobile = ($(window).width() < 768);
+            if ($(window).width() != windowWidth) {
+                windowWidth = $(window).width();
+                filters.attr('style', '');
+                body.removeClass('sidebar-hidden');
+            }
+            isMobile = (windowWidth < 768);
         });
     });
 });
