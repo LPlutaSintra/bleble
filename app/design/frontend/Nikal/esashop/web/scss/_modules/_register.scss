@@ -21,6 +21,11 @@
         }
 
         .fieldset {
+
+            .legend{
+                font-size: $font-size-sm-uppercase;
+            }
+
             .field{
                 margin: 0 0 20px;
             }
@@ -34,7 +39,31 @@
         }
     }
 
+    .block-customer-login{
+        margin-bottom: 30px;
+    }
 
+    .block-new-customer {
+
+        .block-title{
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .actions-toolbar {
+
+            @include sm {
+                margin: 20px 0;
+            }
+
+            a {
+                text-transform: uppercase;
+                &:after{
+                    bottom: -8px;
+                }
+            }
+        }
+    }
 
     .actions-toolbar-main {
 
@@ -43,21 +72,35 @@
         }
 
         .log, .login, .submit, .remind{
-            font-size: 16px;
+            font-size: $font-size-sm-uppercase;
+            font-weight: 600;
         }
     }
 
     .links-type {
         margin: 0 0 30px;
 
+        @include xxs {
+            display: block;
+        }
+
+        >div{
+            @include xxs {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 0 20px;
+            }
+        }
+
         .btn-link {
             display: block;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
             padding: 10px 24px;
             border: 2px solid $nikal-main-color;
             margin-right: 20px;
+            line-height: 28px;
 
             &:hover, &:active{
                 border: 2px solid $nikal-main-color;
@@ -65,5 +108,53 @@
                 background: $nikal-main-color;
             }
         }
+    }
+}
+
+.form.password.forget{
+
+    .captcha.no-label{
+        margin-top: 20px;
+
+        @include xxs {
+            text-align: center;
+        }
+
+        .captcha-img{
+            vertical-align: bottom;
+            margin-right: 20px;
+
+            @include xxs {
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .action.reload.captcha-reload{
+            vertical-align: bottom;
+        }
+    }
+
+    .actions-toolbar {
+
+        @include sm {
+            margin: 30px 0;
+        }
+
+        div.primary{
+            @include sm {
+                margin-bottom:20px;
+            }
+        }
+
+        .secondary{
+            a {
+                text-transform: uppercase;
+                &:after{
+                    bottom: -8px;
+                }
+            }
+        }
+
     }
 }
