@@ -1,0 +1,204 @@
+.catalog-product-view {
+  .column.main {
+    background: transparent;
+  }
+}
+/*--------------------------------------------------
+Fonts
+--------------------------------------------------*/
+.product-info-main {
+  .page-title {
+    span {
+      font-size: $h1-font-size;
+      letter-spacing: -0.3px;
+      text-transform: uppercase;
+    }
+  }
+  .product.attribute.overview {
+    .value {
+      p {
+
+      }
+    }
+  }
+  .product-info-price {
+    .price-box {
+      .special-price {
+        .price-container{
+          .price-wrapper {
+            .price {
+              color: $nikal-main-color;
+              font-size: $h3-font-size;
+            }
+          }
+        }
+      }
+      .old-price {
+        .price-wrapper {
+          color: $nikal-main-color;
+          .price {
+            color: $black;
+            text-decoration: none;
+            font-size: $h3-font-size;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+/*--------------------------------------------------
+Swatches
+--------------------------------------------------*/
+.catalog-product-view {
+  .product-info-main {
+    .product-add-form {
+      .swatch-option {
+        &.color,
+        &.image {
+          width: 18px;
+          height: 18px;
+          border: 1px solid transparent;
+          border-radius: 50%;
+          padding: 3px;
+          background-clip: content-box !important;
+        }
+        &.text {
+          height: 25px;
+          min-width: 45px;
+          background: transparent;
+          border: 1px solid transparent;
+          line-height: 2;
+          color: $nikal-main-color;
+        }
+        &.color:active,
+        &.image:active,
+        &.color:hover,
+        &.image:hover,
+        &.text:active,
+        &.text:hover,
+        &.color.selected,
+        &.image.selected,
+        &.text.selected {
+          background-color: transparent !important;
+          border: 1px solid $nikal-main-color;
+        }
+        &:after {
+          background: linear-gradient(to left top,
+                  rgba(255,255,255,0) 0%,
+                  rgba(255,255,255,0) 42%,
+                  rgba(255,255,255,0) 43%,
+                  rgba(255,255,255,0) 46%,
+                  $nikal-main-color 47%,
+                  $nikal-main-color 53%,
+                  rgba(255,255,255,0) 54%,
+                  rgba(255,255,255,0) 57%,
+                  rgba(255,255,255,0) 58%,
+                  rgba(255,255,255,0) 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
+        }
+      }
+    }
+  }
+}
+.swatch-option-tooltip{
+  display: none !important;
+}
+/*--------------------------------------------------
+Gallery
+--------------------------------------------------*/
+
+/*--------------------------------------------------
+Form
+--------------------------------------------------*/
+.catalog-product-view {
+  .product-info-main {
+    .product-add-form {
+      form {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .product-options-bottom {
+          .box-tocart {
+            .fieldset {
+              display: block;
+
+              .field.qty {
+                background: transparent;
+                display: inline-flex;
+                max-width: 40%;
+
+                .label {
+                  span {
+                    margin-right: 10px;
+                  }
+                }
+
+                .control {
+                  input {
+                    background: transparent;
+                    padding: 0px;
+                    color: $nikal-main-color;
+                    flex: 0 1 60px;
+                  }
+                }
+              }
+
+              .actions {
+                display: inline-flex;
+                float: right;
+
+                button {
+                  width: 100%;
+                  background: transparent;
+                  margin-left: auto;
+                  margin-right: 0px;
+                  display: inline-flex;
+
+                  &:hover,
+                  &:active {
+                    background: $nikal-main-color;
+                  }
+
+                  &.toquote {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------
+Wishlist and social
+--------------------------------------------------*/
+.catalog-product-view {
+  .product-social-links {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .product-addto-links {
+      a {
+        display: block;
+        &.towishlist {
+          &:before {
+            content: "";
+            width: 50px;
+            height: 37px;
+            background-image: url('../images/esa-icons/astronaut_WishlistOff.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+        }
+        span {
+          border: 0px;
+        }
+      }
+    }
+  }
+}
