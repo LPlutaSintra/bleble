@@ -1,0 +1,35 @@
+body {
+  background: $bg-secondary;
+  font-family: "NotesEsaReg", "Helvetica Neue",Arial, Helvetica, sans-serif;
+  table {
+    .header {
+      background: $bg-secondary;
+    }
+  }
+}
+a {
+  color: $font-link;
+  &:hover {
+    color: $font-link-hover;
+  }
+}
+.button {
+  .inner-wrapper {
+    td {
+      font-family: 'NotesEsaReg','Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+      background-color: $white;
+      color: $font-link;
+      &:hover {
+        background-color: $bg-cta;
+      }
+      a {
+        border:1px solid $font-link-border;
+        color: $font-link;
+        &:hover {
+          background-color: $bg-cta;
+          color:$font-btn-hover
+        }
+      }
+    }
+  }
+}
