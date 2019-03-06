@@ -30,5 +30,8 @@
         <move element="form.subscribe" destination="footer" after="-"/>
 
         <referenceBlock name="wishlist" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="product.review.form" remove="true" />
+        <referenceBlock name="product.info.review" remove="true" />
     </body>
 </page>
