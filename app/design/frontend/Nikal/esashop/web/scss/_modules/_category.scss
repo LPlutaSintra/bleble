@@ -196,12 +196,12 @@ Category listing
             .price-wrapper{
                 color: $nikal-main-color;
                 text-decoration: line-through;
-                font-weight: bold;
+                font-family: $font-fam-title;
             }
             .price{
                 color: $nikal-text-color;
                 text-decoration: none;
-                font-weight: bold;
+                font-family: $font-fam-title;
             }
         }
 
@@ -209,6 +209,13 @@ Category listing
 
             >span{
                 margin: 0 10px 0 0;
+            }
+        }
+
+        .price-wrapper {
+
+            .price{
+                font-family: $font-fam-title;
             }
         }
 
@@ -266,6 +273,7 @@ Category listing
             font-size: 15px;
             text-transform: uppercase;
             min-width: 100px;
+            font-family: $font-fam-base;
         }
 
         .sorter-options {
@@ -366,7 +374,7 @@ Category listing
             .page{
                 color: $nikal-text-color;
                 font-size: 15px;
-                font-weight: bold;
+                font-family: $font-fam-title;
             }
 
             &:hover{
@@ -515,7 +523,7 @@ Category listing
                 height: 50px;
                 line-height: 30px;
                 text-transform: uppercase;
-                font-weight: 600;
+                font-family: $font-fam-title;
                 letter-spacing: 1px;
                 outline: none;
                 cursor: pointer;

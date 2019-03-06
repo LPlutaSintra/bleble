@@ -24,6 +24,7 @@ Cart
                 .price {
                     color: $nikal-text-color;
                     font-size: $font-size-m;
+                    font-family: $font-fam-title;
                 }
             }
 
@@ -84,6 +85,7 @@ Cart
                 .price {
                     color: $nikal-text-color;
                     font-size: $font-size-m;
+                    font-family: $font-fam-title;
 
                     @include sm {
                         font-size: $font-size-sm;
@@ -97,7 +99,8 @@ Cart
         border-bottom: 1px solid $nikal-background-color;
 
         .action {
-            font-size: $font-size-sm;
+            font-size: $font-size-sm-uppercase;
+            text-transform: uppercase;
         }
     }
 
@@ -121,6 +124,7 @@ Cart
                     line-height: 28px;
                     height: 30px;
                     font-size: 13px;
+                    font-family: $font-fam-title;
                 }
             }
         }
@@ -137,6 +141,7 @@ Cart
                 >strong{
                     font-size: 15px;
                     line-height: 2;
+                    font-family: $font-fam-secondary;
                 }
 
                 &:after{
@@ -147,6 +152,17 @@ Cart
 
         .content{
             background-color: $nikal-background-color;
+        }
+
+        .estimate {
+            label {
+                span{
+                    font-weight: 100;
+                }
+            }
+            strong{
+                font-family: $font-fam-secondary;
+            }
         }
     }
 
@@ -170,6 +186,7 @@ Cart
        .grand {
            .amount{
                line-height: 2;
+               font-family: $font-fam-title;
            }
        }
 

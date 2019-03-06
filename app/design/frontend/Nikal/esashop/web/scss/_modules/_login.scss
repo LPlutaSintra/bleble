@@ -7,6 +7,7 @@
       .action-login {
         height: 50px;
         margin: 4px 0 20px;
+        font-family: $font-fam-title;
       }
     }
   }
@@ -23,6 +24,7 @@
       li{
         font-size: $font-size-sm;
         font-family: $font-fam-secondary;
+        font-weight: 100;
       }
     }
   }

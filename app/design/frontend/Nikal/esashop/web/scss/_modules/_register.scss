@@ -32,12 +32,16 @@
 
             .legend{
                 font-size: $font-size-sm-uppercase;
-                font-family: $font-fam-title;
             }
 
             .field{
                 margin: 0 0 20px;
             }
+        }
+
+        #password-strength-meter-container div,
+        .mage-error {
+            font-weight: 100;
         }
 
         .choice {
@@ -57,6 +61,7 @@
         .block-title{
             font-size: 25px;
             margin-bottom: 20px;
+            font-family: $font-fam-title;
         }
 
         .actions-toolbar {
@@ -82,7 +87,7 @@
 
         .log, .login, .submit, .remind{
             font-size: $font-size-sm-uppercase;
-            font-weight: 600;
+            font-family: $font-fam-title;
         }
     }
 
@@ -104,7 +109,7 @@
         .btn-link {
             display: block;
             font-size: 16px;
-            font-weight: 600;
+            font-family: $font-fam-title;
             text-transform: uppercase;
             padding: 10px 24px;
             border: 2px solid $nikal-main-color;
@@ -141,6 +146,7 @@
 
         .action.reload.captcha-reload{
             vertical-align: bottom;
+            font-family: $font-fam-title;
         }
     }
 
@@ -154,6 +160,11 @@
             @include sm {
                 margin-bottom:20px;
             }
+        }
+
+        .action.submit.primary{
+            font-weight: 600;
+            font-family: $font-fam-title;
         }
 
         .secondary{

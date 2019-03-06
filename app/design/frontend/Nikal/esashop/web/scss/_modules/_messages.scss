@@ -1,0 +1,19 @@
+.message,
+.mage-error,
+.note,
+.warning,
+.alert {
+  margin: 5px auto;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 5px;
+  font-size: 13px;
+  font-family: $font-fam-secondary;
+
+  &:before {
+    font-size: 15px;
+    line-height: normal;
+    margin: 5px;
+  }
+}
+
