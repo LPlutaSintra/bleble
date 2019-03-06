@@ -61,7 +61,7 @@ class CreatePost extends CreatePostAbstract
 
         $firstName = $request->getParam('firstname');
         $lastName = $request->getParam('lastname');
-        $fiscalCode = $request->getParam('fiscal-code');
+        //$fiscalCode = $request->getParam('fiscal-code');
         $email = $request->getParam('email');
         $password = $request->getParam('password');
         $isTerms = $request->getParam("is_terms");
@@ -96,10 +96,10 @@ class CreatePost extends CreatePostAbstract
             $this->messageManager->addError(__('Password must be equal or bigger than 8 chars.'));
         }
 
-        if (!$notEmpty->isValid($fiscalCode)) {
-            $isValid = false;
-            $this->messageManager->addError(__('Fiscal code cannot be empty'));
-        }
+//        if (!$notEmpty->isValid($fiscalCode)) {
+//            $isValid = false;
+//            $this->messageManager->addError(__('Fiscal code cannot be empty'));
+//        }
 
         if (!$notEmpty->isValid($isTerms)) {
             $isValid = false;

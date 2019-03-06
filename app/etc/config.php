@@ -148,6 +148,7 @@ return [
         'Mageplaza_SocialLogin' => 1,
         'MagicToolbox_MagicZoom' => 1,
         'Nikal_Contact' => 1,
+        'Nikal_Minicart' => 1,
         'Nikal_Products' => 1,
         'Nikal_Setup' => 1,
         'Stripeofficial_Core' => 1,
