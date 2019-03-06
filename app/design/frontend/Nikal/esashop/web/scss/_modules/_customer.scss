@@ -51,6 +51,15 @@ Customer Area
         font-family: $font-fam-secondary;
     }
 
+    legend{
+        font-size: $font-size-sm-uppercase;
+    }
+
+    address{
+        font-family: $font-fam-secondary;
+        font-weight: 100;
+    }
+
     .custommer-top-banner {
 
         .top-info{
@@ -79,12 +88,27 @@ Customer Area
         }
 
         .save,
-        button.primary{
+        button.primary,
+        button.action{
             font-size: $font-size-sm-uppercase;
             font-family: $font-fam-title;
             height: 50px;
             padding: 10px 30px;
+            margin: 0 15px 20px 0;
         }
+    }
+
+    .box-title {
+        font-size: $font-size-sm-uppercase;
+        font-family: $font-fam-base;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: $nikal-text-color;
+        padding-bottom: 10px;
+        margin: 0 0 10px;
+        border-bottom: 1px solid $nikal-background-color;
+        text-transform: uppercase;
+        display: inline-block;
     }
 
     .change-password {
@@ -108,16 +132,8 @@ Customer Area
         .box-title {
             font-size: $font-size-sm-uppercase;
             font-family: $font-fam-base;
-            font-weight: 400;
             letter-spacing: 1px;
-            color: $nikal-text-color;
-            padding-bottom: 10px;
             border-bottom: 1px solid $nikal-background-color;
-            text-transform: uppercase;
-        }
-
-        address{
-            font-family: $font-fam-secondary;
         }
 
         .box-actions {
@@ -136,6 +152,272 @@ Customer Area
                     background: $nikal-main-color;
                 }
             }
+        }
+    }
+
+    .history.table-order-items{
+        
+        tbody td {
+            padding: 14px 5px;
+        }
+    }
+
+    .recent.table-order-items {
+
+        tbody {
+
+            .id{
+                @include md {
+                    font-size: $font-size-xs;
+                }
+            }
+        }
+
+        .order-items {
+
+            .order-item {
+
+                &:nth-child(even){
+                    border-left: solid 1px #f8f8f8;
+                }
+
+                .order-item-details{
+                    font-family: $font-fam-secondary;
+                    .order-item-name{
+                        font-family: $font-fam-base;
+                        font-size: $font-size-sm;
+                        @include md {
+                            font-size: $font-size-xs;
+                        }
+                    }
+                    .order-item-price{
+                        font-family: $font-fam-title;
+                        color: $nikal-text-color;
+                        font-size: $font-size-sm;
+                        @include md {
+                            font-size: $font-size-xs;
+                        }
+                    }
+
+                    .order-item-sku,
+                    .order-item-options,
+                    .order-item-qty{
+                        font-size: $font-size-sm;
+                        @include md {
+                            font-size: $font-size-xs;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.sales-order-view{
+
+        .page-title-wrapper{
+            margin-bottom: 50px;
+        }
+
+        .order-status{
+            font-family: $font-fam-secondary;
+        }
+
+        .order-date{
+            font-family: $font-fam-secondary;
+        }
+
+        .action.order{
+            &:after{
+                display: none;
+            }
+            span{
+                text-decoration: underline;
+            }
+        }
+
+        .action.print{
+
+            &:before{
+                content: '';
+                display: inline-block;
+                height: 12px;
+                margin: 0 6px;
+                width: 1px;
+                background: $nikal-main-color;
+            }
+
+            span{
+                text-decoration: underline;
+            }
+
+            &:after{
+                display: none;
+            }
+        }
+
+        .box-order-shipping-method,
+        .box-order-billing-address,
+        .box-order-billing-method{
+            margin: 40px 0 0;
+        }
+
+        .box-content{
+            font-family: $font-fam-secondary;
+        }
+
+        .order-details-items{
+            margin-bottom: 50px;
+
+            .order-title{
+                font-size: 25px;
+                line-height: 22px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .block-order-details-view{
+
+            .block-title{
+                font-size: 25px;
+                line-height: 22px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .items.order-links{
+            display: none;
+        }
+
+        tfoot{
+            font-family: $font-fam-secondary;
+            tr{
+                th{
+                    text-align: right;
+                }
+
+                &.grand_total{
+                    th, td{
+                        font-size: $font-size-m;
+                        padding: 7px 5px;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .form-wishlist-items {
+
+        .product-items {
+
+            .product-item{
+                flex: none;
+            }
+
+            .product-item-name{
+                text-align: left;
+                padding: 0 10%;
+            }
+
+            .price{
+                font-size: $font-size-m;
+                color: $nikal-text-color;
+                @include xxs {
+                    font-size: $font-size-xs;
+                }
+            }
+
+            .price-box {
+                text-align: left;
+                padding: 0 10%;
+
+                .price-as-configured>span {
+                    margin: 0 10px 0 0;
+                }
+            }
+        }
+
+    }
+
+    .table {
+        thead {
+            background-color: $nikal-background-color;
+            tr {
+                th{
+                    font-size: $font-size-sm-uppercase;
+                    color: $nikal-text-color;
+
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border: solid 1px $nikal-background-color;
+                td{
+                    font-family: $font-fam-secondary;
+                    font-size: $font-size-sm;
+                    color: $nikal-text-color;
+
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        tfoot{
+            tr{
+                th{
+                    padding: 2px 5px;
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+                td{
+                    padding: 2px 5px;
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+        .action{
+            text-transform: uppercase;
+            font-family: $font-fam-title;
+
+            &.order{
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    height: 12px;
+                    margin: 0 6px;
+                    width: 1px;
+                    background: $nikal-main-color;
+                }
+            }
+
+            span{
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.downloadable-customer-products [class*="-products-toolbar"],
+.sales-order-history [class*="-products-toolbar"]  {
+
+    .pager {
+
+        .toolbar-amount{
+            font-weight: 500;
+        }
+
+        .limiter{
+            font-family: $font-fam-secondary;
         }
     }
 }

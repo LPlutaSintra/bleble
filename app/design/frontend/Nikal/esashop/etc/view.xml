@@ -60,6 +60,10 @@
                 <width>110</width>
                 <height>110</height>
             </image>
+            <image id="wishlist_thumbnail" type="small_image">
+                <width>330</width>
+                <height>361</height>
+            </image>
         </images>
     </media>
 
