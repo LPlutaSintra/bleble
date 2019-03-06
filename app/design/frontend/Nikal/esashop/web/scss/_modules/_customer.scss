@@ -1,0 +1,141 @@
+/*--------------------------------------------------
+Customer Area
+--------------------------------------------------*/
+
+.block-collapsible-nav {
+
+    .nav {
+
+        > li {
+
+            a,
+            strong {
+                font-size: $font-size-sm;
+                padding: 10px 15px;
+                text-transform: uppercase;
+            }
+
+            &:after{
+                display: none;
+            }
+
+            &:hover{
+                background: $nikal-background-color;
+            }
+
+            &.current{
+                background: $nikal-background-color;
+                border-left: 3px solid #0234fc;
+
+                a{
+                    padding: 0;
+                }
+
+                strong{
+                    //color: $nikal-main-color;
+                    font-family: NotesEsaBol,Roboto,sans-serif;
+                    font-weight: 600;
+                    padding-left: 12px;
+                }
+
+                &:after{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.account {
+
+    .label{
+        font-family: $font-fam-secondary;
+    }
+
+    .custommer-top-banner {
+
+        .top-info{
+            background: transparent;
+        }
+
+        p{
+            font-size: $font-size-sm;
+
+            a{
+                font-family: $font-fam-title;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .actions-toolbar {
+
+        a{
+            font-size: $font-size-sm-uppercase;
+            font-weight: 600;
+
+            &:after{
+                bottom: -8px;
+            }
+        }
+
+        .save,
+        button.primary{
+            font-size: $font-size-sm-uppercase;
+            font-family: $font-fam-title;
+            height: 50px;
+            padding: 10px 30px;
+        }
+    }
+
+    .change-password {
+        margin: 30px 0;
+
+        label{
+            padding: 5px 0 5px 10px;
+
+            &:after{
+                padding: 0;
+            }
+        }
+    }
+
+    .new-address-book-btn{
+        top: -20px;
+    }
+
+    .new-address-book {
+
+        .box-title {
+            font-size: $font-size-sm-uppercase;
+            font-family: $font-fam-base;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: $nikal-text-color;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $nikal-background-color;
+            text-transform: uppercase;
+        }
+
+        address{
+            font-family: $font-fam-secondary;
+        }
+
+        .box-actions {
+            .edit{
+                color: $nikal-main-color;
+                text-transform: uppercase;
+                font-family: $font-fam-title;
+            }
+
+            .remove{
+                color: $nikal-main-color;
+                text-transform: uppercase;
+                font-family: $font-fam-title;
+
+                &:before{
+                    background: $nikal-main-color;
+                }
+            }
+        }
+    }
+}

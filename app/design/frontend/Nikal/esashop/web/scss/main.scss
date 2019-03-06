@@ -17,6 +17,7 @@ Website by WsTechlab
 @import '_modules/base';
 @import '_modules/layout';
 @import '_modules/typography';
+@import '_modules/messages';
 //@import '_modules/global';
 @import '_modules/header';
 //@import '_modules/modals';
@@ -36,7 +37,7 @@ Website by WsTechlab
 //@import '_modules/_compare';
 @import '_modules/register';
 @import '_modules/related';
-//@import '_modules/customer';
+@import '_modules/customer';
 @import '_modules/checkout';
 //@import '_modules/blog';
 //@import '_modules/homepage';

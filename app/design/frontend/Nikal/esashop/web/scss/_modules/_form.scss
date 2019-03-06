@@ -44,6 +44,7 @@ select {
 input[type="checkbox"] {
     + label {
         float: none;
+        margin-left: 20px;
 
         &:before {
             background-color: $white;
@@ -86,4 +87,9 @@ input[type="checkbox"] {
             }
         }
     }
+}
+
+label{
+    font-family: $font-fam-secondary;
+    font-weight: 100;
 }
