@@ -13,18 +13,34 @@ a {
     color: $font-link-hover;
   }
 }
+.wrapper, .wrapper-inner, .main-content, .footer, .header {
+  font-family: 'NotesEsaReg','Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  table {
+    td {
+      font-family: 'NotesEsaReg','Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+      font-size: 15px;
+    }
+  }
+}
 .button {
   .inner-wrapper {
     td {
-      font-family: 'NotesEsaReg','Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
       background-color: $white;
       color: $font-link;
+      font-family: 'NotesEsaBol','Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+      font-weight: bold;
+      font-size: 16px;
       &:hover {
         background-color: $bg-cta;
       }
       a {
-        border:1px solid $font-link-border;
+        border:2px solid $font-link-border;
         color: $font-link;
+        font-weight: bold;
+        padding: 10px 30px;
+        text-transform: uppercase;
+        font-size: 16px;
         &:hover {
           background-color: $bg-cta;
           color:$font-btn-hover
