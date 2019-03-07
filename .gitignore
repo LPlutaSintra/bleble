@@ -63,7 +63,7 @@ gulp/package-lock.json
 *.css.map
 *.js.map
 *.map
-main.css
+/app/design/frontend/*/*/web/css/*.css
 gulp.config.development.js
 node_modules
 package-lock.json
