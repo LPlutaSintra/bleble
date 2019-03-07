@@ -151,8 +151,10 @@ class UpgradeData implements UpgradeDataInterface
                 ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'author',
-                'system',
-                0);
+                [
+                    'user_defined' => true,
+                    'system' => 0
+                ]);
             $eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY,
                 'customizable',
                 [
