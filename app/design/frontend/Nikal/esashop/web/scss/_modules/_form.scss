@@ -56,11 +56,11 @@ input[type="checkbox"] {
         @include material-icon($checkbox-icon-name, after, 12px);
 
         &:after {
-            line-height: 17px;
+            line-height: 15px;
             text-align: center;
             font-weight: bold;
-            font-size: 17px;
-            padding: 3px;
+            font-size: 15px;
+            padding: 2px;
         }
     }
 
