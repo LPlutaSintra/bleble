@@ -1,0 +1,119 @@
+/*--------------------------------------------------
+Blog
+--------------------------------------------------*/
+
+  .blog-social-wrapper { 
+    display: none;
+  }
+
+  .mp-sidebar {
+    .menu-categories,
+    .menu-archives {
+
+      a {
+        &:hover {                                           
+          border-bottom: 3px solid $nikal-main-color;
+          margin-bottom: -3px;
+          @include sm {
+            border-bottom: none;
+          }
+        }
+      } 
+    }
+  }
+  .about-admin {
+    display: none;
+  }
+  
+  .list-post-tabs {
+    .post-left{
+      display: none;
+    }
+    .post-right {
+      flex: 1;
+
+      .create-at {
+        display: none;
+      }
+  
+      a {
+        display: flex;
+          &:hover {                 
+            span {
+              border-bottom: 3px solid $nikal-main-color;
+              margin-bottom: -3px;
+              @include sm {
+                border-bottom: none;
+                }
+              }
+          }
+      }
+    }
+  }
+  .post-list-content {
+    .post-post-info {
+      .post_post-user {
+        display:none;
+      }
+    };
+    .pager {
+      .toolbar-amount {
+        display:none;
+      }
+    }
+  }
+.post-list-body {
+  .post-list-item {
+    .post-item-wraper {
+      .post-info-wraper {
+        .mp-post-title {
+        a { color: $black;
+          &:hover { 
+            color:    $nikal-main-color;             
+              border-bottom: 3px solid $nikal-main-color;
+              margin-bottom: -3px;
+              @include sm {
+                border-bottom: none;
+                }
+              
+          }
+        } 
+        }
+      }
+    }
+  }
+}
+
+
+.post-list-body {
+  .post-info-wraper {
+    .mp-post-info {
+      display:none;
+    }
+  }
+}
+.mpblog-search {
+  .field {
+    float:left;
+    display: flex;
+    position: relative;
+    //justify-content: left;
+    .input-text {
+      max-width: 255px;
+    }
+  }
+  .actions {
+    float:left;
+    position: relative;
+    display: flex;
+    //justify-content: left;
+  }
+}
+
+
+.limiter {
+  .limiter-options {
+    margin-bottom: 80px;
+    margin-top: 20px;
+  }
+}
