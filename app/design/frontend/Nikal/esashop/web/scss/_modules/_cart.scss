@@ -224,3 +224,27 @@ Qty add subtract buttons
         height: 30px;
     }
 }
+
+.checkout-cart-index{
+
+    .qty {
+        button{
+            &.qty-sub,
+            &.qty-add{
+                width: 30px;
+                height: 30px;
+                i{
+                    width: 28px;
+                    height: 28px;
+                    padding: 5px 0;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+    .qty-sub{
+        +.qty{
+            border-bottom: 1px solid $nikal-main-color;
+        }
+    }
+}
