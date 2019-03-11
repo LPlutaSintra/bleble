@@ -167,6 +167,11 @@ Category listing
 
         .product-item-details{
             padding: 0 10%;
+
+            .ie11 &{
+                display: block;
+                text-align: left;
+            }
         }
 
         .product-item-name {
@@ -479,12 +484,17 @@ Category listing
 
     .product-items {
         .product-item{
-            margin: 0 0 60px;
+
             @include md {
                 width: calc(33.333% - #{2 * $gutter});
             }
+
             @include xs {
-                margin: 0 0 20px;
+                width: calc(50% - #{2 * $gutter});
+            }
+
+            @include xxs {
+                width: calc(100% - #{2 * $gutter});
             }
 
             .product-item-info{
@@ -499,6 +509,13 @@ Category listing
                     box-shadow: none;
                 }
 
+            }
+
+            .product-sku{
+                @include xxs {
+                    display: block;
+                    font-size: 14px;
+                }
             }
 
             .product-img{
