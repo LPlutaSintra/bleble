@@ -146,6 +146,37 @@ Swatches
 /*--------------------------------------------------
 Gallery
 --------------------------------------------------*/
+.product.media {
+  .MagicToolboxContainer {
+    .MagicToolboxMainContainer {
+    }
+    .MagicToolboxSelectorsContainer {
+      flex-direction: row;
+      a.mt-thumb-switcher {
+        img {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+  .media-text {
+    position: relative;
+    top: -50px;
+    right: -245px;
+    z-index: 1;
+    .media-gallery-trigger {
+      color: $nikal-main-color;
+      font-family: $font-fam-base;
+      text-transform: uppercase;
+      span {
+        text-transform: lowercase;
+        font-family: $font-fam-base;
+        font-size: $h3-font-size;
+        margin: 0;
+      }
+    }
+  }
+}
 
 /*--------------------------------------------------
 Form
