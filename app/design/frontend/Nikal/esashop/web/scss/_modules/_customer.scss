@@ -156,7 +156,7 @@ Customer Area
     }
 
     .history.table-order-items{
-        
+
         tbody td {
             padding: 14px 5px;
         }
@@ -419,5 +419,16 @@ Customer Area
         .limiter{
             font-family: $font-fam-secondary;
         }
+    }
+}
+
+.table-wrapper {
+    .table:not(.totals):not(.cart):not(.table-comparison) {
+        > tbody {
+            > tr{
+                float: none!important;
+            }
+        }
+
     }
 }
