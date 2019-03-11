@@ -1,6 +1,21 @@
 /*--------------------------------------------------
 Checkout
 --------------------------------------------------*/
+.checkout-container{
+    background: transparent;
+}
+
+.checkout-shipping-method {
+
+    input[type="radio"]{
+        + label {
+            &:after {
+                top: 0;
+                transform: translate(-100%, 6px);
+            }
+        }
+    }
+}
 
 .actions-toolbar {
 
