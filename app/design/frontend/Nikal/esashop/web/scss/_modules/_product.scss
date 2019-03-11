@@ -1,3 +1,4 @@
+$border-light: rgba(220,220,220,0.7);
 .catalog-product-view {
   .column.main {
     background: transparent;
@@ -22,6 +23,7 @@ Fonts
     }
   }
   .product-info-price {
+    border-bottom: 1px solid $border-light;
     .price-box {
       .special-price {
         .price-container{
@@ -36,6 +38,7 @@ Fonts
       .old-price {
         .price-wrapper {
           color: $nikal-main-color;
+          text-decoration: line-through;
           .price {
             color: $black;
             text-decoration: none;
@@ -53,6 +56,33 @@ Swatches
 --------------------------------------------------*/
 .catalog-product-view {
   .product-info-main {
+    .swatch-opt {
+      border-bottom: 1px solid $border-light;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .swatch-attribute {
+        padding: 20px 0px;
+        &:not(.size) {
+          border-bottom: 1px solid $border-light;
+        }
+        display: flex;
+        &.color {
+          width: 100%;
+        }
+      }
+      a[class$="-helper-modal"] {
+        font-size: $h6-font-size;
+        margin-top: 52px;
+        border-bottom: 2px solid $nikal-main-color;
+        line-height: 1;
+        max-height: 20px;
+        border-radius: 0;
+        &:hover {
+          color: $nikal-main-color;
+        }
+      }
+    }
     .product-add-form {
       .swatch-option {
         &.color,
@@ -81,8 +111,16 @@ Swatches
         &.color.selected,
         &.image.selected,
         &.text.selected {
-          background-color: transparent !important;
           border: 1px solid $nikal-main-color;
+        }
+        &.color:active,
+        &.image:active,
+        &.image:hover,
+        &.text:active,
+        &.text:hover,
+        &.image.selected,
+        &.text.selected {
+          background-color: transparent !important;
         }
         &:after {
           background: linear-gradient(to left top,
@@ -108,6 +146,37 @@ Swatches
 /*--------------------------------------------------
 Gallery
 --------------------------------------------------*/
+.product.media {
+  .MagicToolboxContainer {
+    .MagicToolboxMainContainer {
+    }
+    .MagicToolboxSelectorsContainer {
+      flex-direction: row;
+      a.mt-thumb-switcher {
+        img {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+  .media-text {
+    position: relative;
+    top: -50px;
+    right: -245px;
+    z-index: 1;
+    .media-gallery-trigger {
+      color: $nikal-main-color;
+      font-family: $font-fam-base;
+      text-transform: uppercase;
+      span {
+        text-transform: lowercase;
+        font-family: $font-fam-base;
+        font-size: $h3-font-size;
+        margin: 0;
+      }
+    }
+  }
+}
 
 /*--------------------------------------------------
 Form
@@ -120,6 +189,10 @@ Form
         justify-content: space-between;
         flex-wrap: wrap;
         .product-options-bottom {
+          width: 100%;
+          border-bottom: 1px solid $border-light;
+          padding: 20px 0px;
+          padding-top: 30px;
           .box-tocart {
             .fieldset {
               display: block;
@@ -194,6 +267,9 @@ Wishlist and social
             background-size: contain;
             background-repeat: no-repeat;
           }
+        }
+        &.tocompare {
+          display: none;
         }
         span {
           border: 0px;
