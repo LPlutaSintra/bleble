@@ -14,7 +14,7 @@ define([
     'jquery/ui',
     'jquery/jquery.parsequery',
     'mage/validation/validation'
-], function ($, _, mageTemplate, keyboardHandler, $t, priceUtils, modal) {
+], function ($, _, mageTemplate, keyboardHandler, $t, priceUtils, modal) {console.log("test");
     'use strict';
 
     /**
@@ -943,7 +943,8 @@ define([
 
                 options[attributeId] = $(this).attr('option-selected');
             });
-
+console.log('test22');
+            console.log(this.options.jsonConfig);
             result = $widget.options.jsonConfig.optionPrices[_.findKey($widget.options.jsonConfig.index, options)];
 
             $productPrice.trigger(
