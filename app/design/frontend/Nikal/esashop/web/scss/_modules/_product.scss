@@ -223,7 +223,7 @@ Form
 
                 .control {
                   button {
-                    border: 1px solid red;
+                    border: 1px solid $nikal-main-color;
                     background: none;
                     width: 30px;
                     height: 30px;
@@ -232,6 +232,10 @@ Form
                         line-height: 1.2;
                         font-family: $font-fam-base;
                         color: $nikal-main-color;
+                        margin-left: 3px;
+                      }
+                      &.icon-qty-subtract:after {
+                        line-height: 1.1;
                       }
                     }
                   }
@@ -254,10 +258,14 @@ Form
                   margin-left: auto;
                   margin-right: 0px;
                   display: inline-flex;
+                  border: 2px solid $nikal-main-color;
+                  color: $nikal-main-color;
 
                   &:hover,
                   &:active {
                     background: $nikal-main-color;
+                    color: $white;
+                    border: 2px solid $white;
                   }
 
                   &.toquote {
@@ -301,6 +309,7 @@ Wishlist and social
             padding: 0;
             line-height: 1.2;
             margin-left: 7px;
+            width: 130px;
             &:first-child {
               font-family: $font-fam-base;
               margin-top: 9px;
@@ -320,6 +329,7 @@ Wishlist and social
     }
     .action.mailto {
       display: flex;
+      margin-left: 3px;
       &:before {
         font-size: 20px;
         line-height: 2;
