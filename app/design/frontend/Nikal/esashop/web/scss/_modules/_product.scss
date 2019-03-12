@@ -35,6 +35,14 @@ Fonts
           }
         }
       }
+      .price-container{
+        .price-wrapper {
+          .price {
+            color: $nikal-main-color;
+            font-size: $h3-font-size;
+          }
+        }
+      }
       .old-price {
         .price-wrapper {
           color: $nikal-main-color;
