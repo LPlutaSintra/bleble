@@ -55,8 +55,11 @@ Fonts
         }
       }
     }
-
-
+  }
+}
+.product.info.detailed {
+  p, th, tr, span, div {
+    font-family: $font-fam-base;
   }
 }
 /*--------------------------------------------------
@@ -219,6 +222,19 @@ Form
                 }
 
                 .control {
+                  button {
+                    border: 1px solid red;
+                    background: none;
+                    width: 30px;
+                    height: 30px;
+                    i.icon {
+                      &:after {
+                        line-height: 1.2;
+                        font-family: $font-fam-base;
+                        color: $nikal-main-color;
+                      }
+                    }
+                  }
                   input {
                     background: transparent;
                     padding: 0px;
