@@ -1,0 +1,9 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="product.info.social">
+			<block class="Emipro\SocialShare\Block\Socialshare" name="product.socialshare" template="Emipro_SocialShare::socialshare.phtml" after="-" />
+		</referenceContainer>
+		<move element="product.info.social" destination="product.info.main" after="-"/>
+		<move element="product.info.mailto" destination="product.info.social" after="-"/>
+	</body>
+</page>
