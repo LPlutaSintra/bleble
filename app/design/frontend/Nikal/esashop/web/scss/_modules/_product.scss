@@ -254,8 +254,9 @@ Wishlist and social
   .product-social-links {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
     .product-addto-links {
+      flex: 1;
       a {
         display: block;
         &.towishlist {
@@ -274,6 +275,16 @@ Wishlist and social
         span {
           border: 0px;
         }
+      }
+    }
+    .action.mailto {
+      display: flex;
+      &:before {
+        font-size: 20px;
+        line-height: 2;
+      }
+      span {
+        display: none;
       }
     }
   }

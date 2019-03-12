@@ -1,0 +1,25 @@
+.ept-social-share.ept-socialshare-page{
+  display: flex;
+  position: relative;
+  top: unset;
+  right: unset;
+  z-index: unset;
+  .ept-social-buttons {
+    background: none;
+    transition: none;
+    width: 30px;
+    height: initial;
+    &:hover,
+    &:active {
+      width: 30px;
+      height: initial;
+    }
+    a {
+      color: $nikal-main-color !important;
+      &:before {
+        font-family: 'FontAwesome';
+        font-size: 16px;
+      }
+    }
+  }
+}
