@@ -55,8 +55,11 @@ Fonts
         }
       }
     }
-
-
+  }
+}
+.product.info.detailed {
+  p, th, tr, span, div {
+    font-family: $font-fam-base;
   }
 }
 /*--------------------------------------------------
@@ -219,6 +222,19 @@ Form
                 }
 
                 .control {
+                  button {
+                    border: 1px solid red;
+                    background: none;
+                    width: 30px;
+                    height: 30px;
+                    i.icon {
+                      &:after {
+                        line-height: 1.2;
+                        font-family: $font-fam-base;
+                        color: $nikal-main-color;
+                      }
+                    }
+                  }
                   input {
                     background: transparent;
                     padding: 0px;
@@ -271,12 +287,27 @@ Wishlist and social
         display: block;
         &.towishlist {
           &:before {
+            float: left;
             content: "";
             width: 50px;
             height: 37px;
             background-image: url('../images/esa-icons/astronaut_WishlistOff.svg');
             background-size: contain;
             background-repeat: no-repeat;
+          }
+          span {
+            display: block;
+            float: left;
+            padding: 0;
+            line-height: 1.2;
+            margin-left: 7px;
+            &:first-child {
+              font-family: $font-fam-base;
+              margin-top: 9px;
+            }
+            &:last-child {
+              font-family: $font-fam-title;
+            }
           }
         }
         &.tocompare {
