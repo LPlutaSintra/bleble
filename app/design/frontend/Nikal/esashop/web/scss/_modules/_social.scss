@@ -9,15 +9,17 @@
     transition: none;
     width: 30px;
     height: initial;
+    border-radius: 0px;
     &:hover,
     &:active {
       width: 30px;
       height: initial;
+      background: none;
     }
     a {
       color: $nikal-main-color !important;
       &:before {
-        font-family: 'FontAwesome';
+        font-family: 'FontAwesome' !important;
         font-size: 16px;
       }
     }
