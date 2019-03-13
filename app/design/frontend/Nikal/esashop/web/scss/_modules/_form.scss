@@ -42,6 +42,9 @@ select {
 }
 
 input[type="checkbox"] {
+    &#policy {
+        width: 20px;
+    }
     + label {
         float: none;
         margin-left: 20px;
@@ -92,4 +95,20 @@ input[type="checkbox"] {
 label{
     font-family: $font-fam-secondary;
     font-weight: 100;
+}
+
+.field {
+    textarea {
+        height: 90px;
+    }
+}
+
+.captcha-image {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5px 0;
+    img {
+        margin-bottom: 5px;
+    }
 }
