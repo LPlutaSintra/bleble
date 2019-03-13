@@ -35,9 +35,8 @@
         </div>
         <div class="field policy">
             <input type="checkbox" id="policy" name="policy" class="required-entry" value="<?php echo $block->escapeHtml(__('yes')) ?>"/>
-            <label class="label required" for="policy"><?php echo $block->escapeHtml(__('I accept the Privacy Policy regulations')) ?> </label>
+            <label class="label required" for="policy"><?php echo $block->escapeHtml(__('I accept the')) ?> <a href="<?php echo $block->getUrl('privacy-policy-cookie-restriction-mode') ?>" target="_blank"><?php echo $block->escapeHtml(__('Privacy Policy')) ?></a> <?php echo $block->escapeHtml(__('regulations')) ?></label>
         </div>
-        <a href="<?php echo $block->getUrl('privacy-policy-cookie-restriction-mode') ?>" target="_blank"><?php echo $block->escapeHtml(__('Read the Privacy Policy here')) ?></a>
         <?= $block->getChildHtml('form.additional.info') ?>
     </fieldset>
     <div class="actions-toolbar">

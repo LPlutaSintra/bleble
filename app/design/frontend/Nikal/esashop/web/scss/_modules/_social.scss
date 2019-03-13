@@ -1,0 +1,28 @@
+body .ept-social-share.ept-socialshare-page{
+  display: flex;
+  position: relative;
+  top: unset;
+  right: unset;
+  z-index: unset;
+  .ept-social-buttons {
+    background: none;
+    transition: none;
+    width: 30px;
+    height: initial;
+    border-radius: 0;
+    &:hover,
+    &:active {
+      width: 30px;
+      height: initial;
+      background: none;
+    }
+    a {
+      color: $nikal-main-color !important;
+      &:before {
+        font-family: 'FontAwesome' !important;
+        color: $nikal-main-color !important;
+        font-size: 16px;
+      }
+    }
+  }
+}
