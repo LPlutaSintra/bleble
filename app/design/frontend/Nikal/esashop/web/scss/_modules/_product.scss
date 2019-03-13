@@ -67,6 +67,11 @@ Swatches
 --------------------------------------------------*/
 .catalog-product-view {
   .product-info-main {
+    .product-options-wrapper {
+      .ie11 & {
+        width: 100%;
+      }
+    }
     &.sticky {
       top: 160px !important;
     }
@@ -106,6 +111,7 @@ Swatches
       .swatch-option {
         &.color,
         &.image {
+          min-width: 0;
           width: 18px;
           height: 18px;
           border: 1px solid transparent;
