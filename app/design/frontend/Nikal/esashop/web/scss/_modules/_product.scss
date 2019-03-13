@@ -181,6 +181,7 @@ Gallery
       border-radius: 0;
       background: transparent;
       color: $nikal-main-color;
+      font-family: $font-fam-base;
       text-transform: uppercase;
       &:before {
         content: none;
@@ -192,7 +193,7 @@ Gallery
         speak: none;
         text-align: center;
         vertical-align: -2px;
-        margin-right: 6px;
+        margin-left: 6px;
         -webkit-transition: opacity 0.25s ease;
         transition: opacity 0.25s ease;
       }
