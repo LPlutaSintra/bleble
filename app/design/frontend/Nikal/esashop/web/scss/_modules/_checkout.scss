@@ -30,6 +30,11 @@ Checkout
         height: 30px;
     }
 
+    legend{
+       font-family: $font-fam-secondary;
+        font-weight: 100;
+    }
+
     .fieldset {
 
         .fieldset{
@@ -57,6 +62,30 @@ Checkout
             padding: 15px 0 10px;
         }
     }
+}
+.opc-payment {
+    .payment-method {
+        .payment-method-title{
+            label{
+                img+span{
+                    margin-left: 5px;
+                    
+                    @include xs {
+                        margin-left: 0;
+                    }
+                }
+
+                span+a{
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+.payment-method-note{
+    font-family: $font-fam-secondary;
+    margin: 10px 0;
 }
 
 .checkout-shipping-method {
@@ -86,6 +115,38 @@ Checkout
 
 .checkout-shipping-address{
     margin-bottom: 30px;
+
+    .field {
+        label {
+            &.label {
+                span {
+                    color: rgba($nikal-text-color, .6);
+                }
+            }
+        }
+
+        &._required {
+            label,
+            legend {
+                &.label {
+                    span {
+                        color: $nikal-text-color;
+                    }
+                }
+            }
+        }
+
+        &.street {
+            label,
+            legend {
+                &.label {
+                    span {
+                        color: $nikal-text-color;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .checkout-payment-method {

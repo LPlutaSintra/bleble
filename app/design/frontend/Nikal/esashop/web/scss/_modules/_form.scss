@@ -126,3 +126,7 @@ label{
     font-family: $font-fam-secondary;
     font-weight: 100;
 }
+
+label, legend{
+    color: $nikal-text-color;
+}
