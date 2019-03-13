@@ -92,9 +92,46 @@ input[type="checkbox"] {
     }
 }
 
+input[type="radio"]{
+
+    +label{
+        margin-left: 20px;
+
+        &:before{
+            width: 18px;
+            height: 18px;
+        }
+
+        &:after {
+            //top: 4px!important;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid transparent;
+        }
+    }
+
+    &:checked{
+
+        + label {
+
+            &:before {
+            }
+
+            &:after {
+                //top: 4px;
+            }
+        }
+    }
+}
+
 label{
     font-family: $font-fam-secondary;
     font-weight: 100;
+}
+
+label, legend{
+    color: $nikal-text-color;
 }
 
 .field {

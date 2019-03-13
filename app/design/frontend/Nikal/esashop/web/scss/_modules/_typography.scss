@@ -85,3 +85,8 @@ h6,
 p {
     font-family: $font-fam-secondary;
 }
+
+%underlined {
+    text-transform: uppercase;
+    font-family: $font-fam-title;
+}

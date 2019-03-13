@@ -1,0 +1,11 @@
+.modal-slide,
+%modal-slide {
+
+    &._show {
+
+        .modal-inner-wrap {
+            overflow: auto;
+        }
+    }
+
+}

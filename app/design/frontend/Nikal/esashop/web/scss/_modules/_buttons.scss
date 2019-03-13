@@ -51,6 +51,7 @@ Buttons
     background: $btn-primary-bg;
     border: $btn-primary-border;
     color: $btn-primary-font;
+    font-family: $font-fam-title;
 
     &:hover {
       background: $btn-primary-bg-hover;
@@ -108,6 +109,12 @@ Buttons
     padding: 0;
     border: 0;
     background: none;
+
+    &:hover{
+      padding: 0;
+      border: 0;
+      background: none;
+    }
   }
 
   &.checkout {

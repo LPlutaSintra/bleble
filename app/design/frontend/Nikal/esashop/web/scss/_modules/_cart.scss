@@ -191,13 +191,20 @@ Cart
        }
 
         .totals,
-        .totals-tax{
+        .totals-tax,
+        .totals-tax-summary,
+        .totals-tax-details{
             >th{
                 font-size: 18px;
+                text-align: left;
+                text-transform: uppercase;
 
                 strong{
                     font-size: 18px;
                 }
+            }
+            >td{
+                text-align: right;
             }
         }
 
@@ -222,5 +229,29 @@ Qty add subtract buttons
     + .qty,
     + .item-qty {
         height: 30px;
+    }
+}
+
+.checkout-cart-index{
+
+    .qty {
+        button{
+            &.qty-sub,
+            &.qty-add{
+                width: 30px;
+                height: 30px;
+                i{
+                    width: 28px;
+                    height: 28px;
+                    padding: 5px 0;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+    .qty-sub{
+        +.qty{
+            border-bottom: 1px solid $nikal-main-color;
+        }
     }
 }
