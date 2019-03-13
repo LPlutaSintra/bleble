@@ -67,6 +67,9 @@ Swatches
 --------------------------------------------------*/
 .catalog-product-view {
   .product-info-main {
+    &.sticky {
+      top: 160px !important;
+    }
     .swatch-opt {
       border-bottom: 1px solid $border-light;
       display: flex;
@@ -348,6 +351,64 @@ Wishlist and social
       }
       span {
         display: none;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------
+product info detailed
+--------------------------------------------------*/
+.product.info.detailed {
+  .product.data.items {
+    .data.item {
+      &.title {
+        display: inline-block;
+        min-width: 0;
+        &:not(:first-of-type) {
+          &:before {
+            content: ' ';
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: $nikal-main-color;
+            display: inline-block;
+            position: relative;
+            left: -21px;
+            top: -4px;
+          }
+        }
+
+        .data.switch {
+          display: inline-block;
+          color: $black;
+          transition: all .3s ease-in-out;
+        }
+        &.active,
+        &:hover {
+          border: none;
+          .data.switch {
+            color: $nikal-main-color;
+            border-bottom: 3px solid $nikal-main-color;
+            padding-bottom: 3px;
+          }
+        }
+      }
+      &.content {
+        .description {
+          a{
+            color: $nikal-main-color;
+            &:hover,
+            &.active {
+              color: $nikal-main-color;
+              border-bottom: 2px solid $nikal-main-color;
+            }
+            &:after {
+              content: none;
+            }
+          }
+
+        }
       }
     }
   }
