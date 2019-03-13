@@ -13,3 +13,14 @@ Base
 .content {
     width: 100%;
 }
+
+.contact-index-index {
+    .page-wrapper {
+        > .page-main {
+            padding: 0 15%;
+            @include sm {
+                padding: 0 15px;
+            }
+        }
+    }
+}
