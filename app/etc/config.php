@@ -151,6 +151,7 @@ return [
         'Nikal_Minicart' => 1,
         'Nikal_Products' => 1,
         'Nikal_Setup' => 1,
+        'Nikal_Swatches' => 1,
         'Stripeofficial_Core' => 1,
         'Stripeofficial_BANCONTACT' => 1,
         'Stripeofficial_Alipay' => 1,
@@ -171,6 +172,7 @@ return [
         'Wstechlab_ContentManager' => 1,
         'Wstechlab_DoctorRegister' => 0,
         'Wstechlab_LayeredNavigation' => 1,
+        'Wstechlab_MageplazaBlogFix' => 1,
         'Wstechlab_SocialLogin' => 1,
         'Wstechlab_Theme' => 1
     ]
