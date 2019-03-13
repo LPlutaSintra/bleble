@@ -105,10 +105,16 @@ label{
 
 .captcha-image {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     margin: 5px 0;
+    @include xxs {
+        flex-direction: column;
+    }
     img {
-        margin-bottom: 5px;
+        margin-right: 20px;
+        @include xxs {
+            margin-bottom: 5px;
+        }
     }
 }
