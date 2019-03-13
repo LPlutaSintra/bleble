@@ -95,6 +95,11 @@ Swatches
         &:hover {
           color: $nikal-main-color;
         }
+        @include sm {
+          margin-top: 0;
+          margin-bottom: 30px;
+          margin-left: auto;
+        }
       }
     }
     .product-add-form {
@@ -161,14 +166,52 @@ Swatches
 Gallery
 --------------------------------------------------*/
 .product.media {
+  @include sm {
+    margin-bottom: 0;
+  }
   .MagicToolboxContainer {
     .MagicToolboxMainContainer {
     }
     .MagicToolboxSelectorsContainer {
       flex-direction: row;
       a.mt-thumb-switcher {
+        @include sm {
+          border: 1px solid $nikal-main-color;
+          &.active-selector {
+            background: $nikal-main-color;
+          }
+          &.video-selector {
+            &:before {
+              content: none;
+            }
+            &:after {
+              border-left: 6px solid $nikal-main-color;
+              border-top: 4px solid transparent;
+              border-bottom: 4px solid transparent;
+              -webkit-transform: translateY(-55%) translateX(-62%);
+              z-index: 1;
+            }
+          }
+        }
         img {
           box-shadow: none;
+        }
+      }
+    }
+    .MagicToolboxMainContainer {
+      #mtImageContainer {
+        a.MagicZoom {
+          box-shadow: 14px 14px 54px -16px rgba(0,0,0,0.47);
+        }
+      }
+      #mtVideoContainer {
+        .product-video {
+          box-shadow: 14px 14px 54px -16px rgba(0,0,0,0.47);
+        }
+      }
+      #mt360Container {
+        > div {
+          box-shadow: 14px 14px 54px -16px rgba(0,0,0,0.47);
         }
       }
     }
@@ -344,6 +387,10 @@ Wishlist and social
             background-image: url('../images/esa-icons/astronaut_WishlistOff.svg');
             background-size: contain;
             background-repeat: no-repeat;
+            @include sm {
+              width: 90px;
+              float: unset;
+            }
           }
           span {
             display: block;
@@ -403,6 +450,9 @@ product info detailed
             position: relative;
             left: -21px;
             top: -4px;
+            @include sm {
+              content: none;
+            }
           }
         }
 
@@ -410,16 +460,30 @@ product info detailed
           display: inline-block;
           color: $black;
           transition: all .3s ease-in-out;
+          @include sm {
+            width: 100%;
+            &:after {
+
+            }
+          }
         }
         &.active,
         &:hover {
           border: none;
+          @include sm {
+            border-top: 1px solid $bg-border;
+          }
           .data.switch {
             color: $nikal-main-color;
             border-bottom: 3px solid $nikal-main-color;
             padding-bottom: 3px;
+            @include sm {
+              border-bottom: 2px solid $nikal-main-color;
+              padding-bottom: 2px;
+            }
           }
         }
+
       }
       &.content {
         .description {
