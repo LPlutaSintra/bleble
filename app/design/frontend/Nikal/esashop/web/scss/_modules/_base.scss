@@ -14,11 +14,11 @@ Base
     width: 100%;
 }
 
-.contact-index-index {
+.contact-index-index, .customer-account-forgotpassword {
     .page-wrapper {
         > .page-main {
             padding: 0 15%;
-            @include sm {
+            @include xs {
                 padding: 0 15px;
             }
         }
