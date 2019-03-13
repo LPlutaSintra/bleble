@@ -173,6 +173,31 @@ Gallery
       }
     }
   }
+  .mz-hint {
+    text-align: right;
+    padding: 0 8px 0 0;
+    .mz-hint-message {
+      border: 0px solid $nikal-main-color;
+      border-radius: 0;
+      background: transparent;
+      color: $nikal-main-color;
+      text-transform: uppercase;
+      &:before {
+        content: none;
+      }
+      &:after {
+        content: '+';
+        font-family: serif;
+        font-size: 1.5em;
+        speak: none;
+        text-align: center;
+        vertical-align: -2px;
+        margin-right: 6px;
+        -webkit-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+      }
+    }
+  }
   .media-text {
     position: relative;
     top: -50px;
@@ -181,6 +206,7 @@ Gallery
     left: 100%;
     width: 80px;
     .media-gallery-trigger {
+      display: none;
       color: $nikal-main-color;
       font-family: $font-fam-base;
       text-transform: uppercase;
