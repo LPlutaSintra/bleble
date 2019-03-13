@@ -183,21 +183,31 @@ Gallery
       a.mt-thumb-switcher {
         @include sm {
           border: 1px solid $nikal-main-color;
-          &.active-selector {
+        }
+        &.active-selector {
+          @include sm {
             background: $nikal-main-color;
           }
-          &.video-selector {
-            &:before {
+        }
+        &.video-selector {
+          &:before {
+            z-index: 1;
+            @include sm {
               content: none;
             }
-            &:after {
+          }
+          &:after {
+            z-index: 1;
+            @include sm {
               border-left: 6px solid $nikal-main-color;
               border-top: 4px solid transparent;
               border-bottom: 4px solid transparent;
-              -webkit-transform: translateY(-55%) translateX(-62%);
-              z-index: 1;
+              transform: translateY(-55%) translateX(-35%);
+              height: 8px !important;
             }
           }
+
+
         }
         img {
           box-shadow: none;
@@ -321,7 +331,7 @@ Form
                         line-height: 1.2;
                         font-family: $font-fam-base;
                         color: $nikal-main-color;
-                        margin-left: 3px;
+                        margin-left: 1px;
                       }
                       &.icon-qty-subtract:after {
                         line-height: 1.1;
