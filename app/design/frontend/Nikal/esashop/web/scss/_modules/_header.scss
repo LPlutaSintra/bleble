@@ -421,6 +421,53 @@ body {
     }
 
   }
+
+  &.page-layout-checkout-cart{
+
+    .page-header {
+
+      .header.content{
+        padding-top: 40px;
+
+        .ie11 &{
+          padding-top: 90px;
+        }
+
+        @include sm {
+          padding-top: 0;
+
+          .ie11 &{
+            padding-top: 0;
+          }
+        }
+      }
+
+      .wrapper-left{
+        margin: 0 30px;
+      }
+    }
+
+    &.scroll-on{
+      .page-header{
+
+        >.content{
+          text-align: left;
+          padding-top: 10px;
+
+          .ie11 &{
+            padding-top: 50px;
+          }
+
+          @include sm {
+            padding-top: 0;
+            .ie11 &{
+              padding-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .page-header {
