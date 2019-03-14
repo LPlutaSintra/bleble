@@ -6,7 +6,11 @@ Checkout
 
     > .content {
         //max-width: 1400px;
+        @include sm {
+            padding: 0px 0 15px;
+        }
     }
+
 }
 
 .opc-progress-bar{
@@ -38,7 +42,12 @@ Checkout
     .fieldset {
 
         .fieldset{
+            .actions-toolbar{
 
+                .ie11 &{
+                    width:100%
+                }
+            }
             .action.login.primary{
                 margin-bottom: 15px;
             }
@@ -210,4 +219,3 @@ Checkout
         font-family: $font-fam-title;
     }
 }
-
