@@ -98,7 +98,8 @@ body {
             }
           }
         }
-        .action.showcart {
+        .action.showcart,
+        .action.showquote{
           #circle-orbit-container {
             .orbit:not(.inner) {
               border: 1px solid $nikal-text-color;
@@ -234,7 +235,8 @@ body {
         }
       }
     }
-    .action.showcart {
+    .action.showcart,
+    .action.showquote{
       #circle-orbit-container {
         .orbit:not(.inner) {
           border: 1px $details-home solid;
@@ -364,7 +366,8 @@ body {
         }
       }
     }
-    .action.showcart {
+    .action.showcart,
+    .action.showquote{
       #circle-orbit-container {
         .orbit:not(.inner) {
           border: 1px $details solid;
@@ -763,7 +766,8 @@ body {
   }
 }
 
-.action.showcart {
+.action.showcart,
+.action.showquote{
   align-items: center;
   justify-content: center;
   display: flex;
@@ -852,7 +856,8 @@ body {
   }
 }
 body.ajax-loading {
-  .action.showcart {
+  .action.showcart,
+  .action.showquote{
     #circle-orbit-container {
       .orbit {
         &.middle {
