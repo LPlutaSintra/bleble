@@ -1,0 +1,368 @@
+/* styles from  Magebees_QuotationManagerPro::css/mageb-quote-style.css*/
+/* Sign-in Information */
+#shiiping_address_loading {
+    display: none;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255,255,255,0.4);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 99;
+    right: 0;
+}
+#shiiping_address_loading > div { padding-top:15%; }
+#shiiping_address_loading img { max-width:50px; }
+.quotation-quote-index .form.password.reset,
+.quotation-quote-index .form.send.confirmation,
+.quotation-quote-index .form.password.forget,
+.quotation-quote-index .form.create.account { min-width: 100%; width: 50%; }
+.quotation-quote-index .fieldset.login .actions-toolbar > .primary{ margin-right: 10px; }
+.quotation-quote-index .fieldset { margin: 0 0 20px; }
+#quote-req-account { margin: 15px 0; }
+#quote-req-account #quote-req-customer-account, #quote-req-account label { vertical-align: middle; }
+#quote-create-action { margin-top: 15px; }
+.quote-summary-inner .action.primary{ text-transform: capitalize; width: 100%; padding: 12px 15px; font-size: 14px; }
+#fieldset_shipping .legend,
+#fieldset_shipping_method .legend{ margin-top: 10px; }
+.box-tocart .action.toquote.quote-btn-list { width: 100%; }
+.wishlist-index-index .product-item-inner .comment-box{ width: 90%; margin-left: auto; margin-right: auto; }
+.wishlist-index-index .products-grid .product-item .product-item-inner{ margin: 9px 0 0 -1px; }
+
+.quote.table-wrapper .quote thead tr th.col { border-bottom: 1px solid #cccccc; padding-bottom: 15px; padding-top: 24px; }
+.quote.table-wrapper .col.qty .input-text { height: 36px; margin-top: -7px; text-align: center; width: 45px; }
+
+/* Quote Page */
+.quotation-quote-index .fieldset .legend > span{ font-weight: 500; }
+.quote-container:before,
+.quote-container:after { content: ""; clear: both; display: block; }
+.quote-container .form-cart { width: 71%; float: left; -ms-flex-order: 1; -webkit-order: 1; order: 1; padding-right: 4%; position: relative; }
+.quote-summary { width: 25%; float: left; -ms-flex-order: 2; -webkit-order: 2; order: 2; position: relative; margin-bottom: 25px; }
+.quote-summary-inner { background: #f5f5f5; padding: 20px;   position: relative;  }
+.quote-summary .title-s { margin-top: 0; font-size: 16px; }
+.quote-summary .selected_address { border: 1px solid #ff5501; padding: 5px 10px; }
+.quote-summary .proceed-to-checkout { width: 100%; line-height: 2.2rem; padding: 14px 17px; font-size: 1.8rem; }
+.quote-summary ul { list-style: none; padding: 0; margin: 0; }
+.quotation-quote-index .opc-wrapper { width: 100% !important; }
+.quotation-quote-index #quotation-fields { padding: 15px 0 0 0; }
+.quotation-quote-index #billing { margin: 25px 0; }
+.quotation-quote-index #billing .billing-same-as-shipping { padding: 20px 0; }
+.quotation-quote-index .fieldset > .field > .label { font-weight: 400; }
+.quotation-quote-index #checkout { padding: 15px; }
+.quotation-quote-index .opc-wrapper .shipping-address-item { width: 50% !important; }
+.quotation-quote-index .hide-field { display: none !important; }
+div.date-zone { font-size: 16px; margin: 5px 0; text-align: right; }
+.quotation-quote-index .quotation-product-comment { margin-top: 20px; min-height: 100px; min-width: 225px; }
+#shopping-quote-table .qty .add-row-tier:after,
+#shopping-quote-table .qty .add-row-tier:before { content: ""; clear: both; display: table; }
+#shopping-quote-table .qty input { float: left; width: 70px; display: block; text-align: center; margin-bottom: 5px; margin-right: 5px; }
+#shopping-quote-table .qty .btn-remove-quote-tier:before { display: none; }
+#shopping-quote-table .qty .btn-remove-quote-tier { color: #000; text-transform: uppercase; background: #ddd; display: inline-block; margin: 6px 0 5px; width: 22px; height: 20px; line-height: 17px; overflow: hidden; text-align: center; }
+#shopping-quote-table .qty .btn-remove-quote-tier:before { content: ''; background: url(../Magebees_QuotationManagerPro/images/close-icon.png) no-repeat; width: 20px; height: 14px; overflow: hidden; font-weight: normal; -webkit-font-smoothing: antialiased;
+    display: inline-block; vertical-align: middle; text-align: center; margin: 0; text-align: center; background-position: center; }
+#shopping-quote-table .add-qty-link { color: #fff; font-size: 12px; text-transform: uppercase; background: #006bb4; display: inline-block; padding: 4px 8px; cursor: pointer; }
+#shopping-quote-table .product-item-name { font-size: 16px; }
+#shopping-quote-table .action { margin-right: 15px; }
+#shopping-quote-table .actions-toolbar>.action-edit { right: 30px; }
+#shopping-quote-table .action.update { margin-right: 0; }
+#shopping-quote-table td.col.qty { padding-right: 0; text-align: center; width: 97px; }
+#shopping-quote-table td.col.qty .field.qty:after { content: ''; clear: both; display: block; }
+#shopping-quote-table td.col.qty .field.qty .control.qty > div > input.qty { width: 92px; }
+#shopping-quote-table td.col.qty .field.qty .control.qty > div.add-row-tier > input.qty { width: 70px; }
+
+#my-quote-table td.col.qty { min-width: 40px; }
+#my-quote-table td.col.subtotal { min-width: 65px; text-align: right }
+
+.block.block-quote-details-view { margin-bottom: 0 !important; }
+/* End Quote Page */
+
+.box-tocart.update .box-tocart .action.toquote, .box-tocart.update .action.tocart { width: 100%; }
+
+.quotation-quote-view .order-status { border-color: #ff5501; }
+
+.block-miniquote .items-total { float: none; margin: 0 10px; }
+.block-miniquote .items-total .count { font-weight: 700 }
+.block-miniquote .subtotal { margin: 0 10px; text-align: right; }
+.block-miniquote .amount .price-wrapper:first-child .price { font-size: 18px; font-weight: 700; }
+.block-miniquote .subtitle { display: none; }
+.block-miniquote .subtitle.empty { display: block; padding: 30px 0 20px; text-align: center; font-size: 14px; }
+.block-miniquote .text.empty { text-align: center }
+.block-miniquote .block-content > .actions { margin-top: 15px; }
+.block-miniquote .block-content > .actions > .secondary { text-align: center; }
+.block-miniquote .block-content > .actions > .primary { margin: 0 10px 15px; }
+.block-miniquote .block-content > .actions > .primary .action.primary { display: block; width: 100%; line-height: 2.2rem; padding: 14px 17px; font-size: 1.8rem; }
+.block-miniquote .block-content > .actions .paypal-logo { margin-top: 15px; text-align: center; }
+.block-miniquote .block-category-link,
+.block-miniquote .block-product-link,
+.block-miniquote .block-cms-link,
+.block-miniquote .block-banners { margin: 15px 0 0; text-align: center; }
+
+.miniquote-wrapper { display: inline-block; float: right; margin-left: 15px; }
+.minicart-wrapper { position: inherit; }
+.miniquote-wrapper:before,
+.miniquote-wrapper:after { content: ""; display: table; }
+.miniquote-wrapper:after { clear: both; }
+.miniquote-wrapper .action.showquote { cursor: pointer; display: inline-block; text-decoration: none; margin-top: 5px; }
+.miniquote-wrapper .action.showquote:before { content: ''; display: inline-block; position: relative; width: 19px; height: 20px; display: inline-block; vertical-align: top;
+    text-align: center; margin: 0; background: url('../Magebees_QuotationManagerPro/images/quote-icon.png') center center no-repeat; background-size: 100%; }
+.miniquote-wrapper .action.showquote:hover:before { color: #333333 }
+.miniquote-wrapper .action.showquote:active:before { color: #8f8f8f }
+.miniquote-wrapper .action.showquote.active { display: inline-block; text-decoration: none; margin-bottom: 3px; }
+.miniquote-wrapper .action.showquote.active:before,
+.miniquote-wrapper .action.showquote:hover:before { content: ''; display: inline-block; position: relative; width: 19px; height: 20px; display: inline-block; vertical-align: top;
+    text-align: center; margin: 0; background: url('../Magebees_QuotationManagerPro/images/quote-icon-active.png') center center no-repeat; background-size: 100%;
+}
+.miniquote-wrapper .action.showquote.active:hover:before { color: #333333; }
+.miniquote-wrapper .action.showquote.active:active:before { color: #8f8f8f; }
+.miniquote-wrapper .block-miniquote, .minicart-wrapper .block-miniquote { padding: 0; list-style: none none; box-sizing: border-box; background: #fff; border: 1px solid #bbb; position: absolute;
+    z-index: 100; top: 100%; min-width: 0; margin: 8px 0 0 0; display: none; box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15); }
+.miniquote-wrapper .block-miniquote li { margin: 0; }
+.miniquote-wrapper .block-miniquote li:hover { cursor: pointer; }
+.miniquote-wrapper .block-miniquote:before,
+.miniquote-wrapper .block-miniquote:after { content: ""; position: absolute; display: block; width: 0; height: 0; border-bottom-style: solid; }
+.miniquote-wrapper .block-miniquote:before { top: -12px; left: 10px; z-index: 99; border: solid 6px; border-color: transparent transparent #ffffff transparent; }
+.miniquote-wrapper .block-miniquote:after { top: -14px; left: 9px; z-index: 98; border: solid 7px; border-color: transparent transparent #bbbbbb transparent; }
+.miniquote-wrapper.active { overflow: visible; }
+.miniquote-wrapper.active .block-miniquote { display: block; margin-top: -24px; }
+.miniquote-wrapper .block-miniquote { padding: 25px 20px; right: 5px; width: 390px; margin-top: -28px; }
+.miniquote-wrapper .block-miniquote .block-title { display: none; }
+.miniquote-wrapper .block-miniquote:after { left: auto; right: 51px; }
+.miniquote-wrapper .block-miniquote:before { right: 52px; left: auto; }
+
+.miniquote-wrapper .product .actions { float: right; margin: -24px 0 0; }
+.miniquote-wrapper .product .actions > .primary, .miniquote-wrapper .product .actions > .secondary { display: inline; }
+.miniquote-wrapper .product .actions > .primary:not(:last-child), .miniquote-wrapper .product .actions > .secondary:not(:last-child) { margin-right: 15px; }
+.miniquote-wrapper .action.close { width: 40px; height: 40px; top: 0; right: 0; position: absolute; background: none; border: 0; margin: 0; padding: 0; -moz-box-sizing: content-box;
+    box-shadow: none; text-shadow: none; line-height: inherit; font-weight: 400; display: inline-block; text-decoration: none; }
+.miniquote-wrapper .action.close:focus, .miniquote-wrapper .action.close:active,
+.miniquote-wrapper .action.close:hover { background: none; border: none; }
+.miniquote-wrapper .action.close.disabled,
+.miniquote-wrapper .action.close[disabled],
+fieldset[disabled] .miniquote-wrapper .action.close { cursor: not-allowed; pointer-events: none; opacity: .5; }
+.miniquote-wrapper .action.close > span { border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.miniquote-wrapper .action.close:before { content: ''; background: url(../Magebees_QuotationManagerPro/images/close-icon.png) no-repeat center center; width: 14px; height: 14px; overflow: hidden; font-weight: normal; -webkit-font-smoothing: antialiased;
+    display: inline-block; vertical-align: top; text-align: center; margin: 0; }
+.miniquote-wrapper .action.close:hover:before,
+.miniquote-wrapper .action.close:active:before { color: inherit; }
+.miniquote-wrapper .action.showquote { white-space: nowrap; position: relative; }
+.miniquote-wrapper .action.showquote .counter.qty { background: #ff5501; border-radius: 100%; color: #ffffff; font-size: 12px; clip: auto; display: inline-block; height: 18px; line-height: 18px;
+    min-width: 18px; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: normal; position: absolute; top: -14px; right: -8px; }
+.miniquote-wrapper .action.showquote .counter.qty.empty { display: none; }
+.miniquote-wrapper .miniquote-widgets { margin-top: 15px; }
+.miniquote-items-wrapper { border: 1px solid #ccc; margin: 0 -20px; border-left: 0; border-right: 0; overflow-x: auto; padding: 15px; clear: both; }
+.miniquote-items { margin: 0; padding: 0; list-style: none none; max-height: 170px; overflow: auto;}
+.miniquote-items .product-item { padding: 20px 0; }
+.miniquote-items .product-item:not(:first-child) { border-top: 1px solid #cccccc; }
+.miniquote-items .product-item:first-child { padding-top: 0; }
+.miniquote-items .product-item-pricing .label { display: inline-block; width: 4.5rem; }
+.miniquote-items .price-miniquote { margin-bottom: 5px; }
+.miniquote-items .product-item-name { font-weight: 400; margin: 0 0 10px; }
+.miniquote-items .product-item-name a { color: #1979c3; }
+.miniquote-items .product-item-details { padding-left: 88px; }
+.miniquote-items .product-item-details .price { font-weight: 700; }
+.miniquote-items .product-item-details .price-including-tax,
+.miniquote-items .product-item-details .price-excluding-tax { margin: 5px 0; }
+.miniquote-items .product-item-details .weee[data-label] { font-size: 1.1rem; }
+.miniquote-items .product-item-details .details-qty { margin-top: 10px; }
+.miniquote-items .product > .product-item-photo,
+.miniquote-items .product > .product-image-container { float: left; }
+.miniquote-items .product .toggle { cursor: pointer; margin-bottom: 0; position: relative; padding: 0 40px 10px 0; display: block; text-decoration: none; }
+.miniquote-items .product .toggle:after { content: ''; background: url(../Magebees_QuotationManagerPro/images/arw-u-d.png) no-repeat 0 -6px; width: 11px; height: 9px; -webkit-font-smoothing: antialiased; color: inherit; margin: 3px 0 0; vertical-align: middle; display: inline-block; font-weight: normal; overflow: hidden; speak: none; text-align: center; position: absolute; right: 5px; }
+.miniquote-items .product .active > .toggle:after { background-position: 0 2px; }
+.miniquote-items .product.pricing { margin-top: 3px; }
+.miniquote-items .product.options .tooltip.toggle { display: inline-block; text-decoration: none; }
+.miniquote-items .product.options .tooltip.toggle > span { border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.miniquote-items .product.options .tooltip.toggle:after { font-family: 'luma-icons'; content: '\e622'; font-size: 12px; line-height: 12px; color: inherit; overflow: hidden; font-weight: normal; -webkit-font-smoothing: antialiased; display: inline-block; vertical-align: middle; text-align: center; margin: -3px 0 0 7px; }
+.miniquote-items .product.options .details { display: none }
+.miniquote-items .item-qty { width: 40px; text-align: center; margin-right: 10px; }
+.miniquote-items .update-quote-item { vertical-align: top; font-size: 1.1rem; }
+.miniquote-items .action.edit, .miniquote-items .action.delete { display: inline-block; text-decoration: none; }
+.miniquote-items .action.edit > span, .miniquote-items .action.delete > span { border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.miniquote-items .action.edit:before, .miniquote-items .action.delete:before { content: ''; background: url(../Magebees_QuotationManagerPro/images/edit-icon-m.png) no-repeat 0 0; width: 17px; height: 18px; overflow: hidden; font-weight: normal; -webkit-font-smoothing: antialiased; display: inline-block; vertical-align: middle; text-align: center; }
+.miniquote-items .action.delete:before { background-position: 0 -21px; }
+.miniquote-items .subtitle { display: none; }
+.miniquote-wrapper .action.showquote .text,
+.miniquote-wrapper .action.showquote .counter-label { border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+
+.actions-toolbar .action-edit,
+.actions-toolbar .action-delete { float: right; }
+
+/* Request for Quote button */
+.product-item .tocart { margin-top: 5px; width: 100%; }
+.box-tocart .action.tocart,
+.box-tocart .action.toquote { margin-bottom: 0; margin-right: 1%; width: 49%; }
+#magebees-addtoquote-button, .quote-btn-list { font-size: 1.3rem; background: #fff; border: solid 2px #ff5501; color: #000; box-shadow: none !important; border-radius: 0; margin-top: 5px; }
+#magebees-addtoquote-button:focus, .quote-btn-list:focus,
+#magebees-addtoquote-button:hover, .quote-btn-list:hover { background: #ff5501; border: solid 2px #ff5501; color: #fff; box-shadow: none !important; }
+#magebees-addtoquote-button { line-height: 2.2rem; padding: 14px 17px; font-size: 1.8rem; border-radius: 2px; }
+
+
+/* Customer Quote Page */
+.table-quote-items tfoot th,
+.table-quote-items tfoot td { text-align: right; }
+.table-quote-items .product-item-details { display: table-cell; vertical-align: top; white-space: normal; width: 99%; }
+.table-quote-items .item-options,
+.table-quote-items .product-item-details p { font-size: 13px; }
+.table-quote-items .product-item-photo { display: table-cell; max-width: 100%; padding-right: 20px; position: static; vertical-align: top; width: 1%; }
+.print_pdf { float: right; margin-top: 6px; }
+#messageform fieldset { border: 0; background-color: #efefef; padding: 10px; margin: 20px 0; }
+#message_tbl { width: 100% !important; }
+.block-quote-details-view h4 { margin-bottom: 5px; }
+.block-quote-details-view input { margin-bottom: 15px; }
+
+#shopping-quote-table .actions-toolbar .action span { display: none; }
+#shopping-quote-table .actions-toolbar .action { padding: 0; border: 0; background: none; }
+#shopping-quote-table .actions-toolbar .action.action-edit:before,
+#shopping-quote-table .actions-toolbar .action.action-delete:before { content: ''; background: url(../Magebees_QuotationManagerPro/images/edit-icon-m.png) no-repeat 0 0; width: 17px; height: 18px; overflow: hidden; font-weight: normal; -webkit-font-smoothing: antialiased; display: inline-block; vertical-align: middle; text-align: center; }
+#shopping-quote-table .actions-toolbar .action.action-delete:before { background-position: 0 -21px; }
+
+/* Collapse Message CSS */
+.quote-msg-collection .ui-accordion .ui-accordion-header { display: block; cursor: pointer; position: relative; margin:0; padding: 12px 30px 12px 12px; font-size: 15px; font-weight: 600; }
+
+
+.quote-msg-collection .ui-accordion .ui-accordion-content { padding: 12px; border-top: 0; overflow: auto; margin-bottom: 5px; }
+.quote-msg-collection .ui-slider.ui-state-disabled .ui-slider-handle,
+.quote-msg-collection .ui-slider.ui-state-disabled .ui-slider-range { filter: inherit; }
+.quote-msg-collection .ui-slider-vertical { width:.8em; height: 100px; }
+.quote-msg-collection .ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+.quote-msg-collection .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.quote-msg-collection .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.quote-msg-collection .ui-slider-vertical .ui-slider-range-max { top: 0; }
+.quote-msg-accordion .ui-widget.ui-widget-content { border: 1px solid #c5c5c5; }
+.quote-msg-accordion .ui-widget-content { border: 1px solid #dddddd; background: #ffffff; color: #333333; }
+.quote-msg-accordion .ui-widget-content a { color: #333333; }
+.quote-msg-collection .ui-state-default,
+.quote-msg-collection .ui-widget-content .ui-state-default,
+.quote-msg-collection .ui-widget-header .ui-state-default { background: #ddd; font-weight: normal; color: #454545; }
+.quote-msg-collection .ui-state-hover a, .quote-msg-collection .ui-state-hover a:hover,
+.quote-msg-collection .ui-state-hover a:link, .quote-msg-collection .ui-state-hover a:visited,
+.quote-msg-collection .ui-state-focus a, .quote-msg-collection .ui-state-focus a:hover,
+.quote-msg-collection .ui-state-focus a:link, .quote-msg-collection .ui-state-focus a:visited { color: #2b2b2b; text-decoration: none; }
+.quote-msg-collection .ui-visual-focus { box-shadow: 0 0 3px 1px rgb(94, 158, 214); }
+.quote-msg-collection .ui-state-active, .quote-msg-collection .ui-widget-content .ui-state-active,
+.quote-msg-collection .ui-widget-header .ui-state-active { border: 1px solid #1979c3; background: #1979c3; font-weight: normal; color: #ffffff; }
+.quote-msg-collection .ui-state-active a, .quote-msg-collection .ui-state-active a:link, .quote-msg-collection .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
+.quote-msg-collection .group-title { margin:25px 0 0; font-size:30px; text-transform: uppercase; line-height: 1.5; width: 100%; color: #00b4ff; font-weight: 600; }
+.quote-msg-collection img.group-image { height: 100px; width: 100px; }
+.quote-msg-collection { margin-bottom: 30px; float: left; width: 100%; }
+.quote-msg-collection .ui-accordion .ui-state-default { position: relative; }
+.quote-msg-collection .ui-accordion .ui-state-default:after { top: 17px; right: 15px; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(255, 255, 255, 0); border-top-color: #000; border-width: 7px; margin-left: -7px; }
+.quote-msg-collection .ui-accordion .ui-accordion-header-active:after { border-top-color: transparent; border-bottom-color: #ffffff; top: 10px; }
+.product.info.detailed .quote-msg-collection .group-title { margin-top: 0; }
+
+.quotation-quote-view .page-title { display: block; }
+.quote-summary .block.shipping-address-qoute { margin-bottom: 10px; }
+.quote-summary .block.shipping-address-qoute .title { margin: 20px 0; border-bottom: solid 1px #ccc; padding-bottom: 10px; position: relative; cursor: pointer; }
+.quote-summary .block.shipping-address-qoute .title strong,.quote-summary #fieldset_shipping_method #quote_estimate_method{ color: #333; margin: 0; font-size: 1.8rem; font-weight: 600; display: block; }
+.quote-summary .block.shipping-address-qoute .title:after { top: 7px; right: 5px; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(255, 255, 255, 0); border-top-color: #b1b1b1; border-width: 6px; margin-left: -6px; }
+.quote-summary .block.shipping-address-qoute.active .title:after { border-top-color: transparent; border-bottom-color: #b1b1b1; top: 0px; }
+.quote-summary .block.shipping-address-qoute .content { display: none; }
+
+/* Media Query ======================================================================== */
+
+@media (max-width:1199px) {
+
+    #shopping-quote-table .item .product-image-container { width: 100px !important; }
+    #shopping-quote-table thead tr th.col { padding: 10px 5px; }
+    .quotation-quote-index .item { width: 230px !important; }
+    #shopping-quote-table td.info-textarea { width: 140px; }
+
+    .quotation-quote-view .page-title-wrapper .page-title { display: block; margin-bottom: 5px; }
+    .quotation-quote-view .page-title-wrapper .order-date { margin-top: 10px !important; font-size: 14px; }
+    .table-quote-items .product-image-container { width: 110px !important; }
+}
+
+@media (max-width:1058px) {
+    .quote-container .form-cart { width:68%; }
+    .quote-container .quote-summary { width:28%; }
+}
+
+@media (max-width:999px) {
+    .quote-container .form-cart { width:100%; padding-right: 0; }
+    .quote-container .quote-summary { width:100%; }
+    .quotation-quote-index .item { width: 330px !important; }
+    #shopping-quote-table td.info-textarea { width: 300px; }
+}
+
+@media (max-width:767px) {
+    .miniquote-wrapper.active .block-miniquote { margin-top: -18px; }
+    .miniquote-wrapper .block-miniquote { width: 320px; right: 15px; }
+    .miniquote-wrapper .block-miniquote:after { right: 35px; left: auto; }
+    .miniquote-wrapper .block-miniquote:before { right: 36px; left: auto; }
+    .quotation-quote-index .form-cart { max-width: 100% !important; }
+
+    .table-wrapper { overflow-x: inherit; overflow-y: inherit; }
+
+    .quotation-quote-index .item { width: auto !important; }
+    #shopping-quote-table td.col.info-textarea textarea { height: 60px; }
+    #shopping-quote-table .qty input { float: none; display: inline-block;}
+    #shopping-quote-table .col.price,
+    #shopping-quote-table .col.qty,
+    #shopping-quote-table .col.subtotal,
+    #shopping-quote-table .col.msrp { text-align: center; }
+    #shopping-quote-table .qty .btn-remove-quote-tier { margin: 0; width: 20px; }
+}
+
+@media all and (max-width: 768px), print {
+    .quotation-quote-index .cart-summary { margin-top: 50px; }
+    .quotation-quote-index .authentication-wrapper { width: 100%; max-width: 100%; }
+    .quotation-quote-index .table-checkout-shipping-method { min-width: 0 !important; }
+    .quotation-quote-index .opc-wrapper .shipping-address-item::before { width: 0 !important; }
+
+    .miniquote-wrapper { margin-left: 5px; margin-right: 10px; }
+    #shopping-quote-table thead tr th.col.information { display: none; }
+
+    #shopping-quote-table .actions-toolbar > .action-edit { right: 36px; }
+}
+
+@media (max-width:639px) {
+    .miniquote-wrapper { margin-top: 10px; }
+    .box-tocart .action.tocart,
+    .box-tocart .action.toquote { width: 100%; }
+
+    .quotation-quote-view .page-title-wrapper .order-status { margin-top: 10px !important; }
+    .quotation-quote-view .page-title-wrapper .order-date { font-size: 14px !important; }
+    .table-quote-items td.col.comments-qoute:before,
+    .table-quote-items td.col.name:before { display: none !important; }
+    .table-quote-items .item-options, .table-quote-items .product-item-details p { font-size: 12px; }
+
+    #message_tbl { table-layout: fixed; }
+    .quote-msg-collection .ui-accordion .ui-accordion-header { font-size: 13px; }
+
+    #customerResponse .form-list td { display: block; }
+
+    #shopping-quote-table td.col.info-textarea, #shopping-quote-table td.col.price, #shopping-quote-table td.col.subtotal,
+    .table-quote-items td.col.info-textarea, .table-quote-items td.col.price, .table-quote-items td.col.subtotal { box-sizing: border-box; display: block; float: left; white-space: nowrap; width: 33%; }
+    .table-quote-items td.col.info-textarea, .table-quote-items td.col.price, .table-quote-items td.col.subtotal { width: 50%; }
+    .table-wrapper .table:not(.totals):not(.cart):not(.table-comparison) > tbody > tr { float: left; width: 100%; border-bottom: solid 1px #ccc; }
+    .table-wrapper .table:not(.totals):not(.table-comparison) tfoot { clear: both; }
+    .table-wrapper .table:not(.totals):not(.cart):not(.table-comparison) tbody > tr > td:last-child { border-bottom: 0; }
+    #my-quote-table td.col.subtotal { text-align: left; }
+    .table tfoot > tr:first-child th, .table tfoot > tr:first-child td { border-top: 0; }
+    .table-wrapper .table:not(.totals):not(.table-comparison) tfoot tr {display: table-footer-group !important;}
+    #my-quote-table tfoot tr td { width: 30%; }
+    #my-quote-table tfoot tr th { width: 70%; }
+}
+
+@media (max-width: 479px) {
+    .miniquote-wrapper .block-miniquote { width: 290px; }
+
+    #shopping-quote-table td.col.info-textarea { width: 100%; }
+    #shopping-quote-table td.col.price,
+    #shopping-quote-table td.col.subtotal,
+    #shopping-quote-table td.col.qty { width: 50%; padding-top: 0; }
+
+    #shopping-quote-table .action { margin-right: 10px; font-size: 12px; }
+
+    .quote-summary .proceed-to-checkout { font-size: 1.6rem; }
+
+    .quotation-quote-view .page-title-wrapper .print_pdf { display: block; margin-top: 0 !important; }
+    .table-quote-items:not(.totals):not(.cart):not(.table-comparison) tbody > tr > td:first-child { padding-left: 0; }
+    .table-quote-items tfoot > tr th, .table-quote-items tfoot > tr td { font-size: 12px; }
+    .quotation-quote-view .page-title-wrapper .order-status { text-align: center; }
+
+    /* Collapse Message */
+    .quote-msg-collection .group-title { font-size:24px; }
+}

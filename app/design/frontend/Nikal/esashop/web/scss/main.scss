@@ -12,6 +12,10 @@ Website by WsTechlab
 //
 ///*##### PLUGINS */
 @import '_plugins/slick';
+
+///*##### Magebees QuotationManagerPro */
+@import '_plugins/mageb_quote';
+
 //
 ///*##### GENERIC */
 @import '_modules/base';
@@ -72,3 +76,6 @@ Website by WsTechlab
 
 ///*##### BLOG */
 @import '_modules/pageview';
+
+///*##### EXTEND Magebees QuotationManagerPro */
+@import '_modules/mageb_quote_extend';

@@ -1,5 +1,6 @@
 
-.minicart-wrapper {
+.minicart-wrapper,
+.miniquote-wrapper{
   .dropdown {
     width: 525px;
     @media screen and (max-width: $sm-width) {
@@ -14,7 +15,8 @@
     }
   }
 }
-#minicart-content-wrapper {
+#minicart-content-wrapper,
+#miniquote-content-wrapper{
   color: $black;
   .block-title {
     .text span {
@@ -35,13 +37,18 @@
       color: $font-link;
       margin-left: 10px;
     }
-    #btn-minicart-close {
+    #btn-minicart-close,
+    #btn-miniquote-close{
       display: none;
     }
   }
   .block-content {
-    .minicart-items-wrapper {
-      .minicart-items {
+
+    .minicart-items-wrapper,
+    .miniquote-items-wrapper{
+
+      .minicart-items,
+      .miniquote-items{
         .item {
           padding: 30px 0px;
           &:first-child {
@@ -169,7 +176,8 @@
         }
       }
     }
-    .bottom-minicart {
+    .bottom-minicart,
+    .bottom-miniquote{
       display: flex;
       justify-content: space-between;
       border-top: 0px;
