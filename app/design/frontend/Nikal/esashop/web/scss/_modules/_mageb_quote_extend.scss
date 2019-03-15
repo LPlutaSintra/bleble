@@ -1,0 +1,341 @@
+/* extend styles for Magebees_QuotationManagerPro */
+
+.miniquote-wrapper {
+
+    .actions{
+        .secondary{
+            display: none;
+        }
+    }
+
+    .action.showquote {
+        display: flex;
+        margin-top: 0;
+
+        &:before{
+            display: none;
+        }
+
+        &.active,
+        &:hover{
+            &:before{
+                display: none;
+            }
+        }
+
+        &.active{
+            display: flex;
+            margin-bottom: 0;
+        }
+
+        .text{
+            width: auto;
+            position: static;
+            height: auto;
+            padding-right: 8px;
+        }
+
+        .counter.qty{
+            display: inline;
+        }
+
+        .counter-number{
+            font-size: 10px;
+            font-weight: bold;
+        }
+    }
+
+    .block-miniquote{
+        position: static;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        border: none;
+        box-shadow: none;
+        height: 100%;
+        box-sizing: border-box;
+
+        > div {
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
+            width: 100%;
+        }
+
+        .miniquote-items-wrapper {
+            flex: 1 0 auto;
+            overflow: auto;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .block-content {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            flex: 1;
+            .details-qty {
+                display: flex;
+                flex-flow: row nowrap;
+                margin: 0;
+
+                @include sm {
+                    margin-bottom: 10px;
+                }
+
+                @include xs {
+                    max-width: 100%;
+                }
+
+                .label {
+                    padding: 0;
+                    font-size: 13px;
+                    color: $font-base;
+                    font-family: $font-fam-base;
+                    margin-right: 10px;
+                }
+
+                input {
+                    min-width: 24px;
+                    height: 24px;
+                    padding: 0 10px;
+                    text-align: center;
+                    font-family: $font-fam-base;
+                }
+            }
+
+            .qty {
+                padding: 0;
+
+                &.control {
+                    display: flex;
+                    justify-content: flex-start;
+                    max-width: 90px;
+
+                    .qty-add,
+                    .qty-sub {
+                        display: flex;
+
+                        > i {
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+                }
+            }
+
+            .options {
+
+                @include xs {
+                    flex-flow: column nowrap;
+                }
+
+                span {
+                    > span {
+                        display: none;
+                    }
+                }
+
+                .content {
+                    margin: 10px 0;
+                    padding: 0;
+                }
+
+                .subtitle {
+                    display: none;
+                }
+
+                .list {
+                    font-size: 13px;
+                    margin-bottom: 0;
+                }
+
+                .label {
+                    font-weight: 400;
+                    margin-right: 5px;
+                    font-family: $font-fam-base;
+
+                    &:after {
+                        content: ':';
+                    }
+                }
+
+                .values {
+                    font-weight: 600;
+                    color: $font-base;
+                    margin-bottom: 0;
+                    font-family: $font-fam-base;
+
+                    span {
+                        &:after {
+                            background-color: $black;
+                            content: '';
+                            width: 1px;
+                            height: 10px;
+                            margin: 0 5px;
+                            display: inline-block;
+
+                            @include xs {
+                                content: none;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        span {
+                            &:after {
+                                content: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .product-item {
+                .product {
+                    display: flex;
+                    .product-item-details{
+                        margin-left: 30px;
+                        padding: 0;
+                        flex: 1;
+
+                        @include xs {
+                            margin-left: 15px;
+                        }
+
+                        .product-item-name {
+                            display: flex;
+
+                            a {
+                                font-size: 13px;
+                                font-weight: 500;
+                                color: $black;
+                                text-transform: uppercase;
+                                font-family: $font-fam-base;
+                            }
+                        }
+
+                        .actions {
+                            font-family: $font-fam-base;
+                            height: 24px;
+                            margin-top: 0;
+
+                            a,
+                            button,
+                            i {
+                                height: 24px;
+                                width: 24px;
+                                text-align: center;
+                                line-height: 24px;
+                                opacity: 1;
+                                color: $font-base;
+                            }
+
+                            .primary {
+                                padding-right: 12px;
+                                border-right: 1px solid #d8d8d8;
+                            }
+
+                            .secondary {
+                                padding-left: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+            .product-item-pricing {
+
+                .price {
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 2.14;
+                    font-family: $font-fam-base;
+                    color: $bg-cta;
+                }
+            }
+
+            .actions-wrapper {
+                display: flex;
+                justify-content: space-between;
+                flex-flow: row nowrap;
+
+                @include sm {
+                    flex-flow: row wrap;
+                }
+            }
+        }
+
+        .block-title {
+
+            .qty {
+                font-size: 12px;
+                font-weight: 600;
+                font-family: $font-fam-base;
+                background: $bg-cta;
+                width: 16px;
+                height: 16px;
+                color: $white;
+                border-radius: 100%;
+                text-align: center;
+                line-height: 16px;
+                margin-left: 12px;
+            }
+
+            .products {
+                font-family: $font-fam-base;
+                color: $font-base;
+                font-size: 12px;
+                margin-left: 7px;
+                flex: 1;
+            }
+        }
+
+        .subtitle.empty{
+            font-size: 16px;
+            padding: 0;
+        }
+
+        .bottom-miniquote {
+            width: 100%;
+            border-top: 1px solid $bg-separator;
+
+            .subtotal {
+                display: flex;
+                justify-content: center;
+                text-align: left;
+                margin: 0;
+
+                span {
+                    > span {
+                        margin: 0 10px;
+                        font-size: 18px;
+                        font-weight: 500;
+                        font-family: $font-fam-base;
+                        color: $black;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.miniquote-items{
+    max-height: none;
+    overflow: initial;
+    .action{
+        &.delete{
+            &:before{
+                display: none;
+            }
+        }
+    }
+}
+
+.block-miniquote {
+    .items-total{
+        display: none;
+    }
+}

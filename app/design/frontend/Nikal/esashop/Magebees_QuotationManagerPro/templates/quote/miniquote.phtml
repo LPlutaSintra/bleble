@@ -4,7 +4,7 @@ $quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
 $config=$quote_helper->getConfig();
 ?>
  <?php if($config['enable']): ?>
-<div data-block="miniquote" class="miniquote-wrapper">
+<div class="miniquote-wrapper">
     <a class="action showquote" href="<?php echo $block->getQuoteCartUrl(); ?>"
        data-bind="scope: 'miniquote_content'">
         <span class="text"><?php echo __('My Quote'); ?></span>
@@ -30,7 +30,8 @@ $config=$quote_helper->getConfig();
             </div>
         </div>
     </a>
-    
+    <div data-block="miniquote" class="dropdown dropdown-slider-wrapper"></div>
+
         <div class="block block-miniquote empty"
              data-role="dropdownDialog"
              data-mage-init='{"dropdownDialog":{
