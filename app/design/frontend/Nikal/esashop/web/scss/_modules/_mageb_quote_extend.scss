@@ -12,6 +12,10 @@
         display: flex;
         margin-top: 0;
 
+        @include xs {
+            display: none;
+        }
+        
         &:before{
             display: none;
         }
@@ -331,6 +335,15 @@
                 display: none;
             }
         }
+
+        &.edit{
+            &:before{
+                background: url(../images/edit.png) no-repeat 0 0;
+                width: 24px;
+                height: 22px;
+                margin-top: -3px;
+            }
+        }
     }
 }
 
@@ -338,4 +351,14 @@
     .items-total{
         display: none;
     }
+}
+
+.quotation-quote-index {
+
+    @include md {
+        .item{
+            width: auto!important;
+        }
+    }
+
 }
