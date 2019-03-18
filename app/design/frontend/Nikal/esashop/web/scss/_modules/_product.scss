@@ -292,14 +292,19 @@ Form
         flex-wrap: wrap;
         .product-options-bottom {
           width: 100%;
-          border-bottom: 1px solid $border-light;
+          //padding: 20px 0;
+          .box-tocart {
+            padding-bottom: 50px;
+          }
         }
         .box-tocart {
           width: 100%;
+          border-bottom: 1px solid $border-light;
           padding: 20px 0;
           padding-top: 30px;
           .fieldset {
             display: block;
+
             .field.qty {
               background: transparent;
               display: inline-flex;
@@ -312,21 +317,26 @@ Form
               }
 
               .control {
-                button {
+                button.qty-sub,
+                button.qty-add {
                   border: 1px solid $nikal-main-color;
                   background: none;
                   width: 30px;
                   height: 30px;
+
                   &:hover {
                     border: 1px solid $nikal-main-color;
                     background: $nikal-main-color;
+
                     i.icon:after {
                       color: $white;
                     }
                   }
+
                   &:active {
-                    transform:scale(.98);
+                    transform: scale(.98);
                   }
+
                   i.icon {
                     &:after {
                       line-height: 1.2;
@@ -334,11 +344,13 @@ Form
                       color: $nikal-main-color;
                       margin-left: 1px;
                     }
+
                     &.icon-qty-subtract:after {
                       line-height: 1.1;
                     }
                   }
                 }
+
                 input {
                   background: transparent;
                   padding: 0;
@@ -347,6 +359,7 @@ Form
                 }
               }
             }
+
             .actions {
               display: inline-flex;
               float: right;
@@ -366,9 +379,11 @@ Form
                   border: 2px solid $nikal-main-color;
                   color: $white;
                 }
+
                 &:active {
-                  transform:scale(.98);
+                  transform: scale(.98);
                 }
+
                 &.toquote {
                   //display: none;
                 }
