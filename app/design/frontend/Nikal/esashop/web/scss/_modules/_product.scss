@@ -293,85 +293,84 @@ Form
         .product-options-bottom {
           width: 100%;
           border-bottom: 1px solid $border-light;
+        }
+        .box-tocart {
+          width: 100%;
           padding: 20px 0;
           padding-top: 30px;
-          .box-tocart {
-            .fieldset {
-              display: block;
+          .fieldset {
+            display: block;
+            .field.qty {
+              background: transparent;
+              display: inline-flex;
+              max-width: 40%;
 
-              .field.qty {
-                background: transparent;
-                display: inline-flex;
-                max-width: 40%;
-
-                .label {
-                  span {
-                    margin-right: 10px;
-                  }
-                }
-
-                .control {
-                  button {
-                    border: 1px solid $nikal-main-color;
-                    background: none;
-                    width: 30px;
-                    height: 30px;
-                    &:hover {
-                      border: 1px solid $nikal-main-color;
-                      background: $nikal-main-color;
-                      i.icon:after {
-                        color: $white;
-                      }
-                    }
-                    &:active {
-                      transform:scale(.98);
-                    }
-                    i.icon {
-                      &:after {
-                        line-height: 1.2;
-                        font-family: $font-fam-base;
-                        color: $nikal-main-color;
-                        margin-left: 1px;
-                      }
-                      &.icon-qty-subtract:after {
-                        line-height: 1.1;
-                      }
-                    }
-                  }
-                  input {
-                    background: transparent;
-                    padding: 0;
-                    color: $nikal-main-color;
-                    flex: 0 1 60px;
-                  }
+              .label {
+                span {
+                  margin-right: 10px;
                 }
               }
 
-              .actions {
-                display: inline-flex;
-                float: right;
-
+              .control {
                 button {
-                  width: 100%;
-                  background: transparent;
-                  margin-left: auto;
-                  margin-right: 0;
-                  display: inline-flex;
-                  border: 2px solid $nikal-main-color;
-                  color: $nikal-main-color;
-
-                  &:hover,
-                  &:active {
+                  border: 1px solid $nikal-main-color;
+                  background: none;
+                  width: 30px;
+                  height: 30px;
+                  &:hover {
+                    border: 1px solid $nikal-main-color;
                     background: $nikal-main-color;
-                    border: 2px solid $nikal-main-color;
-                    color: $white;
+                    i.icon:after {
+                      color: $white;
+                    }
                   }
                   &:active {
                     transform:scale(.98);
                   }
-                  &.toquote {
-                    //display: none;
+                  i.icon {
+                    &:after {
+                      line-height: 1.2;
+                      font-family: $font-fam-base;
+                      color: $nikal-main-color;
+                      margin-left: 1px;
+                    }
+                    &.icon-qty-subtract:after {
+                      line-height: 1.1;
+                    }
                   }
+                }
+                input {
+                  background: transparent;
+                  padding: 0;
+                  color: $nikal-main-color;
+                  flex: 0 1 60px;
+                }
+              }
+            }
+            .actions {
+              display: inline-flex;
+              float: right;
+
+              button {
+                width: 100%;
+                background: transparent;
+                margin-left: auto;
+                margin-right: 0;
+                display: inline-flex;
+                border: 2px solid $nikal-main-color;
+                color: $nikal-main-color;
+
+                &:hover,
+                &:active {
+                  background: $nikal-main-color;
+                  border: 2px solid $nikal-main-color;
+                  color: $white;
+                }
+                &:active {
+                  transform:scale(.98);
+                }
+                &.toquote {
+                  //display: none;
                 }
               }
             }

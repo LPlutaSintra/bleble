@@ -1,5 +1,5 @@
 /* extend styles for Magebees_QuotationManagerPro */
-
+/* miniquote */
 .miniquote-wrapper {
 
     .actions{
@@ -368,4 +368,18 @@
         }
     }
 
+}
+
+/* product page */
+#magebees-addtoquote-button{
+    @extend %btn;
+    font-size: $font-size-sm-uppercase;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+        background: $nikal-main-color;
+        border: 2px solid $nikal-main-color;
+        color: $white;
+    }
 }
