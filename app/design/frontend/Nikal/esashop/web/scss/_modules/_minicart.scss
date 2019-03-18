@@ -181,6 +181,13 @@
       display: flex;
       justify-content: space-between;
       border-top: 0px;
+      .actions {
+        .primary {
+          .action.primary.shopping-cart{
+            @extend %btn;
+          }
+        }
+      }
       .subtotal {
         display: inline-block;
         margin-top: 0px;
