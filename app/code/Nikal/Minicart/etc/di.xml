@@ -2,4 +2,7 @@
     <type name="Magento\Checkout\CustomerData\DefaultItem">
         <plugin name="minicart_product_stock" type="Nikal\Minicart\Plugin\ProductStock" />
     </type>
+    <type name="Magebees\QuotationManagerPro\CustomerData\DefaultItem">
+        <plugin name="minicart_quote_product_stock" type="Nikal\Minicart\Plugin\ProductQuoteStock" />
+    </type>
 </config>
