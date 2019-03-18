@@ -4,6 +4,7 @@
 		<sequence>
 			<module name="Magento_Catalog"/>
 			<module name="Magento_ConfigurableProduct"/>
+			<module name="Magebees_QuotationManagerPro"/>
 		</sequence>
 	</module>
 </config>
