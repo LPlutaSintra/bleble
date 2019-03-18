@@ -15,7 +15,7 @@
         @include xs {
             display: none;
         }
-        
+
         &:before{
             display: none;
         }
@@ -303,7 +303,14 @@
         .bottom-miniquote {
             width: 100%;
             border-top: 1px solid $bg-separator;
-
+            .actions {
+                .primary {
+                    .action.primary.checkout{
+                        @extend %btn;
+                        font-size: $font-size-sm-uppercase;
+                    }
+                }
+            }
             .subtotal {
                 display: flex;
                 justify-content: center;
