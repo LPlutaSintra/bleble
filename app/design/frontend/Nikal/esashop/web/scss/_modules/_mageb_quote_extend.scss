@@ -383,3 +383,222 @@
         color: $white;
     }
 }
+
+/* Manage Quotations */
+.quotation-customer-quotehistory {
+
+    [class*="-products-toolbar"] {
+        margin: 30px 0 0;
+
+        .pager {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .toolbar-amount{
+                font-weight: 500;
+            }
+
+            .limiter {
+                display: flex;
+                align-items: center;
+                font-family: $font-fam-secondary;
+
+                select {
+                    margin: 0 0 0 10px;
+                }
+            }
+        }
+    }
+
+    .table {
+        width: 100%;
+        font-family: $font-fam-base;
+
+        @include xs {
+            width: 770px
+        }
+
+        thead {
+            background-color: $nikal-background-color;
+
+            tr {
+                th {
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    letter-spacing: 1px;
+                    text-align: left;
+                    padding: 3px 5px 1px;
+                    font-size: $font-size-sm-uppercase;
+                    color: $nikal-text-color;
+
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border: solid 1px $nikal-background-color;
+
+                td {
+                    width: auto;
+                    line-height: 1.62;
+                    letter-spacing: 1px;
+                    text-align: left;
+                    padding: 2px 5px;
+                    font-family: $font-fam-secondary;
+                    font-size: $font-size-sm;
+                    color: $nikal-text-color;
+
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        tfoot{
+            font-family: $font-fam-secondary;
+
+            tr{
+                th{
+                    padding: 2px 5px;
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+                td{
+                    padding: 2px 5px;
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        .action{
+            text-transform: uppercase;
+            font-family: $font-fam-title;
+
+            &.order{
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    height: 12px;
+                    margin: 0 6px;
+                    width: 1px;
+                    background: $nikal-main-color;
+                }
+            }
+
+            span{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .history.table-quote-items {
+        tbody {
+            td{
+                padding: 14px 5px;
+            }
+        }
+    }
+}
+
+.quotation-quote-view{
+
+    .page-title-wrapper{
+        margin-bottom: 30px;
+
+        .print_pdf{
+            @include xxs {
+                float: none;
+                margin-top: 20px!important;
+            }
+        }
+    }
+
+    .block-quote-details-view {
+        margin-bottom: 50px!important;
+        overflow: hidden;
+
+        .block-title{
+            font-size: 25px;
+            line-height: 22px;
+            margin-bottom: 20px;
+        }
+
+        h4{
+            margin: 20px 0 10px;
+        }
+    }
+
+    tfoot{
+        font-family: $font-fam-secondary;
+
+        tr{
+            th{
+                text-align: right;
+            }
+            td{
+                text-align: left;
+            }
+
+            &.grand_total, &.grand_total_incl{
+                th, td{
+                    font-size: $font-size-m;
+                    font-weight: 700;
+                    padding: 7px 5px;
+                }
+            }
+        }
+    }
+
+    .box-quote-billing-address{
+        margin: 40px 0 0;
+    }
+
+    .quote-items{
+        margin-bottom: 30px;
+    }
+
+    .remarks-with-quote{
+        margin-bottom: 40px;
+    }
+}
+
+#my-quote-table {
+    td.col.subtotal{
+       text-align: left;
+    }
+}
+
+#messageform {
+    margin-bottom: 50px;
+
+    .block-quote-details-view{
+        margin-bottom: 0!important;
+    }
+
+    fieldset{
+        //background: none;
+    }
+}
+
+.quote-msg-collection {
+    margin: 0;
+
+    .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    .ui-widget-header .ui-state-active{
+        border: 1px solid $nikal-main-color;
+        background: $nikal-main-color;
+        font-weight: normal;
+        color: #ffffff;
+    }
+}
+

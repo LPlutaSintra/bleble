@@ -47,6 +47,10 @@ Customer Area
 }
 .account {
 
+    .page-title{
+        letter-spacing: 0;
+    }
+
     .label{
         font-family: $font-fam-secondary;
     }
@@ -295,7 +299,7 @@ Customer Area
                     text-align: right;
                 }
 
-                &.grand_total{
+                &.grand_total, &.grand_total_incl{
                     th, td{
                         font-size: $font-size-m;
                         padding: 7px 5px;
