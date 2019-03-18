@@ -383,3 +383,126 @@
         color: $white;
     }
 }
+
+/* Manage Quotations */
+.quotation-customer-quotehistory {
+
+    [class*="-products-toolbar"] {
+        margin: 30px 0 0;
+
+        .pager {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .toolbar-amount{
+                font-weight: 500;
+            }
+
+            .limiter {
+                display: flex;
+                align-items: center;
+                font-family: $font-fam-secondary;
+
+                select {
+                    margin: 0 0 0 10px;
+                }
+            }
+        }
+    }
+
+    .table {
+        width: 100%;
+        font-family: $font-fam-base;
+
+        @include xs {
+            width: 770px
+        }
+
+        thead {
+            background-color: $nikal-background-color;
+
+            tr {
+                th {
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    letter-spacing: 1px;
+                    text-align: left;
+                    padding: 3px 5px 1px;
+                    font-size: $font-size-sm-uppercase;
+                    color: $nikal-text-color;
+
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border: solid 1px $nikal-background-color;
+
+                td {
+                    width: auto;
+                    line-height: 1.62;
+                    letter-spacing: 1px;
+                    text-align: left;
+                    padding: 2px 5px;
+                    font-family: $font-fam-secondary;
+                    font-size: $font-size-sm;
+                    color: $nikal-text-color;
+
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        tfoot{
+            tr{
+                th{
+                    padding: 2px 5px;
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+                td{
+                    padding: 2px 5px;
+                    @include md {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        .action{
+            text-transform: uppercase;
+            font-family: $font-fam-title;
+
+            &.order{
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    height: 12px;
+                    margin: 0 6px;
+                    width: 1px;
+                    background: $nikal-main-color;
+                }
+            }
+
+            span{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .history.table-quote-items {
+        tbody {
+            td{
+                padding: 14px 5px;
+            }
+        }
+    }
+}
