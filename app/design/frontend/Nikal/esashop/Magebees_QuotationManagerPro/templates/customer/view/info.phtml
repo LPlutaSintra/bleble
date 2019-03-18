@@ -1,0 +1,60 @@
+<?php $quote_id=$block->getRequest()->getParam('quote_id');
+$quote_helper = $this->helper('Magebees\QuotationManagerPro\Helper\Quotation');
+$_quotes=$quote_helper->getQuoteDataById($quote_id);
+foreach ($_quotes as $_quote): 
+$shipping_add_id=$_quote->getshipAddressId();
+$avail_shipping=$quote_helper->IsCustomShipAddressAvail($quote_id);
+
+if($avail_shipping['is_default_address']!=0)
+{	
+		$shipping_address=$quote_helper->renderCustomAddress($avail_shipping);	
+}
+else
+{
+	$default_shipping=$quote_helper->getDefaultAddressInQuote($quote_id,'shipping',$shipping_add_id);	
+	$shipping_address=$quote_helper->renderCustomAddress($default_shipping);
+//$shipping_address=$quote_helper->getFormattedAddress($shipping_add_id);
+}
+$billing_add_id=$_quote->getbillAddressId();	
+$avail_billing=$quote_helper->IsCustomBillAddressAvail($quote_id);
+if($avail_billing['is_default_address']!=0)
+{	
+		$billing_address=$quote_helper->renderCustomAddress($avail_billing);	
+}
+else
+{
+//	$billing_address=$quote_helper->getFormattedAddress($billing_add_id);
+	$default_billing=$quote_helper->getDefaultAddressInQuote($quote_id,'billing',$billing_add_id);
+$billing_address=$quote_helper->renderCustomAddress($default_billing);
+}
+endforeach; ?>
+<div class="block block-quote-details-view">
+	<?php if($_quote->getQuoteRequestInfo()):?>
+ 	<div class="block-title">
+        <strong><?= /* @escapeNotVerified */ __('Remarks With Quote') ?></strong>
+    </div>	
+	<div class="remarks-with-quote"><?php echo $_quote->getQuoteRequestInfo();?> </div>
+	<?php endif;?>
+	
+    <div class="block-title">
+        <strong><?= /* @escapeNotVerified */ __('Quote Address Information') ?></strong>
+    </div>
+    <div class="block-content">
+  
+        <div class="box box-quote-shipping-address">
+            <strong class="box-title"><span><?= /* @escapeNotVerified */ __('Shipping Address') ?></span></strong>
+            <div class="box-content">
+                <address><?= /* @escapeNotVerified */ $shipping_address; ?></address>
+            </div>
+        </div>
+        <div class="box box-quote-billing-address">
+            <strong class="box-title">
+                <span><?= /* @escapeNotVerified */ __('Billing Address') ?></span>
+            </strong>
+            <div class="box-content">
+                <address><?= /* @escapeNotVerified */ $billing_address;?></address>
+            </div>
+        </div>
+       
+    </div>
+</div>

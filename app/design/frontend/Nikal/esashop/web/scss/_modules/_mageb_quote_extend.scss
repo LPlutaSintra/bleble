@@ -461,6 +461,8 @@
         }
 
         tfoot{
+            font-family: $font-fam-secondary;
+
             tr{
                 th{
                     padding: 2px 5px;
@@ -506,3 +508,97 @@
         }
     }
 }
+
+.quotation-quote-view{
+
+    .page-title-wrapper{
+        margin-bottom: 30px;
+
+        .print_pdf{
+            @include xxs {
+                float: none;
+                margin-top: 20px!important;
+            }
+        }
+    }
+
+    .block-quote-details-view {
+        margin-bottom: 50px!important;
+        overflow: hidden;
+
+        .block-title{
+            font-size: 25px;
+            line-height: 22px;
+            margin-bottom: 20px;
+        }
+
+        h4{
+            margin: 20px 0 10px;
+        }
+    }
+
+    tfoot{
+        font-family: $font-fam-secondary;
+
+        tr{
+            th{
+                text-align: right;
+            }
+            td{
+                text-align: left;
+            }
+
+            &.grand_total, &.grand_total_incl{
+                th, td{
+                    font-size: $font-size-m;
+                    font-weight: 700;
+                    padding: 7px 5px;
+                }
+            }
+        }
+    }
+
+    .box-quote-billing-address{
+        margin: 40px 0 0;
+    }
+
+    .quote-items{
+        margin-bottom: 30px;
+    }
+
+    .remarks-with-quote{
+        margin-bottom: 40px;
+    }
+}
+
+#my-quote-table {
+    td.col.subtotal{
+       text-align: left;
+    }
+}
+
+#messageform {
+    margin-bottom: 50px;
+
+    .block-quote-details-view{
+        margin-bottom: 0!important;
+    }
+
+    fieldset{
+        //background: none;
+    }
+}
+
+.quote-msg-collection {
+    margin: 0;
+
+    .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    .ui-widget-header .ui-state-active{
+        border: 1px solid $nikal-main-color;
+        background: $nikal-main-color;
+        font-weight: normal;
+        color: #ffffff;
+    }
+}
+

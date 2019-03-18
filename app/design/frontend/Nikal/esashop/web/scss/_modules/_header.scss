@@ -751,6 +751,11 @@ body {
     >.header {
       .links {
         .customer-welcome {
+          &.active{
+            >span{
+              background: none;
+            }
+          }
           .links {
             top: 10px;
             a{
