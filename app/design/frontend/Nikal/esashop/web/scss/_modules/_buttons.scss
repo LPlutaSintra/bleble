@@ -23,6 +23,10 @@ Buttons
   border-radius: 3px;
   color: $btn-secondary-font;
 
+  &:active {
+    transform:scale(.98);
+  }
+
   @include xxs {
     padding-top: 10px;
     padding-bottom: 10px;
