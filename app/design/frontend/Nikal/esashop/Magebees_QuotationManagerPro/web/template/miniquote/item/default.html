@@ -1,4 +1,4 @@
-<li class="item product product-item" data-role="product-item">
+<li class="item product product-item test" data-role="product-item">
     <div class="product">
         <!-- ko if: product_has_url -->
         <a data-bind="attr: {href: product_url, title: product_name}" tabindex="-1" class="product-item-photo">
@@ -45,9 +45,8 @@
                 </div>
             </div>
             <!-- /ko -->
-
             <div class="product-availability">
-                <span class="stock-text"><!-- ko i18n: 'Stock availability:' --><!-- /ko --></span> <span class="stock-qty" data-bind="text: 'stock_available_qty'"></span><span class="stock-unit"> pcs</span>
+                <span class="stock-text"><!-- ko i18n: 'Stock availability:' --><!-- /ko --></span> <span class="stock-qty"><!-- ko text: stock_available_qty --><!-- /ko --></span><span class="stock-unit"> pcs</span>
             </div>
 
             <div class="product-item-pricing">
